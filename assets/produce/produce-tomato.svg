@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF5F5" />
+      <stop offset="100%" stop-color="#FEE2E2" />
+    </linearGradient>
+    <linearGradient id="tomatoRed" x1="0%" y1="0%" x2="70%" y2="100%">
+      <stop offset="0%" stop-color="#EF4444" />
+      <stop offset="50%" stop-color="#DC2626" />
+      <stop offset="100%" stop-color="#B91C1C" />
+    </linearGradient>
+    <linearGradient id="leafGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4ADE80" />
+      <stop offset="100%" stop-color="#15803D" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#7F1D1D" flood-opacity="0.18" />
+    </filter>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#bgGrad)" rx="16" />
+  
+  <!-- Back Tomato -->
+  <g filter="url(#shadow)">
+    <circle cx="260" cy="150" r="70" fill="#DC2626" opacity="0.9" />
+    <path d="M260 85 C255 70 245 75 240 70 C250 80 255 85 260 85 Z" fill="#15803D" />
+  </g>
+
+  <!-- Front Main Tomato -->
+  <g filter="url(#shadow)">
+    <circle cx="170" cy="165" r="85" fill="url(#tomatoRed)" />
+    <!-- Highlights -->
+    <ellipse cx="140" cy="130" rx="28" ry="16" transform="rotate(-25 140 130)" fill="#FFFFFF" opacity="0.3" />
+    
+    <!-- Calyx & Leaves -->
+    <g fill="url(#leafGreen)">
+      <!-- Stem -->
+      <path d="M170 85 C170 65 178 55 185 50 C182 60 178 70 176 85 Z" fill="#166534" />
+      <!-- Star Leaves -->
+      <path d="M170 85 C150 78 135 90 130 92 C142 96 158 92 170 85 Z" />
+      <path d="M170 85 C185 75 205 80 215 82 C202 92 185 88 170 85 Z" />
+      <path d="M170 85 C160 98 155 115 152 120 C162 108 168 98 170 85 Z" />
+      <path d="M170 85 C180 98 190 112 195 115 C188 105 180 95 170 85 Z" />
+      <path d="M170 85 C170 70 162 60 158 55 C165 65 168 75 170 85 Z" />
+    </g>
+  </g>
+  
+  <!-- Subtle Mandi Crating badge -->
+  <rect x="24" y="24" width="96" height="24" rx="6" fill="#DC2626" fill-opacity="0.12" />
+  <text x="72" y="40" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#B91C1C" text-anchor="middle">GRADE A RED</text>
+</svg>

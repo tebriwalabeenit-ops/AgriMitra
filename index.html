@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgriMitra | Connect. Trade. Grow.</title>
+  <meta name="description" content="Helping farmers discover better markets, connect with reliable buyers, and manage produce sales from farm to delivery.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Subtle Background Pattern -->
+  <div class="bg-subtle-pattern" aria-hidden="true"></div>
+
+  <!-- Accessibility Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-wrapper" aria-label="AgriMitra Home">
+        <img src="logo.png" alt="AgriMitra" class="brand-logo-img">
+        <div class="brand-text-block">
+          <span class="brand-name">AgriMitra</span>
+          <span class="brand-subtext">Market Intelligence &amp; Trade</span>
+        </div>
+      </a>
+
+      <nav class="header-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="#about-modal" class="nav-link" id="nav-about-link">About</a></li>
+          <li><a href="#supply-chain" class="nav-link">How It Works</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="btn btn-secondary" id="header-login-btn">Login</button>
+        <button type="button" class="btn btn-primary" id="header-register-btn">Register</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section class="hero-section" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="hero-content">
+          <div class="platform-badge">
+            <span class="badge-dot" aria-hidden="true"></span>
+            <span>Public Agricultural Trading Infrastructure</span>
+          </div>
+
+          <div class="hero-title-group">
+            <h1 id="hero-heading" class="hero-brand">AgriMitra</h1>
+            <p class="hero-tagline">Connect. Trade. Grow.</p>
+          </div>
+
+          <p class="hero-description">
+            Helping farmers discover better markets, connect with reliable buyers, and manage produce sales from farm to delivery.
+          </p>
+
+          <div class="hero-actions">
+            <button type="button" class="btn btn-primary btn-large" id="main-login-btn">
+              Login
+              <svg class="btn-icon-end" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+            <button type="button" class="btn btn-secondary btn-large" id="main-register-btn">
+              Register
+            </button>
+          </div>
+
+          <!-- Active Roles Strip (No Admin) -->
+          <div class="ecosystem-roles">
+            <span class="ecosystem-label">Connected Ecosystem Roles</span>
+            <div class="role-chips">
+              <a href="AgriMitra-Farmer/farmer/register.html" class="role-chip" style="text-decoration: none;"><span class="role-chip-indicator" aria-hidden="true"></span>Farmer</a>
+              <a href="AgriMitra-Buyer/buyer.html" class="role-chip" style="text-decoration: none;"><span class="role-chip-indicator" aria-hidden="true"></span>Buyer</a>
+              <a href="AgriMitra- FPO/fpo-register.html" class="role-chip" style="text-decoration: none;"><span class="role-chip-indicator" aria-hidden="true"></span>FPO</a>
+              <a href="AgriMitra-delivery agent/delivery-agent.html" class="role-chip" style="text-decoration: none;"><span class="role-chip-indicator" aria-hidden="true"></span>Delivery Agent</a>
+              <a href="Agrimitra(wholesaler and distributer)/register-distributor.html" class="role-chip" style="text-decoration: none;"><span class="role-chip-indicator" aria-hidden="true"></span>Distributor / Wholesaler</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Supply Chain Visual Section -->
+    <!-- Farmer → Produce → Buyer → Delivery → Payment -->
+    <section id="supply-chain" class="supply-chain-section" aria-labelledby="chain-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">End-to-End Transparency</span>
+          <h2 id="chain-heading" class="section-title">Agricultural Supply Chain</h2>
+          <p class="section-subtitle">
+            A unified workflow ensuring transparent price discovery, quality assessment, and timely settlement.
+          </p>
+        </div>
+
+        <div class="chain-flow" role="list">
+          <!-- Step 1: Farmer -->
+          <article class="chain-step" role="listitem">
+            <span class="step-number" aria-label="Step 1">01</span>
+            <div class="step-icon-wrap" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <h3 class="step-name">Farmer</h3>
+            <p class="step-description">
+              Discovers transparent market rates and lists harvest quantities without intermediary price suppression.
+            </p>
+            <a href="AgriMitra-Farmer/farmer/register.html" class="step-feature" style="text-decoration: none;">Fair Price Discovery &rarr;</a>
+            <div class="chain-arrow" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </div>
+          </article>
+
+          <!-- Step 2: Produce -->
+          <article class="chain-step" role="listitem">
+            <span class="step-number" aria-label="Step 2">02</span>
+            <div class="step-icon-wrap" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+              </svg>
+            </div>
+            <h3 class="step-name">Produce</h3>
+            <p class="step-description">
+              Standardized lot cataloging with verified grade, moisture content, storage status, and harvest dates.
+            </p>
+            <div class="step-feature">Quality Graded Lots</div>
+            <div class="chain-arrow" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </div>
+          </article>
+
+          <!-- Step 3: Buyer -->
+          <article class="chain-step" role="listitem">
+            <span class="step-number" aria-label="Step 3">03</span>
+            <div class="step-icon-wrap" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+              </svg>
+            </div>
+            <h3 class="step-name">Buyer</h3>
+            <p class="step-description">
+              Accesses certified produce lots with escrow-secured bidding, advance logistics scheduling, and direct invoicing.
+            </p>
+            <a href="AgriMitra-Buyer/buyer.html" class="step-feature" style="text-decoration: none;">Verified Sourcing &rarr;</a>
+            <div class="chain-arrow" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </div>
+          </article>
+
+          <!-- Step 4: Delivery -->
+          <article class="chain-step" role="listitem">
+            <span class="step-number" aria-label="Step 4">04</span>
+            <div class="step-icon-wrap" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="1" y="3" width="15" height="13"></rect>
+                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                <circle cx="18.5" cy="18.5" r="2.5"></circle>
+              </svg>
+            </div>
+            <h3 class="step-name">Delivery</h3>
+            <p class="step-description">
+              GPS-monitored agricultural transit partners ensure temperature compliance, timely dispatch, and verified handoff.
+            </p>
+            <a href="AgriMitra-delivery agent/delivery-agent.html" class="step-feature" style="text-decoration: none;">GPS Monitored Fleet &rarr;</a>
+            <div class="chain-arrow" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </div>
+          </article>
+
+          <!-- Step 5: Bank Settlement -->
+          <article class="chain-step" role="listitem">
+            <span class="step-number" aria-label="Step 5">05</span>
+            <div class="step-icon-wrap" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                <line x1="2" y1="10" x2="22" y2="10"></line>
+              </svg>
+            </div>
+            <h3 class="step-name">Bank Settlement</h3>
+            <p class="step-description">
+              Automated escrow release directly to farmer account upon digital delivery confirmation and quality signoff.
+            </p>
+            <div class="step-feature">Direct Bank Transfer</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Decision Pillars: What, Where, When, and Who -->
+    <section class="platform-core-section" aria-labelledby="core-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Market Intelligence</span>
+          <h2 id="core-heading" class="section-title">Informed Selling Decisions</h2>
+          <p class="section-subtitle">
+            AgriMitra equips producers with actionable answers instead of raw data tables.
+          </p>
+        </div>
+
+        <div class="core-grid">
+          <div class="core-card">
+            <div class="core-card-header">
+              <div class="core-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="18" y1="20" x2="18" y2="10"></line>
+                  <line x1="12" y1="20" x2="12" y2="4"></line>
+                  <line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg>
+              </div>
+              <h3 class="core-card-title">What and When to Sell</h3>
+            </div>
+            <p class="core-card-text">
+              Real-time Mandi price aggregation and seasonal price forecasting to optimize harvesting schedules and warehouse holding decisions.
+            </p>
+          </div>
+
+          <div class="core-card">
+            <div class="core-card-header">
+              <div class="core-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <h3 class="core-card-title">Where to Sell</h3>
+            </div>
+            <p class="core-card-text">
+              Net realisation calculator comparing local mandi returns against distant regional hubs factoring in transport and handling costs.
+            </p>
+          </div>
+
+          <div class="core-card">
+            <div class="core-card-header">
+              <div class="core-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="8.5" cy="7" r="4"></circle>
+                  <polyline points="17 11 19 13 23 9"></polyline>
+                </svg>
+              </div>
+              <h3 class="core-card-title">Who to Sell To</h3>
+            </div>
+            <p class="core-card-text">
+              Verified buyers, FPO aggregators, and institutional processors with verifiable credit and on-time settlement ratings.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="brand-wrapper">
+            <img src="logo.png" alt="AgriMitra" class="brand-logo-img footer-logo-img">
+            <span class="brand-name">AgriMitra</span>
+          </div>
+          <p class="footer-statement">
+            Connect. Trade. Grow. Direct market access, real-time intelligence, and verified fulfillment across the agricultural supply chain.
+          </p>
+        </div>
+
+        <div class="footer-nav-group">
+          <div>
+            <h4 class="footer-col-title">Platform Roles</h4>
+            <ul class="footer-links">
+              <li><a href="AgriMitra-Farmer/farmer/register.html" class="footer-link">Farmer</a></li>
+              <li><a href="AgriMitra-Buyer/buyer.html" class="footer-link">Buyer</a></li>
+              <li><a href="AgriMitra- FPO/fpo-register.html" class="footer-link">FPO</a></li>
+              <li><a href="AgriMitra-delivery agent/delivery-agent.html" class="footer-link">Delivery Agent</a></li>
+              <li><a href="Agrimitra(wholesaler and distributer)/register-distributor.html" class="footer-link">Distributor / Wholesaler</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-col-title">Information</h4>
+            <ul class="footer-links">
+              <li><a href="#about-modal" class="footer-link" id="footer-about-link">About AgriMitra</a></li>
+              <li><a href="#supply-chain" class="footer-link">Supply Chain Flow</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>AgriMitra Agricultural Trading &amp; Intelligence Platform. All rights reserved.</span>
+        <span>Secure Infrastructure &bull; Public Impact Standard</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       Accessible Login Dialog
+       ========================================================================== -->
+  <dialog id="login-dialog" class="modal-dialog" aria-labelledby="login-dialog-title">
+    <div class="modal-header">
+      <h2 id="login-dialog-title" class="modal-title">Sign In to AgriMitra</h2>
+      <button type="button" class="btn-close" data-close-modal="login-dialog" aria-label="Close dialog">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <form method="dialog" id="login-form">
+      <div class="modal-body">
+        <div class="form-group" style="margin-bottom: 0.85rem;">
+          <label for="login-role" class="form-label">Select Role Portal</label>
+          <select id="login-role" class="form-control" style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid var(--color-border); border-radius: var(--radius-md); font-family: inherit; font-size: 0.875rem; background: var(--color-surface); cursor: pointer;">
+            <option value="farmer">Farmer Portal &amp; Dashboard</option>
+            <option value="buyer">Buyer Dashboard &amp; Marketplace</option>
+            <option value="delivery">Delivery Agent Logistics Portal</option>
+            <option value="distributor">Distributor / Wholesaler Dashboard</option>
+            <option value="fpo">FPO Portal &amp; Aggregation</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 0.85rem;">
+          <label for="login-phone" class="form-label">Phone Number</label>
+          <input type="tel" id="login-phone" class="form-control" placeholder="Enter 10-digit phone number" required pattern="[0-9]{10}">
+        </div>
+
+        <div class="form-group">
+          <label for="login-password" class="form-label">Password</label>
+          <input type="password" id="login-password" class="form-control" placeholder="Enter your password" required>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close-modal="login-dialog">Cancel</button>
+        <button type="submit" class="btn btn-primary">Login to Dashboard</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- ==========================================================================
+       Accessible Register Dialog (Role Selection & Redirect)
+       ========================================================================== -->
+  <dialog id="register-dialog" class="modal-dialog role-modal-dialog" aria-labelledby="register-dialog-title">
+    <div class="modal-header">
+      <div class="modal-header-content">
+        <h2 id="register-dialog-title" class="modal-title">Join AgriMitra</h2>
+        <p class="modal-subtitle">I am joining as:</p>
+      </div>
+      <button type="button" class="btn-close" data-close-modal="register-dialog" aria-label="Close dialog">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body role-selection-body">
+      <div class="role-select-list">
+        <!-- Farmer -->
+        <a href="AgriMitra-Farmer/farmer/register.html" class="role-select-card" data-role="farmer">
+          <div class="role-select-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <div class="role-select-content">
+            <span class="role-select-title">Farmer</span>
+            <span class="role-select-desc">Sell harvest lots, compare mandi prices, and connect with verified buyers</span>
+          </div>
+          <div class="role-select-arrow" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </div>
+        </a>
+
+        <!-- Buyer -->
+        <a href="AgriMitra-Buyer/buyer.html" class="role-select-card" data-role="buyer">
+          <div class="role-select-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+          </div>
+          <div class="role-select-content">
+            <span class="role-select-title">Buyer</span>
+            <span class="role-select-desc">Source quality graded produce lots directly with transparent contracts</span>
+          </div>
+          <div class="role-select-arrow" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </div>
+        </a>
+
+        <!-- FPO -->
+        <a href="AgriMitra- FPO/fpo-register.html" class="role-select-card" data-role="fpo">
+          <div class="role-select-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <div class="role-select-content">
+            <span class="role-select-title">FPO (Farmer Producer Organisation)</span>
+            <span class="role-select-desc">Aggregate member harvest, negotiate institutional bulk deals and logistics</span>
+          </div>
+          <div class="role-select-arrow" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </div>
+        </a>
+
+        <!-- Delivery Agent -->
+        <a href="AgriMitra-delivery agent/delivery-agent.html" class="role-select-card" data-role="delivery">
+          <div class="role-select-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="1" y="3" width="15" height="13"></rect>
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+              <circle cx="5.5" cy="18.5" r="2.5"></circle>
+              <circle cx="18.5" cy="18.5" r="2.5"></circle>
+            </svg>
+          </div>
+          <div class="role-select-content">
+            <span class="role-select-title">Delivery Agent</span>
+            <span class="role-select-desc">Accept agricultural transit contracts with GPS tracking and quick payout</span>
+          </div>
+          <div class="role-select-arrow" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </div>
+        </a>
+
+        <!-- Distributor / Wholesaler -->
+        <a href="Agrimitra(wholesaler and distributer)/register-distributor.html" class="role-select-card" data-role="distributor">
+          <div class="role-select-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+          </div>
+          <div class="role-select-content">
+            <span class="role-select-title">Distributor / Wholesaler</span>
+            <span class="role-select-desc">Manage warehouse inventory, bulk mandi arrivals, and regional distribution</span>
+          </div>
+          <div class="role-select-arrow" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </div>
+        </a>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ==========================================================================
+       About AgriMitra Dialog
+       ========================================================================== -->
+  <dialog id="about-dialog" class="modal-dialog" aria-labelledby="about-dialog-title">
+    <div class="modal-header">
+      <h2 id="about-dialog-title" class="modal-title">About AgriMitra</h2>
+      <button type="button" class="btn-close" data-close-modal="about-dialog" aria-label="Close dialog">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p style="margin-bottom: 1rem; color: var(--color-text-secondary); line-height: 1.6;">
+        AgriMitra is an open, technology-driven market intelligence and agricultural trade platform built to solve the fundamental question for producers:
+      </p>
+      <blockquote style="padding: 0.8rem 1rem; background: var(--color-surface-alt); border-left: 3px solid var(--color-primary); margin-bottom: 1.25rem; font-weight: 500; font-size: 0.95rem;">
+        &ldquo;What should I sell, where should I sell it, when should I sell it, and who should I sell it to?&rdquo;
+      </blockquote>
+      <p style="margin-bottom: 1rem; color: var(--color-text-secondary); line-height: 1.6;">
+        By bringing together verified farmers, FPOs, wholesale buyers, logistics partners, and transparent bank settlement, AgriMitra reduces price volatility and post-harvest losses.
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" data-close-modal="about-dialog">Close</button>
+    </div>
+  </dialog>
+
+  <!-- JavaScript -->
+  <script src="app.js"></script>
+</body>
+</html>

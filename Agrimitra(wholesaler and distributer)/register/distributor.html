@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Source produce, manage stock and connect with farmers and FPOs. Create your verified AgriMitra distributor account.">
+  <title>Create Distributor Account | AgriMitra</title>
+  
+  <!-- CSS Dependencies -->
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/registration.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body class="reg-page-body">
+
+  <!-- Top Navbar Matching Reference Photo -->
+  <header class="reg-top-navbar">
+    <div class="reg-top-nav-inner">
+      <a href="../index.html" class="reg-nav-brand">
+        <img src="logo.png" alt="AgriMitra Logo" style="width: 32px; height: 32px; object-fit: contain; border-radius: 6px;">
+        <span class="reg-nav-brand-title">Agri<span>Mitra</span></span>
+      </a>
+
+      <div>
+        <a href="../index.html" class="btn-back-nav">
+          <span>← Back to Login</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Two-Column Layout Container -->
+  <main class="reg-split-container">
+    
+    <!-- LEFT SIDE: AgriMitra Branding / Introduction -->
+    <section class="reg-hero-col">
+      
+      <!-- Small Badge -->
+      <div class="onboarding-pill">
+        <span class="pill-dot"></span>
+        <span>DISTRIBUTOR ONBOARDING</span>
+      </div>
+
+      <!-- Heading -->
+      <h1 class="hero-main-title">
+        Grow with <span class="green-highlight">AgriMitra</span>
+      </h1>
+
+      <!-- Subheading -->
+      <div class="hero-tagline">
+        Connect. Trade. Grow.
+      </div>
+
+      <!-- Short Description -->
+      <p class="hero-desc-text">
+        Source agricultural produce directly from farmers and FPOs and manage your wholesale operations.
+      </p>
+
+      <!-- Centered Emblem Area in Bordered Container -->
+      <div class="hero-emblem-card">
+        <img src="../assets/images/agrimitra-emblem.svg" alt="AgriMitra Logo & Farm Visual" class="hero-emblem-img">
+      </div>
+
+      <!-- Small Trust Points at Bottom -->
+      <div class="hero-check-points">
+        <div class="check-item">
+          <span class="check-icon">✓</span>
+          <span>Direct farmer sourcing</span>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">✓</span>
+          <span>Bulk procurement</span>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">✓</span>
+          <span>Simple inventory management</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- RIGHT SIDE: Registration Form Wizard -->
+    <section class="reg-form-col">
+      
+      <!-- Active Wizard Card -->
+      <div id="registration-wizard-card">
+        <div class="form-kicker-title">NEW DISTRIBUTOR ACCOUNT</div>
+        <h2 class="form-title">Create Distributor Account</h2>
+        <p class="form-subtitle">Enter your business details to get started.</p>
+
+        <!-- 3-Step Progress Indicator (Clean & Compact) -->
+        <div class="wizard-stepper" id="wizard-stepper">
+          <div class="wizard-step-item active" data-step="1">
+            <div class="step-circle">1</div>
+            <div class="step-label">Business Details</div>
+          </div>
+
+          <div class="wizard-step-item" data-step="2">
+            <div class="step-circle">2</div>
+            <div class="step-label">Operations</div>
+          </div>
+
+          <div class="wizard-step-item" data-step="3">
+            <div class="step-circle">3</div>
+            <div class="step-label">Account Setup</div>
+          </div>
+        </div>
+
+        <!-- STEP 1 — BUSINESS DETAILS -->
+        <div class="wizard-step-panel active" data-step="1">
+          
+          <!-- Business Name -->
+          <div class="form-group">
+            <label for="reg-business-name" class="form-label">Business Name</label>
+            <input 
+              type="text" 
+              id="reg-business-name" 
+              class="form-input" 
+              placeholder="Enter business name"
+              autocomplete="organization"
+              required>
+            <span class="form-error" id="error-reg-business-name"></span>
+          </div>
+
+          <!-- Contact Person -->
+          <div class="form-group">
+            <label for="reg-contact-person" class="form-label">Contact Person</label>
+            <input 
+              type="text" 
+              id="reg-contact-person" 
+              class="form-input" 
+              placeholder="Enter contact person's name"
+              autocomplete="name"
+              required>
+            <span class="form-error" id="error-reg-contact-person"></span>
+          </div>
+
+          <!-- Phone Number -->
+          <div class="form-group">
+            <label for="reg-phone" class="form-label">Phone Number</label>
+            <div class="input-with-prefix">
+              <span class="input-prefix">+91</span>
+              <input 
+                type="tel" 
+                id="reg-phone" 
+                class="form-input" 
+                placeholder="Enter phone number" 
+                maxlength="10"
+                autocomplete="tel"
+                required>
+            </div>
+            <span class="form-error" id="error-reg-phone"></span>
+          </div>
+
+          <!-- Business Type -->
+          <div class="form-group">
+            <label for="reg-business-type" class="form-label">Business Type</label>
+            <select id="reg-business-type" class="form-select" required>
+              <option value="">Select business type</option>
+              <option value="Wholesaler">Wholesaler</option>
+              <option value="Distributor">Distributor</option>
+              <option value="Wholesale & Distribution">Wholesale & Distribution</option>
+              <option value="Produce Trader">Produce Trader</option>
+              <option value="Other">Other</option>
+            </select>
+            <span class="form-error" id="error-reg-business-type"></span>
+          </div>
+
+          <!-- Business Location -->
+          <div class="form-group">
+            <label class="form-label">Business Location</label>
+            <div class="form-grid-row-3">
+              <div>
+                <input 
+                  type="text" 
+                  id="reg-city" 
+                  class="form-input" 
+                  placeholder="Area / City"
+                  required>
+                <span class="form-error" id="error-reg-city"></span>
+              </div>
+              <div>
+                <input 
+                  type="text" 
+                  id="reg-district" 
+                  class="form-input" 
+                  placeholder="District"
+                  required>
+                <span class="form-error" id="error-reg-district"></span>
+              </div>
+              <div>
+                <select id="reg-state" class="form-select">
+                  <option value="Maharashtra" selected>Maharashtra</option>
+                  <option value="Gujarat">Gujarat</option>
+                  <option value="Karnataka">Karnataka</option>
+                  <option value="Madhya Pradesh">Madhya Pradesh</option>
+                  <option value="Punjab">Punjab</option>
+                  <option value="Uttar Pradesh">Uttar Pradesh</option>
+                  <option value="Rajasthan">Rajasthan</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 1 Button -->
+          <div class="wizard-actions" style="justify-content: flex-end;">
+            <button type="button" id="btn-step-1-next" class="btn btn-primary btn-lg">
+              Continue →
+            </button>
+          </div>
+
+        </div>
+
+        <!-- STEP 2 — OPERATIONS -->
+        <div class="wizard-step-panel" data-step="2">
+          
+          <h3 class="step-section-heading">Your Operations</h3>
+
+          <!-- Main Produce -->
+          <div class="form-group">
+            <label class="form-label">Main Produce <span class="optional-tag">(Select multiple)</span></label>
+            <div class="chip-grid">
+              <label class="chip-option">
+                <input type="checkbox" name="mainProduce" value="Tomato" checked>
+                <span class="chip-label">Tomato</span>
+              </label>
+              <label class="chip-option">
+                <input type="checkbox" name="mainProduce" value="Onion" checked>
+                <span class="chip-label">Onion</span>
+              </label>
+              <label class="chip-option">
+                <input type="checkbox" name="mainProduce" value="Potato">
+                <span class="chip-label">Potato</span>
+              </label>
+              <label class="chip-option">
+                <input type="checkbox" name="mainProduce" value="Wheat">
+                <span class="chip-label">Wheat</span>
+              </label>
+              <label class="chip-option">
+                <input type="checkbox" name="mainProduce" value="Other">
+                <span class="chip-label">Other</span>
+              </label>
+            </div>
+            <span class="form-error" id="error-mainProduce"></span>
+          </div>
+
+          <!-- Typical Purchase Quantity -->
+          <div class="form-group">
+            <label for="reg-purchase-qty" class="form-label">Typical Purchase Quantity</label>
+            <select id="reg-purchase-qty" class="form-select" required>
+              <option value="">Select typical purchase quantity</option>
+              <option value="Under 1 tonne">Under 1 tonne</option>
+              <option value="1–5 tonnes">1–5 tonnes</option>
+              <option value="5–10 tonnes">5–10 tonnes</option>
+              <option value="10–25 tonnes" selected>10–25 tonnes</option>
+              <option value="Above 25 tonnes">Above 25 tonnes</option>
+            </select>
+            <span class="form-error" id="error-reg-purchase-qty"></span>
+          </div>
+
+          <!-- Storage Capacity -->
+          <div class="form-group">
+            <label for="reg-storage-cap" class="form-label">Storage Capacity</label>
+            <select id="reg-storage-cap" class="form-select" required>
+              <option value="">Select storage capacity</option>
+              <option value="No storage">No storage</option>
+              <option value="Under 1 tonne">Under 1 tonne</option>
+              <option value="1–5 tonnes">1–5 tonnes</option>
+              <option value="5–10 tonnes">5–10 tonnes</option>
+              <option value="Above 10 tonnes" selected>Above 10 tonnes</option>
+            </select>
+            <span class="form-error" id="error-reg-storage-cap"></span>
+          </div>
+
+          <!-- Main Supply Area -->
+          <div class="form-group">
+            <label for="reg-supply-area" class="form-label">Main Supply Area</label>
+            <input 
+              type="text" 
+              id="reg-supply-area" 
+              class="form-input" 
+              placeholder="e.g. Pune, Mumbai & Western Maharashtra"
+              value="Pune, Mumbai & Western Maharashtra"
+              required>
+            <span class="form-error" id="error-reg-supply-area"></span>
+          </div>
+
+          <!-- Step 2 Buttons -->
+          <div class="wizard-actions">
+            <button type="button" id="btn-step-2-back" class="btn btn-secondary">
+              ← Back
+            </button>
+            <button type="button" id="btn-step-2-next" class="btn btn-primary btn-lg">
+              Continue →
+            </button>
+          </div>
+
+        </div>
+
+        <!-- STEP 3 — ACCOUNT SETUP -->
+        <div class="wizard-step-panel" data-step="3">
+          
+          <h3 class="step-section-heading">Create Login</h3>
+
+          <!-- Password -->
+          <div class="form-group">
+            <label for="reg-password" class="form-label">Password</label>
+            <input 
+              type="password" 
+              id="reg-password" 
+              class="form-input" 
+              placeholder="Create your password (min. 6 characters)"
+              autocomplete="new-password"
+              required>
+            <span class="form-error" id="error-reg-password"></span>
+          </div>
+
+          <!-- Confirm Password -->
+          <div class="form-group">
+            <label for="reg-confirm-password" class="form-label">Confirm Password</label>
+            <input 
+              type="password" 
+              id="reg-confirm-password" 
+              class="form-input" 
+              placeholder="Confirm your password"
+              autocomplete="new-password"
+              required>
+            <span class="form-error" id="error-reg-confirm-password"></span>
+          </div>
+
+          <!-- Step 3 Buttons -->
+          <div class="wizard-actions">
+            <button type="button" id="btn-step-3-back" class="btn btn-secondary">
+              ← Back
+            </button>
+            <button type="button" id="btn-create-account" class="btn btn-primary btn-lg">
+              Create Account
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Account Created Success Card (Hidden initially) -->
+      <div id="registration-success-card" class="reg-success-card" style="display: none;">
+        <div class="reg-success-badge">✓</div>
+        <h3 class="reg-success-title">Account created</h3>
+        <p class="reg-success-subtitle">
+          Your distributor account for <strong id="success-business-name">MahaAgro Wholesale Dist.</strong> is ready.
+        </p>
+        <a href="../distributor/dashboard.html" class="btn btn-primary btn-lg btn-block" style="text-decoration: none;">
+          Go to Dashboard →
+        </a>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- JavaScript Modules -->
+  <script src="../js/main.js"></script>
+  <script src="../js/distributor-registration.js"></script>
+</body>
+</html>

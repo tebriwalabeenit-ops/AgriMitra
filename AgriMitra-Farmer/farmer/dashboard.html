@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farmer Dashboard | AgriMitra - Connect. Trade. Grow.</title>
+  <meta name="description" content="Simple and essential farmer dashboard to sell produce, view live mandi prices, manage buyer bids, and track bank payouts.">
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <nav class="dash-nav" role="navigation">
+    <div class="dash-nav-container">
+      <div class="dash-nav-left">
+        <a href="dashboard.html" class="brand-logo" aria-label="AgriMitra Farmer Dashboard">
+          <img src="images/logo.png" alt="AgriMitra Logo" class="brand-logo-img" />
+          <span class="brand-name">Agri<span>Mitra</span></span>
+        </a>
+        <span class="farmer-portal-badge">Farmer Portal</span>
+      </div>
+
+      <div class="dash-nav-right">
+
+        <div class="user-profile-pill">
+          <div class="user-avatar" title="Ramesh Patel">RP</div>
+          <div class="user-meta">
+            <span class="user-name">Ramesh Patel</span>
+            <span class="user-location">Krishnagiri, Tamil Nadu</span>
+          </div>
+        </div>
+        
+        <a href="../../index.html" class="btn-signout" id="home-nav-btn" title="AgriMitra Main Portal" style="margin-right: 0.5rem; text-decoration: none;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span>Home</span>
+        </a>
+
+        <a href="register.html" class="btn-signout" id="sign-out-btn" title="Sign Out">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
+          <span>Sign Out</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Dashboard Area -->
+  <main class="dash-content" role="main">
+    
+    <!-- 1. Farmer Greeting & Action Banner -->
+    <div class="farmer-banner">
+      <div class="farmer-banner-text">
+        <div class="banner-farmer-badge">
+          <span>&#9989;</span>
+          <span>Verified Kisan Account #FM-98421</span>
+        </div>
+        <h1>Namaste, Ramesh Ji</h1>
+        <p>
+          Welcome to your AgriMitra dashboard. Sell produce directly to verified buyers, monitor live APMC mandi prices, and receive instant payments to your bank.
+        </p>
+      </div>
+      <button type="button" class="btn-add-produce open-produce-modal-btn">
+        <span style="font-size: 1.25rem;">+</span>
+        <span>Sell Crop / List Produce</span>
+      </button>
+    </div>
+
+    <!-- 3. Four Essential Action Hub Cards -->
+    <section class="action-hub-grid" aria-label="Essential Quick Actions">
+      
+      <!-- Hub Card 1: Sell / Active Listings -->
+      <div class="hub-card open-produce-modal-btn" title="Click to add or view produce">
+        <div class="hub-card-header">
+          <div class="hub-icon-box hub-icon-green">&#128230;</div>
+          <span class="hub-badge badge-success">3 Active</span>
+        </div>
+        <div class="hub-card-title">My Active Produce</div>
+        <div class="hub-card-value" id="hub-listings-val">3 Crops Listed</div>
+        <div class="hub-card-subtext">190 Quintals Ready &bull; Tap to add +</div>
+      </div>
+
+      <!-- Hub Card 2: Buyer Bids & Offers -->
+      <a href="#buyer-bids-section" class="hub-card" title="View incoming buyer bids">
+        <div class="hub-card-header">
+          <div class="hub-icon-box hub-icon-amber">&#129309;</div>
+          <span class="hub-badge badge-urgent">2 New Offers</span>
+        </div>
+        <div class="hub-card-title">Buyer Offers & Orders</div>
+        <div class="hub-card-value">&#8377; 1,81,800 Bids</div>
+        <div class="hub-card-subtext">Action required &bull; Tap to review</div>
+      </a>
+
+      <!-- Hub Card 3: Mandi Rates -->
+      <a href="#mandi-section" class="hub-card" title="View live APMC mandi rates">
+        <div class="hub-card-header">
+          <div class="hub-icon-box hub-icon-blue">&#128200;</div>
+          <span class="hub-badge badge-neutral">APMC Live</span>
+        </div>
+        <div class="hub-card-title">Today's Mandi Bhav</div>
+        <div class="hub-card-value">&#8377; 2,350 <span style="font-size: 0.9rem; font-weight: normal; color: var(--color-primary);">(+&#8377;40)</span></div>
+        <div class="hub-card-subtext">Paddy benchmark rate today</div>
+      </a>
+
+      <!-- Hub Card 4: Payments / Bank Account -->
+      <div class="hub-card" title="Verified bank payouts">
+        <div class="hub-card-header">
+          <div class="hub-icon-box hub-icon-emerald">&#128179;</div>
+          <span class="hub-badge badge-success">100% Settled</span>
+        </div>
+        <div class="hub-card-title">Direct Bank Payouts</div>
+        <div class="hub-card-value">&#8377; 4,82,500</div>
+        <div class="hub-card-subtext">Linked: State Bank of India &bull;&bull;&bull;&bull; 4291</div>
+      </div>
+
+    </section>
+
+    <!-- 4. Two-Column Main Trading Layout -->
+    <div class="dashboard-main-grid">
+      
+      <!-- Left Column: Active Produce Listings -->
+      <section class="dashboard-panel" aria-labelledby="listings-heading">
+        <div class="panel-header">
+          <h2 id="listings-heading" class="panel-heading">
+            <span>&#127806;</span>
+            <span>My Active Crop Listings</span>
+          </h2>
+          <button type="button" class="panel-action-link open-produce-modal-btn">
+            + Add New Crop
+          </button>
+        </div>
+
+        <div class="crop-cards-list" id="crop-cards-list">
+          
+          <!-- Crop 1 -->
+          <div class="crop-card-item">
+            <div class="crop-top-row">
+              <div>
+                <div class="crop-name">Sona Masoori Paddy (Grade A)</div>
+                <div class="crop-meta-text">120 Quintals &bull; Moisture: 12% &bull; Krishnagiri Warehouse</div>
+              </div>
+              <div class="crop-price-box">
+                <div class="crop-price">&#8377; 2,650</div>
+                <div class="crop-price-unit">per Quintal</div>
+              </div>
+            </div>
+            <div class="crop-bottom-row">
+              <span class="crop-bids-pill">
+                &#9679; 4 Buyer Bids Active
+              </span>
+              <div class="crop-actions-btns">
+                <button type="button" class="btn-sm-action mark-sold-btn">Mark Sold</button>
+                <a href="#buyer-bids-section" class="btn-sm-action btn-sm-primary" style="text-decoration: none;">View Bids</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Crop 2 -->
+          <div class="crop-card-item">
+            <div class="crop-top-row">
+              <div>
+                <div class="crop-name">Fresh Hybrid Tomatoes</div>
+                <div class="crop-meta-text">50 Crates (25kg each) &bull; Farm Gate Pick-up</div>
+              </div>
+              <div class="crop-price-box">
+                <div class="crop-price">&#8377; 680</div>
+                <div class="crop-price-unit">per Crate</div>
+              </div>
+            </div>
+            <div class="crop-bottom-row">
+              <span class="crop-bids-pill">
+                &#9679; Direct FPO Order Ready
+              </span>
+              <div class="crop-actions-btns">
+                <button type="button" class="btn-sm-action mark-sold-btn">Mark Sold</button>
+                <a href="#buyer-bids-section" class="btn-sm-action btn-sm-primary" style="text-decoration: none;">View Bids</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Crop 3 -->
+          <div class="crop-card-item">
+            <div class="crop-top-row">
+              <div>
+                <div class="crop-name">Export Drumsticks (Moringa)</div>
+                <div class="crop-meta-text">20 Quintals &bull; Fresh Harvest &bull; Krishnagiri</div>
+              </div>
+              <div class="crop-price-box">
+                <div class="crop-price">&#8377; 3,400</div>
+                <div class="crop-price-unit">per Quintal</div>
+              </div>
+            </div>
+            <div class="crop-bottom-row">
+              <span class="crop-bids-pill" style="background-color: #fef3c7; color: #b45309;">
+                &#9679; Awaiting Buyer Matching
+              </span>
+              <div class="crop-actions-btns">
+                <button type="button" class="btn-sm-action mark-sold-btn">Mark Sold</button>
+                <button type="button" class="btn-sm-action btn-sm-primary" onclick="alert('Moringa lot promoted to 8 regional vegetable traders.')">Promote</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Right Column: Incoming Buyer Bids & Orders (Direct Trade) -->
+      <section class="dashboard-panel" id="buyer-bids-section" aria-labelledby="bids-heading">
+        <div class="panel-header">
+          <h2 id="bids-heading" class="panel-heading">
+            <span>&#129309;</span>
+            <span>Buyer Offers Waiting</span>
+          </h2>
+          <span style="font-size: var(--font-size-xs); color: #15803d; font-weight: 600;">2 Pending Bids</span>
+        </div>
+
+        <div class="bids-list">
+          
+          <!-- Bid 1 -->
+          <div class="bid-item">
+            <div class="bid-header">
+              <div>
+                <div class="buyer-name">Cauvery Valley Farmers Producer Co. (FPO)</div>
+                <div class="buyer-type">&#9989; Verified FPO Buyer &bull; Tamil Nadu</div>
+              </div>
+              <span class="bid-rate">&#8377; 2,680 / Qtl</span>
+            </div>
+
+            <div class="bid-details">
+              <strong>Crop:</strong> 60 Quintals Sona Masoori Paddy<br>
+              <strong>Total Payout:</strong> &#8377; 1,60,800 &bull; Direct Bank Transfer on pickup<br>
+              <strong>Pickup Location:</strong> Krishnagiri Warehouse
+            </div>
+
+            <div class="bid-actions">
+              <button type="button" class="btn-accept-offer">
+                <span>&#10003;</span>
+                <span>Accept Offer</span>
+              </button>
+              <a href="tel:09845122334" class="btn-call-buyer">
+                <span>&#128222;</span>
+                <span>Call Buyer</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Bid 2 -->
+          <div class="bid-item">
+            <div class="bid-header">
+              <div>
+                <div class="buyer-name">AgroFresh Wholesale Distributors</div>
+                <div class="buyer-type">&#9989; Verified APMC Commission Agent</div>
+              </div>
+              <span class="bid-rate">&#8377; 700 / Crate</span>
+            </div>
+
+            <div class="bid-details">
+              <strong>Crop:</strong> 30 Crates Fresh Tomatoes<br>
+              <strong>Total Payout:</strong> &#8377; 21,000 &bull; Same day UPI / NEFT<br>
+              <strong>Pickup Location:</strong> Farm Gate (Buyer vehicle arranged)
+            </div>
+
+            <div class="bid-actions">
+              <button type="button" class="btn-accept-offer">
+                <span>&#10003;</span>
+                <span>Accept Offer</span>
+              </button>
+              <a href="tel:09443211098" class="btn-call-buyer">
+                <span>&#128222;</span>
+                <span>Call Buyer</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+
+    <!-- 5. Today's Live APMC Mandi Rates -->
+    <section class="dashboard-panel" id="mandi-section" style="margin-bottom: 2rem;">
+      <div class="panel-header">
+        <h2 class="panel-heading">
+          <span>&#128200;</span>
+          <span>Today's Mandi Bhav (APMC Benchmark Prices)</span>
+        </h2>
+        <span style="font-size: var(--font-size-xs); color: var(--color-text-muted);">
+          e-NAM Verified &bull; Krishnagiri & Dharmapuri Mandis
+        </span>
+      </div>
+
+      <div class="mandi-grid">
+        <div class="mandi-crop-card">
+          <div>
+            <div class="mandi-crop-name">Paddy (Common)</div>
+            <div class="mandi-market-name">Krishnagiri APMC</div>
+          </div>
+          <div class="mandi-price-display">
+            <div class="mandi-price-val">&#8377; 2,350 / Qtl</div>
+            <div class="mandi-trend-up">&#9650; +&#8377;40 today</div>
+          </div>
+        </div>
+
+        <div class="mandi-crop-card">
+          <div>
+            <div class="mandi-crop-name">Tomato (Hybrid)</div>
+            <div class="mandi-market-name">Rayakottai Mandi</div>
+          </div>
+          <div class="mandi-price-display">
+            <div class="mandi-price-val">&#8377; 26 / kg</div>
+            <div class="mandi-trend-up">&#9650; +&#8377;2 today</div>
+          </div>
+        </div>
+
+        <div class="mandi-crop-card">
+          <div>
+            <div class="mandi-crop-name">Onion (Nashik Red)</div>
+            <div class="mandi-market-name">Dharmapuri APMC</div>
+          </div>
+          <div class="mandi-price-display">
+            <div class="mandi-price-val">&#8377; 34 / kg</div>
+            <div class="mandi-trend-down">&#9660; -&#8377;1 today</div>
+          </div>
+        </div>
+
+        <div class="mandi-crop-card">
+          <div>
+            <div class="mandi-crop-name">Wheat (Sharbati)</div>
+            <div class="mandi-market-name">Regional Mandi</div>
+          </div>
+          <div class="mandi-price-display">
+            <div class="mandi-price-val">&#8377; 2,980 / Qtl</div>
+            <div class="mandi-trend-up">&#9650; +&#8377;15 today</div>
+          </div>
+        </div>
+
+        <div class="mandi-crop-card">
+          <div>
+            <div class="mandi-crop-name">Cotton (Medium Staple)</div>
+            <div class="mandi-market-name">Salem Cotton Market</div>
+          </div>
+          <div class="mandi-price-display">
+            <div class="mandi-price-val">&#8377; 7,200 / Qtl</div>
+            <div class="mandi-trend-up">&#9650; +&#8377;60 today</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       Interactive Modal: Sell Crop / List Produce
+       ======================================================================== -->
+  <div id="produce-modal" class="produce-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-crop-title">
+    <div class="produce-modal-box">
+      <div class="modal-header-row">
+        <h3 id="modal-crop-title">&#127806; Sell My Crop (Add Listing)</h3>
+        <button type="button" class="btn-close-modal" id="close-produce-modal-btn" aria-label="Close modal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <form id="add-produce-form">
+        <!-- Crop Type -->
+        <div class="form-group">
+          <label class="form-label" for="crop-select">Select Crop</label>
+          <div class="password-input-group">
+            <select id="crop-select" class="password-input" style="padding-right: 0.75rem; background: transparent; cursor: pointer;" required>
+              <option value="Paddy / Rice">Paddy / Rice (धान)</option>
+              <option value="Tomatoes">Fresh Tomatoes (टमाटर)</option>
+              <option value="Wheat">Wheat (गेहूं)</option>
+              <option value="Onions">Onions (प्याज)</option>
+              <option value="Cotton">Cotton (कपास)</option>
+              <option value="Drumsticks / Moringa">Drumsticks / Moringa (सहजन)</option>
+              <option value="Potatoes">Potatoes (आलू)</option>
+              <option value="Maize / Corn">Maize / Corn (मक्का)</option>
+              <option value="Sugarcane">Sugarcane (गन्ना)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Variety / Grade -->
+        <div class="form-group">
+          <label class="form-label" for="crop-variety">Variety / Quality</label>
+          <div class="password-input-group">
+            <input type="text" id="crop-variety" class="password-input" placeholder="e.g. Sona Masoori, Hybrid 1024, Grade A" />
+          </div>
+        </div>
+
+        <!-- Quantity & Unit -->
+        <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 0.875rem; margin-bottom: 1.25rem;">
+          <div>
+            <label class="form-label" for="crop-qty">Quantity</label>
+            <div class="password-input-group">
+              <input type="number" id="crop-qty" class="password-input" placeholder="e.g. 50" min="1" required />
+            </div>
+          </div>
+
+          <div>
+            <label class="form-label" for="crop-unit">Unit</label>
+            <div class="password-input-group">
+              <select id="crop-unit" class="password-input" style="padding-right: 0.5rem; background: transparent; cursor: pointer;">
+                <option value="Quintals">Quintals</option>
+                <option value="Crates">Crates</option>
+                <option value="Bags (50kg)">Bags (50kg)</option>
+                <option value="Tons">Tons</option>
+                <option value="Kilograms">kg</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Expected Price per Unit -->
+        <div class="form-group">
+          <label class="form-label" for="crop-price">Expected Price (&#8377; per Unit)</label>
+          <div class="password-input-group">
+            <input type="number" id="crop-price" class="password-input" placeholder="e.g. 2650" min="1" required />
+          </div>
+        </div>
+
+        <!-- Farm / Warehouse Location -->
+        <div class="form-group">
+          <label class="form-label" for="crop-location">Pickup / Storage Location</label>
+          <div class="password-input-group">
+            <input type="text" id="crop-location" class="password-input" value="Krishnagiri APMC Warehouse" required />
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 0.875rem; margin-top: 1.5rem;">
+          <button type="submit" class="btn-primary" style="flex: 1;">
+            <span>Publish Crop Listing</span>
+          </button>
+          <button type="button" class="btn-sm-action" id="cancel-produce-modal-btn" style="padding: 0 1.25rem;">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="dash-toast" class="dash-toast" role="status" aria-live="polite">
+    <svg viewBox="0 0 20 20" fill="currentColor">
+      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+    </svg>
+    <span id="toast-text">Action completed successfully!</span>
+  </div>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 AgriMitra. Dedicated to empowering India's farming communities.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+</body>
+</html>

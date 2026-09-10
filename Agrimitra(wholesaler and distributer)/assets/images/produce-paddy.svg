@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FEFCE8" />
+      <stop offset="100%" stop-color="#FEF08A" />
+    </linearGradient>
+    <linearGradient id="grainGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FACC15" />
+      <stop offset="60%" stop-color="#CA8A04" />
+      <stop offset="100%" stop-color="#A16207" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#854D0E" flood-opacity="0.2" />
+    </filter>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#bgGrad)" rx="16" />
+  
+  <g filter="url(#shadow)">
+    <!-- Central stalk -->
+    <path d="M120 260 Q170 180 230 70" stroke="#CA8A04" stroke-width="4" stroke-linecap="round" fill="none" />
+    
+    <!-- Grains attached along stalk -->
+    <ellipse cx="225" cy="80" rx="9" ry="16" transform="rotate(35 225 80)" fill="url(#grainGrad)" />
+    <ellipse cx="210" cy="105" rx="8" ry="15" transform="rotate(-35 210 105)" fill="url(#grainGrad)" />
+    <ellipse cx="205" cy="125" rx="9" ry="16" transform="rotate(40 205 125)" fill="url(#grainGrad)" />
+    <ellipse cx="185" cy="145" rx="8" ry="15" transform="rotate(-40 185 145)" fill="url(#grainGrad)" />
+    <ellipse cx="180" cy="170" rx="9" ry="16" transform="rotate(45 180 170)" fill="url(#grainGrad)" />
+    <ellipse cx="160" cy="190" rx="8" ry="15" transform="rotate(-45 160 190)" fill="url(#grainGrad)" />
+    <ellipse cx="155" cy="215" rx="9" ry="16" transform="rotate(40 155 215)" fill="url(#grainGrad)" />
+
+    <!-- Second Grain Sheaf -->
+    <path d="M140 260 Q200 170 270 90" stroke="#A16207" stroke-width="3.5" stroke-linecap="round" fill="none" />
+    <ellipse cx="265" cy="100" rx="8" ry="15" transform="rotate(40 265 100)" fill="url(#grainGrad)" />
+    <ellipse cx="245" cy="120" rx="8" ry="15" transform="rotate(-35 245 120)" fill="url(#grainGrad)" />
+    <ellipse cx="235" cy="145" rx="8" ry="15" transform="rotate(42 235 145)" fill="url(#grainGrad)" />
+    <ellipse cx="215" cy="170" rx="8" ry="15" transform="rotate(-38 215 170)" fill="url(#grainGrad)" />
+  </g>
+  
+  <rect x="24" y="24" width="125" height="24" rx="6" fill="#CA8A04" fill-opacity="0.15" />
+  <text x="86" y="40" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#854D0E" text-anchor="middle">BASMATI 1121</text>
+</svg>

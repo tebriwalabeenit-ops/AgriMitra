@@ -1,0 +1,136 @@
+/* ==========================================================================
+   AgriMitra Responsive Stylesheet
+   Mobile, tablet, and touch-screen adaptations
+   ========================================================================== */
+
+/* Large Tablets & Small Laptops (<= 1024px) */
+@media (max-width: 1024px) {
+  .reg-split-container {
+    gap: 2rem;
+    padding: 0 1rem;
+    margin: 1.75rem auto;
+  }
+
+  .dashboard-grid-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .supply-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tablets (<= 768px) */
+@media (max-width: 768px) {
+  .reg-split-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .reg-hero-col {
+    align-items: center;
+    text-align: center;
+    padding-top: 0;
+  }
+
+  .hero-main-title {
+    font-size: 2rem;
+  }
+
+  .hero-emblem-card {
+    max-width: 320px;
+    padding: 1.5rem 1rem;
+  }
+
+  .hero-check-points {
+    justify-content: center;
+  }
+
+  .dist-header-inner {
+    padding: 0 1rem;
+  }
+
+  .dist-nav-links {
+    display: none; /* Collapsed on mobile, accessible via quick actions */
+  }
+
+  .summary-cards-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .form-grid-row,
+  .form-grid-row-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-container {
+    width: 95%;
+    max-height: 94vh;
+    border-radius: var(--radius-md);
+  }
+
+  .modal-header,
+  .modal-body,
+  .modal-footer {
+    padding: 1rem;
+  }
+
+  .chatbot-drawer {
+    width: calc(100vw - 2rem);
+    right: 1rem;
+    bottom: 4.5rem;
+    height: 70vh;
+  }
+}
+
+/* Small Mobile Screens (<= 480px) */
+@media (max-width: 480px) {
+  .reg-form-col {
+    padding: 1.5rem 1rem;
+  }
+
+  .summary-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .req-item-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .req-item-side {
+    align-items: flex-start;
+    width: 100%;
+    border-top: 1px solid var(--color-border-subtle);
+    padding-top: 0.5rem;
+  }
+
+  .workflow-ribbon-inner {
+    justify-content: flex-start;
+    font-size: 0.625rem;
+  }
+
+  .quick-actions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .order-status-stepper {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .order-status-stepper::before {
+    display: none;
+  }
+}

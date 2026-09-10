@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F0FDF4" />
+      <stop offset="100%" stop-color="#DCFCE7" />
+    </linearGradient>
+    <linearGradient id="chilliGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4ADE80" />
+      <stop offset="50%" stop-color="#16A34A" />
+      <stop offset="100%" stop-color="#14532D" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#14532D" flood-opacity="0.2" />
+    </filter>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#bgGrad)" rx="16" />
+  
+  <!-- Back Chilli -->
+  <g filter="url(#shadow)" opacity="0.8">
+    <path d="M120 220 Q200 240 280 150 Q300 120 290 90" stroke="#15803D" stroke-width="26" stroke-linecap="round" fill="none" />
+  </g>
+
+  <!-- Front Chilli -->
+  <g filter="url(#shadow)">
+    <!-- Chilli body -->
+    <path d="M90 190 Q170 230 260 140 Q310 90 280 70" stroke="url(#chilliGreen)" stroke-width="32" stroke-linecap="round" fill="none" />
+    <!-- Tapered tail -->
+    <path d="M90 190 Q75 195 65 200" stroke="#16A34A" stroke-width="12" stroke-linecap="round" fill="none" />
+    
+    <!-- Chilli Cap & Stem -->
+    <path d="M275 75 Q290 60 310 65" stroke="#15803D" stroke-width="7" stroke-linecap="round" fill="none" />
+    <ellipse cx="280" cy="72" rx="16" ry="12" transform="rotate(30 280 72)" fill="#14532D" />
+  </g>
+  
+  <rect x="24" y="24" width="100" height="24" rx="6" fill="#16A34A" fill-opacity="0.15" />
+  <text x="74" y="40" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#14532D" text-anchor="middle">G-4 SPICY</text>
+</svg>

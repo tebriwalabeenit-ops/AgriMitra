@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Register as a Delivery Agent on AgriMitra - Connect. Trade. Grow. Join our farmer produce delivery and logistics network.">
+  <title>Create Delivery Agent Account — AgriMitra</title>
+  <link rel="stylesheet" href="register.css">
+</head>
+<body>
+
+  <!-- Top Global Bar -->
+  <header class="top-nav-bar">
+    <div class="top-nav-inner">
+      <a href="index.html" class="brand-badge" title="AgriMitra Home">
+        <img src="logo.png" alt="AgriMitra Logo" class="brand-logo">
+        <span class="brand-title">AgriMitra</span>
+      </a>
+
+      <!-- Back to Portal / Login Button -->
+      <a href="index.html" class="btn-back-portal" title="Return to Delivery Agent Portal">
+        <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        <span>Back to Login</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Registration Card Container (Split Screen Layout) -->
+  <main class="page-container">
+    <div class="split-card">
+
+      <!-- ================================================================
+           LEFT COLUMN: BRANDING, VALUE PROPOSITION & HERO ARTWORK
+           ================================================================ -->
+      <div class="left-hero-panel">
+        <!-- Onboarding Pill -->
+        <div class="pill-badge">
+          <span class="pill-dot"></span>
+          <span>DELIVERY AGENT ONBOARDING</span>
+        </div>
+
+        <h1 class="hero-title">Join AgriMitra</h1>
+        <h2 class="hero-subtitle">Delivering Freshness, Building Trust.</h2>
+        <p class="hero-desc">
+          Be a part of our delivery network and help get fresh agricultural produce from farms to businesses and markets across India.
+        </p>
+
+        <!-- Delivery Agent Countryside Artwork -->
+        <div class="hero-image-wrapper">
+          <img 
+            src="assets/delivery-hero.jpg" 
+            alt="AgriMitra Delivery Agent on green electric scooter through countryside farm fields" 
+            class="hero-artwork">
+        </div>
+
+        <!-- Benefits Checklist -->
+        <div class="benefits-row">
+          <div class="benefit-item">
+            <svg class="check-icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Flexible work hours</span>
+          </div>
+          <div class="benefit-item">
+            <svg class="check-icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Timely payments</span>
+          </div>
+          <div class="benefit-item">
+            <svg class="check-icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Support &amp; guidance</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================================================
+           RIGHT COLUMN: MULTI-STEP REGISTRATION FORM
+           ================================================================ -->
+      <div class="right-form-panel">
+        <div class="form-header-block" id="form-header-block">
+          <span class="overline-tag">DELIVERY AGENT REGISTRATION</span>
+          <h2 class="form-heading" id="dynamic-form-heading">Create Delivery Agent Account</h2>
+          <p class="form-subheading" id="dynamic-form-subheading">Join our delivery network and start earning.</p>
+        </div>
+
+        <!-- Stepper Indicator: 1. Personal Details — 2. Vehicle Details — 3. Documents -->
+        <div class="form-stepper" id="form-stepper" aria-label="Onboarding Steps">
+          <div class="step-node active" id="step-node-1">
+            <div class="node-circle">1</div>
+            <span class="node-label">Personal Details</span>
+          </div>
+          <div class="step-line" id="step-line-1"></div>
+          <div class="step-node" id="step-node-2">
+            <div class="node-circle">2</div>
+            <span class="node-label">Vehicle Details</span>
+          </div>
+          <div class="step-line" id="step-line-2"></div>
+          <div class="step-node" id="step-node-3">
+            <div class="node-circle">3</div>
+            <span class="node-label">Documents</span>
+          </div>
+        </div>
+
+        <!-- Registration Form Container -->
+        <form id="registration-form" novalidate>
+
+          <!-- ============================================================
+               STEP 1: PERSONAL DETAILS
+               ============================================================ -->
+          <div class="form-step-view active" id="step-view-1">
+            <!-- Full Name -->
+            <div class="form-field">
+              <label for="full-name" class="input-label">Full Name</label>
+              <input 
+                type="text" 
+                id="full-name" 
+                name="full_name" 
+                class="field-control" 
+                placeholder="Enter your full name" 
+                required 
+                autocomplete="name">
+              <div class="field-error" id="full-name-error" role="alert"></div>
+            </div>
+
+            <!-- Phone Number -->
+            <div class="form-field">
+              <label for="phone-number" class="input-label">Phone Number</label>
+              <div class="phone-input-box" id="phone-group">
+                <div class="country-prefix">
+                  <span class="flag-icon" aria-hidden="true"></span>
+                  <span class="prefix-text">+91</span>
+                </div>
+                <input 
+                  type="tel" 
+                  id="phone-number" 
+                  name="phone_number" 
+                  class="field-control phone-input" 
+                  placeholder="Enter 10-digit mobile number" 
+                  maxlength="10" 
+                  inputmode="numeric" 
+                  required 
+                  autocomplete="tel-national">
+              </div>
+              <div class="field-error" id="phone-error" role="alert"></div>
+            </div>
+
+            <!-- State & District Row -->
+            <div class="form-row-2">
+              <div class="form-field">
+                <label for="state" class="input-label">State</label>
+                <div class="select-wrapper">
+                  <select id="state" name="state" class="field-control select-control" required>
+                    <option value="Maharashtra" selected>Maharashtra</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Assam">Assam</option>
+                    <option value="Bihar">Bihar</option>
+                    <option value="Chhattisgarh">Chhattisgarh</option>
+                    <option value="Gujarat">Gujarat</option>
+                    <option value="Haryana">Haryana</option>
+                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Kerala">Kerala</option>
+                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option value="Odisha">Odisha</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Telangana">Telangana</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Uttarakhand">Uttarakhand</option>
+                    <option value="West Bengal">West Bengal</option>
+                    <option value="Delhi">Delhi</option>
+                  </select>
+                </div>
+                <div class="field-error" id="state-error" role="alert"></div>
+              </div>
+
+              <div class="form-field">
+                <label for="district" class="input-label">District</label>
+                <div class="select-wrapper">
+                  <select id="district" name="district" class="field-control select-control" required>
+                    <option value="" disabled selected>Select district</option>
+                    <option value="Nashik">Nashik</option>
+                    <option value="Pune">Pune</option>
+                    <option value="Ahmednagar">Ahmednagar</option>
+                    <option value="Chhatrapati Sambhaji Nagar">Chhatrapati Sambhaji Nagar</option>
+                    <option value="Jalgaon">Jalgaon</option>
+                    <option value="Nagpur">Nagpur</option>
+                    <option value="Solapur">Solapur</option>
+                    <option value="Kolhapur">Kolhapur</option>
+                    <option value="Satara">Satara</option>
+                    <option value="Sangli">Sangli</option>
+                    <option value="Thane">Thane</option>
+                    <option value="Mumbai Suburban">Mumbai Suburban</option>
+                    <option value="Amravati">Amravati</option>
+                    <option value="Nanded">Nanded</option>
+                    <option value="Dhule">Dhule</option>
+                    <option value="Other District">Other District</option>
+                  </select>
+                </div>
+                <div class="field-error" id="district-error" role="alert"></div>
+              </div>
+            </div>
+
+            <!-- City / Area -->
+            <div class="form-field">
+              <label for="city-area" class="input-label">City / Area</label>
+              <input 
+                type="text" 
+                id="city-area" 
+                name="city_area" 
+                class="field-control" 
+                placeholder="Enter your city or area" 
+                required>
+              <div class="field-error" id="city-area-error" role="alert"></div>
+            </div>
+
+            <!-- Step 1 Continue Button -->
+            <div class="form-action-row">
+              <button type="button" class="btn-primary-block" id="btn-continue-step1">
+                <span>Continue</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- ============================================================
+               STEP 2: VEHICLE & DELIVERY DETAILS
+               ============================================================ -->
+          <div class="form-step-view" id="step-view-2">
+            <!-- Vehicle Type Selection Cards -->
+            <div class="form-field">
+              <label class="input-label" id="vehicle-type-label">Vehicle Type</label>
+              <div class="vehicle-option-grid" id="vehicle-options-container" role="radiogroup" aria-labelledby="vehicle-type-label">
+                
+                <label class="veh-card">
+                  <input type="radio" name="vehicle_type" value="Bike">
+                  <div class="veh-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><circle cx="18.5" cy="17.5" r="3.5"/><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="15" cy="5" r="1"/><path d="M12 17.5V14l-3-3 4-3 2 3h2"/></svg>
+                  </div>
+                  <span class="veh-name">Bike</span>
+                </label>
+
+                <label class="veh-card">
+                  <input type="radio" name="vehicle_type" value="Auto">
+                  <div class="veh-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M5 17h14M3 13h18l-2-6H5z"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+                  </div>
+                  <span class="veh-name">Auto</span>
+                </label>
+
+                <label class="veh-card">
+                  <input type="radio" name="vehicle_type" value="Small Truck">
+                  <div class="veh-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><rect x="1" y="5" width="13" height="9"/><polygon points="14 7 18 7 21 10 21 14 14 14"/><circle cx="5.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+                  </div>
+                  <span class="veh-name">Small Truck</span>
+                </label>
+
+                <label class="veh-card">
+                  <input type="radio" name="vehicle_type" value="Large Truck">
+                  <div class="veh-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="12"/><polygon points="16 7 20 7 23 10 23 15 16 15"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                  </div>
+                  <span class="veh-name">Large Truck</span>
+                </label>
+
+                <label class="veh-card">
+                  <input type="radio" name="vehicle_type" value="Other">
+                  <div class="veh-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                  </div>
+                  <span class="veh-name">Other</span>
+                </label>
+
+              </div>
+              <div class="field-error" id="vehicle-error" role="alert"></div>
+            </div>
+
+            <!-- Vehicle Capacity Chips -->
+            <div class="form-field">
+              <label class="input-label" id="capacity-label">Vehicle Capacity</label>
+              <div class="chip-option-grid" id="capacity-options-container" role="radiogroup" aria-labelledby="capacity-label">
+                <label class="chip-card">
+                  <input type="radio" name="vehicle_capacity" value="Up to 100 kg">
+                  <span>Up to 100 kg</span>
+                </label>
+                <label class="chip-card">
+                  <input type="radio" name="vehicle_capacity" value="100–500 kg">
+                  <span>100–500 kg</span>
+                </label>
+                <label class="chip-card">
+                  <input type="radio" name="vehicle_capacity" value="500 kg–1 tonne">
+                  <span>500 kg–1 tonne</span>
+                </label>
+                <label class="chip-card">
+                  <input type="radio" name="vehicle_capacity" value="1–2 tonnes">
+                  <span>1–2 tonnes</span>
+                </label>
+                <label class="chip-card">
+                  <input type="radio" name="vehicle_capacity" value="2–5 tonnes">
+                  <span>2–5 tonnes</span>
+                </label>
+                <label class="chip-card">
+                  <input type="radio" name="vehicle_capacity" value="Above 5 tonnes">
+                  <span>Above 5 tonnes</span>
+                </label>
+              </div>
+              <div class="field-error" id="capacity-error" role="alert"></div>
+            </div>
+
+            <!-- Service Area -->
+            <div class="form-field">
+              <label for="service-area" class="input-label">Service Area</label>
+              <input 
+                type="text" 
+                id="service-area" 
+                name="service_area" 
+                class="field-control" 
+                placeholder="Where can you deliver? (e.g. Within 40 km of Nashik)" 
+                required>
+              <div class="field-error" id="service-area-error" role="alert"></div>
+            </div>
+
+            <!-- Availability Options -->
+            <div class="form-field">
+              <label class="input-label" id="availability-label">Availability</label>
+              <div class="availability-chip-grid" id="availability-options-container" role="radiogroup" aria-labelledby="availability-label">
+                <label class="chip-card">
+                  <input type="radio" name="availability" value="Full Day">
+                  <span>Full Day</span>
+                </label>
+                <label class="chip-card">
+                  <input type="radio" name="availability" value="Morning">
+                  <span>Morning</span>
+                </label>
+                <label class="chip-card">
+                  <input type="radio" name="availability" value="Afternoon">
+                  <span>Afternoon</span>
+                </label>
+                <label class="chip-card">
+                  <input type="radio" name="availability" value="Evening">
+                  <span>Evening</span>
+                </label>
+              </div>
+              <div class="field-error" id="availability-error" role="alert"></div>
+            </div>
+
+            <!-- Step 2 Navigation Action Row -->
+            <div class="form-action-split">
+              <button type="button" class="btn-secondary" id="btn-back-step2">
+                <svg style="width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2;" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                <span>Back</span>
+              </button>
+              <button type="button" class="btn-primary" id="btn-continue-step2">
+                <span>Continue</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- ============================================================
+               STEP 3: DOCUMENTS & VERIFICATION DETAILS
+               ============================================================ -->
+          <div class="form-step-view" id="step-view-3">
+            <div class="form-field">
+              <label for="license-number" class="input-label">Driving License (DL) Number</label>
+              <input 
+                type="text" 
+                id="license-number" 
+                name="license_number" 
+                class="field-control" 
+                placeholder="e.g. MH15 20210012345" 
+                required>
+              <div class="field-error" id="license-error" role="alert"></div>
+            </div>
+
+            <div class="form-field">
+              <label for="rc-number" class="input-label">Vehicle Registration (RC) Number</label>
+              <input 
+                type="text" 
+                id="rc-number" 
+                name="rc_number" 
+                class="field-control" 
+                placeholder="e.g. MH 15 AB 1234" 
+                required>
+              <div class="field-error" id="rc-error" role="alert"></div>
+            </div>
+
+            <!-- Optional Information -->
+            <div class="form-field">
+              <label for="additional-notes" class="input-label">
+                Additional Information
+                <span class="label-optional">(Optional)</span>
+              </label>
+              <textarea 
+                id="additional-notes" 
+                name="additional_notes" 
+                class="field-control textarea-control" 
+                placeholder="Anything else you'd like us to know (e.g. cold crate availability)"></textarea>
+            </div>
+
+            <!-- Step 3 Actions -->
+            <div class="form-action-split">
+              <button type="button" class="btn-secondary" id="btn-back-step3">
+                <svg style="width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2;" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                <span>Back</span>
+              </button>
+              <button type="button" class="btn-primary" id="btn-submit-registration">
+                <span>Register as Delivery Agent</span>
+              </button>
+            </div>
+          </div>
+
+        </form>
+
+        <!-- ============================================================
+             CONFIRMATION / SUCCESS PANEL
+             ============================================================ -->
+        <section class="success-screen" id="success-screen" aria-live="polite">
+          <div class="success-icon-badge">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+
+          <h3 class="success-title">Registration Submitted</h3>
+          <p class="success-desc">Your delivery agent registration has been recorded successfully.</p>
+
+          <div class="summary-box">
+            <div class="summary-top-bar">
+              <span class="summary-top-title">Agent Profile Summary</span>
+              <span class="status-pill-green">
+                <span class="dot-indicator"></span>
+                <span>Registration Complete</span>
+              </span>
+            </div>
+
+            <div class="summary-details-grid">
+              <div class="summary-entry">
+                <span class="summary-k">Name</span>
+                <span class="summary-v" id="sum-name">—</span>
+              </div>
+              <div class="summary-entry">
+                <span class="summary-k">Phone</span>
+                <span class="summary-v" id="sum-phone">—</span>
+              </div>
+              <div class="summary-entry">
+                <span class="summary-k">Operating Region</span>
+                <span class="summary-v" id="sum-location">—</span>
+              </div>
+              <div class="summary-entry">
+                <span class="summary-k">Vehicle</span>
+                <span class="summary-v" id="sum-vehicle">—</span>
+              </div>
+              <div class="summary-entry">
+                <span class="summary-k">Capacity</span>
+                <span class="summary-v" id="sum-capacity">—</span>
+              </div>
+              <div class="summary-entry">
+                <span class="summary-k">Service Area</span>
+                <span class="summary-v" id="sum-service-area">—</span>
+              </div>
+              <div class="summary-entry">
+                <span class="summary-k">Availability</span>
+                <span class="summary-v" id="sum-availability">—</span>
+              </div>
+              <div class="summary-entry">
+                <span class="summary-k">License / RC</span>
+                <span class="summary-v" id="sum-license">—</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="success-btn-row">
+            <button type="button" class="btn-secondary" id="btn-register-another">
+              <span>Register Another Agent</span>
+            </button>
+            <button type="button" class="btn-primary" id="btn-done">
+              <span>Done (Go to Portal)</span>
+            </button>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="register.js"></script>
+</body>
+</html>

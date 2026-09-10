@@ -1,0 +1,3766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buyer Dashboard | AgriMitra - Fresh Farm Produce Direct to Home</title>
+  <meta name="description" content="AgriMitra Buyer Dashboard: Discover fresh farm produce directly from verified Indian farmers. Pure quality, fair prices, direct delivery to your doorstep.">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ==========================================================================
+       AgriMitra Buyer Dashboard Scoped Styles
+       Aesthetic: Clean Digital Indian Mandi • Authentic Photography • Zero Emojis
+       ========================================================================== */
+
+    body.buyer-dashboard-body {
+      padding-bottom: 0;
+    }
+
+    @media (max-width: 768px) {
+      body.buyer-dashboard-body {
+        padding-bottom: 74px; /* Clearance for fixed mobile bottom nav */
+      }
+    }
+
+    /* Common SVG icon helper */
+    .ui-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      vertical-align: middle;
+    }
+
+    /* ==========================================================================
+       Grand Multi-Tier Marketplace Navbar Styling (Full Upper Section)
+       ========================================================================== */
+    .site-header-mega {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: #FFFFFF;
+      box-shadow: 0 4px 18px rgba(18, 38, 22, 0.08);
+      width: 100%;
+    }
+
+    /* 1. Top Utility Announcement Strip */
+    .mega-topbar {
+      background-color: #123820;
+      color: #E8EFE9;
+      font-size: 0.75rem;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .mega-topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+    }
+
+    .mega-topbar-left {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    .mega-topbar-pill {
+      background-color: rgba(255, 255, 255, 0.16);
+      color: #FFFFFF;
+      padding: 2px 8px;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.68rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pulse-dot {
+      width: 6px;
+      height: 6px;
+      background-color: #4ADE80;
+      border-radius: 50%;
+      box-shadow: 0 0 6px #4ADE80;
+      display: inline-block;
+    }
+
+    .mega-topbar-right {
+      display: flex;
+      align-items: center;
+      gap: var(--space-5);
+    }
+
+    .mega-topbar-link {
+      color: #D7EBD9;
+      text-decoration: none;
+      transition: color var(--transition-fast);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .mega-topbar-link:hover {
+      color: #FFFFFF;
+      text-decoration: underline;
+    }
+
+    /* 2. Main Spacious Header Bar */
+    .mega-main-bar {
+      background-color: #FFFFFF;
+      padding: 14px 0;
+      border-bottom: 1px solid #E8EFE9;
+    }
+
+    .mega-main-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-6);
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+    }
+
+    .mega-brand-area {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      flex-shrink: 0;
+    }
+
+    .mega-brand-link {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .mega-brand-logo {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+      border-radius: var(--radius-sm);
+      transition: transform var(--transition-fast);
+    }
+
+    .mega-brand-link:hover .mega-brand-logo {
+      transform: scale(1.03);
+    }
+
+    .mega-brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mega-brand-title {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: var(--color-primary);
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+    }
+
+    .mega-brand-tagline {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 2px;
+    }
+
+    /* Delivery Location Box */
+    .mega-location-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background-color: var(--color-surface-alt);
+      border: 1px solid var(--color-border);
+      height: 42px;
+      padding: 0 14px;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      color: var(--color-text-main);
+      transition: all var(--transition-fast);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .mega-location-box:hover {
+      border-color: var(--color-primary);
+      background-color: var(--color-primary-subtle);
+    }
+
+    .mega-location-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .mega-loc-sub {
+      font-size: 0.65rem;
+      color: var(--color-text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .mega-loc-main {
+      font-size: 0.825rem;
+      font-weight: 700;
+      color: var(--color-text-main);
+    }
+
+    /* Center Navigation: All Categories & Direct Guarantee Badge */
+    .mega-center-area {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      flex-shrink: 0;
+    }
+
+    .mega-cat-btn {
+      background-color: var(--color-primary);
+      color: #FFFFFF !important;
+      height: 42px;
+      padding: 0 18px;
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: all var(--transition-fast);
+      box-shadow: 0 2px 6px rgba(28, 90, 53, 0.18);
+      white-space: nowrap;
+    }
+
+    .mega-cat-btn:hover {
+      background-color: var(--color-primary-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(28, 90, 53, 0.25);
+    }
+
+    .mega-direct-badge {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      background-color: var(--color-primary-subtle);
+      border: 1px solid var(--color-primary-border);
+      height: 42px;
+      padding: 0 16px;
+      border-radius: var(--radius-md);
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    /* Right Action Elements */
+    .mega-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      flex-shrink: 0;
+    }
+
+    .mega-action-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 42px;
+      padding: 0 12px;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      color: var(--color-text-main);
+      transition: all var(--transition-fast);
+      border: 1px solid transparent;
+    }
+
+    .mega-action-box:hover {
+      background-color: var(--color-surface-alt);
+      border-color: var(--color-border);
+    }
+
+    .mega-action-icon {
+      color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mega-action-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .mega-act-sub {
+      font-size: 0.65rem;
+      color: var(--color-text-muted);
+      font-weight: 500;
+    }
+
+    .mega-act-main {
+      font-size: 0.825rem;
+      font-weight: 700;
+      color: var(--color-text-main);
+    }
+
+    .mega-notif-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+      background-color: var(--color-surface);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-text-secondary);
+      position: relative;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+    }
+
+    .mega-notif-btn:hover {
+      background-color: var(--color-surface-alt);
+      border-color: var(--color-primary-border);
+      color: var(--color-primary);
+    }
+
+    .notif-unread-dot {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 8px;
+      height: 8px;
+      background-color: #E53E3E;
+      border-radius: 50%;
+      border: 2px solid #FFFFFF;
+    }
+
+    .mega-cart-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      height: 42px;
+      background-color: var(--color-primary);
+      color: #FFFFFF;
+      padding: 0 18px;
+      border-radius: var(--radius-full);
+      text-decoration: none;
+      box-shadow: 0 3px 8px rgba(28, 90, 53, 0.25);
+      transition: all var(--transition-fast);
+    }
+
+    .mega-cart-pill:hover {
+      background-color: var(--color-primary-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 5px 14px rgba(28, 90, 53, 0.32);
+    }
+
+    .mega-cart-badge {
+      background-color: #FFFFFF;
+      color: var(--color-primary);
+      font-size: 0.725rem;
+      font-weight: 800;
+      padding: 1px 7px;
+      border-radius: var(--radius-full);
+    }
+
+    /* Responsive adjustments for mega navbar */
+    @media (max-width: 1200px) {
+      .mega-direct-badge {
+        display: none;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .mega-location-box,
+      .mega-topbar {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .mega-center-area {
+        display: none;
+      }
+
+      .mega-main-inner {
+        padding: 0 var(--space-4);
+      }
+
+      .mega-brand-logo {
+        height: 40px;
+      }
+
+      .mega-act-sub,
+      .mega-action-box .mega-action-text {
+        display: none;
+      }
+    }
+
+    /* Main Container */
+    .dashboard-main {
+      padding-top: var(--space-6);
+      padding-bottom: var(--space-16);
+    }
+
+    /* ==========================================================================
+       1. Welcome Hero Section
+       ========================================================================== */
+    .welcome-hero {
+      background: linear-gradient(135deg, #FFFFFF 0%, #F1F8F1 60%, #EBF4ED 100%);
+      border: 1px solid var(--color-primary-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-8) var(--space-8) var(--space-6);
+      margin-bottom: var(--space-8);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+
+    .welcome-hero::after {
+      content: "";
+      position: absolute;
+      right: -20px;
+      bottom: -20px;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(46, 125, 50, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+      border-radius: 50%;
+    }
+
+    .welcome-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      margin-bottom: var(--space-4);
+    }
+
+    .welcome-text-block {
+      max-width: 680px;
+    }
+
+    .welcome-greeting {
+      font-size: var(--font-size-2xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-main);
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-2);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .welcome-subtext {
+      font-size: var(--font-size-base);
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+    }
+
+    .mandi-direct-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-primary-border);
+      padding: 0.4rem 0.9rem;
+      border-radius: var(--radius-full);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-primary);
+      box-shadow: var(--shadow-subtle);
+    }
+
+    /* Core Flow Strip */
+    .supply-promise-strip {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      padding-top: var(--space-4);
+      border-top: 1px dashed var(--color-primary-border);
+      margin-top: var(--space-5);
+      font-size: var(--font-size-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .promise-flow-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: rgba(28, 90, 53, 0.08);
+      color: var(--color-primary);
+      padding: 0.25rem 0.65rem;
+      border-radius: var(--radius-sm);
+      font-weight: var(--font-weight-semibold);
+      font-size: 0.8rem;
+    }
+
+    /* ==========================================================================
+       2. Search Bar Section
+       ========================================================================== */
+    .search-section {
+      margin-bottom: var(--space-10);
+    }
+
+    .search-bar-container {
+      background-color: var(--color-surface);
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-full);
+      padding: 6px 8px 6px var(--space-4);
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      box-shadow: var(--shadow-card);
+      transition: all var(--transition-fast);
+      max-width: 100%;
+    }
+
+    .search-bar-container:focus-within {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 4px rgba(28, 90, 53, 0.12);
+    }
+
+    .search-icon-box {
+      color: var(--color-text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .search-input {
+      border: none;
+      background: transparent;
+      font-family: inherit;
+      font-size: var(--font-size-base);
+      color: var(--color-text-main);
+      width: 100%;
+      outline: none;
+    }
+
+    .search-input::placeholder {
+      color: var(--color-text-muted);
+      font-size: var(--font-size-base);
+    }
+
+    .search-submit-btn {
+      background-color: var(--color-primary);
+      color: var(--color-text-inverse);
+      border: none;
+      padding: 0.65rem 1.4rem;
+      border-radius: var(--radius-full);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background-color var(--transition-fast);
+    }
+
+    .search-submit-btn:hover {
+      background-color: var(--color-primary-hover);
+    }
+
+    /* Quick tags under search */
+    .quick-search-tags {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin-top: var(--space-3);
+      padding-left: var(--space-3);
+      flex-wrap: wrap;
+    }
+
+    .quick-tag-label {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .quick-tag {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      color: var(--color-text-secondary);
+      font-size: 0.75rem;
+      padding: 0.2rem 0.65rem;
+      border-radius: var(--radius-full);
+      text-decoration: none;
+      transition: all var(--transition-fast);
+    }
+
+    .quick-tag:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+      background-color: var(--color-surface-alt);
+    }
+
+    /* ==========================================================================
+       3. Shop by Category (Photographic Category Cards)
+       ========================================================================== */
+    .section-title-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: var(--space-5);
+    }
+
+    .section-main-heading {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-main);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .section-view-all {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-primary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: color var(--transition-fast);
+    }
+
+    .section-view-all:hover {
+      color: var(--color-primary-hover);
+      text-decoration: underline;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: var(--space-4);
+      margin-bottom: var(--space-12);
+    }
+
+    .category-card {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-subtle);
+      transition: all var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .category-card:hover {
+      border-color: var(--color-primary);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-card);
+    }
+
+    .category-img-container {
+      width: 100%;
+      height: 110px;
+      overflow: hidden;
+      background-color: var(--color-surface-alt);
+      position: relative;
+    }
+
+    .category-real-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-standard);
+      display: block;
+    }
+
+    .category-card:hover .category-real-img {
+      transform: scale(1.08);
+    }
+
+    .category-info-box {
+      padding: var(--space-3) var(--space-2) var(--space-4);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      background-color: var(--color-surface);
+    }
+
+    .category-name {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-main);
+      line-height: 1.2;
+    }
+
+    .category-count {
+      font-size: 0.725rem;
+      color: var(--color-text-muted);
+    }
+
+    /* ==========================================================================
+       4. Fresh from Nearby Farms (Real Produce Photography Cards)
+       ========================================================================== */
+    .products-section {
+      margin-bottom: var(--space-12);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: var(--space-5);
+    }
+
+    .product-card {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-subtle);
+      transition: all var(--transition-fast);
+      position: relative;
+    }
+
+    .product-card:hover {
+      border-color: var(--color-primary);
+      box-shadow: var(--shadow-card);
+      transform: translateY(-2px);
+    }
+
+    .product-image-container {
+      height: 175px;
+      position: relative;
+      overflow: hidden;
+      background-color: var(--color-surface-alt);
+      border-bottom: 1px solid var(--color-border-light);
+    }
+
+    .product-real-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-standard);
+      display: block;
+    }
+
+    .product-card:hover .product-real-img {
+      transform: scale(1.06);
+    }
+
+    .product-badge-fresh {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(4px);
+      color: var(--color-primary);
+      border: 1px solid var(--color-primary-border);
+      font-size: 0.7rem;
+      font-weight: var(--font-weight-bold);
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-full);
+      box-shadow: var(--shadow-subtle);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      z-index: 2;
+    }
+
+    .product-card-body {
+      padding: var(--space-4);
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .product-title {
+      font-size: 1.0625rem;
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-main);
+      margin-bottom: var(--space-2);
+      line-height: 1.3;
+    }
+
+    .farmer-info-strip {
+      background-color: var(--color-surface-alt);
+      border: 1px solid var(--color-border-light);
+      border-radius: var(--radius-sm);
+      padding: 0.45rem 0.65rem;
+      margin-bottom: var(--space-3);
+    }
+
+    .farmer-name-row {
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-main);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 2px;
+    }
+
+    .farmer-location-row {
+      font-size: 0.725rem;
+      color: var(--color-text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .product-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-top: auto;
+      margin-bottom: var(--space-3);
+      padding-top: var(--space-2);
+    }
+
+    .product-price-block {
+      display: flex;
+      align-items: baseline;
+      gap: 2px;
+    }
+
+    .price-value {
+      font-size: 1.375rem;
+      font-weight: var(--font-weight-bold);
+      color: var(--color-primary);
+    }
+
+    .price-unit {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .available-qty-badge {
+      font-size: 0.725rem;
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-secondary);
+      background-color: var(--color-surface-muted);
+      padding: 0.2rem 0.5rem;
+      border-radius: var(--radius-sm);
+    }
+
+    .btn-add-cart {
+      width: 100%;
+      background-color: var(--color-primary);
+      color: var(--color-text-inverse);
+      border: 1px solid var(--color-primary);
+      border-radius: var(--radius-md);
+      padding: 0.65rem var(--space-3);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all var(--transition-fast);
+      text-decoration: none;
+    }
+
+    .btn-add-cart:hover {
+      background-color: var(--color-primary-hover);
+      border-color: var(--color-primary-hover);
+      box-shadow: 0 2px 6px rgba(28, 90, 53, 0.2);
+    }
+
+    /* ==========================================================================
+       5. Direct Farmer Connection (Meet the Farmers)
+       ========================================================================== */
+    .farmers-section {
+      margin-bottom: var(--space-12);
+      background-color: var(--color-surface-alt);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-8);
+    }
+
+    .farmers-header {
+      margin-bottom: var(--space-6);
+    }
+
+    .farmers-heading {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-main);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin-bottom: var(--space-1);
+    }
+
+    .farmers-subtext {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+    }
+
+    .farmers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-5);
+    }
+
+    .farmer-profile-card {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-5);
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-subtle);
+      transition: all var(--transition-fast);
+    }
+
+    .farmer-profile-card:hover {
+      border-color: var(--color-primary-border);
+      box-shadow: var(--shadow-card);
+      transform: translateY(-2px);
+    }
+
+    .farmer-card-top {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-4);
+    }
+
+    .farmer-avatar-img {
+      width: 58px;
+      height: 58px;
+      border-radius: var(--radius-full);
+      object-fit: cover;
+      border: 2px solid var(--color-primary-border);
+      flex-shrink: 0;
+      background-color: var(--color-surface-alt);
+    }
+
+    .farmer-title-box {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .farmer-card-name {
+      font-size: 1.0625rem;
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-main);
+      line-height: 1.2;
+    }
+
+    .farmer-card-loc {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 2px;
+    }
+
+    .farmer-badge-trust {
+      font-size: 0.7rem;
+      font-weight: var(--font-weight-bold);
+      color: var(--color-primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 2px;
+    }
+
+    .farmer-products-list {
+      margin-bottom: var(--space-5);
+      flex-grow: 1;
+    }
+
+    .farmer-products-label {
+      font-size: 0.725rem;
+      text-transform: uppercase;
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-muted);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-2);
+      display: block;
+    }
+
+    .farmer-tags-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .farmer-product-tag {
+      background-color: var(--color-surface-alt);
+      border: 1px solid var(--color-border);
+      color: var(--color-text-main);
+      font-size: 0.75rem;
+      font-weight: var(--font-weight-medium);
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-sm);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .btn-view-farm {
+      background-color: var(--color-surface);
+      color: var(--color-primary);
+      border: 1px solid var(--color-primary);
+      border-radius: var(--radius-md);
+      padding: 0.55rem var(--space-3);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-bold);
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      transition: all var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .btn-view-farm:hover {
+      background-color: var(--color-primary);
+      color: var(--color-text-inverse);
+    }
+
+    /* ==========================================================================
+       6. Bulk Order Banner
+       ========================================================================== */
+    .bulk-order-banner {
+      background: linear-gradient(135deg, #1C5A35 0%, #144326 100%);
+      color: var(--color-text-inverse);
+      border-radius: var(--radius-lg);
+      padding: var(--space-8);
+      margin-bottom: var(--space-8);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-8);
+      box-shadow: var(--shadow-modal);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bulk-order-banner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.08;
+      background-image: radial-gradient(#FFFFFF 1px, transparent 1px);
+      background-size: 20px 20px;
+      pointer-events: none;
+    }
+
+    .bulk-content {
+      max-width: 640px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .bulk-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #D7EBD9;
+      font-size: 0.75rem;
+      font-weight: var(--font-weight-bold);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.25rem 0.65rem;
+      border-radius: var(--radius-full);
+      margin-bottom: var(--space-3);
+    }
+
+    .bulk-heading {
+      font-size: var(--font-size-2xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-inverse);
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-2);
+      line-height: 1.2;
+    }
+
+    .bulk-desc {
+      font-size: var(--font-size-base);
+      color: #E8EFE9;
+      line-height: 1.55;
+      margin-bottom: var(--space-4);
+    }
+
+    .bulk-occasions-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      font-size: var(--font-size-xs);
+    }
+
+    .bulk-occasion-tag {
+      background-color: rgba(255, 255, 255, 0.12);
+      color: #FFFFFF;
+      padding: 0.25rem 0.65rem;
+      border-radius: var(--radius-sm);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .bulk-action-box {
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-bulk-order {
+      background-color: #FFFFFF;
+      color: var(--color-primary);
+      border: 2px solid #FFFFFF;
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-bold);
+      padding: 0.9rem 1.8rem;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .btn-bulk-order:hover {
+      background-color: #F1F8F1;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.24);
+    }
+
+    /* ==========================================================================
+       PURE CSS :target MODAL OVERLAYS (Zero JS, 100% Responsive)
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(14, 28, 18, 0.62);
+      backdrop-filter: blur(5px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity var(--transition-standard), visibility var(--transition-standard);
+      padding: var(--space-4);
+    }
+
+    .modal-overlay:target {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .modal-backdrop-close {
+      position: absolute;
+      inset: 0;
+      cursor: default;
+      text-decoration: none;
+    }
+
+    .modal-window {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      max-width: 620px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow-modal);
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      transform: scale(0.95) translateY(10px);
+      transition: transform var(--transition-standard);
+    }
+
+    .modal-overlay:target .modal-window {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-window-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-4) var(--space-6);
+      border-bottom: 1px solid var(--color-border-light);
+      position: sticky;
+      top: 0;
+      background-color: var(--color-surface);
+      z-index: 2;
+    }
+
+    .modal-window-title {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-main);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .modal-window-close {
+      width: 34px;
+      height: 34px;
+      border-radius: var(--radius-full);
+      background-color: var(--color-surface-alt);
+      border: 1px solid var(--color-border-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      font-size: 1.15rem;
+      line-height: 1;
+      transition: all var(--transition-fast);
+    }
+
+    .modal-window-close:hover {
+      background-color: #FEE2E2;
+      border-color: #FCA5A5;
+      color: #DC2626;
+    }
+
+    .modal-window-body {
+      padding: var(--space-6);
+      flex-grow: 1;
+    }
+
+    .modal-window-footer {
+      padding: var(--space-4) var(--space-6);
+      border-top: 1px solid var(--color-border-light);
+      background-color: var(--color-surface-alt);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: var(--space-3);
+      position: sticky;
+      bottom: 0;
+      z-index: 2;
+    }
+
+    /* Orders Modal Specifics */
+    .modal-orders-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      margin-bottom: var(--space-5);
+    }
+
+    .modal-order-card {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      box-shadow: var(--shadow-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .order-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--color-border-light);
+      padding-bottom: var(--space-2);
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+
+    .order-id-block {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-main);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .order-date {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--font-weight-normal);
+    }
+
+    .order-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      font-weight: var(--font-weight-semibold);
+      padding: 0.25rem 0.65rem;
+      border-radius: var(--radius-full);
+    }
+
+    .status-transit {
+      background-color: #FFF8E1;
+      color: #8D6E63;
+      border: 1px solid #FFE082;
+    }
+
+    .status-delivered {
+      background-color: var(--color-status-success-bg);
+      color: var(--color-status-success);
+      border: 1px solid #C8E6C9;
+    }
+
+    .order-details-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+    }
+
+    .order-items-desc {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.4;
+    }
+
+    .order-items-desc strong {
+      color: var(--color-text-main);
+    }
+
+    .order-farmer-meta {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-muted);
+      margin-top: 2px;
+    }
+
+    .order-action-block {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    .order-price {
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-primary);
+    }
+
+    .btn-track {
+      background-color: var(--color-surface);
+      color: var(--color-primary);
+      border: 1px solid var(--color-primary);
+      border-radius: var(--radius-sm);
+      padding: 0.45rem 0.9rem;
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-bold);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      transition: all var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .btn-track:hover {
+      background-color: var(--color-primary);
+      color: var(--color-text-inverse);
+    }
+
+    /* Cart Modal Specifics */
+    .cart-items-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      margin-bottom: var(--space-5);
+    }
+
+    .cart-item-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-3);
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--color-border-light);
+    }
+
+    .cart-item-thumb {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-sm);
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 1px solid var(--color-border-light);
+    }
+
+    .cart-item-info {
+      flex-grow: 1;
+    }
+
+    .cart-item-name {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-main);
+    }
+
+    .cart-item-meta {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-muted);
+    }
+
+    .cart-item-total {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-primary);
+      text-align: right;
+    }
+
+    .cart-summary-box {
+      background-color: var(--color-surface-alt);
+      border: 1px solid var(--color-border-light);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .cart-summary-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+    }
+
+    .cart-summary-line.total {
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-main);
+      border-top: 1px dashed var(--color-border);
+      padding-top: var(--space-2);
+      margin-top: var(--space-1);
+    }
+
+    /* Notifications Modal */
+    .notif-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .notif-card {
+      display: flex;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--radius-md);
+      background-color: var(--color-surface-alt);
+      border: 1px solid var(--color-border-light);
+    }
+
+    .notif-icon {
+      color: var(--color-primary);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .notif-content {
+      flex-grow: 1;
+    }
+
+    .notif-title {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-main);
+      margin-bottom: 2px;
+    }
+
+    .notif-desc {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-secondary);
+      line-height: 1.4;
+    }
+
+    .notif-time {
+      font-size: 0.7rem;
+      color: var(--color-text-muted);
+      margin-top: 4px;
+    }
+
+    /* Profile Modal */
+    .profile-card-top {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      margin-bottom: var(--space-5);
+      padding-bottom: var(--space-4);
+      border-bottom: 1px solid var(--color-border-light);
+    }
+
+    .profile-avatar-box {
+      width: 64px;
+      height: 64px;
+      border-radius: var(--radius-full);
+      background-color: var(--color-primary-subtle);
+      border: 2px solid var(--color-primary-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-primary);
+      flex-shrink: 0;
+    }
+
+    .profile-details-grid {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .profile-detail-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .profile-detail-label {
+      font-size: 0.725rem;
+      font-weight: var(--font-weight-bold);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-muted);
+    }
+
+    .profile-detail-val {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-main);
+      font-weight: var(--font-weight-medium);
+    }
+
+    /* Categories Modal Grid */
+    .modal-cat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-3);
+    }
+
+    .modal-cat-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      color: var(--color-text-main);
+      transition: all var(--transition-fast);
+      background-color: var(--color-surface);
+    }
+
+    .modal-cat-item:hover {
+      border-color: var(--color-primary);
+      background-color: var(--color-surface-alt);
+      transform: translateY(-2px);
+    }
+
+    .modal-cat-thumb {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .modal-cat-name {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-bold);
+    }
+
+    .modal-cat-count {
+      font-size: 0.725rem;
+      color: var(--color-text-muted);
+    }
+
+    /* Produce Guide Table */
+    .produce-compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--font-size-sm);
+      margin-bottom: var(--space-4);
+    }
+
+    .produce-compare-table th {
+      text-align: left;
+      padding: var(--space-2) var(--space-3);
+      background-color: var(--color-surface-alt);
+      border-bottom: 2px solid var(--color-border);
+      font-size: var(--font-size-xs);
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+
+    .produce-compare-table td {
+      padding: var(--space-3);
+      border-bottom: 1px solid var(--color-border-light);
+    }
+
+    .mandi-save-badge {
+      background-color: var(--color-status-success-bg);
+      color: var(--color-status-success);
+      font-size: 0.725rem;
+      font-weight: var(--font-weight-bold);
+      padding: 2px 6px;
+      border-radius: var(--radius-sm);
+    }
+
+    /* Bulk Form */
+    .bulk-form-grid {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .bulk-form-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .bulk-label {
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-main);
+    }
+
+    .bulk-input,
+    .bulk-select,
+    .bulk-textarea {
+      width: 100%;
+      font-family: inherit;
+      font-size: var(--font-size-sm);
+      padding: 0.6rem 0.85rem;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background-color: var(--color-surface);
+      color: var(--color-text-main);
+      outline: none;
+      transition: border-color var(--transition-fast);
+    }
+
+    .bulk-input:focus,
+    .bulk-select:focus,
+    .bulk-textarea:focus {
+      border-color: var(--color-primary);
+    }
+
+    /* Delivery Location & Edit Address Modal Styles */
+    .addr-card-current {
+      background-color: var(--color-surface);
+      border: 2px solid var(--color-primary);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      margin-bottom: var(--space-4);
+      position: relative;
+      box-shadow: 0 2px 8px rgba(28, 90, 53, 0.08);
+    }
+
+    .addr-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-3);
+    }
+
+    .addr-badge-active {
+      background-color: var(--color-status-success-bg);
+      color: var(--color-status-success);
+      font-size: 0.725rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .addr-type-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      background-color: var(--color-primary-subtle);
+      padding: 2px 8px;
+      border-radius: var(--radius-sm);
+      text-transform: uppercase;
+    }
+
+    .addr-resident-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--color-text-main);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .addr-contact-phone {
+      font-size: 0.825rem;
+      color: var(--color-text-muted);
+      font-weight: 500;
+    }
+
+    .addr-full-text {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      line-height: 1.45;
+      margin-bottom: var(--space-3);
+    }
+
+    .addr-landmark-note {
+      font-size: 0.785rem;
+      color: var(--color-text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 0;
+      padding-top: var(--space-2);
+      border-top: 1px dashed var(--color-border-light);
+    }
+
+    .addr-section-divider {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin: var(--space-5) 0 var(--space-4);
+      color: var(--color-text-muted);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .addr-section-divider::before,
+    .addr-section-divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background-color: var(--color-border);
+    }
+
+    .addr-form-grid {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      background-color: var(--color-surface-alt);
+      padding: var(--space-4);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+    }
+
+    .addr-form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3);
+    }
+
+    @media (max-width: 540px) {
+      .addr-form-row-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .addr-type-selector {
+      display: flex;
+      gap: var(--space-2);
+      margin-top: 4px;
+    }
+
+    .addr-radio-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--color-border);
+      background-color: var(--color-surface);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-text-main);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .addr-radio-label:hover {
+      border-color: var(--color-primary);
+      background-color: var(--color-primary-subtle);
+    }
+
+    .addr-saved-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-3);
+      padding: var(--space-3);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      margin-top: var(--space-2);
+      background-color: var(--color-surface);
+      transition: border-color var(--transition-fast);
+    }
+
+    .addr-saved-item:hover {
+      border-color: var(--color-primary);
+    }
+
+    .btn-select-addr {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      border: 1px solid var(--color-primary);
+      background: transparent;
+      padding: 4px 12px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-select-addr:hover {
+      background-color: var(--color-primary);
+      color: #FFFFFF;
+    }
+
+    /* ==========================================================================
+       8. Mobile Bottom Navigation Bar (Fixed for Screens <= 768px - Zero Emojis)
+       ========================================================================== */
+    .mobile-bottom-nav {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-bottom-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 64px;
+        background-color: rgba(255, 255, 255, 0.97);
+        backdrop-filter: blur(12px);
+        border-top: 1px solid var(--color-border);
+        z-index: 999;
+        align-items: center;
+        justify-content: space-around;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.06);
+        padding: 0 var(--space-2);
+      }
+
+      .mobile-nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: var(--color-text-muted);
+        gap: 3px;
+        flex: 1;
+        padding: 6px 0;
+        transition: color var(--transition-fast);
+        position: relative;
+      }
+
+      .mobile-nav-icon-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 22px;
+      }
+
+      .mobile-nav-label {
+        font-size: 0.725rem;
+        font-weight: var(--font-weight-medium);
+      }
+
+      .mobile-nav-item.active {
+        color: var(--color-primary);
+      }
+
+      .mobile-nav-item.active .mobile-nav-label {
+        font-weight: var(--font-weight-bold);
+      }
+
+      .mobile-nav-badge {
+        position: absolute;
+        top: 2px;
+        right: calc(50% - 18px);
+        background-color: var(--color-primary);
+        color: var(--color-text-inverse);
+        font-size: 0.65rem;
+        font-weight: var(--font-weight-bold);
+        min-width: 16px;
+        height: 16px;
+        border-radius: var(--radius-full);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+      }
+    }
+
+    /* ==========================================================================
+       Responsive Media Queries
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .category-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .farmers-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .welcome-hero {
+        padding: var(--space-6) var(--space-5);
+      }
+
+      .welcome-greeting {
+        font-size: var(--font-size-xl);
+      }
+
+      .search-bar-container {
+        padding: 4px 6px 4px var(--space-3);
+      }
+
+      .search-input {
+        font-size: 0.95rem;
+      }
+
+      .search-submit-btn {
+        padding: 0.55rem 1rem;
+        font-size: var(--font-size-xs);
+      }
+
+      .category-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-3);
+      }
+
+      .category-img-container {
+        height: 90px;
+      }
+
+      .category-name {
+        font-size: 0.8rem;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-3);
+      }
+
+      .product-image-container {
+        height: 140px;
+      }
+
+      .product-title {
+        font-size: 0.95rem;
+      }
+
+      .price-value {
+        font-size: 1.15rem;
+      }
+
+      .farmers-section {
+        padding: var(--space-6) var(--space-4);
+      }
+
+      .farmers-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .bulk-order-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: var(--space-6);
+        gap: var(--space-5);
+      }
+
+      .btn-bulk-order {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .modal-cat-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="buyer-dashboard-body">
+  <!-- Subtle Background Pattern from AgriMitra Theme -->
+  <div class="bg-subtle-pattern" aria-hidden="true"></div>
+
+  <!-- Accessibility Skip Link -->
+  <a href="#dashboard-content" class="skip-link">Skip to dashboard content</a>
+
+  <!-- ==========================================================================
+       1. GRAND MULTI-TIER MARKETPLACE HEADER (Full Upper Section)
+       ========================================================================== -->
+  <header class="site-header-mega" role="banner">
+    <!-- Tier 1: Top Utility Announcement & Quick Links Strip -->
+    <div class="mega-topbar">
+      <div class="mega-topbar-inner">
+        <div class="mega-topbar-left">
+          <span class="mega-topbar-pill">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            Kisan Direct Dispatch
+          </span>
+          <span>Fresh harvest delivered directly from farm to home within 24 hours &bull; Verified Quality</span>
+        </div>
+        <div class="mega-topbar-right">
+          <a href="#modal-produce" class="mega-topbar-link">
+            <span class="ui-icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                <polyline points="17 6 23 6 23 12"></polyline>
+              </svg>
+            </span>
+            <span>Today's Mandi Rates</span>
+          </a>
+          <a href="#modal-farmers" class="mega-topbar-link">
+            <span class="ui-icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <polyline points="16 11 18 13 22 9"></polyline>
+              </svg>
+            </span>
+            <span>Verified Farmers</span>
+          </a>
+          <a href="#modal-bulk" class="mega-topbar-link">
+            <span class="ui-icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+              </svg>
+            </span>
+            <span>Bulk Mandi Supply</span>
+          </a>
+          <span style="color: #A3D9A5; font-weight: 500; font-size: 0.725rem;">
+            Toll-Free Kisan Help: <strong>1800-180-1551</strong>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tier 2: Main Spacious Marketplace Bar -->
+    <div class="mega-main-bar">
+      <div class="mega-main-inner">
+        <!-- Brand & Location Area -->
+        <div class="mega-brand-area">
+          <a href="index.html" class="mega-brand-link" aria-label="AgriMitra Home">
+            <img src="logo.png" alt="AgriMitra Logo" class="mega-brand-logo">
+            <div class="mega-brand-text">
+              <span class="mega-brand-title">AgriMitra</span>
+              <span class="mega-brand-tagline">Direct Farm Mandi</span>
+            </div>
+          </a>
+
+          <!-- Delivery Location Selector Box -->
+          <a href="#modal-location" class="mega-location-box" title="View current address & edit delivery location">
+            <span class="ui-icon" style="color: var(--color-primary);" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </span>
+            <div class="mega-location-text">
+              <span class="mega-loc-sub">Deliver to</span>
+              <span class="mega-loc-main">Gurugram 122001 &#9662;</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Center Group: All Categories Button & Direct Guarantee Badge -->
+        <div class="mega-center-area">
+          <a href="#modal-categories" class="mega-cat-btn" title="View all product categories">
+            <span class="ui-icon" aria-hidden="true">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+              </svg>
+            </span>
+            <span>All Categories &#9662;</span>
+          </a>
+
+          <div class="mega-direct-badge">
+            <span class="ui-icon" aria-hidden="true" style="color: var(--color-primary);">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                <polyline points="9 12 11 14 15 10"></polyline>
+              </svg>
+            </span>
+            <span>100% Direct From Farmers &bull; Zero Middlemen</span>
+          </div>
+        </div>
+
+        <!-- Right User Actions Group -->
+        <div class="mega-actions">
+          <!-- Orders Quick Access -->
+          <a href="#modal-orders" class="mega-action-box" title="View Recent Orders and Deliveries">
+            <span class="mega-action-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+              </svg>
+            </span>
+            <div class="mega-action-text">
+              <span class="mega-act-sub">Returns &amp;</span>
+              <span class="mega-act-main">Orders</span>
+            </div>
+          </a>
+
+          <!-- Buyer Profile Quick Access -->
+          <a href="#modal-profile" class="mega-action-box" title="Buyer Profile & Settings">
+            <span class="mega-action-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </span>
+            <div class="mega-action-text">
+              <span class="mega-act-sub">Hello, Ramesh</span>
+              <span class="mega-act-main">Account &#9662;</span>
+            </div>
+          </a>
+
+          <!-- Notifications Button -->
+          <a href="#modal-notifications" class="mega-notif-btn" aria-label="Notifications" title="Recent Notifications">
+            <span class="ui-icon" aria-hidden="true">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              </svg>
+            </span>
+            <span class="notif-unread-dot" aria-label="Unread notification"></span>
+          </a>
+
+          <!-- Prominent Cart Pill Button -->
+          <a href="#modal-cart" class="mega-cart-pill" aria-label="Shopping Cart with 3 items" title="View Cart">
+            <span class="ui-icon" aria-hidden="true">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+            </span>
+            <span style="font-weight: 700; font-size: 0.9rem;">Cart</span>
+            <span class="mega-cart-badge" id="header-cart-count">3</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       MAIN BUYER DASHBOARD CONTENT (Orders Section Removed as Requested)
+       ========================================================================== -->
+  <main id="dashboard-content" class="dashboard-main">
+    <div class="container">
+
+      <!-- ======================================================================
+           2. WELCOME SECTION
+           Warm greeting & core direct farm value proposition
+           ====================================================================== -->
+      <section class="welcome-hero" aria-labelledby="welcome-title">
+        <div class="welcome-header-row">
+          <div class="welcome-text-block">
+            <h1 id="welcome-title" class="welcome-greeting">
+              Namaste, Buyer!
+            </h1>
+            <p class="welcome-subtext">
+              Fresh from Indian farms, directly to your home.
+            </p>
+          </div>
+
+          <div class="mandi-direct-pill">
+            <span class="ui-icon" aria-hidden="true" style="color: var(--color-primary);">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 22s5-4 8-10c3.5 0 6 2 6 6-4 3-8 4-14 4Z"/>
+                <path d="M10 12c3.5-3.5 6-7 12-10-3.5 6-7 8.5-12 10Z"/>
+              </svg>
+            </span>
+            <span>Digital Indian Mandi</span>
+          </div>
+        </div>
+
+        <!-- Visual Value Chain: FARMER → AGRIMITRA → BUYER -->
+        <div class="supply-promise-strip">
+          <span>Our Guarantee:</span>
+          <span class="promise-flow-tag">Farmer Direct</span>
+          <span aria-hidden="true" style="color: var(--color-primary);">→</span>
+          <span class="promise-flow-tag">AgriMitra Delivery</span>
+          <span aria-hidden="true" style="color: var(--color-primary);">→</span>
+          <span class="promise-flow-tag">Your Kitchen</span>
+          <span style="margin-left: auto; color: var(--color-primary); font-weight: 600;">
+            Fair Farmer Prices • Zero Middlemen
+          </span>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           3. SEARCH BAR SECTION
+           Prominent, large, rounded, touch-friendly
+           ====================================================================== -->
+      <section class="search-section" aria-label="Search Agricultural Products">
+        <form class="search-bar-container" action="#search-results" method="GET" role="search">
+          <span class="search-icon-box" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/>
+              <path d="m21 21-4.35-4.35"/>
+            </svg>
+          </span>
+          <input
+            type="search"
+            class="search-input"
+            id="mandi-search-input"
+            name="q"
+            placeholder="Search vegetables, fruits, grains, pulses..."
+            aria-label="Search vegetables, fruits, grains, pulses">
+          <button type="submit" class="search-submit-btn">Search Mandi</button>
+        </form>
+
+        <!-- Quick Trending Product Tags -->
+        <div class="quick-search-tags">
+          <span class="quick-tag-label">Frequently Searched:</span>
+          <a href="#fresh-produce" class="quick-tag">Fresh Potatoes</a>
+          <a href="#fresh-produce" class="quick-tag">Desi Tomatoes</a>
+          <a href="#fresh-produce" class="quick-tag">Nashik Onions</a>
+          <a href="#fresh-produce" class="quick-tag">Sharbati Wheat</a>
+          <a href="#fresh-produce" class="quick-tag">Alphonso Mangoes</a>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           4. SHOP BY CATEGORY (Real High-Res Produce Photos)
+           ====================================================================== -->
+      <section class="categories-section" id="categories" aria-labelledby="category-heading">
+        <div class="section-title-wrap">
+          <h2 id="category-heading" class="section-main-heading">
+            Shop by Category
+          </h2>
+          <a href="#modal-categories" class="section-view-all">View All Categories →</a>
+        </div>
+
+        <div class="category-grid">
+          <!-- Category 1: Vegetables -->
+          <a href="#modal-categories" class="category-card">
+            <div class="category-img-container">
+              <img
+                src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=400&q=80"
+                alt="Fresh Green Vegetables"
+                class="category-real-img"
+                loading="lazy">
+            </div>
+            <div class="category-info-box">
+              <span class="category-name">Vegetables</span>
+              <span class="category-count">18 Fresh Varieties</span>
+            </div>
+          </a>
+
+          <!-- Category 2: Fruits -->
+          <a href="#modal-categories" class="category-card">
+            <div class="category-img-container">
+              <img
+                src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?auto=format&fit=crop&w=400&q=80"
+                alt="Fresh Orchard Fruits"
+                class="category-real-img"
+                loading="lazy">
+            </div>
+            <div class="category-info-box">
+              <span class="category-name">Fruits</span>
+              <span class="category-count">12 Orchard Picks</span>
+            </div>
+          </a>
+
+          <!-- Category 3: Grains -->
+          <a href="#modal-categories" class="category-card">
+            <div class="category-img-container">
+              <img
+                src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=400&q=80"
+                alt="Golden Agricultural Grains"
+                class="category-real-img"
+                loading="lazy">
+            </div>
+            <div class="category-info-box">
+              <span class="category-name">Grains</span>
+              <span class="category-count">8 Farm Staples</span>
+            </div>
+          </a>
+
+          <!-- Category 4: Pulses -->
+          <a href="#modal-categories" class="category-card">
+            <div class="category-img-container">
+              <img
+                src="https://images.unsplash.com/photo-1515543237350-b3eea1ec8082?auto=format&fit=crop&w=400&q=80"
+                alt="Unpolished Indian Pulses and Dals"
+                class="category-real-img"
+                loading="lazy">
+            </div>
+            <div class="category-info-box">
+              <span class="category-name">Pulses</span>
+              <span class="category-count">10 Unpolished Dals</span>
+            </div>
+          </a>
+
+          <!-- Category 5: Other Farm Products -->
+          <a href="#modal-categories" class="category-card">
+            <div class="category-img-container">
+              <img
+                src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=400&q=80"
+                alt="Pure Farm Honey and Cold-Pressed Oils"
+                class="category-real-img"
+                loading="lazy">
+            </div>
+            <div class="category-info-box">
+              <span class="category-name">Other Farm Products</span>
+              <span class="category-count">Honey, Oils &amp; Jaggery</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           5. FRESH FROM NEARBY FARMS (Real High-Res Produce Photos)
+           ====================================================================== -->
+      <section class="products-section" id="fresh-produce" aria-labelledby="fresh-heading">
+        <div class="section-title-wrap">
+          <h2 id="fresh-heading" class="section-main-heading">
+            Fresh from Nearby Farms
+          </h2>
+          <a href="#modal-produce" class="section-view-all">Daily Mandi Pricing Guide →</a>
+        </div>
+
+        <div class="products-grid">
+          <!-- Product Card 1: Fresh Potatoes -->
+          <article class="product-card">
+            <div class="product-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=600&q=80"
+                alt="Farm Fresh Potatoes"
+                class="product-real-img"
+                loading="lazy">
+              <span class="product-badge-fresh">Direct Harvest</span>
+            </div>
+            <div class="product-card-body">
+              <h3 class="product-title">Fresh Potatoes (Kufri Pukhraj)</h3>
+
+              <div class="farmer-info-strip">
+                <div class="farmer-name-row">
+                  <span class="ui-icon" aria-hidden="true" style="color: var(--color-primary);">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                      <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                  </span>
+                  <span>Rajesh Kumar</span>
+                </div>
+                <div class="farmer-location-row">
+                  <span class="ui-icon" aria-hidden="true" style="color: var(--color-text-muted);">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                      <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                  </span>
+                  <span>Jalandhar, Punjab</span>
+                </div>
+              </div>
+
+              <div class="product-meta-row">
+                <div class="product-price-block">
+                  <span class="price-value">₹30</span>
+                  <span class="price-unit">/ kg</span>
+                </div>
+                <span class="available-qty-badge">Available: 100 kg</span>
+              </div>
+
+              <a href="#modal-cart" class="btn-add-cart">
+                <span class="ui-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="21" r="1"/>
+                    <circle cx="20" cy="21" r="1"/>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                  </svg>
+                </span>
+                ADD TO CART
+              </a>
+            </div>
+          </article>
+
+          <!-- Product Card 2: Farm Tomatoes -->
+          <article class="product-card">
+            <div class="product-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=600&q=80"
+                alt="Fresh Vine Ripe Tomatoes"
+                class="product-real-img"
+                loading="lazy">
+              <span class="product-badge-fresh">Vine Ripe</span>
+            </div>
+            <div class="product-card-body">
+              <h3 class="product-title">Desi Farm Tomatoes</h3>
+
+              <div class="farmer-info-strip">
+                <div class="farmer-name-row">
+                  <span class="ui-icon" aria-hidden="true" style="color: var(--color-primary);">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                      <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                  </span>
+                  <span>Gurpreet Singh</span>
+                </div>
+                <div class="farmer-location-row">
+                  <span class="ui-icon" aria-hidden="true" style="color: var(--color-text-muted);">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                      <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                  </span>
+                  <span>Ludhiana, Punjab</span>
+                </div>
+              </div>
+
+              <div class="product-meta-row">
+                <div class="product-price-block">
+                  <span class="price-value">₹40</span>
+                  <span class="price-unit">/ kg</span>
+                </div>
+                <span class="available-qty-badge">Available: 75 kg</span>
+              </div>
+
+              <a href="#modal-cart" class="btn-add-cart">
+                <span class="ui-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="21" r="1"/>
+                    <circle cx="20" cy="21" r="1"/>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                  </svg>
+                </span>
+                ADD TO CART
+              </a>
+            </div>
+          </article>
+
+          <!-- Product Card 3: Nashik Red Onions -->
+          <article class="product-card">
+            <div class="product-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?auto=format&fit=crop&w=600&q=80"
+                alt="Nashik Red Onions"
+                class="product-real-img"
+                loading="lazy">
+              <span class="product-badge-fresh">Premium Grade</span>
+            </div>
+            <div class="product-card-body">
+              <h3 class="product-title">Nashik Red Onions</h3>
+
+              <div class="farmer-info-strip">
+                <div class="farmer-name-row">
+                  <span class="ui-icon" aria-hidden="true" style="color: var(--color-primary);">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                      <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                  </span>
+                  <span>Suresh Patil</span>
+                </div>
+                <div class="farmer-location-row">
+                  <span class="ui-icon" aria-hidden="true" style="color: var(--color-text-muted);">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                      <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                  </span>
+                  <span>Nashik, Maharashtra</span>
+                </div>
+              </div>
+
+              <div class="product-meta-row">
+                <div class="product-price-block">
+                  <span class="price-value">₹28</span>
+                  <span class="price-unit">/ kg</span>
+                </div>
+                <span class="available-qty-badge">Available: 200 kg</span>
+              </div>
+
+              <a href="#modal-cart" class="btn-add-cart">
+                <span class="ui-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="21" r="1"/>
+                    <circle cx="20" cy="21" r="1"/>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                  </svg>
+                </span>
+                ADD TO CART
+              </a>
+            </div>
+          </article>
+
+          <!-- Product Card 4: Alphonso Mangoes -->
+          <article class="product-card">
+            <div class="product-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=600&q=80"
+                alt="Ratnagiri Alphonso Mangoes"
+                class="product-real-img"
+                loading="lazy">
+              <span class="product-badge-fresh">Tree-Ripened</span>
+            </div>
+            <div class="product-card-body">
+              <h3 class="product-title">Ratnagiri Alphonso Mangoes</h3>
+
+              <div class="farmer-info-strip">
+                <div class="farmer-name-row">
+                  <span class="ui-icon" aria-hidden="true" style="color: var(--color-primary);">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                      <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                  </span>
+                  <span>Prakash Shinde</span>
+                </div>
+                <div class="farmer-location-row">
+                  <span class="ui-icon" aria-hidden="true" style="color: var(--color-text-muted);">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                      <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                  </span>
+                  <span>Ratnagiri, Maharashtra</span>
+                </div>
+              </div>
+
+              <div class="product-meta-row">
+                <div class="product-price-block">
+                  <span class="price-value">₹180</span>
+                  <span class="price-unit">/ kg</span>
+                </div>
+                <span class="available-qty-badge">Available: 40 kg</span>
+              </div>
+
+              <a href="#modal-cart" class="btn-add-cart">
+                <span class="ui-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="21" r="1"/>
+                    <circle cx="20" cy="21" r="1"/>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                  </svg>
+                </span>
+                ADD TO CART
+              </a>
+            </div>
+          </article>
+
+          <!-- Product Card 5: Sharbati Whole Wheat -->
+          <article class="product-card">
+            <div class="product-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=600&q=80"
+                alt="Golden Sharbati Whole Wheat"
+                class="product-real-img"
+                loading="lazy">
+              <span class="product-badge-fresh">Farm Milled</span>
+            </div>
+            <div class="product-card-body">
+              <h3 class="product-title">Sharbati Golden Whole Wheat</h3>
+
+              <div class="farmer-info-strip">
+                <div class="farmer-name-row">
+                  <span class="ui-icon" aria-hidden="true" style="color: var(--color-primary);">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                      <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                  </span>
+                  <span>Harpreet Dhillon</span>
+                </div>
+                <div class="farmer-location-row">
+                  <span class="ui-icon" aria-hidden="true" style="color: var(--color-text-muted);">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                      <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                  </span>
+                  <span>Karnal, Haryana</span>
+                </div>
+              </div>
+
+              <div class="product-meta-row">
+                <div class="product-price-block">
+                  <span class="price-value">₹45</span>
+                  <span class="price-unit">/ kg</span>
+                </div>
+                <span class="available-qty-badge">Available: 350 kg</span>
+              </div>
+
+              <a href="#modal-cart" class="btn-add-cart">
+                <span class="ui-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="21" r="1"/>
+                    <circle cx="20" cy="21" r="1"/>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                  </svg>
+                </span>
+                ADD TO CART
+              </a>
+            </div>
+          </article>
+
+          <!-- Product Card 6: Desi Chana -->
+          <article class="product-card">
+            <div class="product-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1515543237350-b3eea1ec8082?auto=format&fit=crop&w=600&q=80"
+                alt="Unpolished Desi Chana"
+                class="product-real-img"
+                loading="lazy">
+              <span class="product-badge-fresh">100% Unpolished</span>
+            </div>
+            <div class="product-card-body">
+              <h3 class="product-title">Desi Chana (Bengal Gram)</h3>
+
+              <div class="farmer-info-strip">
+                <div class="farmer-name-row">
+                  <span class="ui-icon" aria-hidden="true" style="color: var(--color-primary);">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                      <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                  </span>
+                  <span>Ramesh Patel</span>
+                </div>
+                <div class="farmer-location-row">
+                  <span class="ui-icon" aria-hidden="true" style="color: var(--color-text-muted);">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                      <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                  </span>
+                  <span>Indore, Madhya Pradesh</span>
+                </div>
+              </div>
+
+              <div class="product-meta-row">
+                <div class="product-price-block">
+                  <span class="price-value">₹85</span>
+                  <span class="price-unit">/ kg</span>
+                </div>
+                <span class="available-qty-badge">Available: 90 kg</span>
+              </div>
+
+              <a href="#modal-cart" class="btn-add-cart">
+                <span class="ui-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="21" r="1"/>
+                    <circle cx="20" cy="21" r="1"/>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                  </svg>
+                </span>
+                ADD TO CART
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           6. DIRECT FARMER CONNECTION SECTION (Meet the Farmers)
+           ====================================================================== -->
+      <section class="farmers-section" id="farmers" aria-labelledby="meet-farmers-heading">
+        <div class="farmers-header">
+          <h2 id="meet-farmers-heading" class="farmers-heading">
+            Meet the Farmers
+          </h2>
+          <p class="farmers-subtext">
+            Know who grows your food. Authentic relationships built on trust and transparent prices.
+          </p>
+        </div>
+
+        <div class="farmers-grid">
+          <!-- Farmer Card 1 -->
+          <article class="farmer-profile-card">
+            <div class="farmer-card-top">
+              <img
+                src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=400&q=80"
+                alt="Rajesh Kumar, Farmer from Punjab"
+                class="farmer-avatar-img"
+                loading="lazy">
+              <div class="farmer-title-box">
+                <h3 class="farmer-card-name">Rajesh Kumar</h3>
+                <span class="farmer-card-loc">
+                  <span class="ui-icon" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                      <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                  </span>
+                  Jalandhar, Punjab
+                </span>
+                <span class="farmer-badge-trust">
+                  <span class="ui-icon" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                  </span>
+                  Verified Farmer (8 Yrs Experience)
+                </span>
+              </div>
+            </div>
+
+            <div class="farmer-products-list">
+              <span class="farmer-products-label">Available Crops:</span>
+              <div class="farmer-tags-group">
+                <span class="farmer-product-tag">Wheat</span>
+                <span class="farmer-product-tag">Potatoes</span>
+                <span class="farmer-product-tag">Seasonal Veg</span>
+              </div>
+            </div>
+
+            <a href="#modal-farmers" class="btn-view-farm">View Farm Profile</a>
+          </article>
+
+          <!-- Farmer Card 2 -->
+          <article class="farmer-profile-card">
+            <div class="farmer-card-top">
+              <img
+                src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80"
+                alt="Ramesh Patel, Organic Farmer from Madhya Pradesh"
+                class="farmer-avatar-img"
+                loading="lazy">
+              <div class="farmer-title-box">
+                <h3 class="farmer-card-name">Ramesh Patel</h3>
+                <span class="farmer-card-loc">
+                  <span class="ui-icon" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                      <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                  </span>
+                  Indore, Madhya Pradesh
+                </span>
+                <span class="farmer-badge-trust">
+                  <span class="ui-icon" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                  </span>
+                  Certified Organic Soil
+                </span>
+              </div>
+            </div>
+
+            <div class="farmer-products-list">
+              <span class="farmer-products-label">Available Crops:</span>
+              <div class="farmer-tags-group">
+                <span class="farmer-product-tag">Pulses &amp; Dals</span>
+                <span class="farmer-product-tag">Bengal Gram</span>
+                <span class="farmer-product-tag">Mustard</span>
+              </div>
+            </div>
+
+            <a href="#modal-farmers" class="btn-view-farm">View Farm Profile</a>
+          </article>
+
+          <!-- Farmer Card 3 -->
+          <article class="farmer-profile-card">
+            <div class="farmer-card-top">
+              <img
+                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80"
+                alt="Sunita Devi, Natural Farmer from Varanasi"
+                class="farmer-avatar-img"
+                loading="lazy">
+              <div class="farmer-title-box">
+                <h3 class="farmer-card-name">Sunita Devi</h3>
+                <span class="farmer-card-loc">
+                  <span class="ui-icon" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                      <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                  </span>
+                  Varanasi, Uttar Pradesh
+                </span>
+                <span class="farmer-badge-trust">
+                  <span class="ui-icon" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                  </span>
+                  Natural Desi Farming
+                </span>
+              </div>
+            </div>
+
+            <div class="farmer-products-list">
+              <span class="farmer-products-label">Available Crops:</span>
+              <div class="farmer-tags-group">
+                <span class="farmer-product-tag">Leafy Greens</span>
+                <span class="farmer-product-tag">Desi Tomatoes</span>
+                <span class="farmer-product-tag">Farm Spices</span>
+              </div>
+            </div>
+
+            <a href="#modal-farmers" class="btn-view-farm">View Farm Profile</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           7. BULK ORDER SECTION (Banner with direct popup trigger)
+           ====================================================================== -->
+      <section class="bulk-order-banner" id="bulk-order" aria-labelledby="bulk-heading">
+        <div class="bulk-content">
+          <span class="bulk-eyebrow">
+            Direct Wholesale Farm Rates
+          </span>
+          <h2 id="bulk-heading" class="bulk-heading">
+            Planning Something Big?
+          </h2>
+          <p class="bulk-desc">
+            Need fresh produce in large quantities? Place a bulk order with AgriMitra. We aggregate fresh produce directly from trusted farmers with temperature-monitored farm delivery.
+          </p>
+
+          <div class="bulk-occasions-strip">
+            <span class="bulk-occasion-tag">Weddings &amp; Engagements</span>
+            <span class="bulk-occasion-tag">Family Functions</span>
+            <span class="bulk-occasion-tag">Community Gatherings</span>
+            <span class="bulk-occasion-tag">Society Bulk Buying</span>
+          </div>
+        </div>
+
+        <div class="bulk-action-box">
+          <a href="#modal-bulk" class="btn-bulk-order">
+            <span class="ui-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m7.5 4.27 9 5.15"/>
+                <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
+                <path d="m3.3 7 8.7 5 8.7-5"/>
+                <path d="M12 22V12"/>
+              </svg>
+            </span>
+            PLACE BULK ORDER
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       POPUP MODAL PAGES (Pure CSS :target • Zero JS)
+       0. Delivery Location & Edit Address Modal (#modal-location)
+       1. My Orders Modal (#modal-orders)
+       2. Categories Explorer Modal (#modal-categories)
+       3. Fresh Produce & Mandi Guide Modal (#modal-produce)
+       4. Verified Farmers Directory Modal (#modal-farmers)
+       5. Bulk Order Form Modal (#modal-bulk)
+       6. Shopping Cart Modal (#modal-cart)
+       7. Notifications Modal (#modal-notifications)
+       8. Profile & Preferences Modal (#modal-profile)
+       ========================================================================== -->
+
+  <!-- 0. DELIVERY LOCATION & EDIT ADDRESS POPUP MODAL -->
+  <div id="modal-location" class="modal-overlay" role="dialog" aria-labelledby="modal-loc-title" aria-modal="true">
+    <a href="#" class="modal-backdrop-close" aria-label="Close location popup"></a>
+    <div class="modal-window">
+      <div class="modal-window-header">
+        <h3 id="modal-loc-title" class="modal-window-title">
+          <span class="ui-icon" aria-hidden="true" style="color: var(--color-primary);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </span>
+          Delivery Address &amp; Location
+        </h3>
+        <a href="#" class="modal-window-close" aria-label="Close location popup">&times;</a>
+      </div>
+
+      <div class="modal-window-body">
+        <!-- 1. Current Active Delivery Address Card -->
+        <div class="addr-card-current">
+          <div class="addr-card-header">
+            <span class="addr-badge-active">
+              <span class="ui-icon" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+              Current Active Address
+            </span>
+            <span class="addr-type-tag">Home</span>
+          </div>
+
+          <div class="addr-resident-name">
+            <span>Ramesh Patel</span>
+            <span class="addr-contact-phone">&bull; +91 98765 43210</span>
+          </div>
+
+          <div class="addr-full-text">
+            Flat 402, Tower B, Green Meadows Apartments<br>
+            Sector 56, Golf Course Extension Road<br>
+            Gurugram, Haryana &ndash; <strong>122001</strong>
+          </div>
+
+          <div class="addr-landmark-note">
+            <span class="ui-icon" aria-hidden="true" style="color: var(--color-primary);">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+            </span>
+            <span>Landmark: Near Sector 56 Metro Station &bull; Morning Farm Dispatch (6 AM &ndash; 9 AM)</span>
+          </div>
+        </div>
+
+        <!-- 2. Edit Delivery Address Form -->
+        <div class="addr-section-divider">
+          <span>Edit Delivery Address</span>
+        </div>
+
+        <form id="edit-address-form" class="addr-form-grid" action="#" method="GET">
+          <div class="addr-form-row-2">
+            <div class="bulk-form-row">
+              <label class="bulk-label">Recipient Full Name *</label>
+              <input type="text" class="bulk-input" value="Ramesh Patel" required>
+            </div>
+            <div class="bulk-form-row">
+              <label class="bulk-label">Mobile Number (For Delivery OTP) *</label>
+              <input type="tel" class="bulk-input" value="+91 98765 43210" required>
+            </div>
+          </div>
+
+          <div class="addr-form-row-2">
+            <div class="bulk-form-row">
+              <label class="bulk-label">Pincode *</label>
+              <input type="text" class="bulk-input" value="122001" required>
+              <span style="font-size: 0.7rem; color: var(--color-primary); font-weight: 600; margin-top: 2px;">
+                Verified Mandi Hub: South Gurugram (Delivering Daily)
+              </span>
+            </div>
+            <div class="bulk-form-row">
+              <label class="bulk-label">City &amp; State *</label>
+              <input type="text" class="bulk-input" value="Gurugram, Haryana" required>
+            </div>
+          </div>
+
+          <div class="bulk-form-row">
+            <label class="bulk-label">House No., Flat, Apartment, Block *</label>
+            <input type="text" class="bulk-input" value="Flat 402, Tower B, Green Meadows Apartments" required>
+          </div>
+
+          <div class="bulk-form-row">
+            <label class="bulk-label">Area, Sector, Road, Locality *</label>
+            <input type="text" class="bulk-input" value="Sector 56, Golf Course Extension Road" required>
+          </div>
+
+          <div class="bulk-form-row">
+            <label class="bulk-label">Nearby Landmark (Optional)</label>
+            <input type="text" class="bulk-input" value="Near Sector 56 Metro Station">
+          </div>
+
+          <div class="bulk-form-row">
+            <label class="bulk-label">Address Type</label>
+            <div class="addr-type-selector">
+              <label class="addr-radio-label">
+                <input type="radio" name="loc_addr_type" checked> Home
+              </label>
+              <label class="addr-radio-label">
+                <input type="radio" name="loc_addr_type"> Office / Work
+              </label>
+              <label class="addr-radio-label">
+                <input type="radio" name="loc_addr_type"> Other
+              </label>
+            </div>
+          </div>
+
+          <div class="bulk-form-row">
+            <label class="bulk-label">Delivery Note for Driver / Farmer Partner</label>
+            <input type="text" class="bulk-input" value="Leave at doorstep or security gate if not answering bell.">
+          </div>
+
+          <div style="display: flex; gap: var(--space-3); margin-top: var(--space-2);">
+            <button type="submit" class="btn btn-primary" style="flex: 1; font-size: var(--font-size-xs); padding: 0.75rem;">
+              Save &amp; Use This Address
+            </button>
+            <a href="#" class="btn btn-secondary" style="font-size: var(--font-size-xs); padding: 0.75rem 1.25rem;">
+              Cancel
+            </a>
+          </div>
+        </form>
+
+        <!-- 3. Alternate Saved Addresses for Fast Switch -->
+        <div class="addr-section-divider" style="margin-top: var(--space-5);">
+          <span>Or Deliver to Saved Location</span>
+        </div>
+
+        <div class="addr-saved-item">
+          <div>
+            <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 2px;">
+              <strong style="font-size: 0.85rem; color: var(--color-text-main);">Cyber City Work Office</strong>
+              <span class="addr-type-tag" style="background-color: var(--color-surface-alt); color: var(--color-text-secondary);">Work</span>
+            </div>
+            <div style="font-size: 0.75rem; color: var(--color-text-muted);">Tower 10, DLF Cyber City, Sector 24, Gurugram - 122002</div>
+          </div>
+          <a href="#" class="btn-select-addr">Deliver Here</a>
+        </div>
+
+        <div class="addr-saved-item">
+          <div>
+            <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 2px;">
+              <strong style="font-size: 0.85rem; color: var(--color-text-main);">Parents' Residence</strong>
+              <span class="addr-type-tag" style="background-color: var(--color-surface-alt); color: var(--color-text-secondary);">Other</span>
+            </div>
+            <div style="font-size: 0.75rem; color: var(--color-text-muted);">C-Block, Janakpuri, New Delhi - 110058</div>
+          </div>
+          <a href="#" class="btn-select-addr">Deliver Here</a>
+        </div>
+      </div>
+
+      <div class="modal-window-footer">
+        <a href="#" class="btn btn-secondary" style="font-size: var(--font-size-xs);">Close</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1. MY ORDERS POPUP MODAL -->
+  <div id="modal-orders" class="modal-overlay" role="dialog" aria-labelledby="modal-orders-title" aria-modal="true">
+    <a href="#" class="modal-backdrop-close" aria-label="Close orders popup"></a>
+    <div class="modal-window">
+      <div class="modal-window-header">
+        <h3 id="modal-orders-title" class="modal-window-title">
+          <span class="ui-icon" aria-hidden="true" style="color: var(--color-primary);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="20" height="14" x="2" y="7" rx="2" ry="2"/>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+            </svg>
+          </span>
+          Your Orders &amp; Deliveries
+        </h3>
+        <a href="#" class="modal-window-close" aria-label="Close orders popup">&times;</a>
+      </div>
+
+      <div class="modal-window-body">
+        <div class="modal-orders-list">
+          <!-- Active Order 1: Out for Delivery -->
+          <article class="modal-order-card">
+            <div class="order-header-row">
+              <div class="order-id-block">
+                <span>Order #1023</span>
+                <span class="order-date">• Placed Today, 08:30 AM</span>
+              </div>
+              <span class="order-status-badge status-transit">
+                <span class="ui-icon" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/>
+                    <path d="M15 18H9"/>
+                    <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/>
+                    <circle cx="17" cy="18" r="2"/>
+                    <circle cx="7" cy="18" r="2"/>
+                  </svg>
+                </span>
+                Out for Delivery (Arriving by 2:00 PM)
+              </span>
+            </div>
+
+            <div class="order-details-row">
+              <div>
+                <p class="order-items-desc">
+                  <strong>Fresh Vegetables Package:</strong> 5 kg Potatoes, 2 kg Desi Tomatoes
+                </p>
+                <p class="order-farmer-meta">
+                  Sourced directly from: Rajesh Kumar &amp; Gurpreet Singh
+                </p>
+              </div>
+              <div class="order-action-block">
+                <span class="order-price">₹230</span>
+                <button type="button" class="btn-track">Track Delivery</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Active Order 2: Delivered -->
+          <article class="modal-order-card">
+            <div class="order-header-row">
+              <div class="order-id-block">
+                <span>Order #1019</span>
+                <span class="order-date">• Delivered Yesterday</span>
+              </div>
+              <span class="order-status-badge status-delivered">
+                <span class="ui-icon" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </span>
+                Delivered to Home
+              </span>
+            </div>
+
+            <div class="order-details-row">
+              <div>
+                <p class="order-items-desc">
+                  <strong>Sharbati Whole Wheat:</strong> 20 kg Farm Pack
+                </p>
+                <p class="order-farmer-meta">
+                  Sourced directly from: Harpreet Dhillon (Karnal)
+                </p>
+              </div>
+              <div class="order-action-block">
+                <span class="order-price">₹900</span>
+                <a href="#modal-cart" class="btn-track">Reorder</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- First-time buyer preview notice -->
+        <div style="background-color: var(--color-surface-alt); border: 1px dashed var(--color-border); border-radius: var(--radius-md); padding: var(--space-4); text-align: center;">
+          <p style="font-size: var(--font-size-xs); color: var(--color-text-secondary); margin-bottom: var(--space-2);">
+            All your farm direct purchases are covered by the AgriMitra Freshness Guarantee.
+          </p>
+          <a href="#dashboard-content" class="btn btn-secondary" style="padding: 0.4rem 1rem; font-size: var(--font-size-xs);">Browse More Fresh Produce</a>
+        </div>
+      </div>
+
+      <div class="modal-window-footer">
+        <a href="#" class="btn btn-secondary" style="font-size: var(--font-size-xs);">Close Window</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. CATEGORIES EXPLORER POPUP MODAL -->
+  <div id="modal-categories" class="modal-overlay" role="dialog" aria-labelledby="modal-cat-title" aria-modal="true">
+    <a href="#" class="modal-backdrop-close" aria-label="Close categories popup"></a>
+    <div class="modal-window">
+      <div class="modal-window-header">
+        <h3 id="modal-cat-title" class="modal-window-title">
+          <span class="ui-icon" aria-hidden="true" style="color: var(--color-primary);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 3h7v7H3z"/>
+              <path d="M14 3h7v7h-7z"/>
+              <path d="M14 14h7v7h-7z"/>
+              <path d="M3 14h7v7H3z"/>
+            </svg>
+          </span>
+          Shop by Farm Category
+        </h3>
+        <a href="#" class="modal-window-close" aria-label="Close categories popup">&times;</a>
+      </div>
+
+      <div class="modal-window-body">
+        <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-bottom: var(--space-4);">
+          Explore hand-picked, unadulterated farm produce harvested daily by verified regional farmers.
+        </p>
+
+        <div class="modal-cat-grid">
+          <a href="#fresh-produce" class="modal-cat-item">
+            <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=400&q=80" alt="Vegetables" class="modal-cat-thumb">
+            <div>
+              <div class="modal-cat-name">Fresh Vegetables</div>
+              <div class="modal-cat-count">18 Fresh Varieties • Leafy &amp; Root Veg</div>
+            </div>
+          </a>
+
+          <a href="#fresh-produce" class="modal-cat-item">
+            <img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?auto=format&fit=crop&w=400&q=80" alt="Fruits" class="modal-cat-thumb">
+            <div>
+              <div class="modal-cat-name">Seasonal Fruits</div>
+              <div class="modal-cat-count">12 Orchard Picks • Naturally Ripened</div>
+            </div>
+          </a>
+
+          <a href="#fresh-produce" class="modal-cat-item">
+            <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=400&q=80" alt="Grains" class="modal-cat-thumb">
+            <div>
+              <div class="modal-cat-name">Whole Grains &amp; Flour</div>
+              <div class="modal-cat-count">8 Farm Staples • Sharbati &amp; Millets</div>
+            </div>
+          </a>
+
+          <a href="#fresh-produce" class="modal-cat-item">
+            <img src="https://images.unsplash.com/photo-1515543237350-b3eea1ec8082?auto=format&fit=crop&w=400&q=80" alt="Pulses" class="modal-cat-thumb">
+            <div>
+              <div class="modal-cat-name">Unpolished Pulses</div>
+              <div class="modal-cat-count">10 Desi Dals • High Protein, No Polish</div>
+            </div>
+          </a>
+
+          <a href="#fresh-produce" class="modal-cat-item" style="grid-column: 1 / -1;">
+            <img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=400&q=80" alt="Other Farm Products" class="modal-cat-thumb">
+            <div>
+              <div class="modal-cat-name">Other Farm-Crafted Products</div>
+              <div class="modal-cat-count">Raw Wild Honey, Cold-Pressed Mustard Oil &amp; Organic Jaggery</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="modal-window-footer">
+        <a href="#fresh-produce" class="btn btn-primary" style="font-size: var(--font-size-xs);">View Products on Dashboard</a>
+        <a href="#" class="btn btn-secondary" style="font-size: var(--font-size-xs);">Close</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. FRESH PRODUCE & MANDI GUIDE POPUP MODAL -->
+  <div id="modal-produce" class="modal-overlay" role="dialog" aria-labelledby="modal-prod-title" aria-modal="true">
+    <a href="#" class="modal-backdrop-close" aria-label="Close produce popup"></a>
+    <div class="modal-window">
+      <div class="modal-window-header">
+        <h3 id="modal-prod-title" class="modal-window-title">
+          <span class="ui-icon" aria-hidden="true" style="color: var(--color-primary);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 22s5-4 8-10c3.5 0 6 2 6 6-4 3-8 4-14 4Z"/>
+              <path d="M10 12c3.5-3.5 6-7 12-10-3.5 6-7 8.5-12 10Z"/>
+            </svg>
+          </span>
+          Daily Mandi Rates &amp; Freshness Benchmark
+        </h3>
+        <a href="#" class="modal-window-close" aria-label="Close produce popup">&times;</a>
+      </div>
+
+      <div class="modal-window-body">
+        <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-bottom: var(--space-4);">
+          Transparent daily mandi prices directly from farmers vs middleman supermarket markups.
+        </p>
+
+        <table class="produce-compare-table">
+          <thead>
+            <tr>
+              <th>Produce</th>
+              <th>Farmer Direct</th>
+              <th>Retail Mart</th>
+              <th>Your Savings</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Fresh Potatoes</strong></td>
+              <td style="color: var(--color-primary); font-weight: 700;">₹30 / kg</td>
+              <td style="text-decoration: line-through; color: var(--color-text-muted);">₹45 / kg</td>
+              <td><span class="mandi-save-badge">Save 33%</span></td>
+            </tr>
+            <tr>
+              <td><strong>Desi Farm Tomatoes</strong></td>
+              <td style="color: var(--color-primary); font-weight: 700;">₹40 / kg</td>
+              <td style="text-decoration: line-through; color: var(--color-text-muted);">₹60 / kg</td>
+              <td><span class="mandi-save-badge">Save 33%</span></td>
+            </tr>
+            <tr>
+              <td><strong>Nashik Red Onions</strong></td>
+              <td style="color: var(--color-primary); font-weight: 700;">₹28 / kg</td>
+              <td style="text-decoration: line-through; color: var(--color-text-muted);">₹42 / kg</td>
+              <td><span class="mandi-save-badge">Save 33%</span></td>
+            </tr>
+            <tr>
+              <td><strong>Ratnagiri Alphonso</strong></td>
+              <td style="color: var(--color-primary); font-weight: 700;">₹180 / kg</td>
+              <td style="text-decoration: line-through; color: var(--color-text-muted);">₹260 / kg</td>
+              <td><span class="mandi-save-badge">Save 31%</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="background-color: var(--color-primary-subtle); border: 1px solid var(--color-primary-border); border-radius: var(--radius-sm); padding: var(--space-3); font-size: var(--font-size-xs); color: var(--color-primary);">
+          <strong>AgriMitra Guarantee:</strong> Farmers receive up to 35% higher real income while you pay significantly lower prices with zero warehouse cold-storage staleness.
+        </div>
+      </div>
+
+      <div class="modal-window-footer">
+        <a href="#fresh-produce" class="btn btn-primary" style="font-size: var(--font-size-xs);">Shop Available Produce</a>
+        <a href="#" class="btn btn-secondary" style="font-size: var(--font-size-xs);">Close</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. MEET FARMERS DIRECTORY POPUP MODAL -->
+  <div id="modal-farmers" class="modal-overlay" role="dialog" aria-labelledby="modal-farmers-title" aria-modal="true">
+    <a href="#" class="modal-backdrop-close" aria-label="Close farmers popup"></a>
+    <div class="modal-window">
+      <div class="modal-window-header">
+        <h3 id="modal-farmers-title" class="modal-window-title">
+          <span class="ui-icon" aria-hidden="true" style="color: var(--color-primary);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </span>
+          Meet Verified Regional Farmers
+        </h3>
+        <a href="#" class="modal-window-close" aria-label="Close farmers popup">&times;</a>
+      </div>
+
+      <div class="modal-window-body">
+        <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-bottom: var(--space-4);">
+          Every farmer on AgriMitra is verified in person by regional agricultural supervisors for authentic soil health and ethical harvesting practices.
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: var(--space-4);">
+          <!-- Farmer 1 -->
+          <div style="display: flex; gap: var(--space-3); padding: var(--space-3); background-color: var(--color-surface-alt); border-radius: var(--radius-md); border: 1px solid var(--color-border-light); align-items: center;">
+            <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=400&q=80" alt="Rajesh Kumar" style="width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 2px solid var(--color-primary);">
+            <div style="flex-grow: 1;">
+              <h4 style="font-size: var(--font-size-sm); font-weight: 700; color: var(--color-text-main);">Rajesh Kumar • Jalandhar, Punjab</h4>
+              <p style="font-size: var(--font-size-xs); color: var(--color-text-muted);">12 Acres Land • Crops: Whole Wheat, Potatoes, Winter Cauliflower</p>
+              <span style="font-size: 0.7rem; color: var(--color-primary); font-weight: 600;">Certified: 8 Yrs Natural Farming • Zero Chemical Spray</span>
+            </div>
+          </div>
+
+          <!-- Farmer 2 -->
+          <div style="display: flex; gap: var(--space-3); padding: var(--space-3); background-color: var(--color-surface-alt); border-radius: var(--radius-md); border: 1px solid var(--color-border-light); align-items: center;">
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80" alt="Ramesh Patel" style="width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 2px solid var(--color-primary);">
+            <div style="flex-grow: 1;">
+              <h4 style="font-size: var(--font-size-sm); font-weight: 700; color: var(--color-text-main);">Ramesh Patel • Indore, Madhya Pradesh</h4>
+              <p style="font-size: var(--font-size-xs); color: var(--color-text-muted);">15 Acres Land • Crops: Desi Chana, Toor Dal, Cold-Pressed Mustard</p>
+              <span style="font-size: 0.7rem; color: var(--color-primary); font-weight: 600;">Certified: NPOP Organic Soil (Since 2018)</span>
+            </div>
+          </div>
+
+          <!-- Farmer 3 -->
+          <div style="display: flex; gap: var(--space-3); padding: var(--space-3); background-color: var(--color-surface-alt); border-radius: var(--radius-md); border: 1px solid var(--color-border-light); align-items: center;">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" alt="Sunita Devi" style="width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 2px solid var(--color-primary);">
+            <div style="flex-grow: 1;">
+              <h4 style="font-size: var(--font-size-sm); font-weight: 700; color: var(--color-text-main);">Sunita Devi • Varanasi, Uttar Pradesh</h4>
+              <p style="font-size: var(--font-size-xs); color: var(--color-text-muted);">6 Acres Riverbed Farm • Crops: Desi Tomatoes, Spinach, Farm Spices</p>
+              <span style="font-size: 0.7rem; color: var(--color-primary); font-weight: 600;">Certified: Native Desi Seed Preservation Advocate</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-window-footer">
+        <a href="#" class="btn btn-secondary" style="font-size: var(--font-size-xs);">Close Directory</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. BULK ORDER FORM POPUP MODAL -->
+  <div id="modal-bulk" class="modal-overlay" role="dialog" aria-labelledby="modal-bulk-title" aria-modal="true">
+    <a href="#" class="modal-backdrop-close" aria-label="Close bulk order popup"></a>
+    <div class="modal-window">
+      <div class="modal-window-header">
+        <h3 id="modal-bulk-title" class="modal-window-title">
+          <span class="ui-icon" aria-hidden="true" style="color: var(--color-primary);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m7.5 4.27 9 5.15"/>
+              <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
+              <path d="m3.3 7 8.7 5 8.7-5"/>
+              <path d="M12 22V12"/>
+            </svg>
+          </span>
+          Place Bulk Farm Order
+        </h3>
+        <a href="#" class="modal-window-close" aria-label="Close bulk order popup">&times;</a>
+      </div>
+
+      <div class="modal-window-body">
+        <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-bottom: var(--space-4);">
+          Organizing an event, wedding, or society group purchase? Get farm-direct wholesale lots with temperature-controlled dispatch.
+        </p>
+
+        <form class="bulk-form-grid" action="#modal-orders" method="GET">
+          <div class="bulk-form-row">
+            <label class="bulk-label" for="bulk-event-type">Occasion / Event Type</label>
+            <select id="bulk-event-type" class="bulk-select">
+              <option value="wedding">Wedding / Engagement Party</option>
+              <option value="family">Family Function / Religious Gathering</option>
+              <option value="community">Community / Temple Feast</option>
+              <option value="society">Residential Society Group Buying</option>
+              <option value="other">Other Large Gathering</option>
+            </select>
+          </div>
+
+          <div class="bulk-form-row">
+            <label class="bulk-label" for="bulk-crops">Required Produce &amp; Estimated Quantity (e.g., 50 kg Potatoes, 30 kg Tomatoes)</label>
+            <textarea id="bulk-crops" rows="3" class="bulk-textarea" placeholder="List the farm items and quantities required..."></textarea>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3);">
+            <div class="bulk-form-row">
+              <label class="bulk-label" for="bulk-date">Delivery Date</label>
+              <input type="date" id="bulk-date" class="bulk-input">
+            </div>
+
+            <div class="bulk-form-row">
+              <label class="bulk-label" for="bulk-phone">Contact Mobile</label>
+              <input type="tel" id="bulk-phone" class="bulk-input" placeholder="+91 98765 43210">
+            </div>
+          </div>
+
+          <div class="bulk-form-row">
+            <label class="bulk-label" for="bulk-address">Delivery Address / City</label>
+            <input type="text" id="bulk-address" class="bulk-input" placeholder="Complete address for farm truck delivery">
+          </div>
+
+          <div style="background-color: var(--color-surface-alt); padding: var(--space-3); border-radius: var(--radius-sm); font-size: 0.75rem; color: var(--color-text-muted);">
+            Our mandi coordinator will confirm farmer lot availability and contact you with wholesale farm rates within 2 hours.
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: var(--space-2);">
+            Submit Bulk Order Request
+          </button>
+        </form>
+      </div>
+
+      <div class="modal-window-footer">
+        <a href="#" class="btn btn-secondary" style="font-size: var(--font-size-xs);">Cancel</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. SHOPPING CART POPUP MODAL -->
+  <div id="modal-cart" class="modal-overlay" role="dialog" aria-labelledby="modal-cart-title" aria-modal="true">
+    <a href="#" class="modal-backdrop-close" aria-label="Close cart popup"></a>
+    <div class="modal-window">
+      <div class="modal-window-header">
+        <h3 id="modal-cart-title" class="modal-window-title">
+          <span class="ui-icon" aria-hidden="true" style="color: var(--color-primary);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="9" cy="21" r="1"/>
+              <circle cx="20" cy="21" r="1"/>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+            </svg>
+          </span>
+          Your Mandi Cart (3 Items)
+        </h3>
+        <a href="#" class="modal-window-close" aria-label="Close cart popup">&times;</a>
+      </div>
+
+      <div class="modal-window-body">
+        <div class="cart-items-list">
+          <!-- Item 1 -->
+          <div class="cart-item-row">
+            <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=600&q=80" alt="Potatoes" class="cart-item-thumb">
+            <div class="cart-item-info">
+              <div class="cart-item-name">Fresh Potatoes (Kufri Pukhraj)</div>
+              <div class="cart-item-meta">5 kg • Farmer: Rajesh Kumar (Punjab)</div>
+            </div>
+            <div class="cart-item-total">₹150</div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="cart-item-row">
+            <img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=600&q=80" alt="Tomatoes" class="cart-item-thumb">
+            <div class="cart-item-info">
+              <div class="cart-item-name">Desi Farm Tomatoes</div>
+              <div class="cart-item-meta">2 kg • Farmer: Gurpreet Singh (Punjab)</div>
+            </div>
+            <div class="cart-item-total">₹80</div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="cart-item-row">
+            <img src="https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=600&q=80" alt="Mangoes" class="cart-item-thumb">
+            <div class="cart-item-info">
+              <div class="cart-item-name">Ratnagiri Alphonso Mangoes</div>
+              <div class="cart-item-meta">1 kg • Farmer: Prakash Shinde (Ratnagiri)</div>
+            </div>
+            <div class="cart-item-total">₹180</div>
+          </div>
+        </div>
+
+        <div class="cart-summary-box">
+          <div class="cart-summary-line">
+            <span>Produce Subtotal</span>
+            <span>₹410</span>
+          </div>
+          <div class="cart-summary-line">
+            <span>Direct Farm Delivery</span>
+            <span style="color: var(--color-status-success); font-weight: 600;">FREE</span>
+          </div>
+          <div class="cart-summary-line total">
+            <span>Total Payable Amount</span>
+            <span style="color: var(--color-primary);">₹410</span>
+          </div>
+        </div>
+
+        <p style="font-size: 0.725rem; color: var(--color-text-muted); margin-top: var(--space-3); text-align: center;">
+          Delivering to: Flat 402, Green Meadows, Sector 14, Gurugram
+        </p>
+      </div>
+
+      <div class="modal-window-footer">
+        <a href="#" class="btn btn-secondary" style="font-size: var(--font-size-xs);">Keep Shopping</a>
+        <a href="#modal-orders" class="btn btn-primary" style="font-size: var(--font-size-xs);">Proceed to Checkout (₹410)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. NOTIFICATIONS POPUP MODAL -->
+  <div id="modal-notifications" class="modal-overlay" role="dialog" aria-labelledby="modal-notif-title" aria-modal="true">
+    <a href="#" class="modal-backdrop-close" aria-label="Close notifications popup"></a>
+    <div class="modal-window">
+      <div class="modal-window-header">
+        <h3 id="modal-notif-title" class="modal-window-title">
+          <span class="ui-icon" aria-hidden="true" style="color: var(--color-primary);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+            </svg>
+          </span>
+          Notifications &amp; Harvest Alerts
+        </h3>
+        <a href="#" class="modal-window-close" aria-label="Close notifications popup">&times;</a>
+      </div>
+
+      <div class="modal-window-body">
+        <div class="notif-list">
+          <div class="notif-card">
+            <div class="notif-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/>
+                <path d="M15 18H9"/>
+                <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/>
+                <circle cx="17" cy="18" r="2"/>
+                <circle cx="7" cy="18" r="2"/>
+              </svg>
+            </div>
+            <div class="notif-content">
+              <div class="notif-title">Delivery Dispatched: Order #1023</div>
+              <div class="notif-desc">Your fresh potatoes and tomatoes are on their way. Delivery executive is arriving by 2:00 PM.</div>
+              <div class="notif-time">15 minutes ago</div>
+            </div>
+          </div>
+
+          <div class="notif-card">
+            <div class="notif-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 22s5-4 8-10c3.5 0 6 2 6 6-4 3-8 4-14 4Z"/>
+                <path d="M10 12c3.5-3.5 6-7 12-10-3.5 6-7 8.5-12 10Z"/>
+              </svg>
+            </div>
+            <div class="notif-content">
+              <div class="notif-title">New Farm Harvest Added</div>
+              <div class="notif-desc">Prakash Shinde just listed freshly plucked Ratnagiri Alphonso Mangoes directly from his orchard.</div>
+              <div class="notif-time">2 hours ago</div>
+            </div>
+          </div>
+
+          <div class="notif-card">
+            <div class="notif-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="m9 12 2 2 4-4"/>
+              </svg>
+            </div>
+            <div class="notif-content">
+              <div class="notif-title">Price Drop on Nashik Onions</div>
+              <div class="notif-desc">Direct farm rate reduced to ₹28/kg thanks to fresh harvest arrivals from Suresh Patil.</div>
+              <div class="notif-time">Yesterday</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-window-footer">
+        <a href="#" class="btn btn-secondary" style="font-size: var(--font-size-xs);">Dismiss All</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. PROFILE & PREFERENCES POPUP MODAL -->
+  <div id="modal-profile" class="modal-overlay" role="dialog" aria-labelledby="modal-prof-title" aria-modal="true">
+    <a href="#" class="modal-backdrop-close" aria-label="Close profile popup"></a>
+    <div class="modal-window">
+      <div class="modal-window-header">
+        <h3 id="modal-prof-title" class="modal-window-title">
+          <span class="ui-icon" aria-hidden="true" style="color: var(--color-primary);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </span>
+          Buyer Profile &amp; Preferences
+        </h3>
+        <a href="#" class="modal-window-close" aria-label="Close profile popup">&times;</a>
+      </div>
+
+      <div class="modal-window-body">
+        <div class="profile-card-top">
+          <div class="profile-avatar-box">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <div>
+            <h4 style="font-size: 1.15rem; font-weight: 700; color: var(--color-text-main);">Amit Sharma</h4>
+            <span style="font-size: var(--font-size-xs); color: var(--color-primary); font-weight: 600;">Verified Individual Household Buyer</span>
+            <div style="font-size: 0.75rem; color: var(--color-text-muted); margin-top: 2px;">Member since January 2026</div>
+          </div>
+        </div>
+
+        <div class="profile-details-grid">
+          <div class="profile-detail-item">
+            <span class="profile-detail-label">Primary Contact</span>
+            <span class="profile-detail-val">+91 98765 43210 • amit.sharma@example.com</span>
+          </div>
+
+          <div class="profile-detail-item">
+            <span class="profile-detail-label">Default Delivery Address</span>
+            <span class="profile-detail-val">
+              Flat 402, Tower B, Green Meadows, Sector 56, Gurugram, Haryana - 122001
+              <a href="#modal-location" style="color: var(--color-primary); font-weight: 700; text-decoration: underline; margin-left: 8px;">Edit Address</a>
+            </span>
+          </div>
+
+          <div class="profile-detail-item">
+            <span class="profile-detail-label">Direct Farm Preferences</span>
+            <span class="profile-detail-val">Organic / Chemical-Free Soil Preferred • Weekly Harvest Deliveries</span>
+          </div>
+
+          <div class="profile-detail-item">
+            <span class="profile-detail-label">Mandi Radius</span>
+            <span class="profile-detail-val">Local Farm Hubs within 60 km</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-window-footer">
+        <a href="index.html" class="btn btn-secondary" style="font-size: var(--font-size-xs);">Log Out</a>
+        <a href="#" class="btn btn-primary" style="font-size: var(--font-size-xs);">Done</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       9. MOBILE BOTTOM NAVIGATION (Fixed on screens <= 768px - Triggers Popups)
+       4 Tabs: Home | Cart (Popup) | Orders (Popup) | Profile (Popup)
+       ========================================================================== -->
+  <nav class="mobile-bottom-nav" aria-label="Mobile Bottom Navigation">
+    <!-- Tab 1: Home (Active) -->
+    <a href="buyer-dashboard.html" class="mobile-nav-item active" aria-current="page">
+      <span class="mobile-nav-icon-wrap" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </span>
+      <span class="mobile-nav-label">Home</span>
+    </a>
+
+    <!-- Tab 2: Cart with Badge -> Opens Cart Modal -->
+    <a href="#modal-cart" class="mobile-nav-item">
+      <span class="mobile-nav-icon-wrap" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"/>
+          <circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+      </span>
+      <span class="mobile-nav-label">Cart</span>
+      <span class="mobile-nav-badge" aria-label="3 items in cart">3</span>
+    </a>
+
+    <!-- Tab 3: Orders -> Opens Orders Modal -->
+    <a href="#modal-orders" class="mobile-nav-item">
+      <span class="mobile-nav-icon-wrap" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="20" height="14" x="2" y="7" rx="2" ry="2"/>
+          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+        </svg>
+      </span>
+      <span class="mobile-nav-label">Orders</span>
+    </a>
+
+    <!-- Tab 4: Profile -> Opens Profile Modal -->
+    <a href="#modal-profile" class="mobile-nav-item">
+      <span class="mobile-nav-icon-wrap" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </span>
+      <span class="mobile-nav-label">Profile</span>
+    </a>
+  </nav>
+
+  <!-- ==========================================================================
+       SITE FOOTER (Consistent with AgriMitra Design System)
+       ========================================================================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-wrapper" aria-label="AgriMitra Home">
+            <img src="logo.png" alt="AgriMitra" class="brand-logo-img footer-logo-img">
+            <div class="brand-text-block">
+              <span class="brand-name">AgriMitra</span>
+              <span class="brand-subtext">Direct Farm to Consumer</span>
+            </div>
+          </a>
+          <p class="footer-statement">
+            Connecting conscious households directly with verified Indian farmers for pure, honest, and chemical-free farm produce.
+          </p>
+        </div>
+
+        <div class="footer-nav-group">
+          <div>
+            <h4 class="footer-col-title">Buyer Mandi</h4>
+            <ul class="footer-links">
+              <li><a href="#modal-categories" class="footer-link">Fresh Vegetables</a></li>
+              <li><a href="#modal-categories" class="footer-link">Seasonal Fruits</a></li>
+              <li><a href="#modal-categories" class="footer-link">Whole Grains &amp; Pulses</a></li>
+              <li><a href="#modal-bulk" class="footer-link">Bulk Event Ordering</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 AgriMitra. Dedicated to Indian agriculture and fair farmer income.</p>
+        <p>Fresh Products • Direct from Farmers • Simple Buying Experience</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

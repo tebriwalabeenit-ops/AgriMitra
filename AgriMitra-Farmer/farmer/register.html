@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en" class="is-registration-page">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farmer Registration | AgriMitra - Connect. Trade. Grow.</title>
+  <meta name="description" content="Register as a verified farmer on AgriMitra to sell your agricultural produce directly to buyers, FPOs, and APMC markets across India.">
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="is-registration-page">
+
+  <!-- Minimal Brand Header -->
+  <header class="site-header" role="banner">
+    <div class="header-container">
+      <a href="../../index.html" class="brand-logo" aria-label="AgriMitra Home">
+        <img src="images/logo.png" alt="AgriMitra Logo" class="brand-logo-img" />
+        <span class="brand-name">Agri<span>Mitra</span></span>
+      </a>
+
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <a href="../../index.html" class="header-back-btn" title="Back to AgriMitra Main Page">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          <span>Back to Home</span>
+        </a>
+        <a href="tel:18001232474" class="header-back-btn" title="Toll-free Kisan Helpline">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          <span>Helpline: 1800-123-AGRI</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area: Responsive Two-Column Layout (Left Static, Right Dynamic) -->
+  <main class="login-main" role="main">
+    <div class="split-layout is-registration">
+      
+      <!-- Left Side: Brand & Benefits (Static / Sticky) -->
+      <section class="brand-visual-pane" aria-labelledby="reg-brand-title">
+        <div class="brand-badge">
+          <span class="brand-badge-dot"></span>
+          Farmer Registration
+        </div>
+
+        <h1 id="reg-brand-title" class="brand-hero-title">
+          Grow with <span>AgriMitra</span>
+        </h1>
+
+        <p class="brand-tagline">
+          Connect. Trade. Grow.
+        </p>
+
+        <p class="brand-supporting-line">
+          Join thousands of farmers across India trading directly with verified buyers and FPOs at real APMC market rates.
+        </p>
+
+        <!-- Official AgriMitra Brand Showcase -->
+        <div class="brand-visual-logo-container" aria-label="AgriMitra Official Brand Logo">
+          <img src="images/logo.png" alt="AgriMitra - Connect. Trade. Grow." class="brand-visual-logo-img" />
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="visual-trust-pills" aria-label="Farmer Benefits">
+          <span class="trust-pill">
+            <svg viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            Zero Commission on Sales
+          </span>
+          <span class="trust-pill">
+            <svg viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            Direct Bank Settlement
+          </span>
+          <span class="trust-pill">
+            <svg viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            Kisan Credit Support
+          </span>
+        </div>
+      </section>
+
+      <!-- Right Side: Centered Farmer Registration Card -->
+      <section class="form-pane">
+        <div class="login-card" style="max-width: 480px;">
+          
+          <div class="card-header">
+            <div class="card-pretitle">New Farmer Onboarding</div>
+            <h2 class="card-title">Register as a Farmer</h2>
+            <p class="card-subtitle">Create your account to list produce and receive direct buyer bids.</p>
+          </div>
+
+          <!-- Registration Success Feedback -->
+          <div class="reg-success-alert" style="display: none; background-color: #f0fdf4; border: 1px solid #bbf7d0; border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.25rem; font-size: var(--font-size-sm); color: #166534;">
+            <div style="font-weight: 700; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 0.35rem;">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              Account Created Successfully!
+            </div>
+            <span>Redirecting you to Farmer Dashboard...</span>
+          </div>
+
+          <!-- Registration Error Alert -->
+          <div class="reg-error-alert form-alert" style="display: none;" role="alert">
+            <svg viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+            </svg>
+            <span class="reg-error-text">Please check all required fields.</span>
+          </div>
+
+          <!-- Form -->
+          <form class="farmer-registration-form" action="dashboard.html" method="get">
+            
+            <!-- Full Name -->
+            <div class="form-group">
+              <label class="form-label" for="reg-name-input">Full Name</label>
+              <div class="password-input-group">
+                <input
+                  type="text"
+                  id="reg-name-input"
+                  class="password-input reg-name"
+                  placeholder="e.g. Ramesh Patel"
+                  required
+                />
+              </div>
+            </div>
+
+            <!-- Phone Number with +91 prefix -->
+            <div class="form-group">
+              <label class="form-label" for="reg-phone-input">Phone Number</label>
+              <div class="phone-input-group reg-phone-group">
+                <div class="phone-country-code" title="India">
+                  <span class="country-flag-icon" aria-hidden="true"></span>
+                  <span>+91</span>
+                </div>
+                <input
+                  type="tel"
+                  id="reg-phone-input"
+                  class="phone-input reg-phone"
+                  placeholder="Enter 10-digit mobile number"
+                  maxlength="13"
+                  inputmode="numeric"
+                  required
+                />
+              </div>
+              <div class="phone-dynamic-meta">
+                <span class="phone-digits-badge" id="reg-phone-counter">0/10 digits</span>
+              </div>
+            </div>
+
+            <!-- State / District -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.875rem; margin-bottom: 1.25rem;">
+              <div>
+                <label class="form-label" for="reg-state-select">State</label>
+                <div class="password-input-group">
+                  <select id="reg-state-select" class="password-input reg-state" style="padding-right: 0.875rem; background: transparent; cursor: pointer;">
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="form-label" for="reg-district-input">District</label>
+                <div class="password-input-group">
+                  <input
+                    type="text"
+                    id="reg-district-input"
+                    class="password-input"
+                    placeholder="e.g. Krishnagiri"
+                    list="district-options"
+                  />
+                  <datalist id="district-options">
+                    <option value="Krishnagiri">
+                    <option value="Dharmapuri">
+                    <option value="Salem">
+                    <option value="Thanjavur">
+                    <option value="Coimbatore">
+                    <option value="Madurai">
+                  </datalist>
+                </div>
+              </div>
+            </div>
+
+            <!-- Primary Crop Produce -->
+            <div class="form-group">
+              <label class="form-label" for="reg-crop-input">Primary Crops / Produce</label>
+              <div class="password-input-group">
+                <input
+                  type="text"
+                  id="reg-crop-input"
+                  class="password-input reg-crop"
+                  placeholder="e.g. Paddy, Tomato, Wheat, Cotton"
+                  list="crop-options"
+                />
+                <datalist id="crop-options">
+                  <option value="Paddy (Rice)">
+                  <option value="Tomato">
+                  <option value="Wheat">
+                  <option value="Cotton">
+                  <option value="Sugarcane">
+                  <option value="Onions">
+                  <option value="Maize">
+                </datalist>
+              </div>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+              <label class="form-label" for="reg-password-input">Password (min 6 characters)</label>
+              <div class="password-input-group">
+                <input
+                  type="password"
+                  id="reg-password-input"
+                  class="password-input reg-password"
+                  placeholder="Create your account password"
+                  required
+                />
+                <button type="button" class="password-toggle-btn" id="reg-password-toggle-btn" aria-label="Show password" title="Show password">
+                  <svg class="eye-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                  <svg class="eye-off-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                  </svg>
+                </button>
+              </div>
+              <!-- Dynamic Password Strength Indicator -->
+              <div class="password-strength-wrap" id="reg-password-strength-wrap" style="display: none;">
+                <div class="password-strength-bar">
+                  <div class="strength-segment" id="reg-strength-1"></div>
+                  <div class="strength-segment" id="reg-strength-2"></div>
+                  <div class="strength-segment" id="reg-strength-3"></div>
+                  <div class="strength-segment" id="reg-strength-4"></div>
+                </div>
+                <div class="password-strength-meta">
+                  <span class="strength-text" id="reg-strength-text">Weak</span>
+                  <span class="strength-hint" id="reg-strength-hint">Min 6 characters</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="form-group">
+              <label class="form-label" for="reg-confirm-input">Confirm Password</label>
+              <div class="password-input-group">
+                <input
+                  type="password"
+                  id="reg-confirm-input"
+                  class="password-input reg-confirm-password"
+                  placeholder="Re-enter your password"
+                  required
+                />
+                <button type="button" class="password-toggle-btn" id="reg-confirm-toggle-btn" aria-label="Show password" title="Show password">
+                  <svg class="eye-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                  <svg class="eye-off-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                  </svg>
+                </button>
+              </div>
+              <!-- Dynamic Password Match Indicator -->
+              <div class="password-match-status" id="reg-password-match-status">
+                <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span id="reg-password-match-text">Passwords match</span>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn-primary reg-submit-btn" style="margin-top: 0.75rem;">
+              <span>Register as a Farmer</span>
+            </button>
+
+            <!-- Existing Account Navigation Link -->
+            <div class="already-account-section" style="margin-top: 1.15rem; padding-top: 0.85rem; border-top: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center; gap: 0.4rem; font-size: 0.8125rem; color: #475569;">
+              <span>Already registered?</span>
+              <a href="dashboard.html" style="color: #166534; font-weight: 600; text-decoration: none;">Go to Farmer Dashboard &rarr;</a>
+              <span style="color: #cbd5e1; margin: 0 0.35rem;">|</span>
+              <a href="../../index.html" style="color: #64748b; text-decoration: none;">Back to Home</a>
+            </div>
+
+          </form>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 AgriMitra. Dedicated to empowering India's farming communities.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AgriMitra - Delivery Agent Logistics Portal. Real-time farmer produce transport and delivery management.">
+  <title>AgriMitra — Delivery Agent Portal</title>
+  <link rel="stylesheet" href="AgriMitra-delivery agent/style.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Pure CSS Route State Selectors (Zero JS) -->
+  <input type="radio" name="app-view" id="view-overview" class="view-radio" checked>
+  <input type="radio" name="app-view" id="view-requests" class="view-radio">
+  <input type="radio" name="app-view" id="view-deliveries" class="view-radio">
+  <input type="radio" name="app-view" id="view-route" class="view-radio">
+  <input type="radio" name="app-view" id="view-earnings" class="view-radio">
+  <input type="radio" name="app-view" id="view-performance" class="view-radio">
+
+  <!-- Interactive Pure CSS Checkboxes for Farmer Requests Selection (Zero JS) -->
+  <input type="checkbox" id="select-fm24081" class="delivery-toggle">
+  <input type="checkbox" id="select-fm24082" class="delivery-toggle">
+  <input type="checkbox" id="select-fm24083" class="delivery-toggle">
+  <input type="checkbox" id="select-fm24084" class="delivery-toggle">
+
+  <!-- Interactive Proof of Delivery Confirmation Toggle (Zero JS) -->
+  <input type="checkbox" id="pod-confirmed-toggle" class="delivery-toggle">
+
+  <!-- Pure CSS Notification Bell Dropdown Toggle -->
+  <input type="checkbox" id="toggle-notif" class="dropdown-toggle">
+
+  <div class="app-container">
+
+    <!-- ====================================================================
+         Sidebar Navigation
+         ==================================================================== -->
+    <aside class="sidebar">
+      <a href="index.html" class="brand-wrapper" style="text-decoration: none; color: inherit;" title="Back to AgriMitra Main Portal">
+        <img src="logo.png" alt="AgriMitra" class="brand-logo-img">
+        <div class="brand-text-block">
+          <span class="brand-title">AgriMitra</span>
+          <span class="brand-subtitle">Delivery Network</span>
+        </div>
+      </a>
+
+      <div class="nav-section">
+        <span class="nav-label">Dispatch Desk</span>
+        <ul class="nav-list">
+          <li>
+            <label for="view-overview" class="nav-item">
+              <svg class="nav-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              <span>Overview</span>
+            </label>
+          </li>
+          <li>
+            <label for="view-requests" class="nav-item">
+              <svg class="nav-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              <span>Delivery Requests</span>
+              <span class="nav-badge badge-highlight">12</span>
+            </label>
+          </li>
+          <li>
+            <label for="view-deliveries" class="nav-item">
+              <svg class="nav-icon" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              <span>My Deliveries</span>
+              <span class="nav-badge">5</span>
+            </label>
+          </li>
+          <li>
+            <label for="view-route" class="nav-item">
+              <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+              <span>Today's Route</span>
+              <span class="nav-badge">3 Stops</span>
+            </label>
+          </li>
+          <li>
+            <label for="view-earnings" class="nav-item">
+              <svg class="nav-icon" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              <span>Earnings</span>
+            </label>
+          </li>
+          <li>
+            <label for="view-performance" class="nav-item">
+              <svg class="nav-icon" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              <span>Performance</span>
+            </label>
+          </li>
+          <li>
+            <a href="register.html" class="nav-item" style="color: inherit; text-decoration: none;" title="Delivery Agent Registration Page">
+              <svg class="nav-icon" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+              <span>Agent Registration</span>
+              <span class="nav-badge badge-highlight">New</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="agent-meta-badge">
+          <div class="agent-meta-name">Ramesh Kumar</div>
+          <div class="agent-meta-sub">AM-DA-1047 • Tata Ace</div>
+        </div>
+        <a href="../index.html" class="nav-item" style="color: #9cb8a4; text-decoration: none;" title="Back to AgriMitra Main Portal">
+          <svg class="nav-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span>AgriMitra Home</span>
+        </a>
+        <a href="#help" class="nav-item" style="color: #9cb8a4;">
+          <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <span>Help</span>
+        </a>
+        <a href="#settings" class="nav-item" style="color: #9cb8a4;">
+          <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <span>Settings</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- ====================================================================
+         Main Layout
+         ==================================================================== -->
+    <main class="main-content-wrapper">
+
+      <!-- Global Application Header -->
+      <header class="app-header">
+        <div class="header-left">
+          <div class="header-brand-badge">
+            <img src="logo.png" alt="AgriMitra" class="header-logo-img">
+            <span class="header-brand-name">AgriMitra</span>
+          </div>
+          <div class="header-title-col">
+            <div class="header-title-row">
+              <h1 class="page-main-title">Delivery Overview</h1>
+              <span class="status-pill status-online">
+                <span class="pulse-dot"></span> Online &amp; Available
+              </span>
+            </div>
+            <span class="header-subtitle">Good morning, Ramesh. Here is today's delivery plan.</span>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <!-- Notification Bell Dropdown -->
+          <div class="notif-wrapper">
+            <label for="toggle-notif" class="notif-bell-btn" title="View Notifications">
+              <svg style="width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2;" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              <span class="notif-count-pill">4</span>
+            </label>
+
+            <div class="notif-drawer">
+              <div class="notif-drawer-header">
+                <span class="notif-drawer-title">Recent Alerts</span>
+                <span class="notif-drawer-meta">4 unread</span>
+              </div>
+              <div class="notif-item unread">
+                <div class="notif-top">
+                  <span class="notif-headline">New farmer request</span>
+                  <span class="notif-time">10m ago</span>
+                </div>
+                <div class="notif-desc">354 kg tomatoes require delivery from Jalandhar collection point.</div>
+              </div>
+              <div class="notif-item unread">
+                <div class="notif-top">
+                  <span class="notif-headline">Delivery selected</span>
+                  <span class="notif-time">25m ago</span>
+                </div>
+                <div class="notif-desc">FM-24081 has been added to your delivery list.</div>
+              </div>
+              <div class="notif-item">
+                <div class="notif-top">
+                  <span class="notif-headline">Route update</span>
+                  <span class="notif-time">45m ago</span>
+                </div>
+                <div class="notif-desc">Traffic reported near Nakodar bypass. Alternate lane advised.</div>
+              </div>
+              <div class="notif-item">
+                <div class="notif-top">
+                  <span class="notif-headline">Delivery reminder</span>
+                  <span class="notif-time">1h ago</span>
+                </div>
+                <div class="notif-desc">Pickup window begins at 10:30 AM at Jalandhar Farmer Hub.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Action: Register New Delivery Agent -->
+          <a href="register.html" class="btn" style="text-decoration: none; padding: 7px 14px; font-size: 0.82rem; background-color: var(--c-green-light); border: 1px solid var(--c-green-tint); color: var(--c-green-dark); border-radius: 6px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; transition: all 0.15s ease;" title="Delivery Agent Registration">
+            <svg style="width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2;" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+            <span>Register Agent</span>
+          </a>
+
+          <!-- Current Delivery Agent Badge -->
+          <div class="user-badge">
+            <div class="user-avatar">RK</div>
+            <div class="user-info">
+              <span class="user-name">Ramesh Kumar</span>
+              <span class="user-sub">AM-DA-1047</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Pure CSS Interactive Selection Banner -->
+      <div class="content-canvas" style="padding-bottom: 0;">
+        <div class="selection-alert-banner">
+          <div class="alert-content">
+            <svg style="width: 22px; height: 22px; stroke: #059669; fill: none; stroke-width: 2;" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <div>
+              <div class="alert-title">Delivery FM-24081 Confirmed & Assigned to You!</div>
+              <div class="alert-sub">Harpreet Singh's 354 kg Tomatoes added to your active deliveries schedule.</div>
+            </div>
+          </div>
+          <label for="view-deliveries" class="btn btn-primary" style="font-size: 0.78rem; padding: 6px 12px;">View in My Deliveries →</label>
+        </div>
+      </div>
+
+      <!-- ==================================================================
+           PANEL 1: DELIVERY OVERVIEW (DEFAULT VIEW)
+           ================================================================== -->
+      <section id="panel-overview" class="view-panel content-canvas">
+
+        <!-- SIH Presentation Workflow Storyboard -->
+        <div class="workflow-banner">
+          <div class="workflow-header-row">
+            <span class="workflow-title-tag">AgriMitra Dispatch Workflow</span>
+            <span class="workflow-caption">Farmer produce transportation and direct agent assignment flow</span>
+          </div>
+          <div class="workflow-steps-track">
+            <div class="workflow-step">
+              <div class="step-num">Step 1 • Farmer</div>
+              <div class="step-title">Creates Requirement</div>
+              <div class="step-desc">Harvest logged: Tomatoes — 354 kg ready for Mandi/FPO transport.</div>
+            </div>
+            <div class="workflow-step">
+              <div class="step-num">Step 2 • AgriMitra</div>
+              <div class="step-title">Appears in Requests</div>
+              <div class="step-desc">System publishes pickup coordinates, weight, window & earnings.</div>
+            </div>
+            <div class="workflow-step">
+              <div class="step-num">Step 3 • Delivery Agent</div>
+              <div class="step-title">Ramesh Selects Request</div>
+              <div class="step-desc">Reviews vehicle suitability (Tata Ace), route & selects delivery.</div>
+            </div>
+            <div class="workflow-step">
+              <div class="step-num">Step 4 • Fulfillment</div>
+              <div class="step-title">Assigned & Delivered</div>
+              <div class="step-desc">Appears in My Deliveries → Transit → Digital Proof of Delivery.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dashboard Summary Metrics -->
+        <div class="metrics-row">
+          <div class="metric-card accent-card">
+            <span class="metric-label">Available Requests</span>
+            <div class="metric-val-row">
+              <span class="metric-number">12</span>
+            </div>
+            <span class="metric-sub">Farmer delivery requests</span>
+          </div>
+
+          <div class="metric-card earth-card">
+            <span class="metric-label">My Deliveries</span>
+            <div class="metric-val-row">
+              <span class="metric-number">5</span>
+            </div>
+            <span class="metric-sub">Assigned today</span>
+          </div>
+
+          <div class="metric-card">
+            <span class="metric-label">Completed</span>
+            <div class="metric-val-row">
+              <span class="metric-number">3</span>
+            </div>
+            <span class="metric-sub">Today's completed deliveries</span>
+          </div>
+
+          <div class="metric-card">
+            <span class="metric-label">Distance</span>
+            <div class="metric-val-row">
+              <span class="metric-number">47 <span style="font-size: 1rem; font-weight: 500;">km</span></span>
+            </div>
+            <span class="metric-sub">Planned route</span>
+          </div>
+
+          <div class="metric-card accent-card">
+            <span class="metric-label">Estimated Earnings</span>
+            <div class="metric-val-row">
+              <span class="metric-number" style="color: var(--c-green-primary);">₹1,850</span>
+            </div>
+            <span class="metric-sub">Today's estimate</span>
+          </div>
+        </div>
+
+        <!-- Priority Farmer Request Highlight & Today's Active Route -->
+        <div class="grid-2col">
+          
+          <!-- Farmer Delivery Requests Quick Queue -->
+          <div>
+            <div class="section-header">
+              <div class="section-title-group">
+                <h2 class="section-title">
+                  <svg style="width: 18px; height: 18px; stroke: var(--c-green-primary); fill: none; stroke-width: 2;" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  Farmer Delivery Requests
+                </h2>
+                <span class="section-desc">Open farmer requirements awaiting delivery agent pickup</span>
+              </div>
+              <label for="view-requests" class="section-action-btn">View All 12 →</label>
+            </div>
+
+            <!-- Featured Request: Harpreet Singh - Tomatoes 354 kg -->
+            <div class="farmer-req-card featured-req card-fm24081">
+              <div class="card-top-row">
+                <div>
+                  <span class="req-id-badge">#FM-24081</span>
+                  <span class="crop-badge crop-tomato" style="margin-left: 6px;">Tomatoes</span>
+                </div>
+                <div class="prominent-qty">
+                  354 <span class="qty-unit">kg</span>
+                </div>
+              </div>
+
+              <div class="farmer-name-meta">
+                Farmer: <strong>Harpreet Singh</strong> • Jalandhar Cluster
+              </div>
+
+              <div class="route-trip-box">
+                <div class="trip-point">
+                  <span class="trip-dot pickup"></span>
+                  <div class="trip-details">
+                    <span class="trip-label">Pickup Point • 10:30 AM – 11:30 AM</span>
+                    <span class="trip-loc">Jalandhar Farmer Collection Point</span>
+                  </div>
+                </div>
+                <div class="trip-point">
+                  <span class="trip-dot dropoff"></span>
+                  <div class="trip-details">
+                    <span class="trip-label">Destination FPO</span>
+                    <span class="trip-loc">FreshKart FPO, Nakodar</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="farmer-note-quote">
+                “Please handle the tomato crates carefully.”
+              </div>
+
+              <div class="card-meta-bar">
+                <div class="meta-item">
+                  <span class="meta-title">Trip Distance</span>
+                  <span class="meta-value">18.6 km</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-title">Vehicle Required</span>
+                  <span class="meta-value">Small goods vehicle</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-title">Agent Pay</span>
+                  <span class="meta-value earnings-val">₹520</span>
+                </div>
+              </div>
+
+              <div class="selection-state-container">
+                <!-- Unselected Action Button -->
+                <div class="state-unselected">
+                  <label for="select-fm24081" class="btn btn-primary btn-block" style="margin-top: 10px;">
+                    <svg style="width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2;" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                    Select Delivery
+                  </label>
+                </div>
+                <!-- Selected / Assigned to You Confirmation State -->
+                <div class="state-selected">
+                  <div class="selected-badge-banner">
+                    <div>
+                      <div>✓ Selected / Assigned to You</div>
+                      <div class="agent-tag">Assigned to: Ramesh Kumar (Tata Ace)</div>
+                    </div>
+                    <label for="select-fm24081" class="btn btn-secondary" style="padding: 4px 8px; font-size: 0.72rem;">Release</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Second Request: Gurpreet Kaur - Potatoes 500 kg -->
+            <div class="farmer-req-card card-fm24082" style="margin-top: 12px;">
+              <div class="card-top-row">
+                <div>
+                  <span class="req-id-badge">#FM-24082</span>
+                  <span class="crop-badge crop-potato" style="margin-left: 6px;">Potatoes</span>
+                  <span class="badge badge-available badge-fm24082-available" style="margin-left: 6px;">Available</span>
+                  <span class="badge badge-selected badge-fm24082-assigned" style="display: none; margin-left: 6px;">Assigned to You</span>
+                </div>
+                <div class="prominent-qty">
+                  500 <span class="qty-unit">kg</span>
+                </div>
+              </div>
+
+              <div class="farmer-name-meta">
+                Farmer: <strong>Gurpreet Kaur</strong> • Kartarpur Farm Cluster
+              </div>
+
+              <div class="route-trip-box">
+                <div class="trip-point">
+                  <span class="trip-dot pickup"></span>
+                  <div class="trip-details">
+                    <span class="trip-label">Pickup • 12:00 PM – 1:00 PM</span>
+                    <span class="trip-loc">Kartarpur Farm Cluster</span>
+                  </div>
+                </div>
+                <div class="trip-point">
+                  <span class="trip-dot dropoff"></span>
+                  <div class="trip-details">
+                    <span class="trip-label">Destination Wholesale</span>
+                    <span class="trip-loc">Punjab Agro Wholesale, Phagwara</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-meta-bar">
+                <div class="meta-item">
+                  <span class="meta-title">Trip Distance</span>
+                  <span class="meta-value">26.4 km</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-title">Vehicle Required</span>
+                  <span class="meta-value">Small goods vehicle</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-title">Agent Pay</span>
+                  <span class="meta-value earnings-val">₹680</span>
+                </div>
+              </div>
+
+              <div class="selection-state-container">
+                <div class="state-unselected">
+                  <label for="select-fm24082" class="btn btn-secondary btn-block" style="margin-top: 10px;">
+                    Select Delivery
+                  </label>
+                </div>
+                <div class="state-selected">
+                  <div class="selected-badge-banner">
+                    <div>
+                      <div>✓ Selected / Assigned to You</div>
+                      <div class="agent-tag">Assigned to: Ramesh Kumar (Tata Ace)</div>
+                    </div>
+                    <label for="select-fm24082" class="btn btn-secondary" style="padding: 4px 8px; font-size: 0.72rem;">Release</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Active Delivery Status & Today's Route Snapshot -->
+          <div>
+            <div class="section-header">
+              <div class="section-title-group">
+                <h2 class="section-title">
+                  <svg style="width: 18px; height: 18px; stroke: var(--c-green-primary); fill: none; stroke-width: 2;" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                  Assigned Pipeline
+                </h2>
+                <span class="section-desc">Active batch in progress</span>
+              </div>
+              <label for="view-deliveries" class="section-action-btn">Manage 5 →</label>
+            </div>
+
+            <!-- Current Delivery In Transit Detail -->
+            <div class="detail-box">
+              <div class="detail-header-row">
+                <div>
+                  <span class="badge badge-transit" style="margin-bottom: 4px;">In Transit</span>
+                  <div style="font-weight: 700; font-size: 1.05rem;">FM-24082 • Potatoes</div>
+                  <div style="font-size: 0.8rem; color: var(--c-text-secondary);">Kartarpur → Phagwara</div>
+                </div>
+                <div class="prominent-qty" style="font-size: 1.25rem;">
+                  500 <span class="qty-unit">kg</span>
+                </div>
+              </div>
+
+              <!-- Delivery Timeline Progression -->
+              <div style="margin: 16px 0;">
+                <div style="font-size: 0.74rem; font-weight: 700; text-transform: uppercase; color: var(--c-text-muted); margin-bottom: 6px;">Delivery Milestone</div>
+                <div class="timeline-track" style="margin: 18px 0 6px 0;">
+                  <div class="timeline-step completed">
+                    <div class="timeline-node">✓</div>
+                    <span class="timeline-name">Selected</span>
+                    <span class="timeline-meta">10:15 AM</span>
+                  </div>
+                  <div class="timeline-step active">
+                    <div class="timeline-node">●</div>
+                    <span class="timeline-name">In Transit</span>
+                    <span class="timeline-meta">ETA 12:30 PM</span>
+                  </div>
+                  <div class="timeline-step">
+                    <div class="timeline-node">3</div>
+                    <span class="timeline-name">Arrived</span>
+                    <span class="timeline-meta">Pending</span>
+                  </div>
+                  <div class="timeline-step">
+                    <div class="timeline-node">4</div>
+                    <span class="timeline-name">Completed</span>
+                    <span class="timeline-meta">Pending</span>
+                  </div>
+                </div>
+              </div>
+
+              <div style="background: var(--c-surface-subtle); padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--c-border-subtle); margin-top: 14px;">
+                <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 4px;">
+                  <span style="color: var(--c-text-secondary);">Vehicle:</span>
+                  <strong>Tata Ace (PB 08 AB 4592)</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 4px;">
+                  <span style="color: var(--c-text-secondary);">Next Stop:</span>
+                  <strong>Punjab Agro Wholesale, Phagwara</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+                  <span style="color: var(--c-text-secondary);">Trip Earnings:</span>
+                  <strong style="color: var(--c-green-primary);">₹680</strong>
+                </div>
+              </div>
+
+              <label for="view-route" class="btn btn-secondary btn-block" style="margin-top: 14px;">
+                Open Route Navigation Map →
+              </label>
+            </div>
+
+            <!-- Fast Performance Callout -->
+            <div class="team-note-banner" style="margin-top: 18px;">
+              <div class="team-note-title">Mandi Logistics Advisory</div>
+              <div class="team-note-body">
+                “Your on-time delivery rate is 92%. Prioritise the Nakodar route during the morning window to maintain today's schedule.”
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ==================================================================
+           PANEL 2: FARMER DELIVERY REQUESTS (EXPANDED DEDICATED VIEW)
+           ================================================================== -->
+      <section id="panel-requests" class="view-panel content-canvas">
+        <div class="section-header">
+          <div class="section-title-group">
+            <h2 class="section-title">Farmer Delivery Requests</h2>
+            <span class="section-desc">Farmers create transport requirements. Review produce details, weight, locations, and select deliveries to assign to your vehicle.</span>
+          </div>
+          <span class="badge badge-selected" style="font-size: 0.82rem; padding: 6px 12px;">12 Open Farmer Demands</span>
+        </div>
+
+        <div class="grid-2col">
+
+          <!-- List of All Available Farmer Requests -->
+          <div class="request-card-list">
+
+            <!-- REQUEST #FM-24081 -->
+            <div class="farmer-req-card featured-req card-fm24081">
+              <div class="card-top-row">
+                <div>
+                  <span class="req-id-badge">#FM-24081</span>
+                  <span class="crop-badge crop-tomato" style="margin-left: 6px;">Tomatoes</span>
+                  <span class="badge badge-available badge-fm24081-available" style="margin-left: 6px;">Available</span>
+                  <span class="badge badge-selected badge-fm24081-assigned" style="display: none; margin-left: 6px;">Assigned to You</span>
+                </div>
+                <div class="prominent-qty">
+                  354 <span class="qty-unit">kg</span>
+                </div>
+              </div>
+
+              <div class="farmer-name-meta">
+                Farmer: <strong>Harpreet Singh</strong> • Jalandhar Farmer Collection Point
+              </div>
+
+              <div class="route-trip-box">
+                <div class="trip-point">
+                  <span class="trip-dot pickup"></span>
+                  <div class="trip-details">
+                    <span class="trip-label">Pickup Window: 10:30 AM – 11:30 AM</span>
+                    <span class="trip-loc">Jalandhar Farmer Collection Point</span>
+                  </div>
+                </div>
+                <div class="trip-point">
+                  <span class="trip-dot dropoff"></span>
+                  <div class="trip-details">
+                    <span class="trip-label">Destination</span>
+                    <span class="trip-loc">FreshKart FPO, Nakodar</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="farmer-note-quote">
+                “Please handle the tomato crates carefully.”
+              </div>
+
+              <div class="card-meta-bar">
+                <div class="meta-item">
+                  <span class="meta-title">Distance</span>
+                  <span class="meta-value">18.6 km</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-title">Vehicle Requirement</span>
+                  <span class="meta-value">Small goods vehicle</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-title">Estimated Earnings</span>
+                  <span class="meta-value earnings-val">₹520</span>
+                </div>
+              </div>
+
+              <div class="selection-state-container">
+                <div class="state-unselected">
+                  <label for="select-fm24081" class="btn btn-primary btn-block" style="margin-top: 10px;">
+                    Select Delivery
+                  </label>
+                </div>
+                <div class="state-selected">
+                  <div class="selected-badge-banner">
+                    <div>
+                      <div>✓ Selected / Assigned to You</div>
+                      <div class="agent-tag">Assigned to: Ramesh Kumar (AM-DA-1047)</div>
+                    </div>
+                    <label for="select-fm24081" class="btn btn-secondary" style="padding: 4px 8px; font-size: 0.72rem;">Release</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- REQUEST #FM-24082 -->
+            <div class="farmer-req-card card-fm24082">
+              <div class="card-top-row">
+                <div>
+                  <span class="req-id-badge">#FM-24082</span>
+                  <span class="crop-badge crop-potato" style="margin-left: 6px;">Potatoes</span>
+                  <span class="badge badge-available badge-fm24082-available" style="margin-left: 6px;">Available</span>
+                  <span class="badge badge-selected badge-fm24082-assigned" style="display: none; margin-left: 6px;">Assigned to You</span>
+                </div>
+                <div class="prominent-qty">
+                  500 <span class="qty-unit">kg</span>
+                </div>
+              </div>
+
+              <div class="farmer-name-meta">
+                Farmer: <strong>Gurpreet Kaur</strong> • Kartarpur Farm Cluster
+              </div>
+
+              <div class="route-trip-box">
+                <div class="trip-point">
+                  <span class="trip-dot pickup"></span>
+                  <div class="trip-details">
+                    <span class="trip-label">Pickup Window: 12:00 PM – 1:00 PM</span>
+                    <span class="trip-loc">Kartarpur Farm Cluster</span>
+                  </div>
+                </div>
+                <div class="trip-point">
+                  <span class="trip-dot dropoff"></span>
+                  <div class="trip-details">
+                    <span class="trip-label">Destination</span>
+                    <span class="trip-loc">Punjab Agro Wholesale, Phagwara</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-meta-bar">
+                <div class="meta-item">
+                  <span class="meta-title">Distance</span>
+                  <span class="meta-value">26.4 km</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-title">Vehicle Requirement</span>
+                  <span class="meta-value">Small goods vehicle</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-title">Estimated Earnings</span>
+                  <span class="meta-value earnings-val">₹680</span>
+                </div>
+              </div>
+
+              <div class="selection-state-container">
+                <div class="state-unselected">
+                  <label for="select-fm24082" class="btn btn-primary btn-block" style="margin-top: 10px;">
+                    Select Delivery
+                  </label>
+                </div>
+                <div class="state-selected">
+                  <div class="selected-badge-banner">
+                    <div>
+                      <div>✓ Selected / Assigned to You</div>
+                      <div class="agent-tag">Assigned to: Ramesh Kumar (Tata Ace)</div>
+                    </div>
+                    <label for="select-fm24082" class="btn btn-secondary" style="padding: 4px 8px; font-size: 0.72rem;">Release</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- REQUEST #FM-24083 -->
+            <div class="farmer-req-card card-fm24083">
+              <div class="card-top-row">
+                <div>
+                  <span class="req-id-badge">#FM-24083</span>
+                  <span class="crop-badge crop-onion" style="margin-left: 6px;">Onions</span>
+                  <span class="badge badge-available badge-fm24083-available" style="margin-left: 6px;">Available</span>
+                  <span class="badge badge-selected badge-fm24083-assigned" style="display: none; margin-left: 6px;">Assigned to You</span>
+                </div>
+                <div class="prominent-qty">
+                  280 <span class="qty-unit">kg</span>
+                </div>
+              </div>
+
+              <div class="farmer-name-meta">
+                Farmer: <strong>Manpreet Singh</strong> • Nakodar Mandi
+              </div>
+
+              <div class="route-trip-box">
+                <div class="trip-point">
+                  <span class="trip-dot pickup"></span>
+                  <div class="trip-details">
+                    <span class="trip-label">Pickup Window: 2:00 PM – 3:00 PM</span>
+                    <span class="trip-loc">Nakodar Mandi</span>
+                  </div>
+                </div>
+                <div class="trip-point">
+                  <span class="trip-dot dropoff"></span>
+                  <div class="trip-details">
+                    <span class="trip-label">Destination</span>
+                    <span class="trip-loc">GreenBasket Distributor, Jalandhar</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-meta-bar">
+                <div class="meta-item">
+                  <span class="meta-title">Distance</span>
+                  <span class="meta-value">22.1 km</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-title">Vehicle Requirement</span>
+                  <span class="meta-value">Small goods vehicle</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-title">Estimated Earnings</span>
+                  <span class="meta-value earnings-val">₹610</span>
+                </div>
+              </div>
+
+              <div class="selection-state-container">
+                <div class="state-unselected">
+                  <label for="select-fm24083" class="btn btn-primary btn-block" style="margin-top: 10px;">
+                    Select Delivery
+                  </label>
+                </div>
+                <div class="state-selected">
+                  <div class="selected-badge-banner">
+                    <div>
+                      <div>✓ Selected / Assigned to You</div>
+                      <div class="agent-tag">Assigned to: Ramesh Kumar (Tata Ace)</div>
+                    </div>
+                    <label for="select-fm24083" class="btn btn-secondary" style="padding: 4px 8px; font-size: 0.72rem;">Release</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- REQUEST #FM-24084 -->
+            <div class="farmer-req-card card-fm24084">
+              <div class="card-top-row">
+                <div>
+                  <span class="req-id-badge">#FM-24084</span>
+                  <span class="crop-badge" style="margin-left: 6px;">Cauliflower</span>
+                  <span class="badge badge-available badge-fm24084-available" style="margin-left: 6px;">Available</span>
+                  <span class="badge badge-selected badge-fm24084-assigned" style="display: none; margin-left: 6px;">Assigned to You</span>
+                </div>
+                <div class="prominent-qty">
+                  420 <span class="qty-unit">kg</span>
+                </div>
+              </div>
+
+              <div class="farmer-name-meta">
+                Farmer: <strong>Balwinder Singh</strong> • Kartarpur Veg Hub
+              </div>
+
+              <div class="route-trip-box">
+                <div class="trip-point">
+                  <span class="trip-dot pickup"></span>
+                  <div class="trip-details">
+                    <span class="trip-label">Pickup Window: 3:30 PM – 4:30 PM</span>
+                    <span class="trip-loc">Kartarpur Veg Hub</span>
+                  </div>
+                </div>
+                <div class="trip-point">
+                  <span class="trip-dot dropoff"></span>
+                  <div class="trip-details">
+                    <span class="trip-label">Destination</span>
+                    <span class="trip-loc">Jalandhar Wholesale Mandi</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-meta-bar">
+                <div class="meta-item">
+                  <span class="meta-title">Distance</span>
+                  <span class="meta-value">15.2 km</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-title">Vehicle Requirement</span>
+                  <span class="meta-value">Small goods vehicle</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-title">Estimated Earnings</span>
+                  <span class="meta-value earnings-val">₹490</span>
+                </div>
+              </div>
+
+              <div class="selection-state-container">
+                <div class="state-unselected">
+                  <label for="select-fm24084" class="btn btn-primary btn-block" style="margin-top: 10px;">
+                    Select Delivery
+                  </label>
+                </div>
+                <div class="state-selected">
+                  <div class="selected-badge-banner">
+                    <div>
+                      <div>✓ Selected / Assigned to You</div>
+                      <div class="agent-tag">Assigned to: Ramesh Kumar (Tata Ace)</div>
+                    </div>
+                    <label for="select-fm24084" class="btn btn-secondary" style="padding: 4px 8px; font-size: 0.72rem;">Release</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Deep Inspection Detail Card for Selected/Focused Request -->
+          <div>
+            <div class="detail-box" style="position: sticky; top: 90px;">
+              <div class="detail-header-row">
+                <div>
+                  <span class="req-id-badge">Detailed Inspection</span>
+                  <h3 style="font-size: 1.15rem; font-weight: 700; margin-top: 6px;">Farmer Delivery Request</h3>
+                  <div style="font-size: 0.82rem; color: var(--c-text-secondary);">Request ID: <strong>FM-24081</strong></div>
+                </div>
+                <div style="text-align: right;">
+                  <span class="crop-badge crop-tomato">Tomatoes</span>
+                  <div class="prominent-qty" style="margin-top: 4px;">354 <span class="qty-unit">kg</span></div>
+                </div>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px;">
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; border-bottom: 1px solid var(--c-border-subtle); padding-bottom: 6px;">
+                  <span style="color: var(--c-text-secondary);">Farmer Name</span>
+                  <strong>Harpreet Singh</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; border-bottom: 1px solid var(--c-border-subtle); padding-bottom: 6px;">
+                  <span style="color: var(--c-text-secondary);">Pickup Location</span>
+                  <strong>Jalandhar Farmer Collection Point</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; border-bottom: 1px solid var(--c-border-subtle); padding-bottom: 6px;">
+                  <span style="color: var(--c-text-secondary);">Destination FPO</span>
+                  <strong>FreshKart FPO, Nakodar</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; border-bottom: 1px solid var(--c-border-subtle); padding-bottom: 6px;">
+                  <span style="color: var(--c-text-secondary);">Preferred Pickup</span>
+                  <strong>10:30 AM – 11:30 AM</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; border-bottom: 1px solid var(--c-border-subtle); padding-bottom: 6px;">
+                  <span style="color: var(--c-text-secondary);">Calculated Distance</span>
+                  <strong>18.6 km</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; border-bottom: 1px solid var(--c-border-subtle); padding-bottom: 6px;">
+                  <span style="color: var(--c-text-secondary);">Vehicle Requirement</span>
+                  <strong>Small goods vehicle (Tata Ace suitable)</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; border-bottom: 1px solid var(--c-border-subtle); padding-bottom: 6px;">
+                  <span style="color: var(--c-text-secondary);">Estimated Earnings</span>
+                  <strong style="color: var(--c-green-primary); font-size: 1.1rem;">₹520</strong>
+                </div>
+              </div>
+
+              <div class="farmer-note-quote">
+                <strong>Farmer Note:</strong> “Please handle the tomato crates carefully.”
+              </div>
+
+              <div class="selection-state-container">
+                <div class="state-unselected">
+                  <label for="select-fm24081" class="btn btn-earth btn-block" style="font-size: 0.95rem; padding: 12px 16px;">
+                    Select This Delivery
+                  </label>
+                  <p style="font-size: 0.73rem; color: var(--c-text-muted); text-align: center; margin-top: 6px;">
+                    Clicking assigns this cargo to delivery agent Ramesh Kumar (AM-DA-1047).
+                  </p>
+                </div>
+                <div class="state-selected">
+                  <div class="selected-badge-banner" style="flex-direction: column; align-items: flex-start; gap: 8px;">
+                    <div style="font-size: 0.92rem; font-weight: 700;">✓ Delivery Selected & Assigned</div>
+                    <div style="font-size: 0.8rem; color: #065f46;">
+                      FM-24081 is locked to your route. Proceed to Jalandhar Collection Point at 10:30 AM.
+                    </div>
+                    <label for="view-deliveries" class="btn btn-primary btn-block" style="margin-top: 6px;">
+                      Go to My Deliveries →
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           PANEL 3: MY DELIVERIES (ASSIGNED PIPELINE & PROOF OF DELIVERY)
+           ================================================================== -->
+      <section id="panel-deliveries" class="view-panel content-canvas">
+        <div class="section-header">
+          <div class="section-title-group">
+            <h2 class="section-title">My Deliveries</h2>
+            <span class="section-desc">Manage deliveries selected by you today, track status progression, and confirm handoffs.</span>
+          </div>
+          <span class="status-pill status-online">Agent: Ramesh Kumar • Tata Ace</span>
+        </div>
+
+        <!-- Deliveries Table -->
+        <div class="table-responsive" style="margin-bottom: 24px;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Request ID</th>
+                <th>Farmer</th>
+                <th>Produce</th>
+                <th>Quantity</th>
+                <th>Route Corridor</th>
+                <th>Schedule</th>
+                <th>Earnings</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Row 1: FM-24081 (Subject to selection state) -->
+              <tr>
+                <td><strong>#FM-24081</strong></td>
+                <td>Harpreet Singh</td>
+                <td><span class="crop-badge crop-tomato">Tomatoes</span></td>
+                <td><strong>354 kg</strong></td>
+                <td>Jalandhar → Nakodar</td>
+                <td>10:45 AM</td>
+                <td style="color: var(--c-green-primary); font-weight: 700;">₹520</td>
+                <td>
+                  <span class="badge badge-selected">Selected</span>
+                </td>
+              </tr>
+              <!-- Row 2: FM-24082 (Active in transit) -->
+              <tr>
+                <td><strong>#FM-24082</strong></td>
+                <td>Gurpreet Kaur</td>
+                <td><span class="crop-badge crop-potato">Potatoes</span></td>
+                <td><strong>500 kg</strong></td>
+                <td>Kartarpur → Phagwara</td>
+                <td>12:30 PM</td>
+                <td style="color: var(--c-green-primary); font-weight: 700;">₹680</td>
+                <td><span class="badge badge-transit">In Transit</span></td>
+              </tr>
+              <!-- Row 3: FM-24083 (Completed earlier today) -->
+              <tr>
+                <td><strong>#FM-24083</strong></td>
+                <td>Manpreet Singh</td>
+                <td><span class="crop-badge crop-onion">Onions</span></td>
+                <td><strong>280 kg</strong></td>
+                <td>Nakodar → Jalandhar</td>
+                <td>2:20 PM</td>
+                <td style="color: var(--c-green-primary); font-weight: 700;">₹610</td>
+                <td><span class="badge badge-completed">Completed</span></td>
+              </tr>
+              <!-- Row 4: FM-24079 (Completed morning run) -->
+              <tr>
+                <td><strong>#FM-24079</strong></td>
+                <td>Balwinder Singh</td>
+                <td><span class="crop-badge" style="background:#fef3c7; color:#92400e;">Wheat</span></td>
+                <td><strong>650 kg</strong></td>
+                <td>Jalandhar → Phagwara</td>
+                <td>08:30 AM</td>
+                <td style="color: var(--c-green-primary); font-weight: 700;">₹750</td>
+                <td><span class="badge badge-completed">Completed</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Detailed Delivery Specification Card & Progress Tracking -->
+        <div class="grid-equal">
+          
+          <!-- Delivery Details Specification -->
+          <div class="detail-box">
+            <div class="detail-header-row">
+              <div>
+                <span class="req-id-badge">Active Milestone Record</span>
+                <h3 style="font-size: 1.15rem; font-weight: 700; margin-top: 4px;">FM-24081 Delivery Record</h3>
+                <div style="font-size: 0.8rem; color: var(--c-text-secondary);">Jalandhar Collection Point → FreshKart FPO, Nakodar</div>
+              </div>
+              <span class="badge badge-selected">Selected</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
+              <div style="background: var(--c-surface-subtle); padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--c-border-subtle);">
+                <div class="meta-title">Crop & Weight</div>
+                <div style="font-size: 1.1rem; font-weight: 700;">Tomatoes · 354 kg</div>
+              </div>
+              <div style="background: var(--c-surface-subtle); padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--c-border-subtle);">
+                <div class="meta-title">Trip Distance & ETA</div>
+                <div style="font-size: 1.1rem; font-weight: 700;">18.6 km · 10:45 AM</div>
+              </div>
+              <div style="background: var(--c-surface-subtle); padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--c-border-subtle);">
+                <div class="meta-title">Farmer Contact</div>
+                <div style="font-size: 0.92rem; font-weight: 600;">Harpreet Singh (+91 98765 43210)</div>
+              </div>
+              <div style="background: var(--c-surface-subtle); padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--c-border-subtle);">
+                <div class="meta-title">Vehicle Assigned</div>
+                <div style="font-size: 0.92rem; font-weight: 600;">Tata Ace (AM-DA-1047)</div>
+              </div>
+            </div>
+
+            <!-- Visual Delivery Lifecycle Timeline -->
+            <div style="margin: 16px 0;">
+              <div style="font-size: 0.74rem; font-weight: 700; text-transform: uppercase; color: var(--c-text-muted); margin-bottom: 4px;">Delivery Lifecycle Timeline</div>
+              <div class="timeline-track">
+                <div class="timeline-step completed">
+                  <div class="timeline-node">✓</div>
+                  <span class="timeline-name">Selected</span>
+                  <span class="timeline-meta">10:15 AM (Done)</span>
+                </div>
+                <div class="timeline-step active">
+                  <div class="timeline-node">●</div>
+                  <span class="timeline-name">In Transit</span>
+                  <span class="timeline-meta">En Route (Active)</span>
+                </div>
+                <div class="timeline-step">
+                  <div class="timeline-node">3</div>
+                  <span class="timeline-name">Arrived</span>
+                  <span class="timeline-meta">At Gate (Next)</span>
+                </div>
+                <div class="timeline-step">
+                  <div class="timeline-node">4</div>
+                  <span class="timeline-name">Completed</span>
+                  <span class="timeline-meta">Sign-off (Pending)</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Proof of Delivery Section (Frontend Only Representation) -->
+          <div class="pod-container">
+            <div class="section-header" style="margin-bottom: 12px; border-bottom: none; padding-bottom: 0;">
+              <div class="section-title-group">
+                <h3 class="section-title">Proof of Delivery</h3>
+                <span class="section-desc">Record physical produce inspection and digital receiver sign-off upon arrival.</span>
+              </div>
+            </div>
+
+            <div class="pod-form-wrapper">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label class="form-label" for="recipient-name">Recipient Name / FPO Manager</label>
+                  <input type="text" id="recipient-name" class="form-input" placeholder="e.g. Baldev Raj (Nakodar FPO)" value="Baldev Raj (FreshKart Manager)">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="weight-confirmed">Produce Weight Verified</label>
+                  <input type="text" id="weight-confirmed" class="form-input" value="354 kg Verified (18 Crates)" readonly style="background:#f3f4f6;">
+                </div>
+              </div>
+
+              <div class="form-group" style="margin-bottom: 16px;">
+                <label class="form-label" for="photo-upload">Delivery Photo Verification</label>
+                <div class="file-upload-mock">
+                  <input type="file" id="photo-upload" class="form-input" accept="image/*" style="border: none; padding: 0; background: transparent;">
+                  <span style="font-size: 0.75rem; color: var(--c-text-muted);">(Capture Mandi crate stack or weighbridge receipt)</span>
+                </div>
+              </div>
+
+              <div class="form-group" style="margin-bottom: 18px;">
+                <label class="form-label">Digital Signature</label>
+                <div class="signature-box">
+                  <!-- Vector representation of a real stylus receiver signature -->
+                  <svg class="signature-svg-stroke" viewBox="0 0 200 80">
+                    <path d="M 20 50 Q 40 10 60 45 T 100 35 Q 120 70 140 25 T 180 50" fill="none" stroke="#1b432c" stroke-width="2.5" stroke-linecap="round"/>
+                  </svg>
+                  <div class="signature-line-mark"></div>
+                  <span class="signature-helper-text">Baldev Raj • Digital Stylus Signature</span>
+                </div>
+              </div>
+
+              <!-- Pure CSS Interactive Submission CTA -->
+              <div class="pod-action-container">
+                <div class="pod-unconfirmed-cta">
+                  <label for="pod-confirmed-toggle" class="btn btn-primary btn-block" style="padding: 11px; text-align: center; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <svg style="width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2;" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                    Confirm Delivery &amp; Generate Receipt
+                  </label>
+                </div>
+                <div class="pod-confirmed-cta">
+                  <div class="pod-success-card">
+                    <div class="pod-success-header">
+                      <div class="pod-success-title">
+                        <span class="badge badge-completed">✓ Delivery Completed &amp; Verified</span>
+                        <span class="pod-receipt-tag">Receipt #POD-24081-RCP</span>
+                      </div>
+                      <label for="pod-confirmed-toggle" class="btn btn-secondary" style="padding: 3px 8px; font-size: 0.72rem;">Edit</label>
+                    </div>
+                    <div class="pod-receipt-body">
+                      <div class="pod-receipt-row">
+                        <span>Receiver:</span>
+                        <strong>Baldev Raj (FreshKart Manager)</strong>
+                      </div>
+                      <div class="pod-receipt-row">
+                        <span>Produce Delivered:</span>
+                        <strong>354 kg Tomatoes (18 Crates)</strong>
+                      </div>
+                      <div class="pod-receipt-row">
+                        <span>Timestamp:</span>
+                        <strong>Today, 10:48 AM • Nakodar Gate 2</strong>
+                      </div>
+                      <div class="pod-receipt-row" style="border-top: 1px dashed var(--c-border-subtle); padding-top: 6px; margin-top: 4px;">
+                        <span>Trip Compensation Credited:</span>
+                        <strong style="color: var(--c-green-primary); font-size: 1rem;">₹520 Added to Wallet</strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           PANEL 4: TODAY'S ROUTE (CSS LOGISTICS MAP & WAYPOINTS)
+           ================================================================== -->
+      <section id="panel-route" class="view-panel content-canvas">
+        <div class="section-header">
+          <div class="section-title-group">
+            <h2 class="section-title">Today's Logistics Route</h2>
+            <span class="section-desc">Optimized agricultural transit corridor: Jalandhar → Nakodar → Phagwara</span>
+          </div>
+          <span class="status-pill status-online">Total Planned: 47 km • 3 Stops</span>
+        </div>
+
+        <!-- CSS Logistics Route Visualization Map -->
+        <div class="route-schematic-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--c-text-secondary); text-transform: uppercase;">Corridor Path Map</span>
+            <span style="font-size: 0.76rem; color: var(--c-green-primary); font-weight: 600;">Status: On Schedule • NH 703 Corridor</span>
+          </div>
+
+          <div class="route-schematic-canvas">
+            <div class="route-highway-line">
+              
+              <!-- Waypoint 1: Jalandhar -->
+              <div class="route-waypoint">
+                <div class="waypoint-pin"></div>
+                <span class="waypoint-title">Jalandhar</span>
+                <span class="waypoint-tag tag-pickup">Collection Point</span>
+                <span style="font-size: 0.7rem; color: var(--c-text-muted); margin-top: 2px;">Dep: 10:15 AM</span>
+              </div>
+
+              <!-- Waypoint 2: Nakodar (Current Stop) -->
+              <div class="route-waypoint">
+                <div class="waypoint-pin current"></div>
+                <span class="waypoint-title">Nakodar</span>
+                <span class="waypoint-tag tag-current">Current Stop</span>
+                <span style="font-size: 0.7rem; color: var(--c-text-muted); margin-top: 2px;">ETA: 10:45 AM</span>
+              </div>
+
+              <!-- Waypoint 3: Phagwara -->
+              <div class="route-waypoint">
+                <div class="waypoint-pin upcoming"></div>
+                <span class="waypoint-title">Phagwara</span>
+                <span class="waypoint-tag tag-dest">Wholesale Mandi</span>
+                <span style="font-size: 0.7rem; color: var(--c-text-muted); margin-top: 2px;">ETA: 12:30 PM</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Stops Detailed Breakdown -->
+          <div class="route-stops-list">
+            
+            <div class="stop-box">
+              <div style="display: flex; justify-content: space-between; font-size: 0.74rem; margin-bottom: 4px;">
+                <span style="font-weight: 700; color: #166534;">STOP 1 • COMPLETED</span>
+                <span style="color: var(--c-text-muted);">10:15 AM</span>
+              </div>
+              <div style="font-size: 0.95rem; font-weight: 700; color: var(--c-text-primary);">Jalandhar Farmer Hub</div>
+              <div style="font-size: 0.78rem; color: var(--c-text-secondary); margin-top: 2px;">Loaded 354 kg Tomatoes (Harpreet Singh)</div>
+              <div style="font-size: 0.74rem; color: var(--c-text-muted); margin-top: 6px;">Distance covered: 0.0 km (Origin)</div>
+            </div>
+
+            <div class="stop-box stop-active">
+              <div style="display: flex; justify-content: space-between; font-size: 0.74rem; margin-bottom: 4px;">
+                <span style="font-weight: 700; color: #92400e;">STOP 2 • CURRENT ACTIVE</span>
+                <span style="color: #92400e; font-weight: 700;">ETA 10:45 AM</span>
+              </div>
+              <div style="font-size: 0.95rem; font-weight: 700; color: var(--c-text-primary);">FreshKart FPO, Nakodar</div>
+              <div style="font-size: 0.78rem; color: var(--c-text-secondary); margin-top: 2px;">Delivery handoff for 354 kg Tomatoes (FM-24081)</div>
+              <div style="font-size: 0.74rem; color: var(--c-green-primary); margin-top: 6px; font-weight: 600;">Leg distance: 18.6 km</div>
+            </div>
+
+            <div class="stop-box">
+              <div style="display: flex; justify-content: space-between; font-size: 0.74rem; margin-bottom: 4px;">
+                <span style="font-weight: 700; color: var(--c-text-muted);">STOP 3 • UPCOMING</span>
+                <span style="color: var(--c-text-muted);">ETA 12:30 PM</span>
+              </div>
+              <div style="font-size: 0.95rem; font-weight: 700; color: var(--c-text-primary);">Punjab Agro Wholesale, Phagwara</div>
+              <div style="font-size: 0.78rem; color: var(--c-text-secondary); margin-top: 2px;">Delivery handoff for 500 kg Potatoes (FM-24082)</div>
+              <div style="font-size: 0.74rem; color: var(--c-text-muted); margin-top: 6px;">Leg distance: 26.4 km</div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           PANEL 5: EARNINGS (METRICS & CSS-ONLY WEEKLY CHART)
+           ================================================================== -->
+      <section id="panel-earnings" class="view-panel content-canvas">
+        <div class="section-header">
+          <div class="section-title-group">
+            <h2 class="section-title">Delivery Agent Earnings</h2>
+            <span class="section-desc">Transparent compensation per delivery trip, Mandi handling fee, and weekly settlement tracker.</span>
+          </div>
+          <span class="badge badge-completed" style="padding: 6px 12px; font-size: 0.8rem;">Direct Mandi Bank Transfer Linked</span>
+        </div>
+
+        <!-- Metric Cards for Earnings -->
+        <div class="metrics-row" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 24px;">
+          <div class="metric-card accent-card">
+            <span class="metric-label">Today's Earnings</span>
+            <div class="metric-val-row">
+              <span class="metric-number" style="color: var(--c-green-primary);">₹1,850</span>
+            </div>
+            <span class="metric-sub">Across 5 scheduled trips</span>
+          </div>
+
+          <div class="metric-card earth-card">
+            <span class="metric-label">This Week</span>
+            <div class="metric-val-row">
+              <span class="metric-number">₹8,420</span>
+            </div>
+            <span class="metric-sub">Mon to Sun cumulative</span>
+          </div>
+
+          <div class="metric-card">
+            <span class="metric-label">This Month</span>
+            <div class="metric-val-row">
+              <span class="metric-number">₹31,680</span>
+            </div>
+            <span class="metric-sub">September payout estimate</span>
+          </div>
+        </div>
+
+        <!-- Weekly Earnings Pure CSS Bar Chart & Day Wise Breakdown -->
+        <div class="earnings-grid">
+          
+          <div class="chart-card">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <h3 style="font-size: 1rem; font-weight: 700; color: var(--c-text-primary);">Weekly Performance & Earnings</h3>
+                <span style="font-size: 0.78rem; color: var(--c-text-secondary);">Calculated daily payouts in Indian Rupees (₹)</span>
+              </div>
+              <span style="font-size: 0.74rem; color: var(--c-text-muted); font-weight: 600;">Current Week</span>
+            </div>
+
+            <!-- Pure CSS Bar Chart Container -->
+            <div class="bar-chart-container">
+              
+              <!-- Monday: 1100 -->
+              <div class="bar-column">
+                <div class="bar-tube" style="height: 55%;">
+                  <span class="bar-tooltip">₹1,100</span>
+                </div>
+                <span class="bar-day-label">Mon</span>
+              </div>
+
+              <!-- Tuesday: 1500 -->
+              <div class="bar-column">
+                <div class="bar-tube" style="height: 75%;">
+                  <span class="bar-tooltip">₹1,500</span>
+                </div>
+                <span class="bar-day-label">Tue</span>
+              </div>
+
+              <!-- Wednesday: 1300 -->
+              <div class="bar-column">
+                <div class="bar-tube" style="height: 65%;">
+                  <span class="bar-tooltip">₹1,300</span>
+                </div>
+                <span class="bar-day-label">Wed</span>
+              </div>
+
+              <!-- Thursday: 1800 (Today) -->
+              <div class="bar-column today">
+                <div class="bar-tube" style="height: 90%;">
+                  <span class="bar-tooltip">₹1,850</span>
+                </div>
+                <span class="bar-day-label" style="font-weight: 700; color: var(--c-green-dark);">Thu (Today)</span>
+              </div>
+
+              <!-- Friday: 1600 -->
+              <div class="bar-column">
+                <div class="bar-tube" style="height: 80%;">
+                  <span class="bar-tooltip">₹1,600</span>
+                </div>
+                <span class="bar-day-label">Fri</span>
+              </div>
+
+              <!-- Saturday: 2000 -->
+              <div class="bar-column">
+                <div class="bar-tube" style="height: 100%;">
+                  <span class="bar-tooltip">₹2,000</span>
+                </div>
+                <span class="bar-day-label">Sat</span>
+              </div>
+
+              <!-- Sunday: 950 -->
+              <div class="bar-column">
+                <div class="bar-tube" style="height: 47%;">
+                  <span class="bar-tooltip">₹950</span>
+                </div>
+                <span class="bar-day-label">Sun</span>
+              </div>
+
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 14px; font-size: 0.76rem; color: var(--c-text-muted);">
+              <span>Base rate: ₹28 / km + Produce weight surcharge</span>
+              <span>Average Daily: ₹1,480</span>
+            </div>
+          </div>
+
+          <!-- Trip Earnings Breakdown -->
+          <div class="detail-box">
+            <h3 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 12px;">Today's Trip Payouts</h3>
+            <div class="stat-breakdown-list">
+              <div class="stat-item">
+                <div>
+                  <div class="stat-title">FM-24081 • Tomatoes (354 kg)</div>
+                  <div style="font-size: 0.72rem; color: var(--c-text-muted);">Jalandhar → Nakodar (18.6 km)</div>
+                </div>
+                <div class="stat-amount" style="color: var(--c-green-primary);">₹520</div>
+              </div>
+
+              <div class="stat-item">
+                <div>
+                  <div class="stat-title">FM-24082 • Potatoes (500 kg)</div>
+                  <div style="font-size: 0.72rem; color: var(--c-text-muted);">Kartarpur → Phagwara (26.4 km)</div>
+                </div>
+                <div class="stat-amount" style="color: var(--c-green-primary);">₹680</div>
+              </div>
+
+              <div class="stat-item">
+                <div>
+                  <div class="stat-title">FM-24083 • Onions (280 kg)</div>
+                  <div style="font-size: 0.72rem; color: var(--c-text-muted);">Nakodar → Jalandhar (22.1 km)</div>
+                </div>
+                <div class="stat-amount" style="color: var(--c-green-primary);">₹610</div>
+              </div>
+
+              <div class="stat-item" style="background: var(--c-surface); border: 1px solid var(--c-border); font-weight: 700;">
+                <div>Total Today</div>
+                <div style="color: var(--c-green-primary); font-size: 1.15rem;">₹1,850</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           PANEL 6: PERFORMANCE (KPIS & PROGRESS INDICATORS)
+           ================================================================== -->
+      <section id="panel-performance" class="view-panel content-canvas">
+        <div class="section-header">
+          <div class="section-title-group">
+            <h2 class="section-title">Agent Performance & Ratings</h2>
+            <span class="section-desc">Logistics quality indicators, farmer ratings, and delivery completion reliability.</span>
+          </div>
+          <span class="status-pill status-online">Top Rated Driver • Cluster Jalandhar</span>
+        </div>
+
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <span class="kpi-title">Delivery Success</span>
+            <div class="kpi-value">96%</div>
+            <div class="progress-track">
+              <div class="progress-fill" style="width: 96%;"></div>
+            </div>
+            <span style="font-size: 0.72rem; color: var(--c-text-muted); margin-top: 6px;">Zero cargo spoil or damage</span>
+          </div>
+
+          <div class="kpi-card">
+            <span class="kpi-title">On-time Rate</span>
+            <div class="kpi-value">92%</div>
+            <div class="progress-track">
+              <div class="progress-fill" style="width: 92%; background-color: var(--c-harvest-gold);"></div>
+            </div>
+            <span style="font-size: 0.72rem; color: var(--c-text-muted); margin-top: 6px;">Adhering to Mandi pickup window</span>
+          </div>
+
+          <div class="kpi-card">
+            <span class="kpi-title">Average Rating</span>
+            <div class="kpi-value" style="color: var(--c-earth);">4.8 <span style="font-size: 1.1rem;">★</span></div>
+            <div class="progress-track">
+              <div class="progress-fill" style="width: 96%; background-color: var(--c-earth);"></div>
+            </div>
+            <span style="font-size: 0.72rem; color: var(--c-text-muted); margin-top: 6px;">Based on 142 farmer reviews</span>
+          </div>
+
+          <div class="kpi-card">
+            <span class="kpi-title">Total Deliveries</span>
+            <div class="kpi-value">184</div>
+            <div class="progress-track">
+              <div class="progress-fill" style="width: 85%;"></div>
+            </div>
+            <span style="font-size: 0.72rem; color: var(--c-text-muted); margin-top: 6px;">Completed since onboarding</span>
+          </div>
+        </div>
+
+        <div class="team-note-banner">
+          <div class="team-note-title">Logistics Coordinator Team Note</div>
+          <div class="team-note-body">
+            “Your on-time delivery rate is strong. Prioritise the Nakodar route during the morning window to maintain today's schedule. Tomato shipments require crate ventilation checks upon pickup at Jalandhar.”
+          </div>
+        </div>
+
+        <div class="grid-equal" style="margin-top: 24px;">
+          <div class="detail-box">
+            <h3 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 8px;">Recent Farmer Reviews</h3>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <div style="padding: 10px; background: var(--c-surface-subtle); border-radius: var(--radius-sm); font-size: 0.82rem;">
+                <div style="display: flex; justify-content: space-between; font-weight: 600; margin-bottom: 2px;">
+                  <span>Harpreet Singh (Tomatoes)</span>
+                  <span style="color: var(--c-harvest-gold);">★★★★★</span>
+                </div>
+                <div style="color: var(--c-text-secondary); font-style: italic;">“Ramesh arrived right at the farm gate with clean crates and careful handling.”</div>
+              </div>
+
+              <div style="padding: 10px; background: var(--c-surface-subtle); border-radius: var(--radius-sm); font-size: 0.82rem;">
+                <div style="display: flex; justify-content: space-between; font-weight: 600; margin-bottom: 2px;">
+                  <span>Gurpreet Kaur (Potatoes)</span>
+                  <span style="color: var(--c-harvest-gold);">★★★★★</span>
+                </div>
+                <div style="color: var(--c-text-secondary); font-style: italic;">“Quick weighing at Kartarpur collection point and fast dispatch.”</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="detail-box">
+            <h3 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 8px;">Vehicle Compliance (Tata Ace)</h3>
+            <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.82rem;">
+              <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--c-border-subtle);">
+                <span style="color: var(--c-text-secondary);">Registration</span>
+                <strong>PB 08 AB 4592</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--c-border-subtle);">
+                <span style="color: var(--c-text-secondary);">Fitness Certificate</span>
+                <span style="color: #166534; font-weight: 600;">Valid until Nov 2027</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--c-border-subtle);">
+                <span style="color: var(--c-text-secondary);">Goods Insurance</span>
+                <span style="color: #166534; font-weight: 600;">Active Policy (Comprehensive)</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: 6px 0;">
+                <span style="color: var(--c-text-secondary);">Payload Capacity</span>
+                <strong>1,000 kg (Small Goods Vehicle)</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+</body>
+</html>

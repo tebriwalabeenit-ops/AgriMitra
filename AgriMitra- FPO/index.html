@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgriMitra — FPO Dashboard | Nashik Farmers Collective</title>
+  <meta name="description" content="AgriMitra FPO Dashboard — Connect, aggregate farmer produce, discover buyer demand and trade agricultural commodities efficiently.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-layout" id="appLayout">
+    
+    <!-- Mobile Navigation Overlay -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand-block">
+          <img src="logo.png" alt="AgriMitra Logo" class="brand-logo-img" style="width: 38px; height: 38px; object-fit: contain; border-radius: 8px;">
+          <div>
+            <div class="brand-name">AgriMitra</div>
+            <div class="brand-tagline">Connect. Trade. Grow.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="sidebar-nav">
+        <div class="nav-group-label">Management</div>
+        <a href="#overview" class="nav-item active" data-section="overview">
+          <span class="nav-text">Overview</span>
+        </a>
+        <a href="fpo-live-bidding.html" class="nav-item" data-section="live-bidding">
+          <span class="nav-text">Live Bidding</span>
+          <span class="nav-badge priority">3 Live</span>
+        </a>
+        <a href="#farmers" class="nav-item" data-section="farmers">
+          <span class="nav-text">Farmers</span>
+          <span class="nav-badge">184</span>
+        </a>
+        <a href="#produce" class="nav-item" data-section="produce">
+          <span class="nav-text">Produce</span>
+          <span class="nav-badge">18.6t</span>
+        </a>
+        <a href="#buyers" class="nav-item" data-section="buyers">
+          <span class="nav-text">Buyers</span>
+          <span class="nav-badge priority">7</span>
+        </a>
+        <a href="#orders" class="nav-item" data-section="orders">
+          <span class="nav-text">Orders</span>
+          <span class="nav-badge">3</span>
+        </a>
+        <a href="#payments" class="nav-item" data-section="payments">
+          <span class="nav-text">Payments</span>
+        </a>
+        
+        <div class="nav-group-label" style="margin-top: 1.5rem;">Settings</div>
+        <a href="#profile" class="nav-item" data-section="profile">
+          <span class="nav-text">Profile</span>
+        </a>
+      </nav>
+
+      <!-- Sidebar Footer / FPO Badge -->
+      <div class="sidebar-footer">
+        <div class="fpo-profile-card">
+          <div class="fpo-avatar">NF</div>
+          <div class="fpo-details">
+            <div class="fpo-name">Nashik Farmers Collective</div>
+            <div class="fpo-role">FPO #MH-NSK-401 · Active</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <div class="main-wrapper">
+      
+      <!-- TOP HEADER -->
+      <header class="top-header">
+        <div class="header-left">
+          <button class="mobile-toggle-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+          <div>
+            <h1 class="header-greeting">Good morning, Nashik Farmers Collective</h1>
+            <p class="header-sub">Manage your farmers, produce and buyer opportunities.</p>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <!-- State Mode Simulator Pill for Demo/Hackathon -->
+          <div class="demo-controls">
+            <button class="ghost-btn" id="toggleStateBtn" title="Toggle between populated data and realistic empty state">
+              <span class="dot-indicator"></span>
+              <span id="stateModeLabel">Live Data</span>
+            </button>
+          </div>
+
+          <div class="header-fpo-control" id="headerProfileBtn">
+            <div class="header-avatar">NF</div>
+            <div class="header-fpo-info">
+              <span class="fpo-title">Nashik Farmers Collective</span>
+              <span class="fpo-location">Nashik District, Maharashtra</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- FPO Dashboard Horizontal Navbar: Dashboard | Products | Orders | Live Bidding | Profile -->
+      <nav class="fpo-top-nav-bar" aria-label="FPO Primary Navigation" style="background: #FFFFFF; border-bottom: 1px solid var(--color-border); padding: 0.5rem 1.5rem; display: flex; align-items: center; gap: 0.75rem; overflow-x: auto;">
+        <a href="index.html" class="nav-link active">Dashboard</a>
+        <a href="#produceSection" class="nav-link">Products</a>
+        <a href="#ordersSection" class="nav-link">Orders</a>
+        <a href="fpo-live-bidding.html" class="nav-link" style="display: inline-flex; align-items: center; gap: 6px;">
+          Live Bidding
+          <span class="badge-live" style="font-size: 0.65rem; padding: 2px 6px;"><span class="live-dot" style="width: 6px; height: 6px;"></span>3 Live</span>
+        </a>
+        <a href="#profile" class="nav-link">Profile</a>
+      </nav>
+
+      <!-- DASHBOARD MAIN BODY -->
+      <main class="dashboard-content" id="dashboardMain">
+        
+        <!-- SECTION 6: TOP SUMMARY CARDS -->
+        <section class="metrics-grid" id="metricsSection">
+          
+          <div class="metric-card" tabindex="0" role="button" onclick="handleMetricClick('farmers')">
+            <div class="metric-label">Registered Farmers</div>
+            <div class="metric-value">184</div>
+            <div class="metric-sub positive">
+              <span class="sub-arrow">↑</span> +6 this month
+            </div>
+          </div>
+
+          <div class="metric-card" tabindex="0" role="button" onclick="handleMetricClick('produce')">
+            <div class="metric-label">Available Produce</div>
+            <div class="metric-value">18.6 tonnes</div>
+            <div class="metric-sub">Across 4 crops</div>
+          </div>
+
+          <div class="metric-card" tabindex="0" role="button" onclick="handleMetricClick('lots')">
+            <div class="metric-label">Active Bulk Lots</div>
+            <div class="metric-value">12</div>
+            <div class="metric-sub positive">4 ready for offers</div>
+          </div>
+
+          <div class="metric-card" tabindex="0" role="button" onclick="handleMetricClick('buyers')">
+            <div class="metric-label">Buyer Requests</div>
+            <div class="metric-value">7</div>
+            <div class="metric-sub highlight">3 high-priority</div>
+          </div>
+
+        </section>
+
+        <!-- SECTION 7: MAIN ACTION BANNER -->
+        <section class="main-action-banner">
+          <div class="action-banner-content">
+            <div class="action-banner-text">
+              <div class="action-badge">FPO Core Platform Action</div>
+              <h2 class="action-title">Create Bulk Lot</h2>
+              <p class="action-description">Combine produce from multiple farmers into one larger lot.</p>
+            </div>
+            <button class="primary-btn lg-btn" id="openCreateLotModalBtn">
+              Create Bulk Lot
+            </button>
+          </div>
+        </section>
+
+        <!-- LIVE TRADING & ACTIVE BIDDING SECTION (FPO DASHBOARD) -->
+        <section class="content-card" id="live-trading" data-anchor="live-bidding" style="border: 2px solid var(--color-primary); margin-bottom: 2rem; scroll-margin-top: 80px;">
+          <div id="live-bidding" style="position: relative; top: -80px;"></div>
+          <div class="card-header" style="border-bottom: 1px solid var(--color-border-light); padding-bottom: 1rem; margin-bottom: 1.25rem;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                <span class="badge-live">
+                  <span class="live-dot" aria-hidden="true"></span>
+                  LIVE BIDDING ACTIVE
+                </span>
+                <span style="font-size: 0.75rem; color: var(--color-text-muted); font-weight: 600;">3 SESSIONS RUNNING</span>
+              </div>
+              <h2 class="card-title" style="font-size: 1.5rem; color: var(--color-primary); margin: 0;">
+                Live Trading Sessions
+              </h2>
+              <p class="card-subtitle" style="margin-top: 4px;">
+                Real-time mandi trading sessions for your FPO lots. Bids close automatically to the highest valid bidder.
+              </p>
+            </div>
+            <div class="card-header-actions" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+              <a href="create-live-bidding.html" class="btn btn-primary" style="text-decoration: none;">
+                + Create Live Bidding
+              </a>
+              <a href="fpo-live-bidding.html" class="btn btn-secondary" style="text-decoration: none;">
+                Manage All Sessions
+              </a>
+            </div>
+          </div>
+
+          <!-- 3 Live Session Cards Grid -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
+            
+            <!-- Session 1: Premium Wheat -->
+            <div style="background-color: var(--color-surface-alt, #F1F6F2); border: 1px solid var(--color-border); border-radius: var(--radius-md, 10px); padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <img src="assets/produce/wheat.jpg" alt="Premium Wheat Real Photo" style="width: 100%; height: 130px; object-fit: cover; border-radius: 6px; margin-bottom: 10px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <span class="badge-live" style="font-size: 0.7rem; padding: 2px 8px;">
+                    <span class="live-dot" aria-hidden="true"></span> LIVE
+                  </span>
+                  <span style="font-size: 0.8rem; font-weight: 700; color: #C62828; font-variant-numeric: tabular-nums;">
+                    00:12:45 remaining
+                  </span>
+                </div>
+                <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--color-text-main); margin: 4px 0;">Premium Wheat</h3>
+                <p style="font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 12px;">Lot #TRD-WHT-820 · Ludhiana Mandi Hub</p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.8rem; margin-bottom: 12px; background: #FFFFFF; padding: 8px 10px; border-radius: 6px; border: 1px solid var(--color-border-light);">
+                  <div>
+                    <span style="color: var(--color-text-muted); display: block; font-size: 0.7rem;">Quantity</span>
+                    <strong>5,000 kg</strong>
+                  </div>
+                  <div>
+                    <span style="color: var(--color-text-muted); display: block; font-size: 0.7rem;">Starting Price</span>
+                    <strong>₹28/kg</strong>
+                  </div>
+                  <div>
+                    <span style="color: var(--color-text-muted); display: block; font-size: 0.7rem;">Active Bidders</span>
+                    <strong>8 Bidders</strong>
+                  </div>
+                  <div>
+                    <span style="color: var(--color-text-muted); display: block; font-size: 0.7rem;">Current Highest</span>
+                    <strong style="color: var(--color-primary); font-size: 0.95rem;">₹32.50/kg</strong>
+                  </div>
+                </div>
+              </div>
+
+              <a href="fpo-bidding-status.html" class="btn btn-secondary" style="width: 100%; text-align: center; text-decoration: none; font-size: 0.85rem; padding: 8px;">
+                VIEW LIVE STATUS
+              </a>
+            </div>
+
+            <!-- Session 2: Fresh Potatoes -->
+            <div style="background-color: var(--color-surface-alt, #F1F6F2); border: 1px solid var(--color-border); border-radius: var(--radius-md, 10px); padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <img src="assets/produce/potato.jpg" alt="Fresh Potatoes Real Photo" style="width: 100%; height: 130px; object-fit: cover; border-radius: 6px; margin-bottom: 10px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <span class="badge-live" style="font-size: 0.7rem; padding: 2px 8px;">
+                    <span class="live-dot" aria-hidden="true"></span> LIVE
+                  </span>
+                  <span style="font-size: 0.8rem; font-weight: 700; color: #C62828; font-variant-numeric: tabular-nums;">
+                    00:08:22 remaining
+                  </span>
+                </div>
+                <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--color-text-main); margin: 4px 0;">Fresh Potatoes</h3>
+                <p style="font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 12px;">Lot #TRD-POT-114 · Malegaon Center</p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.8rem; margin-bottom: 12px; background: #FFFFFF; padding: 8px 10px; border-radius: 6px; border: 1px solid var(--color-border-light);">
+                  <div>
+                    <span style="color: var(--color-text-muted); display: block; font-size: 0.7rem;">Quantity</span>
+                    <strong>3,000 kg</strong>
+                  </div>
+                  <div>
+                    <span style="color: var(--color-text-muted); display: block; font-size: 0.7rem;">Starting Price</span>
+                    <strong>₹22/kg</strong>
+                  </div>
+                  <div>
+                    <span style="color: var(--color-text-muted); display: block; font-size: 0.7rem;">Active Bidders</span>
+                    <strong>6 Bidders</strong>
+                  </div>
+                  <div>
+                    <span style="color: var(--color-text-muted); display: block; font-size: 0.7rem;">Current Highest</span>
+                    <strong style="color: var(--color-primary); font-size: 0.95rem;">₹25.00/kg</strong>
+                  </div>
+                </div>
+              </div>
+
+              <a href="fpo-bidding-status.html" class="btn btn-secondary" style="width: 100%; text-align: center; text-decoration: none; font-size: 0.85rem; padding: 8px;">
+                VIEW LIVE STATUS
+              </a>
+            </div>
+
+            <!-- Session 3: Basmati Rice -->
+            <div style="background-color: var(--color-surface-alt, #F1F6F2); border: 1px solid var(--color-border); border-radius: var(--radius-md, 10px); padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <img src="assets/produce/rice.jpg" alt="Basmati Rice Real Photo" style="width: 100%; height: 130px; object-fit: cover; border-radius: 6px; margin-bottom: 10px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <span class="badge-live" style="font-size: 0.7rem; padding: 2px 8px;">
+                    <span class="live-dot" aria-hidden="true"></span> LIVE
+                  </span>
+                  <span style="font-size: 0.8rem; font-weight: 700; color: #C62828; font-variant-numeric: tabular-nums;">
+                    00:21:10 remaining
+                  </span>
+                </div>
+                <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--color-text-main); margin: 4px 0;">Basmati Rice</h3>
+                <p style="font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 12px;">Lot #TRD-RIC-552 · Karnal Mandi Hub</p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.8rem; margin-bottom: 12px; background: #FFFFFF; padding: 8px 10px; border-radius: 6px; border: 1px solid var(--color-border-light);">
+                  <div>
+                    <span style="color: var(--color-text-muted); display: block; font-size: 0.7rem;">Quantity</span>
+                    <strong>4,500 kg</strong>
+                  </div>
+                  <div>
+                    <span style="color: var(--color-text-muted); display: block; font-size: 0.7rem;">Starting Price</span>
+                    <strong>₹60/kg</strong>
+                  </div>
+                  <div>
+                    <span style="color: var(--color-text-muted); display: block; font-size: 0.7rem;">Active Bidders</span>
+                    <strong>11 Bidders</strong>
+                  </div>
+                  <div>
+                    <span style="color: var(--color-text-muted); display: block; font-size: 0.7rem;">Current Highest</span>
+                    <strong style="color: var(--color-primary); font-size: 0.95rem;">₹68.50/kg</strong>
+                  </div>
+                </div>
+              </div>
+
+              <a href="fpo-bidding-status.html" class="btn btn-secondary" style="width: 100%; text-align: center; text-decoration: none; font-size: 0.85rem; padding: 8px;">
+                VIEW LIVE STATUS
+              </a>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- SECTION 16: FPO SMART INSIGHT -->
+        <section class="smart-insight-card" id="smartInsightSection">
+          <div class="insight-pill">AgriMitra Insight</div>
+          <div class="insight-body">
+            <div class="insight-message">
+              Tomato demand is currently higher than available Grade A supply in your area.
+            </div>
+            <div class="insight-data">
+              5 tonnes requested · 6.4 tonnes available
+            </div>
+          </div>
+          <button class="secondary-btn insight-btn" onclick="openOpportunityDetail('freshfoods')">
+            View Opportunity
+          </button>
+        </section>
+
+        <!-- TWO COLUMN DASHBOARD GRID -->
+        <div class="dashboard-columns">
+          
+          <!-- PRIMARY LEFT COLUMN (PRODUCE, DEMAND, RECOMMENDATIONS, BULK LOTS) -->
+          <div class="primary-column">
+            
+            <!-- SECTION 8: AVAILABLE PRODUCE -->
+            <section class="content-card" id="produceSection">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title">Available Produce</h2>
+                  <p class="card-subtitle">Aggregated stock ready at local Nashik collection centers</p>
+                </div>
+                <div class="card-header-actions">
+                  <div class="table-filter-group" id="produceFilterGroup">
+                    <button class="chip-filter active" data-crop="all">All (4)</button>
+                    <button class="chip-filter" data-crop="tomatoes">Tomatoes</button>
+                    <button class="chip-filter" data-crop="onions">Onions</button>
+                  </div>
+                  <button class="ghost-btn sm-btn" onclick="openAllProduceView()">View All Produce</button>
+                </div>
+              </div>
+
+              <!-- Available Produce Table Container -->
+              <div class="table-responsive" id="produceTableContainer">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Crop</th>
+                      <th>Available Quantity</th>
+                      <th>Farmers</th>
+                      <th>Grade</th>
+                      <th class="text-right">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="produceTableBody">
+                    <tr data-crop="tomatoes">
+                      <td>
+                        <div class="crop-cell">
+                          <span class="crop-dot tomato-dot"></span>
+                          <span class="crop-name">Tomatoes</span>
+                        </div>
+                      </td>
+                      <td class="font-bold">6.4 tonnes</td>
+                      <td>23 farmers</td>
+                      <td><span class="grade-badge grade-a">Grade A</span></td>
+                      <td class="text-right">
+                        <button class="action-link-btn" onclick="openProduceDetail('tomatoes')">View</button>
+                      </td>
+                    </tr>
+                    <tr data-crop="onions">
+                      <td>
+                        <div class="crop-cell">
+                          <span class="crop-dot onion-dot"></span>
+                          <span class="crop-name">Onions</span>
+                        </div>
+                      </td>
+                      <td class="font-bold">8.2 tonnes</td>
+                      <td>31 farmers</td>
+                      <td><span class="grade-badge grade-a">Grade A</span></td>
+                      <td class="text-right">
+                        <button class="action-link-btn" onclick="openProduceDetail('onions')">View</button>
+                      </td>
+                    </tr>
+                    <tr data-crop="potatoes">
+                      <td>
+                        <div class="crop-cell">
+                          <span class="crop-dot potato-dot"></span>
+                          <span class="crop-name">Potatoes</span>
+                        </div>
+                      </td>
+                      <td class="font-bold">4.0 tonnes</td>
+                      <td>18 farmers</td>
+                      <td><span class="grade-badge grade-b">Grade B</span></td>
+                      <td class="text-right">
+                        <button class="action-link-btn" onclick="openProduceDetail('potatoes')">View</button>
+                      </td>
+                    </tr>
+                    <tr data-crop="wheat">
+                      <td>
+                        <div class="crop-cell">
+                          <span class="crop-dot wheat-dot"></span>
+                          <span class="crop-name">Wheat</span>
+                        </div>
+                      </td>
+                      <td class="font-bold">2.1 tonnes</td>
+                      <td>12 farmers</td>
+                      <td><span class="grade-badge grade-a">Grade A</span></td>
+                      <td class="text-right">
+                        <button class="action-link-btn" onclick="openProduceDetail('wheat')">View</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="empty-state-box hidden" id="produceEmptyState">
+                <div class="empty-state-title">No produce registered</div>
+                <p class="empty-state-desc">Farmer produce entries will appear here once farmers sync availability.</p>
+                <button class="secondary-btn sm-btn" onclick="resetStateToLive()">Refresh</button>
+              </div>
+            </section>
+
+            <!-- SECTION 9: CURRENT BUYER DEMAND -->
+            <section class="content-card" id="demandSection">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title">Current Buyer Demand</h2>
+                  <p class="card-subtitle">Verified procurement requests looking for FPO fulfillment</p>
+                </div>
+                <span class="badge-counter">3 active requests</span>
+              </div>
+
+              <div class="demand-cards-grid" id="demandCardsGrid">
+                
+                <!-- Card 1: FreshFoods -->
+                <div class="demand-card">
+                  <div class="demand-card-top">
+                    <div>
+                      <div class="buyer-org-name">FreshFoods</div>
+                      <div class="demand-crop-title">Tomatoes</div>
+                    </div>
+                    <span class="grade-badge grade-a">Grade A</span>
+                  </div>
+                  <div class="demand-specs">
+                    <div class="demand-spec-item">
+                      <span class="spec-label">Requirement</span>
+                      <span class="spec-value">5 tonnes needed</span>
+                    </div>
+                    <div class="demand-spec-item">
+                      <span class="spec-label">Offer</span>
+                      <span class="spec-value price">₹33/kg</span>
+                    </div>
+                    <div class="demand-spec-item">
+                      <span class="spec-label">Required by</span>
+                      <span class="spec-value">12 Sept</span>
+                    </div>
+                  </div>
+                  <div class="demand-card-footer">
+                    <button class="secondary-btn w-full" onclick="openOpportunityDetail('freshfoods')">
+                      View Opportunity
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Card 2: Maharashtra Retail Group -->
+                <div class="demand-card">
+                  <div class="demand-card-top">
+                    <div>
+                      <div class="buyer-org-name">Maharashtra Retail Group</div>
+                      <div class="demand-crop-title">Onions</div>
+                    </div>
+                    <span class="grade-badge grade-a">Grade A</span>
+                  </div>
+                  <div class="demand-specs">
+                    <div class="demand-spec-item">
+                      <span class="spec-label">Requirement</span>
+                      <span class="spec-value">8 tonnes needed</span>
+                    </div>
+                    <div class="demand-spec-item">
+                      <span class="spec-label">Offer</span>
+                      <span class="spec-value price">₹29/kg</span>
+                    </div>
+                    <div class="demand-spec-item">
+                      <span class="spec-label">Required by</span>
+                      <span class="spec-value">15 Sept</span>
+                    </div>
+                  </div>
+                  <div class="demand-card-footer">
+                    <button class="secondary-btn w-full" onclick="openOpportunityDetail('retail_group')">
+                      View Opportunity
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Card 3: Hotel Supply Network -->
+                <div class="demand-card">
+                  <div class="demand-card-top">
+                    <div>
+                      <div class="buyer-org-name">Hotel Supply Network</div>
+                      <div class="demand-crop-title">Potatoes</div>
+                    </div>
+                    <span class="grade-badge grade-a">Grade A</span>
+                  </div>
+                  <div class="demand-specs">
+                    <div class="demand-spec-item">
+                      <span class="spec-label">Requirement</span>
+                      <span class="spec-value">2 tonnes needed</span>
+                    </div>
+                    <div class="demand-spec-item">
+                      <span class="spec-label">Offer</span>
+                      <span class="spec-value price">₹26/kg</span>
+                    </div>
+                    <div class="demand-spec-item">
+                      <span class="spec-label">Required by</span>
+                      <span class="spec-value">10 Sept</span>
+                    </div>
+                  </div>
+                  <div class="demand-card-footer">
+                    <button class="secondary-btn w-full" onclick="openOpportunityDetail('hotel_supply')">
+                      View Opportunity
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="empty-state-box hidden" id="demandEmptyState">
+                <div class="empty-state-title">No active buyer requests</div>
+                <p class="empty-state-desc">New buyer requirements will appear here.</p>
+                <button class="secondary-btn sm-btn" onclick="resetStateToLive()">Refresh</button>
+              </div>
+            </section>
+
+            <!-- SECTION 10: RECOMMENDED OPPORTUNITIES -->
+            <section class="content-card" id="recommendationsSection">
+              <div class="card-header">
+                <div>
+                  <div class="card-title-row">
+                    <h2 class="card-title">Recommended Opportunities</h2>
+                    <span class="intelligence-badge">Market Intelligence</span>
+                  </div>
+                  <p class="card-subtitle">Algorithmically matched based on price + quantity + distance + transport logistics</p>
+                </div>
+              </div>
+
+              <div class="opportunities-list" id="opportunitiesList">
+                
+                <!-- Recommendation 1: Tomatoes -> FreshFoods -->
+                <div class="opportunity-card">
+                  <div class="opportunity-top">
+                    <div class="match-heading-group">
+                      <div class="opportunity-route">Tomatoes → FreshFoods</div>
+                      <div class="opportunity-distance">Distance: 28 km · Nashik APMC Corridor</div>
+                    </div>
+                    <span class="match-status-badge strong">Strong Match</span>
+                  </div>
+
+                  <div class="opp-metrics-row">
+                    <div class="opp-metric">
+                      <span class="opp-label">Available</span>
+                      <span class="opp-val">6.4 tonnes</span>
+                    </div>
+                    <div class="opp-metric">
+                      <span class="opp-label">Buyer needs</span>
+                      <span class="opp-val">5 tonnes</span>
+                    </div>
+                    <div class="opp-metric">
+                      <span class="opp-label">Offer</span>
+                      <span class="opp-val">₹33/kg</span>
+                    </div>
+                    <div class="opp-metric">
+                      <span class="opp-label">Estimated transport</span>
+                      <span class="opp-val text-muted">₹1.80/kg</span>
+                    </div>
+                    <div class="opp-metric highlight-metric">
+                      <span class="opp-label">Estimated net</span>
+                      <span class="opp-val net-price">₹31.20/kg</span>
+                    </div>
+                  </div>
+
+                  <div class="opp-disclaimer">
+                    Estimated net realization accounts for 28 km transit. Final settlement calculated at physical weighbridge.
+                  </div>
+
+                  <div class="opp-actions">
+                    <button class="primary-btn sm-btn" onclick="openOpportunityDetail('freshfoods')">
+                      View Offer
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Recommendation 2: Onions -> Retail Group -->
+                <div class="opportunity-card">
+                  <div class="opportunity-top">
+                    <div class="match-heading-group">
+                      <div class="opportunity-route">Onions → Retail Group</div>
+                      <div class="opportunity-distance">Distance: 35 km · Highway Logistics Hub</div>
+                    </div>
+                    <span class="match-status-badge good">Good Match</span>
+                  </div>
+
+                  <div class="opp-metrics-row">
+                    <div class="opp-metric">
+                      <span class="opp-label">Available</span>
+                      <span class="opp-val">8.2 tonnes</span>
+                    </div>
+                    <div class="opp-metric">
+                      <span class="opp-label">Buyer needs</span>
+                      <span class="opp-val">8 tonnes</span>
+                    </div>
+                    <div class="opp-metric">
+                      <span class="opp-label">Offer</span>
+                      <span class="opp-val">₹29/kg</span>
+                    </div>
+                    <div class="opp-metric">
+                      <span class="opp-label">Estimated transport</span>
+                      <span class="opp-val text-muted">₹1.50/kg</span>
+                    </div>
+                    <div class="opp-metric highlight-metric">
+                      <span class="opp-label">Estimated net</span>
+                      <span class="opp-val net-price">₹27.50/kg</span>
+                    </div>
+                  </div>
+
+                  <div class="opp-disclaimer">
+                    Full truckload aggregation matches 31 Nashik onion growers. High fulfillment reliability.
+                  </div>
+
+                  <div class="opp-actions">
+                    <button class="primary-btn sm-btn" onclick="openOpportunityDetail('retail_group')">
+                      View Offer
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </section>
+
+            <!-- SECTION 11: ACTIVE BULK LOTS -->
+            <section class="content-card" id="lotsSection">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title">Active Bulk Lots</h2>
+                  <p class="card-subtitle">Aggregated farmer produce pooled into ready commercial units</p>
+                </div>
+                <button class="secondary-btn sm-btn" onclick="openCreateLotModal()">+ New Lot</button>
+              </div>
+
+              <div class="lots-grid" id="lotsGrid">
+                
+                <!-- Lot 1: #FPO1048 -->
+                <div class="lot-card" id="lot-FPO1048">
+                  <div class="lot-header">
+                    <div>
+                      <div class="lot-id">Lot #FPO1048</div>
+                      <div class="lot-crop-name">Tomatoes</div>
+                    </div>
+                    <span class="status-pill status-offer-received">Offer Received</span>
+                  </div>
+                  <div class="lot-specs-list">
+                    <div class="lot-spec-row">
+                      <span class="lot-spec-name">Quantity</span>
+                      <span class="lot-spec-data font-bold">5 tonnes</span>
+                    </div>
+                    <div class="lot-spec-row">
+                      <span class="lot-spec-name">Grade</span>
+                      <span class="lot-spec-data">Grade A</span>
+                    </div>
+                    <div class="lot-spec-row">
+                      <span class="lot-spec-name">Farmers</span>
+                      <span class="lot-spec-data">23 farmers</span>
+                    </div>
+                    <div class="lot-spec-row">
+                      <span class="lot-spec-name">Current Offer</span>
+                      <span class="lot-spec-data price">₹33/kg</span>
+                    </div>
+                  </div>
+                  <div class="lot-card-actions">
+                    <button class="secondary-btn sm-btn w-full" onclick="openLotDetail('FPO1048')">
+                      View Lot
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Lot 2: #FPO1047 -->
+                <div class="lot-card" id="lot-FPO1047">
+                  <div class="lot-header">
+                    <div>
+                      <div class="lot-id">Lot #FPO1047</div>
+                      <div class="lot-crop-name">Onions</div>
+                    </div>
+                    <span class="status-pill status-finding-buyers">Finding Buyers</span>
+                  </div>
+                  <div class="lot-specs-list">
+                    <div class="lot-spec-row">
+                      <span class="lot-spec-name">Quantity</span>
+                      <span class="lot-spec-data font-bold">8 tonnes</span>
+                    </div>
+                    <div class="lot-spec-row">
+                      <span class="lot-spec-name">Grade</span>
+                      <span class="lot-spec-data">Grade A</span>
+                    </div>
+                    <div class="lot-spec-row">
+                      <span class="lot-spec-name">Farmers</span>
+                      <span class="lot-spec-data">31 farmers</span>
+                    </div>
+                    <div class="lot-spec-row">
+                      <span class="lot-spec-name">Current Offer</span>
+                      <span class="lot-spec-data text-muted">Awaiting offers</span>
+                    </div>
+                  </div>
+                  <div class="lot-card-actions">
+                    <button class="secondary-btn sm-btn w-full" onclick="openLotDetail('FPO1047')">
+                      View Lot
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </section>
+
+          </div>
+
+          <!-- SECONDARY RIGHT COLUMN (MARKET SNAPSHOT, ORDERS, PAYMENTS, FARMER ACTIVITY) -->
+          <div class="secondary-column">
+            
+            <!-- SECTION 15: MARKET SNAPSHOT -->
+            <section class="content-card" id="marketSection">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title">Market Snapshot</h2>
+                  <p class="card-subtitle">Nashik regional Mandi wholesale benchmark</p>
+                </div>
+              </div>
+
+              <div class="market-list">
+                <div class="market-row">
+                  <div class="market-crop-col">
+                    <span class="crop-name">Tomato</span>
+                    <span class="market-source">Lasalgaon APMC</span>
+                  </div>
+                  <div class="market-price-col">
+                    <span class="market-price">₹33/kg</span>
+                    <span class="trend-indicator up">↑ 4%</span>
+                  </div>
+                </div>
+
+                <div class="market-row">
+                  <div class="market-crop-col">
+                    <span class="crop-name">Onion</span>
+                    <span class="market-source">Pimpalgaon APMC</span>
+                  </div>
+                  <div class="market-price-col">
+                    <span class="market-price">₹29/kg</span>
+                    <span class="trend-indicator stable">→ Stable</span>
+                  </div>
+                </div>
+
+                <div class="market-row">
+                  <div class="market-crop-col">
+                    <span class="crop-name">Potato</span>
+                    <span class="market-source">Nashik Central</span>
+                  </div>
+                  <div class="market-price-col">
+                    <span class="market-price">₹24/kg</span>
+                    <span class="trend-indicator down">↓ 2%</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-footer-action">
+                <button class="text-link-btn" onclick="openMarketPricesModal()">
+                  View Market Prices →
+                </button>
+              </div>
+            </section>
+
+            <!-- SECTION 12: RECENT ORDERS -->
+            <section class="content-card" id="ordersSection">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title">Recent Orders</h2>
+                  <p class="card-subtitle">Track fulfillment and dispatch milestones</p>
+                </div>
+              </div>
+
+              <div class="orders-list">
+                
+                <!-- Order #1048 -->
+                <div class="order-item">
+                  <div class="order-main-line">
+                    <span class="order-id">Order #1048</span>
+                    <span class="status-pill status-in-transit">In Transit</span>
+                  </div>
+                  <div class="order-details-line">
+                    <span>Tomatoes · 5 tonnes</span>
+                    <span class="order-buyer">FreshFoods</span>
+                  </div>
+                  <div class="order-pricing-line">
+                    <span class="order-rate">₹33/kg</span>
+                    <span class="order-total font-bold">₹1,65,000</span>
+                  </div>
+                </div>
+
+                <!-- Order #1047 -->
+                <div class="order-item">
+                  <div class="order-main-line">
+                    <span class="order-id">Order #1047</span>
+                    <span class="status-pill status-delivered">Delivered</span>
+                  </div>
+                  <div class="order-details-line">
+                    <span>Onions · 3 tonnes</span>
+                    <span class="order-buyer">Retail Group</span>
+                  </div>
+                  <div class="order-pricing-line">
+                    <span class="order-rate">₹29/kg</span>
+                    <span class="order-total font-bold">₹87,000</span>
+                  </div>
+                </div>
+
+                <!-- Order #1046 -->
+                <div class="order-item">
+                  <div class="order-main-line">
+                    <span class="order-id">Order #1046</span>
+                    <span class="status-pill status-payment-pending">Payment Pending</span>
+                  </div>
+                  <div class="order-details-line">
+                    <span>Potatoes · 2 tonnes</span>
+                    <span class="order-buyer">Hotel Supply Network</span>
+                  </div>
+                  <div class="order-pricing-line">
+                    <span class="order-rate">₹26/kg</span>
+                    <span class="order-total font-bold">₹52,000</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="card-footer-action">
+                <button class="secondary-btn sm-btn w-full" onclick="openAllOrdersModal()">
+                  View Orders
+                </button>
+              </div>
+            </section>
+
+            <!-- SECTION 13: PAYMENTS -->
+            <section class="content-card" id="paymentsSection">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title">Payments</h2>
+                  <p class="card-subtitle">Settlement overview with escrow security</p>
+                </div>
+              </div>
+
+              <!-- 3 Payments Summary Values -->
+              <div class="payments-summary-grid">
+                <div class="pay-stat-box">
+                  <div class="pay-stat-label">Pending</div>
+                  <div class="pay-stat-value pending">₹82,500</div>
+                </div>
+                <div class="pay-stat-box">
+                  <div class="pay-stat-label">Completed</div>
+                  <div class="pay-stat-value">₹3.4 lakh</div>
+                </div>
+                <div class="pay-stat-box">
+                  <div class="pay-stat-label">This Month</div>
+                  <div class="pay-stat-value font-bold">₹5.1 lakh</div>
+                </div>
+              </div>
+
+              <!-- Recent Payments List -->
+              <div class="payments-list">
+                <div class="payment-row">
+                  <div class="pay-entity-col">
+                    <div class="pay-buyer-name">FreshFoods</div>
+                    <div class="pay-date">Due: 14 Sept · Lot #1048</div>
+                  </div>
+                  <div class="pay-status-col">
+                    <div class="pay-amount font-bold">₹165,000</div>
+                    <span class="status-pill status-payment-pending">Pending</span>
+                  </div>
+                </div>
+
+                <div class="payment-row">
+                  <div class="pay-entity-col">
+                    <div class="pay-buyer-name">Retail Group</div>
+                    <div class="pay-date">Settled: 08 Sept · Direct Escrow</div>
+                  </div>
+                  <div class="pay-status-col">
+                    <div class="pay-amount font-bold">₹87,000</div>
+                    <span class="status-pill status-delivered">Completed</span>
+                  </div>
+                </div>
+
+                <div class="payment-row">
+                  <div class="pay-entity-col">
+                    <div class="pay-buyer-name">Hotel Supply Network</div>
+                    <div class="pay-date">Due: 11 Sept · Lot #1046</div>
+                  </div>
+                  <div class="pay-status-col">
+                    <div class="pay-amount font-bold">₹52,000</div>
+                    <span class="status-pill status-payment-pending">Pending</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-footer-action">
+                <button class="secondary-btn sm-btn w-full" onclick="openAllPaymentsModal()">
+                  View Payments
+                </button>
+              </div>
+            </section>
+
+            <!-- SECTION 14: RECENT FARMER ACTIVITY -->
+            <section class="content-card" id="farmerActivitySection">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title">Recent Farmer Activity</h2>
+                  <p class="card-subtitle">Member submissions and updates across Nashik talukas</p>
+                </div>
+              </div>
+
+              <div class="activity-feed">
+                <div class="activity-item">
+                  <div class="activity-dot"></div>
+                  <div class="activity-text">
+                    <span class="activity-strong">23 farmers</span> added tomatoes this week.
+                  </div>
+                </div>
+
+                <div class="activity-item">
+                  <div class="activity-dot"></div>
+                  <div class="activity-text">
+                    <span class="activity-strong">12 farmers</span> contributed to the current onion lot.
+                  </div>
+                </div>
+
+                <div class="activity-item">
+                  <div class="activity-dot"></div>
+                  <div class="activity-text">
+                    <span class="activity-strong">6 farmers</span> updated produce availability.
+                  </div>
+                </div>
+
+                <div class="activity-item">
+                  <div class="activity-dot"></div>
+                  <div class="activity-text">
+                    <span class="activity-strong">4 new farmers</span> joined the FPO.
+                  </div>
+                </div>
+              </div>
+            </section>
+
+          </div>
+
+        </div>
+
+      </main>
+
+    </div>
+
+  </div>
+
+
+  <!-- INTERACTIVE MODALS & DRAWERS -->
+
+  <!-- 1. CREATE BULK LOT MODAL -->
+  <div class="modal-backdrop" id="createLotModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">Create Bulk Lot</h3>
+          <p class="modal-sub">Aggregate verified produce from member farmers into a commercial trading lot</p>
+        </div>
+        <button class="modal-close" onclick="closeModal('createLotModal')">✕</button>
+      </div>
+      
+      <form id="createLotForm" onsubmit="handleCreateLotSubmit(event)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="lotCropSelect">Select Crop</label>
+            <select class="form-select" id="lotCropSelect" required onchange="updateLotFormCalculations()">
+              <option value="Tomatoes">Tomatoes (6.4 tonnes available from 23 farmers)</option>
+              <option value="Onions">Onions (8.2 tonnes available from 31 farmers)</option>
+              <option value="Potatoes">Potatoes (4.0 tonnes available from 18 farmers)</option>
+              <option value="Wheat">Wheat (2.1 tonnes available from 12 farmers)</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="lotQuantityInput">Lot Quantity (tonnes)</label>
+              <input type="number" class="form-input" id="lotQuantityInput" min="0.5" max="10" step="0.5" value="5.0" required oninput="updateLotFormCalculations()">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="lotGradeSelect">Target Grade</label>
+              <select class="form-select" id="lotGradeSelect">
+                <option value="Grade A">Grade A (Uniform size, prime condition)</option>
+                <option value="Grade B">Grade B (Standard market quality)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="lotReservePrice">Target Base Price (₹/kg)</label>
+              <input type="number" class="form-input" id="lotReservePrice" min="10" max="150" value="32" required oninput="updateLotFormCalculations()">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="lotDispatchLocation">Collection Center</label>
+              <input type="text" class="form-input" id="lotDispatchLocation" value="Nashik APMC Hub Godown #2" readonly>
+            </div>
+          </div>
+
+          <!-- Calculated Aggregation Summary Box -->
+          <div class="calc-summary-box">
+            <div class="calc-row">
+              <span class="calc-label">Estimated Participating Farmers</span>
+              <span class="calc-val" id="calcFarmerCount">23 farmers</span>
+            </div>
+            <div class="calc-row">
+              <span class="calc-label">Calculated Lot Valuation</span>
+              <span class="calc-val font-bold" id="calcLotValuation">₹1,60,000</span>
+            </div>
+            <div class="calc-row">
+              <span class="calc-label">Matching Buyer Requests</span>
+              <span class="calc-val highlight" id="calcMatchBuyer">FreshFoods (5t @ ₹33/kg)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="secondary-btn" onclick="closeModal('createLotModal')">Cancel</button>
+          <button type="submit" class="primary-btn">Create Bulk Lot</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. OPPORTUNITY DETAIL MODAL -->
+  <div class="modal-backdrop" id="opportunityDetailModal">
+    <div class="modal-dialog lg-dialog">
+      <div class="modal-header">
+        <div>
+          <div class="badge-row">
+            <span class="match-status-badge strong" id="oppModalMatchBadge">Strong Match</span>
+            <span class="buyer-verified-tag">✓ Verified Buyer</span>
+          </div>
+          <h3 class="modal-title" id="oppModalTitle">FreshFoods — Tomato Procurement Opportunity</h3>
+          <p class="modal-sub" id="oppModalSub">Direct procurement requirement for Nashik region</p>
+        </div>
+        <button class="modal-close" onclick="closeModal('opportunityDetailModal')">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="opp-modal-grid">
+          
+          <div class="opp-info-panel">
+            <div class="panel-section-title">Buyer Specifications</div>
+            <div class="spec-grid">
+              <div class="spec-box">
+                <span class="spec-key">Crop & Grade</span>
+                <span class="spec-data" id="oppModalCrop">Tomatoes · Grade A</span>
+              </div>
+              <div class="spec-box">
+                <span class="spec-key">Required Quantity</span>
+                <span class="spec-data" id="oppModalQuantity">5.0 tonnes</span>
+              </div>
+              <div class="spec-box">
+                <span class="spec-key">Delivery Window</span>
+                <span class="spec-data" id="oppModalDate">By 12 September</span>
+              </div>
+              <div class="spec-box">
+                <span class="spec-key">Destination</span>
+                <span class="spec-data" id="oppModalLocation">FreshFoods Cold Hub, 28 km</span>
+              </div>
+            </div>
+
+            <div class="panel-section-title" style="margin-top: 1.25rem;">Payment Terms</div>
+            <p class="terms-text">
+              100% Escrow secured via AgriMitra platform. 30% released upon dispatch inspection; 70% released upon weighbridge acceptance.
+            </p>
+          </div>
+
+          <div class="opp-financial-panel">
+            <div class="panel-section-title">Logistics & Realization Calculation</div>
+            
+            <div class="breakdown-list">
+              <div class="breakdown-item">
+                <span>Buyer Headline Offer</span>
+                <span class="font-bold" id="oppModalOffer">₹33.00/kg</span>
+              </div>
+              <div class="breakdown-item text-muted">
+                <span>Estimated Local Transport (28 km)</span>
+                <span id="oppModalTransport">- ₹1.80/kg</span>
+              </div>
+              <div class="breakdown-item text-muted">
+                <span>Handling & Weighing</span>
+                <span>₹0.00 (Covered by Buyer)</span>
+              </div>
+              <div class="breakdown-divider"></div>
+              <div class="breakdown-item total-item">
+                <span class="font-bold">Estimated Net Realization</span>
+                <span class="font-bold net-price-lg" id="oppModalNet">₹31.20/kg</span>
+              </div>
+              <div class="breakdown-item">
+                <span class="text-muted">Total Expected Lot Payout</span>
+                <span class="font-bold text-green" id="oppModalTotalPayout">₹1,56,000</span>
+              </div>
+            </div>
+
+            <div class="realization-note">
+              No price is guaranteed. Net estimate based on current carrier rates from Nashik Central collection yard.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="secondary-btn" onclick="closeModal('opportunityDetailModal')">Close</button>
+        <button type="button" class="primary-btn" onclick="assignLotToOpportunity()">Assign Existing Lot #FPO1048</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. PRODUCE DETAIL DRAWER / MODAL -->
+  <div class="modal-backdrop" id="produceDetailModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title" id="produceModalTitle">Produce Breakdown</h3>
+          <p class="modal-sub" id="produceModalSub">Registered farmer contributions ready for aggregation</p>
+        </div>
+        <button class="modal-close" onclick="closeModal('produceDetailModal')">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="produce-overview-bar">
+          <div class="summary-pill">
+            <span class="pill-label">Total Stock</span>
+            <span class="pill-val" id="produceModalTotalQty">6.4 tonnes</span>
+          </div>
+          <div class="summary-pill">
+            <span class="pill-label">Active Growers</span>
+            <span class="pill-val" id="produceModalFarmers">23 farmers</span>
+          </div>
+          <div class="summary-pill">
+            <span class="pill-label">Primary Grade</span>
+            <span class="pill-val" id="produceModalGrade">Grade A</span>
+          </div>
+        </div>
+
+        <div class="panel-section-title" style="margin-top: 1.25rem;">Sample Member Farmer Contributions</div>
+        <div class="farmer-contrib-list" id="farmerContribList">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="secondary-btn" onclick="closeModal('produceDetailModal')">Close</button>
+        <button type="button" class="primary-btn" onclick="closeModal('produceDetailModal'); openCreateLotModal();">Aggregate Into Bulk Lot</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. ACTIVE LOT DETAIL MODAL -->
+  <div class="modal-backdrop" id="lotDetailModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title" id="lotDetailTitle">Bulk Lot #FPO1048</h3>
+          <p class="modal-sub" id="lotDetailCrop">Tomatoes · 5 tonnes · Grade A</p>
+        </div>
+        <button class="modal-close" onclick="closeModal('lotDetailModal')">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="lot-status-timeline">
+          <div class="timeline-step completed">
+            <div class="step-dot"></div>
+            <div class="step-label">Created</div>
+          </div>
+          <div class="timeline-step completed">
+            <div class="step-dot"></div>
+            <div class="step-label">Aggregated</div>
+          </div>
+          <div class="timeline-step active">
+            <div class="step-dot"></div>
+            <div class="step-label">Offer Received</div>
+          </div>
+          <div class="timeline-step">
+            <div class="step-dot"></div>
+            <div class="step-label">In Transit</div>
+          </div>
+          <div class="timeline-step">
+            <div class="step-dot"></div>
+            <div class="step-label">Delivered</div>
+          </div>
+        </div>
+
+        <div class="spec-grid" style="margin-top: 1.5rem;">
+          <div class="spec-box">
+            <span class="spec-key">Contributing Members</span>
+            <span class="spec-data" id="lotDetailFarmers">23 farmers</span>
+          </div>
+          <div class="spec-box">
+            <span class="spec-key">Current Best Offer</span>
+            <span class="spec-data price" id="lotDetailOffer">₹33/kg (FreshFoods)</span>
+          </div>
+          <div class="spec-box">
+            <span class="spec-key">Storage Location</span>
+            <span class="spec-data">Nashik APMC Hub #2</span>
+          </div>
+          <div class="spec-box">
+            <span class="spec-key">Inspection Certificate</span>
+            <span class="spec-data text-green">Passed (Grade A Verified)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="secondary-btn" onclick="closeModal('lotDetailModal')">Close</button>
+        <button type="button" class="primary-btn" onclick="closeModal('lotDetailModal'); openOpportunityDetail('freshfoods');">Review Buyer Offer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. MARKET PRICES MODAL -->
+  <div class="modal-backdrop" id="marketPricesModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">Regional Wholesale APMC Benchmark</h3>
+          <p class="modal-sub">Updated daily from Maharashtra Mandi Intelligence feeds</p>
+        </div>
+        <button class="modal-close" onclick="closeModal('marketPricesModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Commodity</th>
+              <th>Mandi / Hub</th>
+              <th>Modal Price</th>
+              <th>7-Day Trend</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Tomato (Hybrid)</td>
+              <td>Lasalgaon APMC</td>
+              <td class="font-bold">₹33.00/kg</td>
+              <td class="trend-indicator up">↑ 4%</td>
+            </tr>
+            <tr>
+              <td>Onion (Red)</td>
+              <td>Pimpalgaon APMC</td>
+              <td class="font-bold">₹29.00/kg</td>
+              <td class="trend-indicator stable">→ Stable</td>
+            </tr>
+            <tr>
+              <td>Potato (Jyoti)</td>
+              <td>Nashik Central</td>
+              <td class="font-bold">₹24.00/kg</td>
+              <td class="trend-indicator down">↓ 2%</td>
+            </tr>
+            <tr>
+              <td>Wheat (Lokwan)</td>
+              <td>Dindori APMC</td>
+              <td class="font-bold">₹28.50/kg</td>
+              <td class="trend-indicator up">↑ 1.5%</td>
+            </tr>
+            <tr>
+              <td>Soybean (Yellow)</td>
+              <td>Yeola APMC</td>
+              <td class="font-bold">₹44.00/kg</td>
+              <td class="trend-indicator stable">→ Stable</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="secondary-btn" onclick="closeModal('marketPricesModal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. ALL PRODUCE VIEW MODAL -->
+  <div class="modal-backdrop" id="allProduceModal">
+    <div class="modal-dialog lg-dialog">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">All Aggregated Produce Inventories</h3>
+          <p class="modal-sub">Live stock breakdown across all registered Nashik Farmers Collective clusters</p>
+        </div>
+        <button class="modal-close" onclick="closeModal('allProduceModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Crop</th>
+              <th>Variety</th>
+              <th>Quantity</th>
+              <th>Contributing Farmers</th>
+              <th>Grade</th>
+              <th>Mandi Center</th>
+              <th class="text-right">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-bold">Tomatoes</td>
+              <td>Abhinav Hybrid</td>
+              <td>6.4 tonnes</td>
+              <td>23 farmers</td>
+              <td><span class="grade-badge grade-a">Grade A</span></td>
+              <td>Nashik Central Hub</td>
+              <td class="text-right"><button class="action-link-btn" onclick="closeModal('allProduceModal'); openProduceDetail('tomatoes');">View Details</button></td>
+            </tr>
+            <tr>
+              <td class="font-bold">Onions</td>
+              <td>Garva / Red Nasik</td>
+              <td>8.2 tonnes</td>
+              <td>31 farmers</td>
+              <td><span class="grade-badge grade-a">Grade A</span></td>
+              <td>Pimpalgaon Godown</td>
+              <td class="text-right"><button class="action-link-btn" onclick="closeModal('allProduceModal'); openProduceDetail('onions');">View Details</button></td>
+            </tr>
+            <tr>
+              <td class="font-bold">Potatoes</td>
+              <td>Kufri Jyoti</td>
+              <td>4.0 tonnes</td>
+              <td>18 farmers</td>
+              <td><span class="grade-badge grade-b">Grade B</span></td>
+              <td>Dindori Storage #1</td>
+              <td class="text-right"><button class="action-link-btn" onclick="closeModal('allProduceModal'); openProduceDetail('potatoes');">View Details</button></td>
+            </tr>
+            <tr>
+              <td class="font-bold">Wheat</td>
+              <td>Lokwan Sharbati</td>
+              <td>2.1 tonnes</td>
+              <td>12 farmers</td>
+              <td><span class="grade-badge grade-a">Grade A</span></td>
+              <td>Lasalgaon Silo #4</td>
+              <td class="text-right"><button class="action-link-btn" onclick="closeModal('allProduceModal'); openProduceDetail('wheat');">View Details</button></td>
+            </tr>
+            <tr>
+              <td class="font-bold">Soybean</td>
+              <td>JS 335</td>
+              <td>1.8 tonnes</td>
+              <td>9 farmers</td>
+              <td><span class="grade-badge grade-a">Grade A</span></td>
+              <td>Yeola Warehouse</td>
+              <td class="text-right"><button class="action-link-btn" onclick="closeModal('allProduceModal'); showToast('Soybean lot aggregation in progress');">View Details</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="secondary-btn" onclick="closeModal('allProduceModal')">Close</button>
+        <button type="button" class="primary-btn" onclick="closeModal('allProduceModal'); openCreateLotModal();">+ Create Bulk Lot</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. ALL ORDERS MODAL -->
+  <div class="modal-backdrop" id="allOrdersModal">
+    <div class="modal-dialog lg-dialog">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">FPO Trade Orders</h3>
+          <p class="modal-sub">All active contracts, dispatches and fulfilled trade deliveries</p>
+        </div>
+        <button class="modal-close" onclick="closeModal('allOrdersModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Commodity</th>
+              <th>Buyer</th>
+              <th>Quantity</th>
+              <th>Agreed Rate</th>
+              <th>Total Value</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-bold">#1048</td>
+              <td>Tomatoes (Grade A)</td>
+              <td>FreshFoods</td>
+              <td>5.0 tonnes</td>
+              <td>₹33.00/kg</td>
+              <td class="font-bold">₹1,65,000</td>
+              <td><span class="status-pill status-in-transit">In Transit</span></td>
+            </tr>
+            <tr>
+              <td class="font-bold">#1047</td>
+              <td>Onions (Grade A)</td>
+              <td>Maharashtra Retail Group</td>
+              <td>3.0 tonnes</td>
+              <td>₹29.00/kg</td>
+              <td class="font-bold">₹87,000</td>
+              <td><span class="status-pill status-delivered">Delivered</span></td>
+            </tr>
+            <tr>
+              <td class="font-bold">#1046</td>
+              <td>Potatoes (Grade B)</td>
+              <td>Hotel Supply Network</td>
+              <td>2.0 tonnes</td>
+              <td>₹26.00/kg</td>
+              <td class="font-bold">₹52,000</td>
+              <td><span class="status-pill status-payment-pending">Payment Pending</span></td>
+            </tr>
+            <tr>
+              <td class="font-bold">#1045</td>
+              <td>Wheat (Grade A)</td>
+              <td>AgroMillers Consortium</td>
+              <td>4.5 tonnes</td>
+              <td>₹28.50/kg</td>
+              <td class="font-bold">₹1,28,250</td>
+              <td><span class="status-pill status-delivered">Delivered</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="secondary-btn" onclick="closeModal('allOrdersModal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. ALL PAYMENTS MODAL -->
+  <div class="modal-backdrop" id="allPaymentsModal">
+    <div class="modal-dialog lg-dialog">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">Payments & Escrow Settlements</h3>
+          <p class="modal-sub">Direct FPO account distributions protected by AgriMitra SafePay Escrow</p>
+        </div>
+        <button class="modal-close" onclick="closeModal('allPaymentsModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="payments-summary-grid" style="margin-bottom: 1.5rem;">
+          <div class="pay-stat-box">
+            <div class="pay-stat-label">Pending Settlements</div>
+            <div class="pay-stat-value pending">₹82,500</div>
+          </div>
+          <div class="pay-stat-box">
+            <div class="pay-stat-label">Completed Settlements</div>
+            <div class="pay-stat-value">₹3.4 lakh</div>
+          </div>
+          <div class="pay-stat-box">
+            <div class="pay-stat-label">Current Month Total</div>
+            <div class="pay-stat-value font-bold">₹5.1 lakh</div>
+          </div>
+        </div>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Payment Ref</th>
+              <th>Buyer / Counterparty</th>
+              <th>Related Order</th>
+              <th>Settlement Date</th>
+              <th>Amount</th>
+              <th>Escrow Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-bold">PAY-9821</td>
+              <td>FreshFoods</td>
+              <td>Order #1048 (Tomatoes)</td>
+              <td>Due 14 Sept</td>
+              <td class="font-bold">₹1,65,000</td>
+              <td><span class="status-pill status-payment-pending">In Escrow</span></td>
+            </tr>
+            <tr>
+              <td class="font-bold">PAY-9810</td>
+              <td>Maharashtra Retail Group</td>
+              <td>Order #1047 (Onions)</td>
+              <td>08 Sept (Settled)</td>
+              <td class="font-bold">₹87,000</td>
+              <td><span class="status-pill status-delivered">Released to FPO</span></td>
+            </tr>
+            <tr>
+              <td class="font-bold">PAY-9798</td>
+              <td>Hotel Supply Network</td>
+              <td>Order #1046 (Potatoes)</td>
+              <td>Due 11 Sept</td>
+              <td class="font-bold">₹52,000</td>
+              <td><span class="status-pill status-payment-pending">Awaiting Weighbridge</span></td>
+            </tr>
+            <tr>
+              <td class="font-bold">PAY-9764</td>
+              <td>AgroMillers Consortium</td>
+              <td>Order #1045 (Wheat)</td>
+              <td>02 Sept (Settled)</td>
+              <td class="font-bold">₹1,28,250</td>
+              <td><span class="status-pill status-delivered">Released to FPO</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="secondary-btn" onclick="closeModal('allPaymentsModal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Bidding Status | AgriMitra FPO</title>
+  <meta name="description" content="Monitor active agricultural produce live bidding session on AgriMitra FPO platform. Real-time anonymous bidder activity.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Subtle Background Pattern -->
+  <div class="bg-subtle-pattern" aria-hidden="true"></div>
+
+  <!-- Header & FPO Navbar -->
+  <header class="trading-header-bar" role="banner">
+    <div class="container header-inner">
+      <a href="fpo-dashboard.html" class="brand-wrapper" aria-label="AgriMitra FPO Dashboard">
+        <img src="logo.png" alt="AgriMitra Logo" class="brand-logo-img">
+        <div class="brand-text-block">
+          <span class="brand-name">AgriMitra</span>
+          <span class="brand-subtext">Mandi Trading Intelligence</span>
+        </div>
+      </a>
+
+      <!-- Updated FPO Dashboard Navbar: Dashboard | Products | Orders | Live Bidding | Profile -->
+      <nav class="header-nav" aria-label="FPO Main Navigation">
+        <ul class="nav-links">
+          <li><a href="fpo-dashboard.html" class="nav-link">Dashboard</a></li>
+          <li><a href="fpo-dashboard.html#produce" class="nav-link">Products</a></li>
+          <li><a href="fpo-dashboard.html#orders" class="nav-link">Orders</a></li>
+          <li><a href="fpo-live-bidding.html" class="nav-link active">Live Bidding</a></li>
+          <li><a href="fpo-dashboard.html#profile" class="nav-link">Profile</a></li>
+        </ul>
+      </nav>
+
+      <div class="trading-nav-actions">
+        <!-- Notification Icon -->
+        <button type="button" class="icon-button" aria-label="View Notifications" title="Notifications">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+          </svg>
+        </button>
+
+        <!-- FPO Profile Badge -->
+        <div class="user-profile-badge" title="FPO Account">
+          <span class="user-avatar-circle" aria-hidden="true">PF</span>
+          <div>
+            <div style="font-weight: var(--font-weight-semibold); line-height: 1.2;">Punjab Farmers FPO</div>
+            <div style="font-size: 0.7rem; color: var(--color-text-muted);">FPO #PB-LDH-104</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content" style="padding: var(--space-6) 0 var(--space-16);">
+    <div class="container">
+      
+      <!-- Back Link -->
+      <div style="margin-bottom: var(--space-4);">
+        <a href="fpo-live-bidding.html" class="nav-link" style="padding-left: 0; display: inline-flex; align-items: center; gap: 6px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to Live Bidding Dashboard
+        </a>
+      </div>
+
+      <!-- PRODUCT INFORMATION AT TOP -->
+      <div style="background-color: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-6); margin-bottom: var(--space-6); box-shadow: var(--shadow-card);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: var(--space-4);">
+          <div style="display: flex; gap: var(--space-4); align-items: center;">
+            <img src="assets/produce/wheat.jpg" alt="Premium Wheat Real Photograph" style="width: 90px; height: 90px; border-radius: var(--radius-md); object-fit: cover; border: 2px solid var(--color-border);">
+            <div>
+              <span class="badge-live" style="margin-bottom: var(--space-2);">
+                <span class="live-dot" aria-hidden="true"></span> ACTIVE MONITORING SESSION
+              </span>
+              <h1 style="font-size: 2rem; color: var(--color-primary); font-weight: var(--font-weight-bold); margin-bottom: 4px;">
+                Premium Wheat
+              </h1>
+              <div style="font-size: var(--font-size-base); color: var(--color-text-secondary); font-weight: var(--font-weight-medium);">
+                Punjab Farmers Producer Organization
+              </div>
+              <div style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin-top: 2px;">
+                Lot #TRD-WHT-901 · Ludhiana Mandi Electronic Yard
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: var(--space-6); flex-wrap: wrap;">
+            <div style="background-color: var(--color-surface-alt); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 10px 18px; text-align: center;">
+              <span class="trading-metric-label">Quantity</span>
+              <div style="font-size: 1.25rem; font-weight: var(--font-weight-bold); color: var(--color-text-main);">5,000 kg</div>
+            </div>
+            <div style="background-color: var(--color-surface-alt); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 10px 18px; text-align: center;">
+              <span class="trading-metric-label">Starting Price</span>
+              <div style="font-size: 1.25rem; font-weight: var(--font-weight-bold); color: var(--color-text-main);">₹28/kg</div>
+            </div>
+            <div style="background-color: var(--color-surface-alt); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 10px 18px; text-align: center;">
+              <span class="trading-metric-label">Minimum Bid Increment</span>
+              <div style="font-size: 1.25rem; font-weight: var(--font-weight-bold); color: var(--color-primary);">₹0.50/kg</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TWO COLUMN MONITORING CONSOLE -->
+      <div style="display: grid; grid-template-columns: 1.15fr 1fr; gap: var(--space-6); align-items: flex-start;">
+        
+        <!-- LEFT COLUMN: LIVE STATUS, TIMER, & PARTICIPATION SUMMARY -->
+        <div style="display: flex; flex-direction: column; gap: var(--space-6);">
+          
+          <!-- LIVE STATUS & HIGHEST BID PROMINENT BOX -->
+          <div style="background-color: var(--color-surface); border: 2px solid var(--color-primary); border-radius: var(--radius-lg); padding: var(--space-6); box-shadow: var(--shadow-modal);">
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--color-border-light); padding-bottom: var(--space-4); margin-bottom: var(--space-5);">
+              <div>
+                <span class="trading-section-title" style="font-size: 1.4rem; color: var(--color-primary);">
+                  <span class="live-dot" aria-hidden="true"></span>
+                  LIVE BIDDING
+                </span>
+                <div style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin-top: 2px;">
+                  Session closes at 11:00 AM IST
+                </div>
+              </div>
+
+              <!-- TIME REMAINING (Visually Noticeable) -->
+              <div class="live-timer-box" style="text-align: right;">
+                <span class="live-timer-label">TIME REMAINING</span>
+                <div class="live-timer-counter" style="font-size: 2.25rem; color: #C62828;">00:12:45</div>
+                <span class="badge-live" style="margin-top: 2px; align-self: flex-end;">LIVE</span>
+              </div>
+            </div>
+
+            <!-- CURRENT HIGHEST BID DISPLAY -->
+            <div style="background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%); border: 1px solid #A5D6A7; border-radius: var(--radius-md); padding: var(--space-6); text-align: center;">
+              <span style="font-size: 0.85rem; font-weight: var(--font-weight-bold); text-transform: uppercase; color: #1B5E20; letter-spacing: 0.08em; display: block;">
+                Current Highest Bid
+              </span>
+              <div style="font-size: 3.25rem; font-weight: 800; color: var(--color-primary); line-height: 1.1; margin: 4px 0;">
+                ₹32.50/kg
+              </div>
+              <div style="font-size: var(--font-size-sm); color: #2E7D32; font-weight: var(--font-weight-semibold); margin-top: 6px;">
+                Current Leading Bidder: <span style="background-color: #FFFFFF; border: 1px solid #A5D6A7; padding: 2px 10px; border-radius: var(--radius-sm); color: #1B5E20; font-weight: 800;">Bidder #218</span>
+              </div>
+              <div style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin-top: 8px;">
+                Bidder identity is anonymous during live trading. Real verified business name will be confirmed upon session closure.
+              </div>
+            </div>
+
+            <!-- INFORMATION NOTICE (Binding Rule) -->
+            <div style="background-color: #F8FBF8; border: 1px solid #C8DEC9; border-radius: var(--radius-md); padding: var(--space-4); margin-top: var(--space-5);">
+              <div style="font-size: var(--font-size-xs); font-weight: var(--font-weight-bold); text-transform: uppercase; color: var(--color-primary); letter-spacing: 0.05em; margin-bottom: 4px;">
+                BIDDING RULE
+              </div>
+              <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary); line-height: 1.5; margin: 0;">
+                Once the bidding timer reaches zero, the highest valid bid will automatically become the final sale price. The winning bidder will automatically be confirmed as the buyer of the product. The FPO cannot reject or alter the winning price.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- PARTICIPATION SUMMARY CARDS -->
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4);">
+            <div class="trading-summary-card" style="padding: var(--space-4);">
+              <span class="trading-summary-label">TOTAL PARTICIPANTS</span>
+              <span class="trading-summary-number" style="font-size: 2rem;">8</span>
+              <span style="font-size: 0.75rem; color: var(--color-text-muted);">Verified Wholesalers</span>
+            </div>
+
+            <div class="trading-summary-card" style="padding: var(--space-4);">
+              <span class="trading-summary-label">TOTAL BIDS</span>
+              <span class="trading-summary-number" style="font-size: 2rem;">15</span>
+              <span style="font-size: 0.75rem; color: var(--color-text-muted);">Placed in Session</span>
+            </div>
+
+            <div class="trading-summary-card" style="padding: var(--space-4);">
+              <span class="trading-summary-label">CURRENT HIGHEST BID</span>
+              <span class="trading-summary-number" style="font-size: 2rem; color: #1B5E20;">₹32.50</span>
+              <span style="font-size: 0.75rem; color: var(--color-text-muted);">Per kilogram</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN: RECENT BIDDING ACTIVITY -->
+        <div style="background-color: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-6); box-shadow: var(--shadow-card);">
+          
+          <div style="border-bottom: 1px solid var(--color-border-light); padding-bottom: var(--space-3); margin-bottom: var(--space-4); display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h2 style="font-size: 1.35rem; font-weight: var(--font-weight-bold); color: var(--color-text-main); margin: 0;">
+                Recent Bids
+              </h2>
+              <div style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin-top: 2px;">
+                Newest bids appear first. Live stream updates automatically.
+              </div>
+            </div>
+            <span class="badge-live">Live Stream</span>
+          </div>
+
+          <!-- Bids Feed List -->
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            
+            <!-- Bid 1 (Leading) -->
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background-color: #EBF4ED; border: 1px solid #A5D6A7; border-radius: var(--radius-md);">
+              <div>
+                <div style="font-weight: var(--font-weight-bold); color: #1B5E20; font-size: var(--font-size-base);">
+                  Bidder #218 <span style="font-size: 0.7rem; background-color: #1B5E20; color: #FFFFFF; padding: 2px 6px; border-radius: 4px; margin-left: 4px;">CURRENT LEADER</span>
+                </div>
+                <div style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin-top: 2px;">10:20 AM IST</div>
+              </div>
+              <div style="font-size: 1.35rem; font-weight: 800; color: var(--color-primary);">
+                ₹32.50/kg
+              </div>
+            </div>
+
+            <!-- Bid 2 -->
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background-color: var(--color-surface-alt); border: 1px solid var(--color-border-light); border-radius: var(--radius-md);">
+              <div>
+                <div style="font-weight: var(--font-weight-semibold); color: var(--color-text-main); font-size: var(--font-size-sm);">
+                  Bidder #356
+                </div>
+                <div style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin-top: 2px;">10:18 AM IST</div>
+              </div>
+              <div style="font-size: 1.15rem; font-weight: 700; color: var(--color-text-main);">
+                ₹31.50/kg
+              </div>
+            </div>
+
+            <!-- Bid 3 -->
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background-color: var(--color-surface-alt); border: 1px solid var(--color-border-light); border-radius: var(--radius-md);">
+              <div>
+                <div style="font-weight: var(--font-weight-semibold); color: var(--color-text-main); font-size: var(--font-size-sm);">
+                  Bidder #104
+                </div>
+                <div style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin-top: 2px;">10:15 AM IST</div>
+              </div>
+              <div style="font-size: 1.15rem; font-weight: 700; color: var(--color-text-main);">
+                ₹30.00/kg
+              </div>
+            </div>
+
+            <!-- Bid 4 -->
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background-color: var(--color-surface-alt); border: 1px solid var(--color-border-light); border-radius: var(--radius-md);">
+              <div>
+                <div style="font-weight: var(--font-weight-semibold); color: var(--color-text-main); font-size: var(--font-size-sm);">
+                  Bidder #412
+                </div>
+                <div style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin-top: 2px;">10:11 AM IST</div>
+              </div>
+              <div style="font-size: 1.15rem; font-weight: 700; color: var(--color-text-main);">
+                ₹29.00/kg
+              </div>
+            </div>
+
+            <!-- Bid 5 -->
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background-color: var(--color-surface-alt); border: 1px solid var(--color-border-light); border-radius: var(--radius-md);">
+              <div>
+                <div style="font-weight: var(--font-weight-semibold); color: var(--color-text-main); font-size: var(--font-size-sm);">
+                  Bidder #218
+                </div>
+                <div style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin-top: 2px;">10:05 AM IST</div>
+              </div>
+              <div style="font-size: 1.15rem; font-weight: 700; color: var(--color-text-main);">
+                ₹28.50/kg
+              </div>
+            </div>
+
+          </div>
+
+          <div style="margin-top: var(--space-6); padding: var(--space-4); background-color: var(--color-surface-alt); border-radius: var(--radius-md); font-size: var(--font-size-xs); color: var(--color-text-muted); text-align: center;">
+            FPO Monitoring Console: Bidding occurs autonomously between verified Wholesalers &amp; Distributors. No manual intervention allowed.
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,636 @@
+/* AgriMitra - Reusable UI Components */
+
+/* --- Reset & Base Styles --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Accessibility Focus Rings --- */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+button, input, a {
+  font-family: inherit;
+}
+
+/* --- Brand Logo / Mark Component --- */
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  text-decoration: none;
+  color: var(--color-text-primary);
+  user-select: none;
+}
+
+.brand-icon {
+  width: 34px;
+  height: 34px;
+  background: linear-gradient(135deg, #166534 0%, #15803d 100%);
+  color: #ffffff;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(21, 128, 61, 0.25);
+  flex-shrink: 0;
+}
+
+.brand-logo-img {
+  height: 36px;
+  width: auto;
+  max-height: 40px;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+}
+
+.brand-logo:hover .brand-logo-img {
+  transform: scale(1.05);
+}
+
+.brand-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.brand-name {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.02em;
+  color: #0f172a;
+}
+
+.brand-name span {
+  color: var(--color-primary);
+}
+
+/* --- Header Component --- */
+.site-header {
+  height: 64px;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.header-container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.header-back-btn:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-surface-muted);
+}
+
+.header-back-btn svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2.2;
+}
+
+/* --- Form Components --- */
+.form-group {
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.form-label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  display: block;
+}
+
+/* Phone Number Field with Indian +91 Prefix */
+.phone-input-group {
+  display: flex;
+  align-items: center;
+  background-color: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  height: var(--input-height);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  overflow: hidden;
+}
+
+.phone-input-group:focus-within {
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px var(--color-primary-focus);
+}
+
+.phone-input-group.has-error {
+  border-color: var(--color-error);
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+}
+
+.phone-country-code {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0 0.875rem;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+  background-color: var(--color-surface-muted);
+  border-right: 1px solid var(--color-border);
+  height: 100%;
+  user-select: none;
+}
+
+.country-flag-icon {
+  width: 18px;
+  height: 12px;
+  border-radius: 2px;
+  object-fit: cover;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+  display: inline-block;
+  background: linear-gradient(to bottom, #ff9933 33.3%, #ffffff 33.3%, #ffffff 66.6%, #138808 66.6%);
+}
+
+.phone-input {
+  flex: 1;
+  height: 100%;
+  border: none;
+  background: transparent;
+  padding: 0 0.875rem;
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  letter-spacing: 0.02em;
+  outline: none;
+}
+
+.phone-input::placeholder {
+  color: var(--color-text-disabled);
+  font-size: var(--font-size-sm);
+}
+
+/* Password Input Field with Show/Hide Toggle */
+.password-input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  height: var(--input-height);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.password-input-group:focus-within {
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px var(--color-primary-focus);
+}
+
+.password-input-group.has-error {
+  border-color: var(--color-error);
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+}
+
+.password-input {
+  flex: 1;
+  height: 100%;
+  border: none;
+  background: transparent;
+  padding: 0 2.75rem 0 0.875rem;
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  outline: none;
+}
+
+.password-input::placeholder {
+  color: var(--color-text-disabled);
+  font-size: var(--font-size-sm);
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 0.5rem;
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.password-toggle-btn:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-surface-muted);
+}
+
+.password-toggle-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* --- Inline Validation Message --- */
+.validation-message {
+  display: none;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: var(--font-size-xs);
+  color: var(--color-error);
+  font-weight: var(--font-weight-medium);
+  margin-top: 0.35rem;
+  line-height: 1.3;
+}
+
+.validation-message.active {
+  display: inline-flex;
+  animation: fadeIn 150ms ease-out forwards;
+}
+
+.validation-message svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* General / Form Level Alert */
+.form-alert {
+  display: none;
+  align-items: flex-start;
+  gap: 0.625rem;
+  background-color: var(--color-error-bg);
+  border: 1px solid var(--color-error-border);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.25rem;
+  font-size: var(--font-size-sm);
+  color: var(--color-error);
+}
+
+.form-alert.active {
+  display: flex;
+  animation: fadeIn 150ms ease-out forwards;
+}
+
+.form-alert svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* --- Secondary Links --- */
+.form-options {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -0.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.link-secondary {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0;
+  transition: color var(--transition-fast);
+}
+
+.link-secondary:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+/* --- Primary Action Button --- */
+.btn-primary {
+  width: 100%;
+  height: var(--button-height);
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 1px 3px rgba(21, 128, 61, 0.2);
+  transition: background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+  user-select: none;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+  box-shadow: 0 4px 10px rgba(21, 128, 61, 0.25);
+}
+
+.btn-primary:active:not(:disabled) {
+  background-color: var(--color-primary-active);
+  transform: translateY(1px);
+}
+
+.btn-primary:disabled {
+  opacity: 0.85;
+  cursor: not-allowed;
+}
+
+/* Button Loading Spinner */
+.btn-spinner {
+  display: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 700ms linear infinite;
+}
+
+.btn-primary.loading .btn-spinner {
+  display: inline-block;
+}
+
+.btn-primary.loading .btn-text {
+  opacity: 0.95;
+}
+
+/* --- Registration Section --- */
+.registration-section {
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-border-subtle);
+  text-align: center;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.register-link {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.register-link:hover {
+  color: var(--color-primary-hover);
+  background-color: var(--color-primary-light);
+  text-decoration: underline;
+}
+
+/* --- Accessible Modal for Forgot Password Assistance --- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(2px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 1rem;
+}
+
+.modal-overlay.active {
+  display: flex;
+  animation: fadeIn 150ms ease-out;
+}
+
+.modal-dialog {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  max-width: 440px;
+  width: 100%;
+  padding: 1.75rem;
+  border: 1px solid var(--color-border);
+  position: relative;
+}
+
+.modal-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.modal-desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: 1.25rem;
+}
+
+.modal-help-box {
+  background-color: var(--color-surface-muted);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+}
+
+.modal-help-box strong {
+  display: block;
+  color: var(--color-primary);
+  margin-bottom: 0.25rem;
+}
+
+.modal-close-btn {
+  width: 100%;
+  height: 42px;
+  background-color: var(--color-surface-muted);
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.modal-close-btn:hover {
+  background-color: var(--color-border);
+}
+
+/* --- Keyframe Animations --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================================
+   AgriMitra Dynamic Form Enhancements (Registration & Onboarding)
+   ========================================================================== */
+
+/* Password Strength Meter */
+.password-strength-wrap {
+  margin-top: 0.45rem;
+  margin-bottom: 0.35rem;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.password-strength-bar {
+  display: flex;
+  gap: 4px;
+  height: 4px;
+  width: 100%;
+}
+
+.strength-segment {
+  flex: 1;
+  height: 100%;
+  background-color: var(--color-border);
+  border-radius: var(--radius-full);
+  transition: background-color var(--transition-normal);
+}
+
+.strength-segment.active-weak {
+  background-color: #ef4444; /* red */
+}
+
+.strength-segment.active-fair {
+  background-color: #f59e0b; /* amber */
+}
+
+.strength-segment.active-good {
+  background-color: #3b82f6; /* blue */
+}
+
+.strength-segment.active-strong {
+  background-color: #10b981; /* emerald */
+}
+
+.password-strength-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.35rem;
+  font-size: var(--font-size-xs);
+}
+
+.strength-text {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+}
+
+.strength-text.weak { color: #ef4444; }
+.strength-text.fair { color: #f59e0b; }
+.strength-text.good { color: #3b82f6; }
+.strength-text.strong { color: #10b981; }
+
+.strength-hint {
+  color: var(--color-text-disabled);
+  font-size: 0.72rem;
+}
+
+/* Real-Time Password Match Feedback */
+.password-match-status {
+  display: none;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: var(--font-size-xs);
+  margin-top: 0.35rem;
+  font-weight: var(--font-weight-medium);
+  animation: fadeIn 0.2s ease-out;
+}
+
+.password-match-status.match {
+  display: flex;
+  color: #15803d;
+}
+
+.password-match-status.mismatch {
+  display: flex;
+  color: #dc2626;
+}
+
+/* Dynamic Phone Digits Counter & Valid Checkmark */
+.phone-dynamic-meta {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.3rem;
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+}
+
+.phone-digits-badge {
+  font-variant-numeric: tabular-nums;
+}
+
+.phone-digits-badge.complete {
+  color: #15803d;
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Interactive Input Focus Highlight */
+.password-input-group.is-valid {
+  border-color: #22c55e;
+}
+
+.phone-input-group.is-valid {
+  border-color: #22c55e;
+}
+

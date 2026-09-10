@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="100%" height="100%">
+  <!-- Subtle Glow Effect -->
+  <defs>
+    <linearGradient id="sunGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <linearGradient id="leafGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#15803d"/>
+    </linearGradient>
+    <linearGradient id="fieldGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#bbf7d0"/>
+      <stop offset="100%" stop-color="#86efac"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sun Rays & Rising Sun -->
+  <g transform="translate(160, 68)">
+    <circle cx="0" cy="0" r="32" fill="url(#sunGrad)"/>
+    <path d="M-45 -15 L-35 -10 M-48 5 L-38 5 M-42 22 L-33 16 M45 -15 L35 -10 M48 5 L38 5 M42 22 L33 16 M-15 -42 L-10 -32 M0 -46 L0 -35 M15 -42 L10 -32" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Rolling Farm Field Arcs -->
+  <path d="M90 98 Q125 78 160 88 T230 92 L230 115 L90 115 Z" fill="url(#fieldGrad)" opacity="0.85"/>
+  <path d="M80 108 Q120 90 160 100 T240 104 L240 120 L80 120 Z" fill="#4ade80" opacity="0.6"/>
+
+  <!-- Farmer Figure (Left) -->
+  <g transform="translate(112, 54)">
+    <!-- Turban / Cap -->
+    <path d="M12 12 Q20 4 28 12 Q32 18 20 22 Q10 20 12 12 Z" fill="#d97706"/>
+    <ellipse cx="20" cy="18" rx="8" ry="4" fill="#b45309"/>
+    <!-- Head -->
+    <circle cx="20" cy="22" r="7" fill="#fcd34d"/>
+    <!-- Shirt / Torso -->
+    <path d="M10 32 Q20 28 30 32 L34 50 L6 50 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+    <path d="M16 32 L20 44 L24 32" stroke="#94a3b8" stroke-width="1.5" fill="none"/>
+    <!-- Vest -->
+    <path d="M6 36 L12 50 L6 50 Z M34 36 L28 50 L34 50 Z" fill="#15803d"/>
+  </g>
+
+  <!-- Big Green Leaf Accent (Top Right) -->
+  <g transform="translate(162, 28)">
+    <path d="M0 40 C-10 15 15 -5 32 4 C40 22 25 45 0 40 Z" fill="url(#leafGrad)"/>
+    <path d="M0 40 Q15 22 32 4" stroke="#ffffff" stroke-width="1.5" fill="none" opacity="0.8"/>
+  </g>
+
+  <!-- Produce Basket / Crate (Right) -->
+  <g transform="translate(178, 68)">
+    <!-- Crate / Cart Base -->
+    <rect x="0" y="16" width="36" height="22" rx="3" fill="#b45309"/>
+    <line x1="0" y1="23" x2="36" y2="23" stroke="#78350f" stroke-width="1.5"/>
+    <line x1="0" y1="30" x2="36" y2="30" stroke="#78350f" stroke-width="1.5"/>
+    <!-- Tomatoes & Vegetables in crate -->
+    <circle cx="6" cy="13" r="5" fill="#ef4444"/>
+    <circle cx="14" cy="11" r="5.5" fill="#dc2626"/>
+    <circle cx="22" cy="12" r="5" fill="#f97316"/>
+    <circle cx="30" cy="14" r="4.5" fill="#eab308"/>
+    <circle cx="10" cy="7" r="4.5" fill="#ef4444"/>
+    <circle cx="18" cy="6" r="4.5" fill="#22c55e"/>
+    <circle cx="26" cy="8" r="4" fill="#ef4444"/>
+  </g>
+
+  <!-- Grounding Baseline Bar -->
+  <rect x="70" y="112" width="180" height="3" rx="1.5" fill="#15803d"/>
+
+  <!-- AgriMitra Brand Typography -->
+  <text x="160" y="152" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="28" font-weight="800" fill="#0f172a" text-anchor="middle" letter-spacing="-0.5">
+    Agri<tspan fill="#15803d">Mitra</tspan>
+  </text>
+  <text x="160" y="172" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748b" text-anchor="middle" letter-spacing="1.2">
+    CONNECT. TRADE. GROW.
+  </text>
+</svg>

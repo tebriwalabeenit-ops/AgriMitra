@@ -1,0 +1,1836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register as an FPO | AgriMitra - Connect. Trade. Grow.</title>
+  <meta name="description" content="Register your Farmer Producer Organization (FPO) on AgriMitra to aggregate member harvest, connect with verified institutional buyers, and secure fair mandi pricing.">
+
+  <!-- Google Fonts: Plus Jakarta Sans for crisp, modern fintech-grade typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --color-primary: #166534;
+      --color-primary-hover: #14532d;
+      --color-primary-light: #f0fdf4;
+      --color-primary-border: #bbf7d0;
+      --color-text-primary: #0f172a;
+      --color-text-secondary: #475569;
+      --color-text-muted: #64748b;
+      --color-surface: #ffffff;
+      --color-surface-subtle: #f8fafc;
+      --color-surface-alt: #f1f5f9;
+      --color-border: #e2e8f0;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --radius-full: 9999px;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
+      --container-max-width: 1200px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--color-surface-subtle);
+      color: var(--color-text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Minimal Brand Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--color-border);
+      height: 68px;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      flex-shrink: 0;
+    }
+
+    .header-container {
+      max-width: var(--container-max-width);
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--color-text-primary);
+    }
+
+    .brand-logo-img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      border-radius: var(--radius-md);
+      flex-shrink: 0;
+    }
+
+    .brand-hero-heading-group {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 0.625rem;
+    }
+
+    .brand-pane-logo {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      border-radius: var(--radius-md);
+      flex-shrink: 0;
+    }
+
+    .brand-hero-heading-group .brand-hero-title {
+      margin-bottom: 0;
+    }
+
+    .brand-name {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .brand-name span {
+      color: var(--color-primary);
+    }
+
+    .header-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.95rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-full);
+      text-decoration: none;
+      transition: all var(--transition-fast);
+    }
+
+    .header-back-btn:hover {
+      color: var(--color-primary);
+      border-color: var(--color-primary-border);
+      background-color: var(--color-primary-light);
+      transform: translateX(-2px);
+    }
+
+    .header-back-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Main Content Area */
+    .login-main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1.5rem;
+      width: 100%;
+      max-width: var(--container-max-width);
+      margin: 0 auto;
+    }
+
+    .split-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+      width: 100%;
+    }
+
+    /* Left Side Visual Pane */
+    .brand-visual-pane {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1rem 0.5rem 1rem 1rem;
+    }
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: var(--color-primary-light);
+      border: 1px solid var(--color-primary-border);
+      color: var(--color-primary);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-full);
+      margin-bottom: 1.25rem;
+      width: fit-content;
+    }
+
+    .brand-badge-dot {
+      width: 6px;
+      height: 6px;
+      background-color: var(--color-primary);
+      border-radius: 50%;
+    }
+
+    .brand-hero-title {
+      font-size: 2.75rem;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 0.625rem;
+    }
+
+    .brand-hero-title span {
+      color: var(--color-primary);
+    }
+
+    .brand-tagline {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      letter-spacing: -0.01em;
+      margin-bottom: 1rem;
+    }
+
+    .brand-supporting-line {
+      font-size: 0.95rem;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+      max-width: 440px;
+      margin-bottom: 1.75rem;
+    }
+
+    .agri-visual-container {
+      position: relative;
+      width: 100%;
+      max-width: 460px;
+      height: 180px;
+      background: linear-gradient(180deg, rgba(240, 253, 244, 0.6) 0%, rgba(220, 252, 231, 0.4) 100%);
+      border: 1px solid var(--color-primary-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .agri-visual-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .visual-trust-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .trust-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-full);
+    }
+
+    .trust-pill svg {
+      width: 14px;
+      height: 14px;
+      color: var(--color-primary);
+    }
+
+    /* Right Side Form Pane */
+    .form-pane {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .login-card {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-md);
+      padding: 2.25rem 2rem;
+      width: 100%;
+      max-width: 540px;
+      transition: box-shadow var(--transition-fast);
+    }
+
+    .login-card:hover {
+      box-shadow: var(--shadow-lg);
+    }
+
+    .card-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .card-pretitle {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.35rem;
+    }
+
+    .card-title {
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-subtitle {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+    }
+
+    /* Form Styles */
+    .reg-form-section {
+      margin-bottom: 1.35rem;
+    }
+
+    .reg-section-header {
+      margin-bottom: 0.85rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .reg-section-title {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-primary);
+      margin: 0;
+    }
+
+    .reg-section-subtitle {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      margin-top: 0.2rem;
+    }
+
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 0.85rem;
+    }
+
+    .form-group-full {
+      grid-column: 1 / -1;
+    }
+
+    .form-label {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      margin-bottom: 0.35rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .form-label-optional {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--color-text-muted);
+    }
+
+    .form-helper {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      margin-top: 0.35rem;
+      line-height: 1.4;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.7rem 0.85rem;
+      font-size: 0.875rem;
+      font-family: inherit;
+      color: var(--color-text-primary);
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    .form-control:focus {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(22, 101, 52, 0.12);
+    }
+
+    select.form-control {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.85rem center;
+      background-size: 16px;
+      padding-right: 2.25rem;
+      cursor: pointer;
+    }
+
+    select.form-control:disabled {
+      background-color: var(--color-surface-subtle);
+      color: var(--color-text-muted);
+      cursor: not-allowed;
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 75px;
+    }
+
+    .input-addon-group {
+      display: flex;
+      align-items: stretch;
+      width: 100%;
+    }
+
+    .input-addon-prefix {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 0.75rem;
+      background-color: var(--color-surface-alt);
+      color: var(--color-text-secondary);
+      border: 1px solid var(--color-border);
+      border-right: none;
+      border-top-left-radius: var(--radius-md);
+      border-bottom-left-radius: var(--radius-md);
+      font-size: 0.875rem;
+      font-weight: 600;
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .input-addon-group .form-control {
+      border-radius: 0;
+      border-top-right-radius: var(--radius-md);
+      border-bottom-right-radius: var(--radius-md);
+      flex: 1;
+    }
+
+    .input-addon-group .form-control:focus {
+      z-index: 1;
+    }
+
+    /* Selectable Product Choice Grid */
+    .product-cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.65rem;
+      margin-top: 0.35rem;
+    }
+
+    .product-card-item {
+      display: block;
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+    }
+
+    .product-card-item input[type="checkbox"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+      pointer-events: none;
+    }
+
+    .product-card-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      padding: 0.7rem 0.8rem;
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      transition: all var(--transition-fast);
+      height: 100%;
+    }
+
+    .product-card-item:hover .product-card-box {
+      border-color: var(--color-primary-border);
+      background-color: var(--color-primary-light);
+      transform: translateY(-1px);
+    }
+
+    .product-card-item:has(input[type="checkbox"]:checked) .product-card-box,
+    .product-card-item input[type="checkbox"]:checked + .product-card-box {
+      border-color: var(--color-primary);
+      background-color: var(--color-primary-light);
+      box-shadow: 0 2px 8px rgba(22, 101, 52, 0.1);
+      transform: translateY(-1px);
+    }
+
+    .product-card-check {
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid var(--color-border);
+      border-radius: 4px;
+      background-color: var(--color-surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+      transition: all var(--transition-fast);
+    }
+
+    .product-card-check svg {
+      width: 12px;
+      height: 12px;
+      color: #ffffff;
+      opacity: 0;
+      transform: scale(0.6);
+      transition: all var(--transition-fast);
+    }
+
+    .product-card-item:has(input[type="checkbox"]:checked) .product-card-check,
+    .product-card-item input[type="checkbox"]:checked + .product-card-box .product-card-check {
+      background-color: var(--color-primary);
+      border-color: var(--color-primary);
+    }
+
+    .product-card-item:has(input[type="checkbox"]:checked) .product-card-check svg,
+    .product-card-item input[type="checkbox"]:checked + .product-card-box .product-card-check svg {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .product-card-title {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      line-height: 1.3;
+    }
+
+    .product-card-desc {
+      display: block;
+      font-size: 0.725rem;
+      color: var(--color-text-muted);
+      margin-top: 0.15rem;
+      line-height: 1.3;
+    }
+
+    .password-input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .password-input-wrapper .form-control {
+      padding-right: 2.75rem;
+    }
+
+    .password-toggle-btn {
+      position: absolute;
+      right: 0.5rem;
+      background: transparent;
+      border: none;
+      color: var(--color-text-muted);
+      padding: 0.4rem;
+      cursor: pointer;
+      border-radius: var(--radius-sm);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: color var(--transition-fast), background-color var(--transition-fast);
+      z-index: 2;
+    }
+
+    .password-toggle-btn:hover {
+      color: var(--color-text-primary);
+      background-color: var(--color-surface-alt);
+    }
+
+    .terms-agreement-block {
+      margin: 1.15rem 0 0.85rem;
+      padding: 0.85rem;
+      background-color: var(--color-surface-alt);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .terms-checkbox-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      font-size: 0.75rem;
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      line-height: 1.5;
+      user-select: none;
+    }
+
+    .terms-checkbox-label input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      margin-top: 2px;
+      accent-color: var(--color-primary);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .btn-register-submit {
+      width: 100%;
+      padding: 0.85rem 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      font-family: inherit;
+      color: #ffffff;
+      background-color: var(--color-primary);
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-register-submit:hover {
+      background-color: var(--color-primary-hover);
+      box-shadow: 0 6px 16px rgba(22, 101, 52, 0.22);
+      transform: translateY(-1px);
+    }
+
+    .btn-register-submit:active {
+      transform: translateY(0);
+    }
+
+    .reg-profile-note {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      margin-top: 0.65rem;
+      line-height: 1.4;
+    }
+
+    .already-account-section {
+      margin-top: 1.15rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      font-size: 0.8125rem;
+      color: var(--color-text-secondary);
+    }
+
+    .already-account-section a {
+      color: var(--color-primary);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .already-account-section a:hover {
+      text-decoration: underline;
+    }
+
+    /* Minimal Clean Footer */
+    .site-footer {
+      padding: 1.25rem 1.5rem;
+      text-align: center;
+      font-size: 0.8125rem;
+      color: var(--color-text-muted);
+      border-top: 1px solid var(--color-border);
+      margin-top: auto;
+    }
+
+    /* Responsive Adaptations: Desktop Split View (Left Still, Right Scrolls) */
+    @media (min-width: 769px) and (min-height: 550px) {
+      html, body {
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .site-header {
+        flex-shrink: 0;
+      }
+
+      .login-main {
+        flex: 1;
+        min-height: 0;
+        padding: 0 1.5rem;
+        overflow: hidden;
+        display: flex;
+        align-items: stretch;
+      }
+
+      .split-layout {
+        height: 100%;
+        width: 100%;
+        align-items: stretch;
+      }
+
+      /* Left side: locked still in place, vertically centered, no scroll */
+      .brand-visual-pane {
+        height: 100%;
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: safe center;
+        padding: 1.5rem 1rem 1.5rem 0.5rem;
+      }
+
+      .brand-visual-pane::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Right side: only this side scrolls */
+      .form-pane {
+        height: 100%;
+        overflow-y: auto;
+        padding: 2rem 0.75rem 3rem 0.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        scrollbar-width: thin;
+        scrollbar-color: #cbd5e1 transparent;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .form-pane::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      .form-pane::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .form-pane::-webkit-scrollbar-thumb {
+        background-color: #cbd5e1;
+        border-radius: var(--radius-full);
+      }
+
+      .form-pane::-webkit-scrollbar-thumb:hover {
+        background-color: #94a3b8;
+      }
+
+      .site-footer {
+        flex-shrink: 0;
+        padding: 0.75rem 1.5rem;
+        margin-top: 0;
+      }
+    }
+
+    @media (max-width: 960px) {
+      .split-layout {
+        gap: 2rem;
+      }
+      .brand-hero-title {
+        font-size: 2.25rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .login-main {
+        padding: 1.5rem 1rem 2rem;
+      }
+
+      .split-layout {
+        grid-template-columns: 1fr;
+        gap: 1.75rem;
+      }
+
+      .form-pane {
+        order: 1;
+      }
+
+      .brand-visual-pane {
+        order: 2;
+        padding: 1rem 0 0;
+        text-align: center;
+        align-items: center;
+      }
+
+      .brand-badge {
+        margin: 0 auto 0.75rem;
+      }
+
+      .brand-hero-heading-group {
+        justify-content: center;
+      }
+
+      .brand-supporting-line {
+        margin: 0 auto 1.25rem;
+      }
+
+      .agri-visual-container {
+        max-width: 100%;
+        height: 140px;
+        margin: 0 auto;
+      }
+
+      .visual-trust-pills {
+        justify-content: center;
+      }
+
+      .login-card {
+        padding: 1.5rem 1.15rem;
+        box-shadow: var(--shadow-sm);
+        border-radius: var(--radius-lg);
+        max-width: 100%;
+      }
+
+      .form-grid-2 {
+        grid-template-columns: 1fr;
+        gap: 0.65rem;
+      }
+
+      .product-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Minimal Brand Header -->
+  <header class="site-header" role="banner">
+    <div class="header-container">
+      <a href="../index.html" class="brand-logo" id="header-brand-logo" aria-label="AgriMitra Home">
+        <img src="logo.png" alt="AgriMitra Logo" class="brand-logo-img">
+        <span class="brand-name">Agri<span>Mitra</span></span>
+      </a>
+
+      <a href="../index.html" class="header-back-btn" id="header-back-btn" title="Back to main page">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        <span>Back</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content Area: Responsive Two-Column Layout -->
+  <main class="login-main" role="main">
+    <div class="split-layout">
+      
+      <!-- Left Side: Brand & Subtle Agricultural Visual Section -->
+      <section class="brand-visual-pane" aria-labelledby="brand-title">
+        <div class="brand-badge">
+          <span class="brand-badge-dot"></span>
+          FPO &amp; Collective Network
+        </div>
+
+        <div class="brand-hero-heading-group">
+          <img src="logo.png" alt="AgriMitra Logo" class="brand-pane-logo">
+          <h1 id="brand-title" class="brand-hero-title">
+            Agri<span>Mitra</span>
+          </h1>
+        </div>
+
+        <p class="brand-tagline">
+          Connect. Trade. Grow.
+        </p>
+
+        <p class="brand-supporting-line">
+          Empower your Farmer Producer Organization to aggregate member harvest, negotiate institutional bulk contracts, secure transparent market prices, and streamline logistics.
+        </p>
+
+        <!-- Subtle Agricultural Visual Treatment (Terrace curves, field furrows, clean geometry) -->
+        <div class="agri-visual-container" aria-hidden="true">
+          <svg class="agri-visual-svg" viewBox="0 0 460 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="fieldGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#166534" stop-opacity="0.12"/>
+                <stop offset="100%" stop-color="#15803d" stop-opacity="0.04"/>
+              </linearGradient>
+              <linearGradient id="fieldGrad2" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#15803d" stop-opacity="0.15"/>
+                <stop offset="100%" stop-color="#22c55e" stop-opacity="0.05"/>
+              </linearGradient>
+              <linearGradient id="sunGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#d97706" stop-opacity="0.18"/>
+                <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.03"/>
+              </linearGradient>
+            </defs>
+
+            <circle cx="380" cy="50" r="44" fill="url(#sunGrad)" />
+
+            <path d="M-20 180 C80 140, 200 160, 480 120 L480 180 Z" fill="url(#fieldGrad1)"/>
+            <path d="M-20 180 C120 110, 260 135, 480 85 L480 180 Z" fill="url(#fieldGrad2)"/>
+            
+            <path d="M-20 160 C90 125, 230 145, 480 100" stroke="#166534" stroke-opacity="0.18" stroke-width="1.5" stroke-dasharray="4 4"/>
+            <path d="M-20 135 C130 95, 280 115, 480 65" stroke="#15803d" stroke-opacity="0.22" stroke-width="1.5"/>
+            <path d="M-20 105 C150 70, 310 90, 480 45" stroke="#15803d" stroke-opacity="0.12" stroke-width="1.2"/>
+
+            <g transform="translate(60, 105) scale(0.75)" stroke="#15803d" stroke-opacity="0.4" stroke-width="2" stroke-linecap="round">
+              <path d="M10 20 V8"/>
+              <path d="M10 12 C6 8, 2 10, 3 14 C6 15, 9 14, 10 12"/>
+              <path d="M10 10 C14 6, 18 8, 17 12 C14 13, 11 12, 10 10"/>
+            </g>
+
+            <g transform="translate(190, 80) scale(0.65)" stroke="#15803d" stroke-opacity="0.35" stroke-width="2" stroke-linecap="round">
+              <path d="M10 20 V8"/>
+              <path d="M10 12 C6 8, 2 10, 3 14 C6 15, 9 14, 10 12"/>
+              <path d="M10 10 C14 6, 18 8, 17 12 C14 13, 11 12, 10 10"/>
+            </g>
+
+            <g transform="translate(320, 60) scale(0.55)" stroke="#15803d" stroke-opacity="0.3" stroke-width="2" stroke-linecap="round">
+              <path d="M10 20 V8"/>
+              <path d="M10 12 C6 8, 2 10, 3 14 C6 15, 9 14, 10 12"/>
+              <path d="M10 10 C14 6, 18 8, 17 12 C14 13, 11 12, 10 10"/>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Subtle Trust Features -->
+        <div class="visual-trust-pills" aria-label="Platform Highlights">
+          <span class="trust-pill">
+            <svg viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            Direct Buyer Access
+          </span>
+          <span class="trust-pill">
+            <svg viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            Harvest Aggregation
+          </span>
+          <span class="trust-pill">
+            <svg viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            Digital Escrow Security
+          </span>
+          <span class="trust-pill">
+            <svg viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            Fair Mandi Pricing
+          </span>
+        </div>
+      </section>
+
+      <!-- Right Side: Centered Registration Card -->
+      <section class="form-pane">
+        <div class="login-card">
+          
+          <!-- Card Header -->
+          <div class="card-header">
+            <div class="card-pretitle">FPO Onboarding</div>
+            <h2 class="card-title">Register as an FPO</h2>
+            <p class="card-subtitle">Connect your farmer collective with verified institutional buyers, guaranteed settlements, and fair market opportunities.</p>
+          </div>
+
+          <!-- Form Content -->
+          <form id="fpo-registration-form" action="index.html" method="get" autocomplete="on">
+
+            <!-- ================================================================
+                 SECTION 1 — ORGANIZATION DETAILS
+                 ================================================================ -->
+            <section class="reg-form-section" aria-labelledby="section-org-heading">
+              <div class="reg-section-header">
+                <h2 id="section-org-heading" class="reg-section-title">1. Organization Details</h2>
+              </div>
+
+              <div class="form-grid-2">
+                <!-- FPO Name -->
+                <div class="form-group form-group-full">
+                  <label for="fpo-name" class="form-label">FPO / Collective Name</label>
+                  <input 
+                    type="text" 
+                    id="fpo-name" 
+                    name="fpoName" 
+                    class="form-control" 
+                    placeholder="Enter FPO or Organization Name" 
+                    required 
+                    autocomplete="organization"
+                  >
+                  <span class="form-helper">Example: Punjab Farmers Producer Organization</span>
+                </div>
+
+                <!-- Registration Number -->
+                <div class="form-group">
+                  <label for="fpo-reg-number" class="form-label">Registration Number</label>
+                  <input 
+                    type="text" 
+                    id="fpo-reg-number" 
+                    name="registrationNumber" 
+                    class="form-control" 
+                    placeholder="Enter registration number" 
+                    required
+                  >
+                  <span class="form-helper">Official CIN / Society / Cooperative registration number.</span>
+                </div>
+
+                <!-- Year of Establishment -->
+                <div class="form-group">
+                  <label for="fpo-est-year" class="form-label">Year of Establishment</label>
+                  <select id="fpo-est-year" name="yearOfEstablishment" class="form-control" required>
+                    <option value="" disabled selected>Select Year ▼</option>
+                    <option value="2026">2026</option>
+                    <option value="2025">2025</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                    <option value="2018">2018</option>
+                    <option value="2017">2017</option>
+                    <option value="2016">2016</option>
+                    <option value="2015">2015</option>
+                    <option value="2014">2014</option>
+                    <option value="2013">2013</option>
+                    <option value="2012">2012</option>
+                    <option value="2011">2011</option>
+                    <option value="2010">2010</option>
+                    <option value="2005">2005</option>
+                    <option value="2000">2000</option>
+                    <option value="before-2000">Before 2000</option>
+                  </select>
+                </div>
+              </div>
+            </section>
+
+            <!-- ================================================================
+                 SECTION 2 — AUTHORIZED REPRESENTATIVE DETAILS
+                 ================================================================ -->
+            <section class="reg-form-section" aria-labelledby="section-rep-heading">
+              <div class="reg-section-header">
+                <h2 id="section-rep-heading" class="reg-section-title">2. Authorized Representative</h2>
+                <p class="reg-section-subtitle">Details of the representative authorized on behalf of the FPO.</p>
+              </div>
+
+              <div class="form-grid-2">
+                <!-- Full Name -->
+                <div class="form-group">
+                  <label for="rep-full-name" class="form-label">Full Name</label>
+                  <input 
+                    type="text" 
+                    id="rep-full-name" 
+                    name="representativeFullName" 
+                    class="form-control" 
+                    placeholder="Enter representative's full name" 
+                    required 
+                    autocomplete="name"
+                  >
+                </div>
+
+                <!-- Designation -->
+                <div class="form-group">
+                  <label for="rep-designation" class="form-label">Designation</label>
+                  <select id="rep-designation" name="representativeDesignation" class="form-control" required>
+                    <option value="" disabled selected>Select Designation ▼</option>
+                    <option value="Chairman">Chairman</option>
+                    <option value="Director">Director</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Secretary">Secretary</option>
+                    <option value="Authorized Representative">Authorized Representative</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <!-- Mobile Number -->
+                <div class="form-group">
+                  <label for="rep-mobile" class="form-label">Mobile Number</label>
+                  <div class="input-addon-group">
+                    <span class="input-addon-prefix" aria-hidden="true">+91</span>
+                    <input 
+                      type="tel" 
+                      id="rep-mobile" 
+                      name="representativeMobile" 
+                      class="form-control" 
+                      placeholder="Enter mobile number" 
+                      pattern="[0-9]{10}" 
+                      maxlength="10" 
+                      inputmode="numeric" 
+                      required 
+                      autocomplete="tel-national"
+                      aria-label="10-digit mobile number"
+                    >
+                  </div>
+                </div>
+
+                <!-- Email Address -->
+                <div class="form-group">
+                  <label for="rep-email" class="form-label">
+                    <span>Email Address</span>
+                    <span class="form-label-optional">(Optional)</span>
+                  </label>
+                  <input 
+                    type="email" 
+                    id="rep-email" 
+                    name="representativeEmail" 
+                    class="form-control" 
+                    placeholder="Enter email address" 
+                    autocomplete="email"
+                  >
+                </div>
+              </div>
+            </section>
+
+            <!-- ================================================================
+                 SECTION 3 — FARMER COMMUNITY & PRODUCE DETAILS
+                 ================================================================ -->
+            <section class="reg-form-section" aria-labelledby="section-farmer-heading">
+              <div class="reg-section-header">
+                <h2 id="section-farmer-heading" class="reg-section-title">3. Farmer Community &amp; Produce</h2>
+                <p class="reg-section-subtitle">Aggregate capacity and primary crops handled.</p>
+              </div>
+
+              <div class="form-grid-2">
+                <!-- Number of Farmers -->
+                <div class="form-group form-group-full">
+                  <label for="farmers-count" class="form-label">Number of Associated Farmers</label>
+                  <input 
+                    type="number" 
+                    id="farmers-count" 
+                    name="numberOfFarmers" 
+                    class="form-control" 
+                    placeholder="e.g. 250" 
+                    min="1" 
+                    required
+                  >
+                  <span class="form-helper">Total active farmer members in your collective. Example: 250</span>
+                </div>
+
+                <!-- Main Agricultural Products -->
+                <div class="form-group form-group-full">
+                  <label class="form-label">
+                    <span>Main Agricultural Products</span>
+                    <span class="form-label-optional">(Select multiple)</span>
+                  </label>
+                  <span class="form-helper" style="margin-top: 0; margin-bottom: 0.4rem; display: block;">
+                    Choose all produce types your collective regularly trades:
+                  </span>
+
+                  <div class="product-cards-grid" role="group" aria-label="Main Agricultural Products">
+                    <!-- Grains & Cereals -->
+                    <label class="product-card-item">
+                      <input type="checkbox" name="agriculturalProducts" value="Grains and Cereals">
+                      <div class="product-card-box">
+                        <span class="product-card-check" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                          </svg>
+                        </span>
+                        <div>
+                          <span class="product-card-title">Grains &amp; Cereals</span>
+                          <span class="product-card-desc">Wheat, Paddy, Maize, Millets</span>
+                        </div>
+                      </div>
+                    </label>
+
+                    <!-- Vegetables -->
+                    <label class="product-card-item">
+                      <input type="checkbox" name="agriculturalProducts" value="Vegetables">
+                      <div class="product-card-box">
+                        <span class="product-card-check" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                          </svg>
+                        </span>
+                        <div>
+                          <span class="product-card-title">Vegetables</span>
+                          <span class="product-card-desc">Tomato, Onion, Potato, Greens</span>
+                        </div>
+                      </div>
+                    </label>
+
+                    <!-- Fruits -->
+                    <label class="product-card-item">
+                      <input type="checkbox" name="agriculturalProducts" value="Fruits">
+                      <div class="product-card-box">
+                        <span class="product-card-check" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                          </svg>
+                        </span>
+                        <div>
+                          <span class="product-card-title">Fruits</span>
+                          <span class="product-card-desc">Citrus, Mango, Apple, Banana</span>
+                        </div>
+                      </div>
+                    </label>
+
+                    <!-- Pulses -->
+                    <label class="product-card-item">
+                      <input type="checkbox" name="agriculturalProducts" value="Pulses">
+                      <div class="product-card-box">
+                        <span class="product-card-check" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                          </svg>
+                        </span>
+                        <div>
+                          <span class="product-card-title">Pulses &amp; Legumes</span>
+                          <span class="product-card-desc">Gram, Tur, Moong, Urad</span>
+                        </div>
+                      </div>
+                    </label>
+
+                    <!-- Oilseeds & Spices -->
+                    <label class="product-card-item">
+                      <input type="checkbox" name="agriculturalProducts" value="Oilseeds and Spices">
+                      <div class="product-card-box">
+                        <span class="product-card-check" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                          </svg>
+                        </span>
+                        <div>
+                          <span class="product-card-title">Oilseeds &amp; Spices</span>
+                          <span class="product-card-desc">Mustard, Soybean, Chilli</span>
+                        </div>
+                      </div>
+                    </label>
+
+                    <!-- Other Agricultural Products -->
+                    <label class="product-card-item">
+                      <input type="checkbox" name="agriculturalProducts" value="Other Agricultural Products">
+                      <div class="product-card-box">
+                        <span class="product-card-check" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                          </svg>
+                        </span>
+                        <div>
+                          <span class="product-card-title">Other Produce</span>
+                          <span class="product-card-desc">Sugarcane, Cotton, Plantation</span>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- ================================================================
+                 SECTION 4 — FPO ADDRESS & LOCATION
+                 ================================================================ -->
+            <section class="reg-form-section" aria-labelledby="section-address-heading">
+              <div class="reg-section-header">
+                <h2 id="section-address-heading" class="reg-section-title">4. FPO Location</h2>
+                <p class="reg-section-subtitle">Registered office or primary aggregation center.</p>
+              </div>
+
+              <div class="form-grid-2">
+                <!-- State -->
+                <div class="form-group">
+                  <label for="fpo-state" class="form-label">State</label>
+                  <select id="fpo-state" name="state" class="form-control" required>
+                    <option value="" disabled selected>Select State ▼</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="Haryana">Haryana</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Gujarat">Gujarat</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Telangana">Telangana</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Bihar">Bihar</option>
+                    <option value="West Bengal">West Bengal</option>
+                    <option value="Odisha">Odisha</option>
+                    <option value="Kerala">Kerala</option>
+                    <option value="Assam">Assam</option>
+                    <option value="Chhattisgarh">Chhattisgarh</option>
+                    <option value="Jharkhand">Jharkhand</option>
+                    <option value="Uttarakhand">Uttarakhand</option>
+                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Jammu & Kashmir">Jammu &amp; Kashmir</option>
+                    <option value="Other">Other State</option>
+                  </select>
+                </div>
+
+                <!-- District (Populated dynamically based on selected State) -->
+                <div class="form-group">
+                  <label for="fpo-district" class="form-label">District</label>
+                  <select id="fpo-district" name="district" class="form-control" required disabled>
+                    <option value="" disabled selected>Select State first ▼</option>
+                  </select>
+                </div>
+
+                <!-- PIN Code -->
+                <div class="form-group form-group-full">
+                  <label for="fpo-pincode" class="form-label">PIN Code</label>
+                  <input 
+                    type="text" 
+                    id="fpo-pincode" 
+                    name="pincode" 
+                    class="form-control" 
+                    placeholder="Enter 6-digit PIN code" 
+                    pattern="[0-9]{6}" 
+                    maxlength="6" 
+                    inputmode="numeric" 
+                    required
+                  >
+                </div>
+
+                <!-- Complete Address -->
+                <div class="form-group form-group-full">
+                  <label for="fpo-address" class="form-label">Complete Address</label>
+                  <textarea 
+                    id="fpo-address" 
+                    name="completeAddress" 
+                    class="form-control" 
+                    rows="3" 
+                    placeholder="Enter registered office or aggregation center address" 
+                    required
+                  ></textarea>
+                </div>
+              </div>
+            </section>
+
+            <!-- ================================================================
+                 SECTION 5 — ACCOUNT SECURITY
+                 ================================================================ -->
+            <section class="reg-form-section" aria-labelledby="section-security-heading">
+              <div class="reg-section-header">
+                <h2 id="section-security-heading" class="reg-section-title">5. Account Security</h2>
+                <p class="reg-section-subtitle">Set up a strong password to securely access your FPO portal.</p>
+              </div>
+
+              <div class="form-grid-2">
+                <!-- Password -->
+                <div class="form-group">
+                  <label for="fpo-password" class="form-label">Password</label>
+                  <div class="password-input-wrapper">
+                    <input 
+                      type="password" 
+                      id="fpo-password" 
+                      name="password" 
+                      class="form-control" 
+                      placeholder="Create password (min. 6 characters)" 
+                      autocomplete="new-password"
+                      required
+                    >
+                    <button type="button" class="password-toggle-btn" id="btn-toggle-pwd" aria-label="Show password" title="Show password">
+                      <svg class="eye-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>
+                      <svg class="eye-off-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                        <line x1="1" y1="1" x2="23" y2="23"></line>
+                      </svg>
+                    </button>
+                  </div>
+                  <!-- Password Strength Indicator -->
+                  <div class="password-strength-wrap" id="pwd-strength-wrap" style="display: none; margin-top: 0.45rem;">
+                    <div class="strength-bar-track" style="display: flex; gap: 4px; height: 4px; margin-bottom: 4px;">
+                      <div class="strength-bar-seg" id="pwd-seg-1" style="flex: 1; height: 100%; border-radius: 2px; background: #e2e8f0; transition: background-color 200ms ease;"></div>
+                      <div class="strength-bar-seg" id="pwd-seg-2" style="flex: 1; height: 100%; border-radius: 2px; background: #e2e8f0; transition: background-color 200ms ease;"></div>
+                      <div class="strength-bar-seg" id="pwd-seg-3" style="flex: 1; height: 100%; border-radius: 2px; background: #e2e8f0; transition: background-color 200ms ease;"></div>
+                      <div class="strength-bar-seg" id="pwd-seg-4" style="flex: 1; height: 100%; border-radius: 2px; background: #e2e8f0; transition: background-color 200ms ease;"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.725rem; color: #64748b;">
+                      <span id="pwd-strength-text" style="font-weight: 600;">Weak</span>
+                      <span>Min. 6 characters</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="form-group">
+                  <label for="fpo-confirm-password" class="form-label">Confirm Password</label>
+                  <div class="password-input-wrapper">
+                    <input 
+                      type="password" 
+                      id="fpo-confirm-password" 
+                      name="confirm_password" 
+                      class="form-control" 
+                      placeholder="Re-enter your password" 
+                      autocomplete="new-password"
+                      required
+                    >
+                    <button type="button" class="password-toggle-btn" id="btn-toggle-confirm" aria-label="Show password" title="Show password">
+                      <svg class="eye-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>
+                      <svg class="eye-off-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                        <line x1="1" y1="1" x2="23" y2="23"></line>
+                      </svg>
+                    </button>
+                  </div>
+                  <!-- Match status indicator -->
+                  <div id="pwd-match-status" style="display: none; align-items: center; gap: 5px; font-size: 0.75rem; margin-top: 0.45rem;">
+                    <svg id="pwd-match-icon" width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span id="pwd-match-text" style="font-weight: 600;">Passwords match</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- ================================================================
+                 TERMS AND CONDITIONS
+                 ================================================================ -->
+            <div class="terms-agreement-block">
+              <label class="terms-checkbox-label">
+                <input type="checkbox" id="fpo-confirm-info" name="confirmInformation" required>
+                <span>I confirm that the organization details and representative authorization provided are accurate and valid.</span>
+              </label>
+              <label class="terms-checkbox-label">
+                <input type="checkbox" id="fpo-terms" name="agreeTermsAndConditions" required>
+                <span>I agree to AgriMitra's Terms and Conditions, FPO compliance guidelines, and fair trading standards.</span>
+              </label>
+            </div>
+
+            <!-- ================================================================
+                 REGISTER BUTTON
+                 ================================================================ -->
+            <div style="margin-top: 1.25rem;">
+              <button type="submit" class="btn-register-submit" id="btn-submit-fpo">
+                REGISTER AS FPO
+              </button>
+              <p class="reg-profile-note">
+                Your information will be used to create your verified AgriMitra FPO profile.
+              </p>
+            </div>
+
+            <!-- Existing Account Navigation Link -->
+            <div class="already-account-section">
+              <span>Already registered?</span>
+              <a href="index.html">Go to FPO Portal &rarr;</a>
+              <span style="color: var(--color-border); margin: 0 0.35rem;">|</span>
+              <a href="../index.html">Back to Home</a>
+            </div>
+
+          </form>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Clean, minimal footer -->
+  <footer class="site-footer">
+    <p>&copy; 2026 AgriMitra. Dedicated to empowering India's agricultural supply chain.</p>
+  </footer>
+
+  <!-- Dynamic State-to-District Filtering Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const stateSelect = document.getElementById('fpo-state');
+      const districtSelect = document.getElementById('fpo-district');
+
+      const districtsByState = {
+        "Punjab": [
+          "Amritsar", "Barnala", "Bathinda", "Faridkot", "Fatehgarh Sahib", "Fazilka", 
+          "Firozpur", "Gurdaspur", "Hoshiarpur", "Jalandhar", "Kapurthala", "Ludhiana", 
+          "Mansa", "Moga", "Muktsar", "Pathankot", "Patiala", "Rupnagar", "SAS Nagar (Mohali)", 
+          "Sangrur", "SBS Nagar (Nawanshahr)", "Tarn Taran", "Other District"
+        ],
+        "Haryana": [
+          "Ambala", "Bhiwani", "Charkhi Dadri", "Faridabad", "Fatehabad", "Gurugram", 
+          "Hisar", "Jhajjar", "Jind", "Kaithal", "Karnal", "Kurukshetra", "Mahendragarh", 
+          "Nuh", "Palwal", "Panchkula", "Panipat", "Rewari", "Rohtak", "Sirsa", 
+          "Sonipat", "Yamunanagar", "Other District"
+        ],
+        "Uttar Pradesh": [
+          "Agra", "Aligarh", "Ayodhya", "Bareilly", "Bulandshahr", "Ghaziabad", 
+          "Gorakhpur", "Jhansi", "Kanpur Nagar", "Lucknow", "Mathura", "Meerut", 
+          "Moradabad", "Muzaffarnagar", "Prayagraj", "Saharanpur", "Varanasi", "Other District"
+        ],
+        "Madhya Pradesh": [
+          "Bhopal", "Chhindwara", "Dewas", "Dhar", "Gwalior", "Hoshangabad", 
+          "Indore", "Jabalpur", "Khandwa", "Khargone", "Mandsaur", "Morena", 
+          "Ratlam", "Rewa", "Sagar", "Satna", "Sehore", "Ujjain", "Vidisha", "Other District"
+        ],
+        "Maharashtra": [
+          "Ahmednagar", "Akola", "Amravati", "Chhatrapati Sambhaji Nagar", "Dhule", 
+          "Jalgaon", "Kolhapur", "Latur", "Nagpur", "Nanded", "Nashik", "Pune", 
+          "Sangli", "Satara", "Solapur", "Thane", "Yavatmal", "Other District"
+        ],
+        "Rajasthan": [
+          "Ajmer", "Alwar", "Barmer", "Bharatpur", "Bhilwara", "Bikaner", 
+          "Chittorgarh", "Ganganagar", "Hanumangarh", "Jaipur", "Jodhpur", "Kota", 
+          "Nagaur", "Pali", "Sikar", "Tonk", "Udaipur", "Other District"
+        ],
+        "Gujarat": [
+          "Ahmedabad", "Amreli", "Anand", "Banaskantha", "Bharuch", "Bhavnagar", 
+          "Gandhinagar", "Jamnagar", "Junagadh", "Kheda", "Mehsana", "Morbi", 
+          "Patan", "Rajkot", "Sabarkantha", "Surat", "Surendranagar", "Vadodara", "Other District"
+        ],
+        "Karnataka": [
+          "Bagalkot", "Ballari", "Belagavi", "Bengaluru Rural", "Bengaluru Urban", 
+          "Bidar", "Chikkamagaluru", "Davanagere", "Dharwad", "Hassan", "Kalaburagi", 
+          "Mandya", "Mysuru", "Raichur", "Shivamogga", "Tumakuru", "Vijayapura", "Other District"
+        ],
+        "Andhra Pradesh": [
+          "Anantapur", "Chittoor", "East Godavari", "Guntur", "Kadapa", "Krishna", 
+          "Kurnool", "Nellore", "Prakasam", "Srikakulam", "Visakhapatnam", "Vizianagaram", 
+          "West Godavari", "Other District"
+        ],
+        "Telangana": [
+          "Adilabad", "Bhadradri Kothagudem", "Hyderabad", "Jagtial", "Karimnagar", 
+          "Khammam", "Mahabubnagar", "Mancherial", "Medak", "Medchal-Malkajgiri", 
+          "Nalgonda", "Nizamabad", "Rangareddy", "Sangareddy", "Siddipet", "Suryapet", 
+          "Warangal", "Other District"
+        ],
+        "Tamil Nadu": [
+          "Chennai", "Coimbatore", "Cuddalore", "Dharmapuri", "Dindigul", "Erode", 
+          "Kanchipuram", "Madurai", "Namakkal", "Salem", "Thanjavur", "Tiruchirappalli", 
+          "Tirunelveli", "Tiruppur", "Vellore", "Villupuram", "Other District"
+        ],
+        "Bihar": [
+          "Arrah (Bhojpur)", "Begusarai", "Bhagalpur", "Darbhanga", "Gaya", 
+          "Katihar", "Madhubani", "Muzaffarpur", "Nalanda", "Nawada", "Patna", 
+          "Purnia", "Rohtas", "Samastipur", "Saran", "Siwan", "Vaishali", "Other District"
+        ],
+        "West Bengal": [
+          "Bankura", "Birbhum", "Cooch Behar", "Dakshin Dinajpur", "Hooghly", 
+          "Howrah", "Jalpaiguri", "Jhargram", "Malda", "Murshidabad", "Nadia", 
+          "North 24 Parganas", "Paschim Bardhaman", "Paschim Medinipur", 
+          "Purba Bardhaman", "Purba Medinipur", "Purulia", "South 24 Parganas", 
+          "Uttar Dinajpur", "Other District"
+        ],
+        "Odisha": [
+          "Balangir", "Balasore", "Bargarh", "Bhadrak", "Cuttack", "Dhenkanal", 
+          "Ganjam", "Jagatsinghpur", "Jajpur", "Jharsuguda", "Kalahandi", "Kendrapara", 
+          "Khordha", "Mayurbhanj", "Puri", "Sambalpur", "Sundargarh", "Other District"
+        ],
+        "Kerala": [
+          "Alappuzha", "Ernakulam", "Idukki", "Kannur", "Kasaragod", "Kollam", 
+          "Kottayam", "Kozhikode", "Malappuram", "Palakkad", "Pathanamthitta", 
+          "Thiruvananthapuram", "Thrissur", "Wayanad", "Other District"
+        ],
+        "Assam": [
+          "Barpeta", "Cachar", "Darrang", "Dhubri", "Dibrugarh", "Goalpara", 
+          "Golaghat", "Jorhat", "Kamrup", "Kamrup Metropolitan", "Nagaon", 
+          "Sivasagar", "Sonitpur", "Tinsukia", "Other District"
+        ],
+        "Chhattisgarh": [
+          "Bilaspur", "Durg", "Janjgir-Champa", "Korba", "Raigarh", "Raipur", 
+          "Rajnandgaon", "Surguja", "Bastar", "Other District"
+        ],
+        "Jharkhand": [
+          "Bokaro", "Deoghar", "Dhanbad", "East Singhbhum (Jamshedpur)", "Hazaribagh", 
+          "Ranchi", "West Singhbhum", "Other District"
+        ],
+        "Uttarakhand": [
+          "Dehradun", "Haridwar", "Nainital", "Pauri Garhwal", "Udham Singh Nagar", "Other District"
+        ],
+        "Himachal Pradesh": [
+          "Kangra", "Kullu", "Mandi", "Shimla", "Solan", "Una", "Other District"
+        ],
+        "Delhi": [
+          "Central Delhi", "East Delhi", "New Delhi", "North Delhi", "North East Delhi", 
+          "North West Delhi", "Shahdara", "South Delhi", "South East Delhi", "South West Delhi", "West Delhi"
+        ],
+        "Jammu & Kashmir": [
+          "Anantnag", "Baramulla", "Budgam", "Jammu", "Kathua", "Pulwama", "Srinagar", "Udhampur", "Other District"
+        ],
+        "Other": [
+          "Central District", "East District", "North District", "South District", 
+          "West District", "Other District"
+        ]
+      };
+
+      function updateDistricts() {
+        const selectedState = stateSelect.value;
+        districtSelect.innerHTML = '';
+
+        if (!selectedState || !districtsByState[selectedState]) {
+          const placeholderOption = document.createElement('option');
+          placeholderOption.value = '';
+          placeholderOption.disabled = true;
+          placeholderOption.selected = true;
+          placeholderOption.textContent = 'Select State first ▼';
+          districtSelect.appendChild(placeholderOption);
+          districtSelect.disabled = true;
+          return;
+        }
+
+        districtSelect.disabled = false;
+
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.disabled = true;
+        defaultOption.selected = true;
+        defaultOption.textContent = 'Select District ▼';
+        districtSelect.appendChild(defaultOption);
+
+        districtsByState[selectedState].forEach(district => {
+          const option = document.createElement('option');
+          option.value = district;
+          option.textContent = district;
+          districtSelect.appendChild(option);
+        });
+      }
+
+      stateSelect.addEventListener('change', updateDistricts);
+
+      if (stateSelect.value) {
+        updateDistricts();
+      }
+
+      // Enable mouse-wheel scrolling on form pane even when hovering over left visual pane
+      const brandVisualPane = document.querySelector('.brand-visual-pane');
+      const formPane = document.querySelector('.form-pane');
+      if (brandVisualPane && formPane) {
+        brandVisualPane.addEventListener('wheel', (e) => {
+          if (formPane.scrollHeight > formPane.clientHeight) {
+            formPane.scrollTop += e.deltaY;
+          }
+        }, { passive: true });
+      }
+
+      // Password Show/Hide Toggle Logic
+      function setupPasswordToggle(btnId, inputId) {
+        const btn = document.getElementById(btnId);
+        const input = document.getElementById(inputId);
+        if (!btn || !input) return;
+
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const isPassword = input.type === 'password';
+          input.type = isPassword ? 'text' : 'password';
+          btn.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
+          btn.setAttribute('title', isPassword ? 'Hide password' : 'Show password');
+          const eye = btn.querySelector('.eye-icon');
+          const eyeOff = btn.querySelector('.eye-off-icon');
+          if (eye && eyeOff) {
+            eye.style.display = isPassword ? 'none' : 'block';
+            eyeOff.style.display = isPassword ? 'block' : 'none';
+          }
+        });
+      }
+
+      setupPasswordToggle('btn-toggle-pwd', 'fpo-password');
+      setupPasswordToggle('btn-toggle-confirm', 'fpo-confirm-password');
+
+      // Password Strength & Match Checking
+      const pwdInput = document.getElementById('fpo-password');
+      const confirmPwdInput = document.getElementById('fpo-confirm-password');
+      const strengthWrap = document.getElementById('pwd-strength-wrap');
+      const strengthText = document.getElementById('pwd-strength-text');
+      const segs = [
+        document.getElementById('pwd-seg-1'),
+        document.getElementById('pwd-seg-2'),
+        document.getElementById('pwd-seg-3'),
+        document.getElementById('pwd-seg-4')
+      ];
+      const matchStatus = document.getElementById('pwd-match-status');
+      const matchText = document.getElementById('pwd-match-text');
+      const matchIcon = document.getElementById('pwd-match-icon');
+
+      function evaluatePasswordStrength(val) {
+        if (!val || val.length === 0) return { score: 0, label: '', color: '#e2e8f0' };
+        if (val.length < 6) return { score: 1, label: 'Too short', color: '#ef4444' };
+        let score = 2;
+        const hasNum = /\d/.test(val);
+        const hasLetter = /[a-zA-Z]/.test(val);
+        const hasSpecial = /[^a-zA-Z0-9]/.test(val);
+        if (val.length >= 8 && hasNum && hasLetter) score = 3;
+        if (val.length >= 8 && hasNum && hasLetter && hasSpecial) score = 4;
+        const labels = ['', 'Weak', 'Fair', 'Good', 'Strong'];
+        const colors = ['', '#ef4444', '#f59e0b', '#10b981', '#166534'];
+        return { score, label: labels[score], color: colors[score] };
+      }
+
+      function updatePasswordStrength() {
+        if (!pwdInput) return;
+        const val = pwdInput.value;
+        if (val.length > 0) {
+          if (strengthWrap) strengthWrap.style.display = 'block';
+          const { score, label, color } = evaluatePasswordStrength(val);
+          if (strengthText) {
+            strengthText.textContent = label;
+            strengthText.style.color = color;
+          }
+          segs.forEach((seg, idx) => {
+            if (seg) {
+              seg.style.background = idx < score ? color : '#e2e8f0';
+            }
+          });
+        } else {
+          if (strengthWrap) strengthWrap.style.display = 'none';
+        }
+        checkPasswordMatch();
+      }
+
+      function checkPasswordMatch() {
+        if (!pwdInput || !confirmPwdInput || !matchStatus) return;
+        const p1 = pwdInput.value;
+        const p2 = confirmPwdInput.value;
+        if (!p2 || p2.length === 0) {
+          matchStatus.style.display = 'none';
+          return;
+        }
+        matchStatus.style.display = 'flex';
+        if (p1 === p2) {
+          matchStatus.style.color = '#166534';
+          if (matchText) matchText.textContent = 'Passwords match';
+          if (matchIcon) matchIcon.style.color = '#166534';
+        } else {
+          matchStatus.style.color = '#dc2626';
+          if (matchText) matchText.textContent = 'Passwords do not match';
+          if (matchIcon) matchIcon.style.color = '#dc2626';
+        }
+      }
+
+      if (pwdInput) {
+        pwdInput.addEventListener('input', () => {
+          pwdInput.setCustomValidity('');
+          updatePasswordStrength();
+        });
+      }
+      if (confirmPwdInput) {
+        confirmPwdInput.addEventListener('input', () => {
+          confirmPwdInput.setCustomValidity('');
+          checkPasswordMatch();
+        });
+      }
+
+      // Registration Form Submission -> Enforce Compulsory Validation
+      const fpoForm = document.querySelector('form');
+      const fpoSubmitBtn = document.getElementById('btn-submit-fpo') || document.querySelector('.btn-register-submit');
+
+      function proceedToFpoDashboard(e) {
+        if (e && typeof e.preventDefault === 'function') {
+          e.preventDefault();
+        }
+
+        // 1. Standard HTML5 validity check on all required fields
+        if (!fpoForm.checkValidity()) {
+          fpoForm.reportValidity();
+          return false;
+        }
+
+        // 2. Compulsory Password Length Check
+        if (pwdInput && pwdInput.value.length < 6) {
+          pwdInput.setCustomValidity('Password must be at least 6 characters long.');
+          pwdInput.reportValidity();
+          pwdInput.focus();
+          return false;
+        } else if (pwdInput) {
+          pwdInput.setCustomValidity('');
+        }
+
+        // 3. Compulsory Password Match Check
+        if (pwdInput && confirmPwdInput && pwdInput.value !== confirmPwdInput.value) {
+          confirmPwdInput.setCustomValidity('Passwords do not match.');
+          confirmPwdInput.reportValidity();
+          confirmPwdInput.focus();
+          return false;
+        } else if (confirmPwdInput) {
+          confirmPwdInput.setCustomValidity('');
+        }
+
+        // 4. Compulsory Confirmation & Terms Check
+        const confirmInfo = document.getElementById('fpo-confirm-info');
+        if (confirmInfo && !confirmInfo.checked) {
+          confirmInfo.setCustomValidity('Please confirm that the organization details are accurate.');
+          confirmInfo.reportValidity();
+          confirmInfo.focus();
+          return false;
+        } else if (confirmInfo) {
+          confirmInfo.setCustomValidity('');
+        }
+
+        const termsInput = document.getElementById('fpo-terms');
+        if (termsInput && !termsInput.checked) {
+          termsInput.setCustomValidity('You must agree to the FPO compliance guidelines and Terms.');
+          termsInput.reportValidity();
+          termsInput.focus();
+          return false;
+        } else if (termsInput) {
+          termsInput.setCustomValidity('');
+        }
+
+        // All compulsory validations passed!
+        const fpoNameInput = document.getElementById('fpo-name');
+        if (fpoNameInput && fpoNameInput.value.trim()) {
+          try {
+            localStorage.setItem('agriFpoName', fpoNameInput.value.trim());
+          } catch(err) {}
+        }
+        if (fpoSubmitBtn) {
+          fpoSubmitBtn.disabled = true;
+          fpoSubmitBtn.textContent = 'REGISTERING & REDIRECTING...';
+        }
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 350);
+      }
+
+      if (fpoForm) {
+        fpoForm.addEventListener('submit', proceedToFpoDashboard);
+      }
+    });
+  </script>
+
+</body>
+</html>
