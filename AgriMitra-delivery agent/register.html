@@ -18,7 +18,7 @@
       </a>
 
       <!-- Back to Portal / Login Button -->
-      <a href="index.html" class="btn-back-portal" title="Return to Delivery Agent Portal">
+      <a href="../index.html#login?role=delivery" class="btn-back-portal" id="btn-back-to-login" title="Return to Delivery Agent Login">
         <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
         <span>Back to Login</span>
       </a>
@@ -405,6 +405,15 @@
                 <span>Register as Delivery Agent</span>
               </button>
             </div>
+
+            <!-- Existing Account Navigation Link -->
+            <div class="already-account-section" id="already-account-section" style="margin-top: 1.25rem; padding-top: 0.85rem; border-top: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center; gap: 0.4rem; font-size: 0.8125rem; color: #475569;">
+              <span class="already-text" id="already-registered-text" title="Click to login to your existing account" style="cursor: pointer;">Already registered?</span>
+              <a href="../index.html#login?role=delivery" id="link-login-delivery" style="color: #166534; font-weight: 600; text-decoration: none;">Login here &rarr;</a>
+              <span style="color: #cbd5e1; margin: 0 0.35rem;">|</span>
+              <a href="../index.html" style="color: #64748b; text-decoration: none;">Back to Home</a>
+            </div>
+
           </div>
 
         </form>

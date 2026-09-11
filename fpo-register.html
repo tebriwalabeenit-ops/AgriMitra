@@ -680,6 +680,16 @@
       color: var(--color-text-secondary);
     }
 
+    .already-account-section span.already-text {
+      cursor: pointer;
+      transition: color 0.15s ease;
+    }
+
+    .already-account-section span.already-text:hover {
+      color: var(--color-primary);
+      text-decoration: underline;
+    }
+
     .already-account-section a {
       color: var(--color-primary);
       font-weight: 600;
@@ -862,12 +872,22 @@
         <span class="brand-name">Agri<span>Mitra</span></span>
       </a>
 
-      <a href="index.html" class="header-back-btn" id="header-back-btn" title="Back to main page" data-i18n-title="back_to_home">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M19 12H5M12 19l-7-7 7-7"/>
-        </svg>
-        <span data-i18n="back_to_home">Back</span>
-      </a>
+      <div style="display: flex; align-items: center; gap: 0.65rem;">
+        <a href="index.html#login?role=fpo" class="header-back-btn" id="header-login-btn" title="Login to FPO Account" style="color: var(--color-primary); font-weight: 600;">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+            <polyline points="10 17 15 12 10 7"/>
+            <line x1="15" y1="12" x2="3" y2="12"/>
+          </svg>
+          <span>Login</span>
+        </a>
+        <a href="index.html" class="header-back-btn" id="header-back-btn" title="Back to main page" data-i18n-title="back_to_home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          <span data-i18n="back_to_home">Back</span>
+        </a>
+      </div>
     </div>
   </header>
 
@@ -1459,11 +1479,11 @@
             </div>
 
             <!-- Existing Account Navigation Link -->
-            <div class="already-account-section">
-              <span>Already registered?</span>
-              <a href="AgriMitra- FPO/index.html">Go to FPO Portal &rarr;</a>
+            <div class="already-account-section" id="already-account-section">
+              <span class="already-text" id="already-registered-text" onclick="window.location.href='index.html#login?role=fpo';" title="Click to login to your existing account" style="cursor: pointer;">Already registered?</span>
+              <a href="index.html#login?role=fpo" id="link-login-fpo" class="already-reg-link">Login here &rarr;</a>
               <span style="color: var(--color-border); margin: 0 0.35rem;">|</span>
-              <a href="index.html">Back to Home</a>
+              <a href="index.html" class="back-home-link">Back to Home</a>
             </div>
 
           </form>
@@ -1871,6 +1891,26 @@
 
       if (fpoForm) {
         fpoForm.addEventListener('submit', proceedToFpoDashboard);
+      }
+
+      // Handle Already Registered navigation to Central Login Page
+      const fpoLoginUrl = 'index.html#login?role=fpo';
+
+      const alreadyText = document.getElementById('already-registered-text');
+      const alreadyLink = document.getElementById('link-login-fpo');
+      if (alreadyLink) {
+        alreadyLink.href = fpoLoginUrl;
+        alreadyLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          window.location.href = fpoLoginUrl;
+        });
+      }
+      if (alreadyText) {
+        alreadyText.style.cursor = 'pointer';
+        alreadyText.addEventListener('click', (e) => {
+          e.preventDefault();
+          window.location.href = fpoLoginUrl;
+        });
       }
     });
   </script>

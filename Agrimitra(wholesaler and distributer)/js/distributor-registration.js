@@ -341,4 +341,40 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 1000);
     });
   }
+
+  // Handle Already Registered navigation to Central Login Page (supports both Wholesaler & Distributor roles)
+  const alreadyText = document.getElementById('already-registered-text');
+  const alreadyLink = document.getElementById('link-login-distributor');
+
+  function getLoginUrl() {
+    const orgTypeEl = document.getElementById('reg-business-type');
+    const selectedType = orgTypeEl ? orgTypeEl.value.toLowerCase() : '';
+    const isWholesaler = selectedType.includes('wholesaler') || window.location.search.toLowerCase().includes('wholesaler');
+    const role = isWholesaler ? 'wholesaler' : 'distributor';
+    return '../index.html#login?role=' + role;
+  }
+
+  function updateLoginHref() {
+    if (alreadyLink) {
+      alreadyLink.href = getLoginUrl();
+    }
+  }
+
+  if (selectBusinessType) {
+    selectBusinessType.addEventListener('change', updateLoginHref);
+  }
+
+  if (alreadyLink) {
+    updateLoginHref();
+    alreadyLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.location.href = getLoginUrl();
+    });
+  }
+
+  if (alreadyText) {
+    alreadyText.addEventListener('click', () => {
+      window.location.href = getLoginUrl();
+    });
+  }
 });

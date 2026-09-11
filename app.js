@@ -53,14 +53,33 @@ document.addEventListener('DOMContentLoaded', () => {
     openDialog(aboutDialog);
   });
 
-  // Auto-open modal based on URL hash
-  if (window.location.hash === '#register' || window.location.hash === '#role-selection') {
-    openDialog(registerDialog);
-  } else if (window.location.hash === '#login') {
-    openDialog(loginDialog);
-  } else if (window.location.hash === '#about-modal') {
-    openDialog(aboutDialog);
+  // Auto-open modal based on URL hash (supports #login?role=buyer)
+  function handleUrlHash() {
+    const hash = window.location.hash;
+    if (!hash) return;
+    if (hash === '#register' || hash === '#role-selection') {
+      openDialog(registerDialog);
+    } else if (hash === '#login' || hash.startsWith('#login')) {
+      openDialog(loginDialog);
+      const roleMatch = hash.match(/role=([a-z_-]+)/i);
+      let targetRole = roleMatch ? roleMatch[1].toLowerCase() : null;
+      if (targetRole === 'delivery_agent' || targetRole === 'delivery-agent') {
+        targetRole = 'delivery';
+      }
+      if (targetRole) {
+        const loginRole = document.getElementById('login-role');
+        if (loginRole) {
+          loginRole.value = targetRole;
+          loginRole.dispatchEvent(new Event('change'));
+        }
+      }
+    } else if (hash === '#about-modal') {
+      openDialog(aboutDialog);
+    }
   }
+
+  handleUrlHash();
+  window.addEventListener('hashchange', handleUrlHash);
 
   // Generic Close Buttons
   document.querySelectorAll('[data-close-modal]').forEach(btn => {

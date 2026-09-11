@@ -498,4 +498,18 @@ document.addEventListener('DOMContentLoaded', () => {
     stepNode3.className = 'step-node';
     stepNode3.querySelector('.node-circle').textContent = '3';
   });
+
+  // Handle Already Registered navigation to Central Login Page
+  const alreadyText = document.getElementById('already-registered-text');
+  const alreadyLink = document.getElementById('link-login-delivery');
+  const deliveryLoginUrl = '../index.html#login?role=delivery';
+
+  if (alreadyLink) {
+    alreadyLink.href = deliveryLoginUrl;
+  }
+  if (alreadyText) {
+    alreadyText.addEventListener('click', () => {
+      window.location.href = deliveryLoginUrl;
+    });
+  }
 });

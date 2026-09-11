@@ -31,6 +31,14 @@
       </a>
 
       <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <a href="../../index.html#login?role=farmer" class="header-back-btn" id="header-login-btn" title="Login to Farmer Account" style="color: var(--color-primary); font-weight: 600;">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+            <polyline points="10 17 15 12 10 7"/>
+            <line x1="15" y1="12" x2="3" y2="12"/>
+          </svg>
+          <span>Login</span>
+        </a>
         <a href="../../index.html" class="header-back-btn" title="Back to AgriMitra Main Page">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M19 12H5M12 19l-7-7 7-7"/>
@@ -328,9 +336,9 @@
             </button>
 
             <!-- Existing Account Navigation Link -->
-            <div class="already-account-section" style="margin-top: 1.15rem; padding-top: 0.85rem; border-top: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center; gap: 0.4rem; font-size: 0.8125rem; color: #475569;">
-              <span>Already registered?</span>
-              <a href="dashboard.html" style="color: #166534; font-weight: 600; text-decoration: none;">Go to Farmer Dashboard &rarr;</a>
+            <div class="already-account-section" id="already-account-section" style="margin-top: 1.15rem; padding-top: 0.85rem; border-top: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center; gap: 0.4rem; font-size: 0.8125rem; color: #475569;">
+              <span class="already-text" id="already-registered-text" onclick="window.location.href='../../index.html#login?role=farmer';" title="Click to login to your existing account" style="cursor: pointer;">Already registered?</span>
+              <a href="../../index.html#login?role=farmer" id="link-login-farmer" style="color: #166534; font-weight: 600; text-decoration: none;">Login here &rarr;</a>
               <span style="color: #cbd5e1; margin: 0 0.35rem;">|</span>
               <a href="../../index.html" style="color: #64748b; text-decoration: none;">Back to Home</a>
             </div>

@@ -573,6 +573,17 @@
       }
 
       regForm.addEventListener('submit', handleFarmerRegistrationSubmit);
+
+      // Handle Already Registered click to navigate to login page
+      const alreadyText = regForm.querySelector('#already-registered-text') || document.getElementById('already-registered-text');
+      const alreadyLink = regForm.querySelector('#link-login-farmer') || document.getElementById('link-login-farmer');
+      const farmerLoginUrl = '../../index.html#login?role=farmer';
+      if (alreadyLink) alreadyLink.href = farmerLoginUrl;
+      if (alreadyText) {
+        alreadyText.addEventListener('click', () => {
+          window.location.href = farmerLoginUrl;
+        });
+      }
     });
   }
 

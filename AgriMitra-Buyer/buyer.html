@@ -419,6 +419,68 @@
       background-color: var(--color-surface-subtle);
       color: var(--color-text-muted);
       cursor: not-allowed;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    }
+
+    select.form-control optgroup {
+      font-weight: 700;
+      color: #475569;
+      background-color: #f8fafc;
+    }
+
+    select.form-control option {
+      color: #0f172a;
+      background-color: #ffffff;
+      padding: 0.5rem;
+    }
+
+    /* Dynamic State-District Quick Suggestion Pills */
+    .district-quick-suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 0.25rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .quick-pills-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--color-text-muted, #64748b);
+      margin-right: 0.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .district-pill-btn {
+      background: var(--color-surface-alt, #f1f5f9);
+      border: 1px solid var(--color-border, #e2e8f0);
+      border-radius: var(--radius-full, 9999px);
+      font-size: 0.72rem;
+      color: var(--color-text-secondary, #475569);
+      padding: 0.2rem 0.6rem;
+      cursor: pointer;
+      transition: all var(--transition-fast, 150ms ease);
+    }
+
+    .district-pill-btn:hover {
+      background: var(--color-primary-light, #f0fdf4);
+      border-color: var(--color-primary, #15803d);
+      color: var(--color-primary, #15803d);
+    }
+
+    .district-pill-btn.active {
+      background: var(--color-primary, #166534);
+      border-color: var(--color-primary, #166534);
+      color: #ffffff;
+      font-weight: 600;
+      box-shadow: 0 1px 3px rgba(22, 101, 52, 0.25);
+    }
+
+    .district-pill-btn:focus-visible {
+      outline: 2px solid var(--color-primary, #166534);
+      outline-offset: 1px;
     }
 
     textarea.form-control {
@@ -570,14 +632,26 @@
       color: var(--color-text-secondary);
     }
 
+    .already-account-section span.already-text {
+      cursor: pointer;
+      font-weight: 500;
+      transition: color var(--transition-fast);
+    }
+
+    .already-account-section span.already-text:hover {
+      color: var(--color-primary);
+    }
+
     .already-account-section a {
       color: var(--color-primary);
       font-weight: 600;
       text-decoration: none;
+      transition: color var(--transition-fast);
     }
 
     .already-account-section a:hover {
       text-decoration: underline;
+      color: var(--color-primary-hover);
     }
 
     /* Minimal Clean Footer */
@@ -742,12 +816,12 @@
   <!-- Minimal Brand Header -->
   <header class="site-header" role="banner">
     <div class="header-container">
-      <a href="index.html" class="brand-logo" id="header-brand-logo" aria-label="AgriMitra Home">
+      <a href="../index.html" class="brand-logo" id="header-brand-logo" aria-label="AgriMitra Home">
         <img src="logo.png" alt="AgriMitra Logo" class="brand-logo-img">
         <span class="brand-name">Agri<span>Mitra</span></span>
       </a>
 
-      <a href="index.html" class="header-back-btn" id="header-back-btn" title="Back to main page" data-i18n-title="back_to_home">
+      <a href="../index.html" class="header-back-btn" id="header-back-btn" title="Back to main page" data-i18n-title="back_to_home">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
           <path d="M19 12H5M12 19l-7-7 7-7"/>
         </svg>
@@ -938,27 +1012,51 @@
               </div>
 
               <div class="form-grid-2">
-                <!-- State -->
+                <!-- State / UT -->
                 <div class="form-group">
-                  <label for="reg-state" class="form-label">State</label>
+                  <label for="reg-state" class="form-label">State / UT</label>
                   <select id="reg-state" name="state" class="form-control" required>
-                    <option value="" disabled selected>Select State ▼</option>
-                    <option value="Punjab">Punjab</option>
-                    <option value="Haryana">Haryana</option>
-                    <option value="Uttar Pradesh">Uttar Pradesh</option>
-                    <option value="Madhya Pradesh">Madhya Pradesh</option>
-                    <option value="Maharashtra">Maharashtra</option>
-                    <option value="Rajasthan">Rajasthan</option>
-                    <option value="Gujarat">Gujarat</option>
-                    <option value="Karnataka">Karnataka</option>
-                    <option value="Andhra Pradesh">Andhra Pradesh</option>
-                    <option value="Telangana">Telangana</option>
-                    <option value="Tamil Nadu">Tamil Nadu</option>
-                    <option value="Bihar">Bihar</option>
-                    <option value="West Bengal">West Bengal</option>
-                    <option value="Odisha">Odisha</option>
-                    <option value="Kerala">Kerala</option>
-                    <option value="Other">Other State</option>
+                    <option value="" disabled selected>-- Select State / UT --</option>
+                    <optgroup label="States">
+                      <option value="Andhra Pradesh">Andhra Pradesh</option>
+                      <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                      <option value="Assam">Assam</option>
+                      <option value="Bihar">Bihar</option>
+                      <option value="Chhattisgarh">Chhattisgarh</option>
+                      <option value="Goa">Goa</option>
+                      <option value="Gujarat">Gujarat</option>
+                      <option value="Haryana">Haryana</option>
+                      <option value="Himachal Pradesh">Himachal Pradesh</option>
+                      <option value="Jharkhand">Jharkhand</option>
+                      <option value="Karnataka">Karnataka</option>
+                      <option value="Kerala">Kerala</option>
+                      <option value="Madhya Pradesh">Madhya Pradesh</option>
+                      <option value="Maharashtra">Maharashtra</option>
+                      <option value="Manipur">Manipur</option>
+                      <option value="Meghalaya">Meghalaya</option>
+                      <option value="Mizoram">Mizoram</option>
+                      <option value="Nagaland">Nagaland</option>
+                      <option value="Odisha">Odisha</option>
+                      <option value="Punjab">Punjab</option>
+                      <option value="Rajasthan">Rajasthan</option>
+                      <option value="Sikkim">Sikkim</option>
+                      <option value="Tamil Nadu">Tamil Nadu</option>
+                      <option value="Telangana">Telangana</option>
+                      <option value="Tripura">Tripura</option>
+                      <option value="Uttar Pradesh">Uttar Pradesh</option>
+                      <option value="Uttarakhand">Uttarakhand</option>
+                      <option value="West Bengal">West Bengal</option>
+                    </optgroup>
+                    <optgroup label="Union Territories">
+                      <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                      <option value="Chandigarh">Chandigarh</option>
+                      <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+                      <option value="Delhi">Delhi</option>
+                      <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                      <option value="Ladakh">Ladakh</option>
+                      <option value="Lakshadweep">Lakshadweep</option>
+                      <option value="Puducherry">Puducherry</option>
+                    </optgroup>
                   </select>
                 </div>
 
@@ -966,9 +1064,15 @@
                 <div class="form-group">
                   <label for="reg-district" class="form-label">District</label>
                   <select id="reg-district" name="district" class="form-control" required disabled>
-                    <option value="" disabled selected>Select State first ▼</option>
+                    <option value="" disabled selected>-- Select State first --</option>
                   </select>
                 </div>
+              </div>
+
+              <!-- Dynamic Quick District Suggestion Pills -->
+              <div id="district-quick-suggestions" class="district-quick-suggestions" style="display: none;"></div>
+
+              <div class="form-grid-2">
 
                 <!-- PIN Code -->
                 <div class="form-group form-group-full">
@@ -1108,11 +1212,11 @@
             </div>
 
             <!-- Existing Account Navigation Link -->
-            <div class="already-account-section">
-              <span>Already registered?</span>
-              <a href="buyer-dashboard.html">Go to Buyer Dashboard &rarr;</a>
+            <div class="already-account-section" id="already-account-section">
+              <span class="already-text" id="already-registered-text" onclick="window.location.href='../index.html#login?role=buyer';" title="Click to login to your existing account" style="cursor: pointer;">Already registered?</span>
+              <a href="../index.html#login?role=buyer" id="link-login-buyer" class="already-reg-link">Login here &rarr;</a>
               <span style="color: var(--color-border); margin: 0 0.35rem;">|</span>
-              <a href="index.html">Back to Home</a>
+              <a href="../index.html" class="back-home-link">Back to Home</a>
             </div>
 
           </form>
@@ -1133,105 +1237,63 @@
       const stateSelect = document.getElementById('reg-state');
       const districtSelect = document.getElementById('reg-district');
 
-      const districtsByState = {
-        "Punjab": [
-          "Amritsar", "Barnala", "Bathinda", "Faridkot", "Fatehgarh Sahib", "Fazilka", 
-          "Firozpur", "Gurdaspur", "Hoshiarpur", "Jalandhar", "Kapurthala", "Ludhiana", 
-          "Mansa", "Moga", "Muktsar", "Pathankot", "Patiala", "Rupnagar", "SAS Nagar (Mohali)", 
-          "Sangrur", "SBS Nagar (Nawanshahr)", "Tarn Taran", "Other District"
-        ],
-        "Haryana": [
-          "Ambala", "Bhiwani", "Charkhi Dadri", "Faridabad", "Fatehabad", "Gurugram", 
-          "Hisar", "Jhajjar", "Jind", "Kaithal", "Karnal", "Kurukshetra", "Mahendragarh", 
-          "Nuh", "Palwal", "Panchkula", "Panipat", "Rewari", "Rohtak", "Sirsa", 
-          "Sonipat", "Yamunanagar", "Other District"
-        ],
-        "Uttar Pradesh": [
-          "Agra", "Aligarh", "Ayodhya", "Bareilly", "Bulandshahr", "Ghaziabad", 
-          "Gorakhpur", "Jhansi", "Kanpur Nagar", "Lucknow", "Mathura", "Meerut", 
-          "Moradabad", "Muzaffarnagar", "Prayagraj", "Saharanpur", "Varanasi", "Other District"
-        ],
-        "Madhya Pradesh": [
-          "Bhopal", "Chhindwara", "Dewas", "Dhar", "Gwalior", "Hoshangabad", 
-          "Indore", "Jabalpur", "Khandwa", "Khargone", "Mandsaur", "Morena", 
-          "Ratlam", "Rewa", "Sagar", "Satna", "Sehore", "Ujjain", "Vidisha", "Other District"
-        ],
-        "Maharashtra": [
-          "Ahmednagar", "Akola", "Amravati", "Chhatrapati Sambhaji Nagar", "Dhule", 
-          "Jalgaon", "Kolhapur", "Latur", "Nagpur", "Nanded", "Nashik", "Pune", 
-          "Sangli", "Satara", "Solapur", "Thane", "Yavatmal", "Other District"
-        ],
-        "Rajasthan": [
-          "Ajmer", "Alwar", "Barmer", "Bharatpur", "Bhilwara", "Bikaner", 
-          "Chittorgarh", "Ganganagar", "Hanumangarh", "Jaipur", "Jodhpur", "Kota", 
-          "Nagaur", "Pali", "Sikar", "Tonk", "Udaipur", "Other District"
-        ],
-        "Gujarat": [
-          "Ahmedabad", "Amreli", "Anand", "Banaskantha", "Bharuch", "Bhavnagar", 
-          "Gandhinagar", "Jamnagar", "Junagadh", "Kheda", "Mehsana", "Morbi", 
-          "Patan", "Rajkot", "Sabarkantha", "Surat", "Surendranagar", "Vadodara", "Other District"
-        ],
-        "Karnataka": [
-          "Bagalkot", "Ballari", "Belagavi", "Bengaluru Rural", "Bengaluru Urban", 
-          "Bidar", "Chikkamagaluru", "Davanagere", "Dharwad", "Hassan", "Kalaburagi", 
-          "Mandya", "Mysuru", "Raichur", "Shivamogga", "Tumakuru", "Vijayapura", "Other District"
-        ],
-        "Andhra Pradesh": [
-          "Anantapur", "Chittoor", "East Godavari", "Guntur", "Kadapa", "Krishna", 
-          "Kurnool", "Nellore", "Prakasam", "Srikakulam", "Visakhapatnam", "Vizianagaram", 
-          "West Godavari", "Other District"
-        ],
-        "Telangana": [
-          "Adilabad", "Bhadradri Kothagudem", "Hyderabad", "Jagtial", "Karimnagar", 
-          "Khammam", "Mahabubnagar", "Mancherial", "Medak", "Medchal-Malkajgiri", 
-          "Nalgonda", "Nizamabad", "Rangareddy", "Sangareddy", "Siddipet", "Suryapet", 
-          "Warangal", "Other District"
-        ],
-        "Tamil Nadu": [
-          "Chennai", "Coimbatore", "Cuddalore", "Dharmapuri", "Dindigul", "Erode", 
-          "Kanchipuram", "Madurai", "Namakkal", "Salem", "Thanjavur", "Tiruchirappalli", 
-          "Tirunelveli", "Tiruppur", "Vellore", "Villupuram", "Other District"
-        ],
-        "Bihar": [
-          "Arrah (Bhojpur)", "Begusarai", "Bhagalpur", "Darbhanga", "Gaya", 
-          "Katihar", "Madhubani", "Muzaffarpur", "Nalanda", "Nawada", "Patna", 
-          "Purnia", "Rohtas", "Samastipur", "Saran", "Siwan", "Vaishali", "Other District"
-        ],
-        "West Bengal": [
-          "Bankura", "Birbhum", "Cooch Behar", "Dakshin Dinajpur", "Hooghly", 
-          "Howrah", "Jalpaiguri", "Jhargram", "Malda", "Murshidabad", "Nadia", 
-          "North 24 Parganas", "Paschim Bardhaman", "Paschim Medinipur", 
-          "Purba Bardhaman", "Purba Medinipur", "Purulia", "South 24 Parganas", 
-          "Uttar Dinajpur", "Other District"
-        ],
-        "Odisha": [
-          "Balangir", "Balasore", "Bargarh", "Bhadrak", "Cuttack", "Dhenkanal", 
-          "Ganjam", "Jagatsinghpur", "Jajpur", "Jharsuguda", "Kalahandi", "Kendrapara", 
-          "Khordha", "Mayurbhanj", "Puri", "Sambalpur", "Sundargarh", "Other District"
-        ],
-        "Kerala": [
-          "Alappuzha", "Ernakulam", "Idukki", "Kannur", "Kasaragod", "Kollam", 
-          "Kottayam", "Kozhikode", "Malappuram", "Palakkad", "Pathanamthitta", 
-          "Thiruvananthapuram", "Thrissur", "Wayanad", "Other District"
-        ],
-        "Other": [
-          "Central District", "East District", "North District", "South District", 
-          "West District", "Other District"
-        ]
+      const stateDistricts = {
+        'Andaman and Nicobar Islands': ['Nicobar', 'North and Middle Andaman', 'South Andaman'],
+        'Andhra Pradesh': ['Alluri Sitharama Raju', 'Anakapalli', 'Ananthapuramu', 'Annamayya', 'Bapatla', 'Chittoor', 'Dr. B.R. Ambedkar Konaseema', 'East Godavari', 'Eluru', 'Guntur', 'Kakinada', 'Krishna', 'Kurnool', 'Nandyal', 'NTR', 'Palnadu', 'Parvathipuram Manyam', 'Prakasam', 'Sri Potti Sriramulu Nellore', 'Sri Sathya Sai', 'Srikakulam', 'Tirupati', 'Visakhapatnam', 'Vizianagaram', 'West Godavari', 'YSR Kadapa'],
+        'Arunachal Pradesh': ['Anjaw', 'Changlang', 'Dibang Valley', 'East Kameng', 'East Siang', 'Itanagar Capital Complex', 'Kamle', 'Kra Daadi', 'Kurung Kumey', 'Lepa Rada', 'Lohit', 'Longding', 'Lower Dibang Valley', 'Lower Siang', 'Lower Subansiri', 'Namsai', 'Pakke Kessang', 'Papum Pare', 'Shi Yomi', 'Siang', 'Tawang', 'Tirap', 'Upper Siang', 'Upper Subansiri', 'West Kameng', 'West Siang'],
+        'Assam': ['Baksa', 'Barpeta', 'Biswanath', 'Bongaigaon', 'Cachar', 'Charaideo', 'Chirang', 'Darrang', 'Dhemaji', 'Dhubri', 'Dibrugarh', 'Dima Hasao', 'Goalpara', 'Golaghat', 'Hailakandi', 'Hojai', 'Jorhat', 'Kamrup', 'Kamrup Metropolitan', 'Karbi Anglong', 'Karimganj', 'Kokrajhar', 'Lakhimpur', 'Majuli', 'Morigaon', 'Nagaon', 'Nalbari', 'Sivasagar', 'Sonitpur', 'South Salmara-Mankachar', 'Tamulpur', 'Tinsukia', 'Udalguri', 'West Karbi Anglong'],
+        'Bihar': ['Araria', 'Arwal', 'Aurangabad', 'Banka', 'Begusarai', 'Bhagalpur', 'Bhojpur', 'Buxar', 'Darbhanga', 'East Champaran (Motihari)', 'Gaya', 'Gopalganj', 'Jamui', 'Jehanabad', 'Kaimur (Bhabua)', 'Katihar', 'Khagaria', 'Kishanganj', 'Lakhisarai', 'Madhepura', 'Madhubani', 'Munger', 'Muzaffarpur', 'Nalanda', 'Nawada', 'Patna', 'Purnia', 'Rohtas', 'Saharsa', 'Samastipur', 'Saran', 'Sheikhpura', 'Sheohar', 'Sitamarhi', 'Siwan', 'Supaul', 'Vaishali', 'West Champaran (Bettiah)'],
+        'Chandigarh': ['Chandigarh'],
+        'Chhattisgarh': ['Balod', 'Baloda Bazar-Bhatapara', 'Balrampur', 'Bastar', 'Bemetara', 'Bijapur', 'Bilaspur', 'Dantewada', 'Dhamtari', 'Durg', 'Gariaband', 'Gaurela-Pendra-Marwahi', 'Janjgir-Champa', 'Jashpur', 'Kabirdham', 'Kanker', 'Khairagarh-Chhuikhadan-Gandai', 'Kondagaon', 'Korba', 'Koriya', 'Mahasamund', 'Manendragarh-Chirmiri-Bharatpur', 'Mohla-Manpur-Ambagarh Chowki', 'Mungeli', 'Narayanpur', 'Raigarh', 'Raipur', 'Rajnandgaon', 'Sakti', 'Sarangarh-Bilaigarh', 'Sukma', 'Surajpur', 'Surguja'],
+        'Dadra and Nagar Haveli and Daman and Diu': ['Dadra and Nagar Haveli', 'Daman', 'Diu'],
+        'Delhi': ['Central Delhi', 'East Delhi', 'New Delhi', 'North Delhi', 'North East Delhi', 'North West Delhi', 'Shahdara', 'South Delhi', 'South East Delhi', 'South West Delhi', 'West Delhi'],
+        'Goa': ['North Goa', 'South Goa'],
+        'Gujarat': ['Ahmedabad', 'Amreli', 'Anand', 'Aravalli', 'Banaskantha', 'Bharuch', 'Bhavnagar', 'Botad', 'Chhota Udaipur', 'Dahod', 'Dang', 'Devbhumi Dwarka', 'Gandhinagar', 'Gir Somnath', 'Jamnagar', 'Junagadh', 'Kheda', 'Kutch', 'Mahisagar', 'Mehsana', 'Morbi', 'Narmada', 'Navsari', 'Panchmahal', 'Patan', 'Porbandar', 'Rajkot', 'Sabarkantha', 'Surat', 'Surendranagar', 'Tapi', 'Vadodara', 'Valsad'],
+        'Haryana': ['Ambala', 'Bhiwani', 'Charkhi Dadri', 'Faridabad', 'Fatehabad', 'Gurugram', 'Hisar', 'Jhajjar', 'Jind', 'Kaithal', 'Karnal', 'Kurukshetra', 'Mahendragarh', 'Nuh', 'Palwal', 'Panchkula', 'Panipat', 'Rewari', 'Rohtak', 'Sirsa', 'Sonipat', 'Yamunanagar'],
+        'Himachal Pradesh': ['Bilaspur', 'Chamba', 'Hamirpur', 'Kangra', 'Kinnaur', 'Kullu', 'Lahaul and Spiti', 'Mandi', 'Shimla', 'Sirmaur', 'Solan', 'Una'],
+        'Jammu and Kashmir': ['Anantnag', 'Bandipora', 'Baramulla', 'Budgam', 'Doda', 'Ganderbal', 'Jammu', 'Kathua', 'Kishtwar', 'Kulgam', 'Kupwara', 'Poonch', 'Pulwama', 'Rajouri', 'Ramban', 'Reasi', 'Samba', 'Shopian', 'Srinagar', 'Udhampur'],
+        'Jharkhand': ['Bokaro', 'Chatra', 'Deoghar', 'Dhanbad', 'Dumka', 'East Singhbhum', 'Garhwa', 'Giridih', 'Godda', 'Gumla', 'Hazaribagh', 'Jamtara', 'Khunti', 'Koderma', 'Latehar', 'Lohardaga', 'Pakur', 'Palamu', 'Ramgarh', 'Ranchi', 'Sahebganj', 'Seraikela Kharsawan', 'Simdega', 'West Singhbhum'],
+        'Karnataka': ['Bagalkote', 'Ballari', 'Belagavi', 'Bengaluru Rural', 'Bengaluru Urban', 'Bidar', 'Chamarajanagara', 'Chikkaballapura', 'Chikkamagaluru', 'Chitradurga', 'Dakshina Kannada', 'Davanagere', 'Dharwad', 'Gadag', 'Hassan', 'Haveri', 'Kalaburagi', 'Kodagu', 'Kolar', 'Koppal', 'Mandya', 'Mysuru', 'Raichur', 'Ramanagara', 'Shivamogga', 'Tumakuru', 'Udupi', 'Uttara Kannada', 'Vijayanagara', 'Vijayapura', 'Yadgir'],
+        'Kerala': ['Alappuzha', 'Ernakulam', 'Idukki', 'Kannur', 'Kasaragod', 'Kollam', 'Kottayam', 'Kozhikode', 'Malappuram', 'Palakkad', 'Pathanamthitta', 'Thiruvananthapuram', 'Thrissur', 'Wayanad'],
+        'Ladakh': ['Kargil', 'Leh'],
+        'Lakshadweep': ['Lakshadweep'],
+        'Madhya Pradesh': ['Agar Malwa', 'Alirajpur', 'Anuppur', 'Ashoknagar', 'Balaghat', 'Barwani', 'Betul', 'Bhind', 'Bhopal', 'Burhanpur', 'Chhatarpur', 'Chhindwara', 'Damoh', 'Datia', 'Dewas', 'Dhar', 'Dindori', 'Guna', 'Gwalior', 'Harda', 'Hoshangabad (Narmadapuram)', 'Indore', 'Jabalpur', 'Jhabua', 'Katni', 'Khandwa', 'Khargone', 'Maihar', 'Mandla', 'Mandsaur', 'Mauganj', 'Morena', 'Narsinghpur', 'Neemuch', 'Niwari', 'Pandhurna', 'Panna', 'Raisen', 'Rajgarh', 'Ratlam', 'Rewa', 'Sagar', 'Satna', 'Sehore', 'Seoni', 'Shahdol', 'Shajapur', 'Sheopur', 'Shivpuri', 'Sidhi', 'Singrauli', 'Tikamgarh', 'Ujjain', 'Umaria', 'Vidisha'],
+        'Maharashtra': ['Ahmednagar', 'Akola', 'Amravati', 'Chhatrapati Sambhajinagar', 'Beed', 'Bhandara', 'Buldhana', 'Chandrapur', 'Dhule', 'Gadchiroli', 'Gondia', 'Hingoli', 'Jalgaon', 'Jalna', 'Kolhapur', 'Latur', 'Mumbai City', 'Mumbai Suburban', 'Nagpur', 'Nanded', 'Nandurbar', 'Nashik', 'Dharashiv', 'Palghar', 'Parbhani', 'Pune', 'Raigad', 'Ratnagiri', 'Sangli', 'Satara', 'Sindhudurg', 'Solapur', 'Thane', 'Wardha', 'Washim', 'Yavatmal'],
+        'Manipur': ['Bishnupur', 'Chandel', 'Churachandpur', 'Imphal East', 'Imphal West', 'Jiribam', 'Kakching', 'Kamjong', 'Kangpokpi', 'Noney', 'Pherzawl', 'Senapati', 'Tamenglong', 'Tengnoupal', 'Thoubal', 'Ukhrul'],
+        'Meghalaya': ['East Garo Hills', 'East Jaintia Hills', 'East Khasi Hills', 'Eastern West Khasi Hills', 'North Garo Hills', 'Ri Bhoi', 'South Garo Hills', 'South West Garo Hills', 'South West Khasi Hills', 'West Garo Hills', 'West Jaintia Hills', 'West Khasi Hills'],
+        'Mizoram': ['Aizawl', 'Champhai', 'Hnahthial', 'Khawzawl', 'Kolasib', 'Lawngtlai', 'Lunglei', 'Mamit', 'Saitual', 'Serchhip', 'Siaha'],
+        'Nagaland': ['Chümoukedima', 'Dimapur', 'Kiphire', 'Kohima', 'Longleng', 'Mokokchung', 'Mon', 'Niuland', 'Noklak', 'Peren', 'Phek', 'Shamator', 'Tseminyu', 'Tuensang', 'Wokha', 'Zunheboto'],
+        'Odisha': ['Angul', 'Balangir', 'Balasore', 'Bargarh', 'Bhadrak', 'Boudh', 'Cuttack', 'Deogarh', 'Dhenkanal', 'Gajapati', 'Ganjam', 'Jagatsinghpur', 'Jajpur', 'Jharsuguda', 'Kalahandi', 'Kandhamal', 'Kendrapara', 'Kendujhar', 'Khordha', 'Koraput', 'Malkangiri', 'Mayurbhanj', 'Nabarangpur', 'Nayagarh', 'Nuapada', 'Puri', 'Rayagada', 'Sambalpur', 'Subarnapur', 'Sundargarh'],
+        'Puducherry': ['Karaikal', 'Mahe', 'Puducherry', 'Yanam'],
+        'Punjab': ['Amritsar', 'Barnala', 'Bathinda', 'Faridkot', 'Fatehgarh Sahib', 'Fazilka', 'Ferozepur', 'Gurdaspur', 'Hoshiarpur', 'Jalandhar', 'Kapurthala', 'Ludhiana', 'Malerkotla', 'Mansa', 'Moga', 'Muktsar', 'Pathankot', 'Patiala', 'Rupnagar', 'Sahibzada Ajit Singh Nagar (Mohali)', 'Sangrur', 'Shahid Bhagat Singh Nagar', 'Tarn Taran'],
+        'Rajasthan': ['Ajmer', 'Alwar', 'Anupgarh', 'Balotra', 'Banswara', 'Baran', 'Barmer', 'Beawar', 'Bharatpur', 'Bhilwara', 'Bikaner', 'Bundi', 'Chittorgarh', 'Churu', 'Dausa', 'Deeg', 'Dholpur', 'Didwana-Kuchaman', 'Dudu', 'Dungarpur', 'Gangapur City', 'Hanumangarh', 'Jaipur', 'Jaipur Rural', 'Jaisalmer', 'Jalore', 'Jhalawar', 'Jhunjhunu', 'Jodhpur', 'Jodhpur Rural', 'Karauli', 'Kekri', 'Khairthal-Tijara', 'Kota', 'Kotputli-Behror', 'Nagaur', 'Neem Ka Thana', 'Pali', 'Phalodi', 'Pratapgarh', 'Rajsamand', 'Salumbar', 'Sanchore', 'Sawai Madhopur', 'Shahpura', 'Sikar', 'Sirohi', 'Sri Ganganagar', 'Tonk', 'Udaipur'],
+        'Sikkim': ['Gangtok', 'Gyalshing', 'Mangan', 'Namchi', 'Pakyong', 'Soreng'],
+        'Tamil Nadu': ['Ariyalur', 'Chengalpattu', 'Chennai', 'Coimbatore', 'Cuddalore', 'Dharmapuri', 'Dindigul', 'Erode', 'Kallakurichi', 'Kanchipuram', 'Kanyakumari', 'Karur', 'Krishnagiri', 'Madurai', 'Mayiladuthurai', 'Nagapattinam', 'Namakkal', 'Nilgiris', 'Perambalur', 'Pudukkottai', 'Ramanathapuram', 'Ranipet', 'Salem', 'Sivaganga', 'Tenkasi', 'Thanjavur', 'Theni', 'Thoothukudi', 'Tiruchirappalli', 'Tirunelveli', 'Tirupathur', 'Tiruppur', 'Tiruvallur', 'Tiruvannamalai', 'Tiruvarur', 'Vellore', 'Viluppuram', 'Virudhunagar'],
+        'Telangana': ['Adilabad', 'Bhadradri Kothagudem', 'Hanamkonda', 'Hyderabad', 'Jagtial', 'Jangaon', 'Jayashankar Bhupalpally', 'Jogulamba Gadwal', 'Kamareddy', 'Karimnagar', 'Khammam', 'Kumuram Bheem Asifabad', 'Mahabubabad', 'Mahabubnagar', 'Mancherial', 'Medak', 'Medchal-Malkajgiri', 'Mulugu', 'Nagarkurnool', 'Nalgonda', 'Narayanpet', 'Nirmal', 'Nizamabad', 'Peddapalli', 'Rajanna Sircilla', 'Ranga Reddy', 'Sangareddy', 'Siddipet', 'Suryapet', 'Vikarabad', 'Wanaparthy', 'Warangal', 'Yadadri Bhuvanagiri'],
+        'Tripura': ['Dhalai', 'Gomati', 'Khowai', 'North Tripura', 'Sepahijala', 'South Tripura', 'Unakoti', 'West Tripura'],
+        'Uttar Pradesh': ['Agra', 'Aligarh', 'Ambedkar Nagar', 'Amethi', 'Amroha', 'Auraiya', 'Ayodhya', 'Azamgarh', 'Baghpat', 'Bahraich', 'Ballia', 'Balrampur', 'Banda', 'Barabanki', 'Bareilly', 'Basti', 'Bhadohi', 'Bijnor', 'Budaun', 'Bulandshahr', 'Chandauli', 'Chitrakoot', 'Deoria', 'Etah', 'Etawah', 'Farrukhabad', 'Fatehpur', 'Firozabad', 'Gautam Buddha Nagar (Noida)', 'Ghaziabad', 'Ghazipur', 'Gonda', 'Gorakhpur', 'Hamirpur', 'Hapur', 'Hardoi', 'Hathras', 'Jalaun', 'Jaunpur', 'Jhansi', 'Kannauj', 'Kanpur Dehat', 'Kanpur Nagar', 'Kasganj', 'Kaushambi', 'Kheri', 'Kushinagar', 'Lalitpur', 'Lucknow', 'Maharajganj', 'Mahoba', 'Mainpuri', 'Mathura', 'Mau', 'Meerut', 'Mirzapur', 'Moradabad', 'Muzaffarnagar', 'Pilibhit', 'Pratapgarh', 'Prayagraj', 'Raebareli', 'Rampur', 'Saharanpur', 'Sambhal', 'Sant Kabir Nagar', 'Shahjahanpur', 'Shamli', 'Shravasti', 'Siddharthnagar', 'Sitapur', 'Sonbhadra', 'Sultanpur', 'Unnao', 'Varanasi'],
+        'Uttarakhand': ['Almora', 'Bageshwar', 'Chamoli', 'Champawat', 'Dehradun', 'Haridwar', 'Nainital', 'Pauri Garhwal', 'Pithoragarh', 'Rudraprayag', 'Tehri Garhwal', 'Udham Singh Nagar', 'Uttarkashi'],
+        'West Bengal': ['Alipurduar', 'Bankura', 'Birbhum', 'Cooch Behar', 'Dakshin Dinajpur', 'Darjeeling', 'Hooghly', 'Howrah', 'Jalpaiguri', 'Jhargram', 'Kalimpong', 'Kolkata', 'Malda', 'Murshidabad', 'Nadia', 'North 24 Parganas', 'Paschim Bardhaman', 'Paschim Medinipur', 'Purba Bardhaman', 'Purba Medinipur', 'Purulia', 'South 24 Parganas', 'Uttar Dinajpur']
       };
 
-      function updateDistricts() {
+      const quickContainer = document.getElementById('district-quick-suggestions');
+
+      function updateDistricts(keepExistingVal) {
         const selectedState = stateSelect.value;
         districtSelect.innerHTML = '';
 
-        if (!selectedState || !districtsByState[selectedState]) {
+        if (!selectedState || !stateDistricts[selectedState]) {
           const placeholderOption = document.createElement('option');
           placeholderOption.value = '';
           placeholderOption.disabled = true;
           placeholderOption.selected = true;
-          placeholderOption.textContent = 'Select State first ▼';
+          placeholderOption.textContent = '-- Select State first --';
           districtSelect.appendChild(placeholderOption);
           districtSelect.disabled = true;
+          if (quickContainer) {
+            quickContainer.innerHTML = '';
+            quickContainer.style.display = 'none';
+          }
           return;
         }
 
@@ -1241,21 +1303,91 @@
         defaultOption.value = '';
         defaultOption.disabled = true;
         defaultOption.selected = true;
-        defaultOption.textContent = 'Select District ▼';
+        defaultOption.textContent = '-- Select District --';
         districtSelect.appendChild(defaultOption);
 
-        districtsByState[selectedState].forEach(district => {
+        const districts = stateDistricts[selectedState];
+        districts.forEach(district => {
           const option = document.createElement('option');
           option.value = district;
           option.textContent = district;
           districtSelect.appendChild(option);
         });
+
+        if (keepExistingVal && districts.includes(keepExistingVal)) {
+          districtSelect.value = keepExistingVal;
+        }
+
+        // Render popular quick suggestion pills (top commercial/mandi trade hubs)
+        if (quickContainer) {
+          quickContainer.innerHTML = '';
+          if (districts.length > 0) {
+            quickContainer.style.display = 'flex';
+
+            const labelSpan = document.createElement('span');
+            labelSpan.className = 'quick-pills-label';
+            labelSpan.textContent = 'Popular:';
+            quickContainer.appendChild(labelSpan);
+
+            const topDistricts = districts.slice(0, 6);
+            topDistricts.forEach((d) => {
+              const pill = document.createElement('button');
+              pill.type = 'button';
+              pill.className = 'district-pill-btn' + (districtSelect.value === d ? ' active' : '');
+              pill.textContent = d;
+              pill.title = `Select ${d}`;
+              pill.addEventListener('click', (e) => {
+                e.preventDefault();
+                districtSelect.value = d;
+                districtSelect.dispatchEvent(new Event('change'));
+                quickContainer.querySelectorAll('.district-pill-btn').forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+                districtSelect.focus();
+              });
+              quickContainer.appendChild(pill);
+            });
+          } else {
+            quickContainer.style.display = 'none';
+          }
+        }
       }
 
-      stateSelect.addEventListener('change', updateDistricts);
+      stateSelect.addEventListener('change', () => updateDistricts(false));
+
+      districtSelect.addEventListener('change', () => {
+        if (quickContainer) {
+          const currentVal = districtSelect.value.trim().toLowerCase();
+          quickContainer.querySelectorAll('.district-pill-btn').forEach((p) => {
+            if (p.textContent.toLowerCase() === currentVal) {
+              p.classList.add('active');
+            } else {
+              p.classList.remove('active');
+            }
+          });
+        }
+      });
 
       if (stateSelect.value) {
-        updateDistricts();
+        updateDistricts(districtSelect.value);
+      }
+
+      // Handle Already Registered navigation to Central Login Page
+      function getLoginUrl() {
+        if (window.location.pathname.includes('AgriMitra-Buyer')) {
+          return '../index.html#login?role=buyer';
+        }
+        return 'index.html#login?role=buyer';
+      }
+
+      const alreadyText = document.getElementById('already-registered-text');
+      const loginLink = document.getElementById('link-login-buyer');
+      if (loginLink) {
+        loginLink.href = getLoginUrl();
+      }
+      if (alreadyText) {
+        alreadyText.addEventListener('click', () => {
+          window.location.href = getLoginUrl();
+        });
       }
 
       // Enable mouse-wheel scrolling on form pane even when hovering over left visual pane
