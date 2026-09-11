@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <!-- Agrarian Contour Lines & Wheat Grain Texture -->
+  <path d="M0 25 C30 15 70 35 120 20" fill="none" stroke="#1C5A35" stroke-width="1.2" opacity="0.35"/>
+  <path d="M0 65 C40 50 80 75 120 60" fill="none" stroke="#1C5A35" stroke-width="1.2" opacity="0.35"/>
+  <path d="M0 105 C35 90 75 115 120 100" fill="none" stroke="#1C5A35" stroke-width="1.2" opacity="0.35"/>
+  
+  <!-- Subtle dotted tractor furrows -->
+  <path d="M0 45 C45 35 85 55 120 40" fill="none" stroke="#2E7D32" stroke-width="1" stroke-dasharray="3,6" opacity="0.25"/>
+  <path d="M0 85 C35 75 75 95 120 80" fill="none" stroke="#2E7D32" stroke-width="1" stroke-dasharray="3,6" opacity="0.25"/>
+  
+  <!-- Small delicate wheat sprigs -->
+  <g transform="translate(45, 12) scale(0.4)" stroke="#1C5A35" fill="#1C5A35" opacity="0.4">
+    <path d="M10 30 Q12 15 10 0" stroke-width="2" fill="none"/>
+    <ellipse cx="6" cy="6" rx="4" ry="2" transform="rotate(-30 6 6)"/>
+    <ellipse cx="14" cy="6" rx="4" ry="2" transform="rotate(30 14 6)"/>
+    <ellipse cx="5" cy="14" rx="4" ry="2" transform="rotate(-30 5 14)"/>
+    <ellipse cx="15" cy="14" rx="4" ry="2" transform="rotate(30 15 14)"/>
+    <ellipse cx="6" cy="22" rx="4" ry="2" transform="rotate(-30 6 22)"/>
+    <ellipse cx="14" cy="22" rx="4" ry="2" transform="rotate(30 14 22)"/>
+  </g>
+  <g transform="translate(100, 70) scale(0.4)" stroke="#1C5A35" fill="#1C5A35" opacity="0.35">
+    <path d="M10 30 Q12 15 10 0" stroke-width="2" fill="none"/>
+    <ellipse cx="6" cy="6" rx="4" ry="2" transform="rotate(-30 6 6)"/>
+    <ellipse cx="14" cy="6" rx="4" ry="2" transform="rotate(30 14 6)"/>
+    <ellipse cx="5" cy="14" rx="4" ry="2" transform="rotate(-30 5 14)"/>
+    <ellipse cx="15" cy="14" rx="4" ry="2" transform="rotate(30 15 14)"/>
+  </g>
+</svg>

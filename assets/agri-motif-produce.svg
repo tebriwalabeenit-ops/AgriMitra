@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160">
+  <defs>
+    <linearGradient id="produceGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1C5A35" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#2E7D32" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+  <!-- Wooden Produce Crate -->
+  <rect x="25" y="78" width="110" height="58" rx="6" fill="url(#produceGrad)" stroke="#1C5A35" stroke-width="2.5"/>
+  <line x1="25" y1="96" x2="135" y2="96" stroke="#1C5A35" stroke-width="2" opacity="0.4"/>
+  <line x1="25" y1="116" x2="135" y2="116" stroke="#1C5A35" stroke-width="2" opacity="0.4"/>
+  <line x1="56" y1="78" x2="56" y2="136" stroke="#1C5A35" stroke-width="2.5" opacity="0.45"/>
+  <line x1="104" y1="78" x2="104" y2="136" stroke="#1C5A35" stroke-width="2.5" opacity="0.45"/>
+  <!-- Crate hand grip cutout -->
+  <rect x="68" y="84" width="24" height="6.5" rx="3" fill="#FFFFFF" opacity="0.85"/>
+  <!-- Overflowing fresh agricultural produce -->
+  <circle cx="45" cy="70" r="14" fill="#1C5A35" opacity="0.5"/>
+  <circle cx="66" cy="64" r="16" fill="#1C5A35" opacity="0.6"/>
+  <circle cx="92" cy="66" r="15" fill="#1C5A35" opacity="0.55"/>
+  <circle cx="115" cy="72" r="12" fill="#1C5A35" opacity="0.5"/>
+  <circle cx="55" cy="50" r="12" fill="#1C5A35" opacity="0.45"/>
+  <circle cx="80" cy="46" r="13" fill="#1C5A35" opacity="0.5"/>
+  <!-- Leaf garnishes and sprigs -->
+  <path d="M66 42 C 58 30 72 25 78 36 C 72 40 68 40 66 42 Z" fill="#1C5A35" opacity="0.75"/>
+  <path d="M92 45 C 102 34 110 42 104 50 C 98 48 95 46 92 45 Z" fill="#1C5A35" opacity="0.75"/>
+  <!-- Quality grade stamp / tick -->
+  <circle cx="125" cy="120" r="15" fill="#1C5A35" opacity="0.8"/>
+  <path d="M117 120 L 123 126 L 133 114" stroke="#FFFFFF" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

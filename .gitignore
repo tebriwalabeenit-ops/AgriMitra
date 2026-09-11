@@ -1,0 +1,22 @@
+# Environment variables
+.env
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# IDE / OS metadata
+.vscode/
+.idea/
+# Uploads
+assets/uploads/produce_*.png
+assets/uploads/produce_*.jpg

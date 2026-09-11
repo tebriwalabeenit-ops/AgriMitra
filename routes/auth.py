@@ -19,7 +19,7 @@ DASHBOARD_MAP = {
     'farmer': 'AgriMitra-Farmer/farmer/dashboard.html',
     'fpo': 'fpo-dashboard.html',
     'buyer': 'buyer-dashboard.html',
-    'wholesaler': 'wholesaler-trading.html',
+    'wholesaler': 'wholesaler-dashboard.html',
     'distributor': 'Agrimitra(wholesaler and distributer)/distributor-dashboard.html',
     'delivery_agent': 'delivery-dashboard.html'
 }

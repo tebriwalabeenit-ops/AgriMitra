@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160">
+  <defs>
+    <linearGradient id="settleGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1C5A35" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#2E7D32" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+  <!-- Trust Escrow Shield -->
+  <path d="M80 20 L 128 36 C 128 88 80 126 80 135 C 80 126 32 88 32 36 Z" fill="url(#settleGrad)" stroke="#1C5A35" stroke-width="3" opacity="0.8"/>
+  
+  <!-- Inner Coin Seal -->
+  <circle cx="80" cy="72" r="32" fill="#1C5A35" opacity="0.15" stroke="#1C5A35" stroke-width="2"/>
+  
+  <!-- Indian Rupee Symbol (₹) -->
+  <g stroke="#1C5A35" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <line x1="66" y1="56" x2="94" y2="56" stroke-width="3.5" opacity="0.85"/>
+    <line x1="66" y1="65" x2="92" y2="65" stroke-width="3.5" opacity="0.85"/>
+    <line x1="66" y1="56" x2="66" y2="88" stroke-width="3.5" opacity="0.85"/>
+    <path d="M66 65 C 82 65 88 78 74 81 L 94 98" stroke-width="3.5" opacity="0.85"/>
+  </g>
+
+  <!-- Laurel / Wheat Wreath -->
+  <path d="M26 80 Q 20 108 40 124 Q 60 136 80 142 Q 100 136 120 124 Q 140 108 134 80" stroke="#1C5A35" stroke-width="2.5" fill="none" opacity="0.45"/>
+  <circle cx="35" cy="112" r="4" fill="#1C5A35" opacity="0.4"/>
+  <circle cx="54" cy="130" r="4" fill="#1C5A35" opacity="0.4"/>
+  <circle cx="106" cy="130" r="4" fill="#1C5A35" opacity="0.4"/>
+  <circle cx="125" cy="112" r="4" fill="#1C5A35" opacity="0.4"/>
+
+  <!-- Verified Digital Signature Stamp -->
+  <circle cx="114" cy="44" r="14" fill="#1C5A35" opacity="0.9"/>
+  <path d="M107 44 L 112 49 L 121 40" stroke="#FFFFFF" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

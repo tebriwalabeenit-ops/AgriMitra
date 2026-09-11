@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
     farmer: 'AgriMitra-Farmer/farmer/dashboard.html',
     buyer: 'buyer-dashboard.html',
     fpo: 'fpo-dashboard.html',
-    wholesaler: 'wholesaler-trading.html',
+    wholesaler: 'wholesaler-dashboard.html',
     distributor: 'Agrimitra(wholesaler and distributer)/distributor-dashboard.html',
     delivery: 'delivery-dashboard.html',
     delivery_agent: 'delivery-dashboard.html'
@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (selectedRole === 'buyer') {
             targetDashboard = 'buyer-dashboard.html';
           } else if (selectedRole === 'wholesaler') {
-            targetDashboard = 'wholesaler-trading.html';
+            targetDashboard = 'wholesaler-dashboard.html';
           } else if (selectedRole === 'distributor') {
             targetDashboard = 'Agrimitra(wholesaler and distributer)/distributor-dashboard.html';
           } else if (selectedRole === 'delivery' || actualRole === 'delivery_agent') {
@@ -319,7 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn('[KrishiLink] Login API unreachable, continuing in offline demo mode:', networkErr);
         let targetDashboard = roleDashboardRoutes[selectedRole] || 'AgriMitra-Farmer/farmer/dashboard.html';
         if (selectedRole === 'buyer') targetDashboard = 'buyer-dashboard.html';
-        else if (selectedRole === 'wholesaler') targetDashboard = 'wholesaler-trading.html';
+        else if (selectedRole === 'wholesaler') targetDashboard = 'wholesaler-dashboard.html';
         else if (selectedRole === 'distributor') targetDashboard = 'Agrimitra(wholesaler and distributer)/distributor-dashboard.html';
         else if (selectedRole === 'delivery') targetDashboard = 'delivery-dashboard.html';
         else if (selectedRole === 'fpo') targetDashboard = 'fpo-dashboard.html';

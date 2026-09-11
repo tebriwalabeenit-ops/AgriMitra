@@ -6,6 +6,207 @@
   <title>Live Agricultural Trading | AgriMitra Mandi Cockpit</title>
   <meta name="description" content="Participate in real-time mandi agricultural trading sessions. Bid on graded farmer produce with transparent price discovery and Mandi Flash Sales.">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Scoped Data Alignment Enhancements for Wholesaler Live Bidding */
+    
+    /* 1. Specifications Table Alignment */
+    .selected-spec-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .selected-spec-table tr {
+      border-bottom: 1px solid var(--color-border-light);
+    }
+    .selected-spec-table tr:last-child {
+      border-bottom: none;
+    }
+    .selected-spec-table td {
+      padding: 10px 4px;
+      vertical-align: middle;
+      font-size: var(--font-size-sm);
+    }
+    .selected-spec-table td:first-child {
+      width: 44%;
+      color: var(--color-text-muted);
+      text-align: left;
+      font-weight: var(--font-weight-medium);
+    }
+    .selected-spec-table td:last-child {
+      color: var(--color-text-main);
+      font-weight: var(--font-weight-semibold);
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* 2. Highest Bid Display Banner Alignment */
+    .highest-bid-display-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      padding: var(--space-5);
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+      border: 1px solid #A5D6A7;
+    }
+    .highest-bid-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .highest-bid-value {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--color-primary);
+      line-height: 1.1;
+      font-variant-numeric: tabular-nums;
+    }
+    .highest-bid-status-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      text-align: right;
+      gap: 4px;
+    }
+
+    /* 3. Live Bidding Activity Stream Header & Items Alignment */
+    .live-activity-stream {
+      margin-top: var(--space-4);
+    }
+    .bid-feed-header {
+      display: grid;
+      grid-template-columns: 1fr 110px 105px;
+      gap: 12px;
+      padding: 8px 14px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background-color: var(--color-surface-alt);
+      border: 1px solid var(--color-border-light);
+      border-bottom: 2px solid var(--color-border);
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+      box-sizing: border-box;
+    }
+    .bid-feed-header span:nth-child(1) { text-align: left; }
+    .bid-feed-header span:nth-child(2) { text-align: right; }
+    .bid-feed-header span:nth-child(3) { text-align: right; }
+
+    .bid-feed-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-height: 260px;
+      overflow-y: auto;
+      border: 1px solid var(--color-border-light);
+      border-top: none;
+      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+      padding: 8px;
+      background-color: #FAFCFA;
+      box-sizing: border-box;
+    }
+    .bid-feed-item {
+      display: grid !important;
+      grid-template-columns: 1fr 110px 105px !important;
+      gap: 12px !important;
+      align-items: center !important;
+      padding: 10px 12px !important;
+      background-color: #FFFFFF;
+      border: 1px solid var(--color-border-light);
+      border-radius: var(--radius-sm);
+      font-size: var(--font-size-sm);
+      transition: background-color var(--transition-fast);
+      box-sizing: border-box;
+    }
+    .bid-feed-item.latest-bid {
+      background-color: #EBF4ED;
+      border-color: #A5D6A7;
+    }
+    .bid-feed-bidder {
+      text-align: left;
+      font-weight: 600;
+      color: var(--color-text-main);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .bid-feed-price {
+      text-align: right !important;
+      font-weight: 700;
+      color: var(--color-primary);
+      font-variant-numeric: tabular-nums;
+      font-size: 1rem;
+      white-space: nowrap;
+    }
+    .bid-feed-time {
+      text-align: right !important;
+      font-size: var(--font-size-xs);
+      color: var(--color-text-muted);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    /* 4. Trading Metrics Grid on Produce Cards Alignment */
+    .trading-metrics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 14px;
+      padding: 12px 14px;
+      background-color: var(--color-surface-alt);
+      border: 1px solid var(--color-border-light);
+      border-radius: var(--radius-md);
+      align-items: stretch;
+    }
+    .trading-metric-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 2px;
+    }
+    .trading-metric-item:nth-child(2),
+    .trading-metric-item:nth-child(4) {
+      text-align: right;
+      align-items: flex-end;
+    }
+    .trading-metric-label {
+      font-size: 0.72rem;
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .trading-metric-value {
+      font-size: 1.05rem;
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-main);
+      font-variant-numeric: tabular-nums;
+    }
+    .trading-metric-value.highlight-green {
+      color: var(--color-primary);
+      font-size: 1.15rem;
+    }
+
+    /* 5. Header / Cockpit Timer & Status Alignment */
+    .bidding-header-status {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: var(--space-4);
+      border-bottom: 1px solid var(--color-border-light);
+      gap: var(--space-4);
+    }
+    .live-timer-box {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      text-align: right;
+      gap: 2px;
+    }
+  </style>
 </head>
 <body>
   <!-- Subtle Background Pattern -->
@@ -29,7 +230,8 @@
 
       <nav class="header-nav" aria-label="Wholesaler Navigation">
         <ul class="nav-links">
-          <li><a href="#live-now-heading" class="nav-link" style="color: var(--color-primary); font-weight: var(--font-weight-bold);">Live Now</a></li>
+          <li><a href="wholesaler-dashboard.html" class="nav-link" style="color: var(--color-primary); font-weight: 700; display: inline-flex; align-items: center; gap: 4px;">← Dashboard</a></li>
+          <li><a href="#live-now-heading" class="nav-link" style="font-weight: var(--font-weight-bold);">Live Now</a></li>
           <li><a href="#selected-session" class="nav-link" style="color: #1B5E20; font-weight: 700;">Live Bidding Console</a></li>
           <li><a href="#starting-soon-heading" class="nav-link">Starting Soon</a></li>
           <li><a href="#upcoming-heading" class="nav-link">Upcoming</a></li>
@@ -80,7 +282,7 @@
                 <span class="live-dot" style="margin-right: 6px;" aria-hidden="true"></span>
                 Active Live Bidding Console (Lot #TRD-WHT-901 · ₹32.50/kg) ↓
               </a>
-              <span style="font-size: var(--font-size-xs); color: var(--color-text-secondary); font-weight: 500;">
+              <span id="wholesaler-hero-closes-in" style="font-size: var(--font-size-xs); color: var(--color-text-secondary); font-weight: 500;">
                 Closes in 00:12:45 · 5 bids received
               </span>
             </div>
@@ -531,11 +733,11 @@
                 </div>
               </div>
 
-              <div style="text-align: right;">
+              <div class="highest-bid-status-right">
                 <span class="bidder-tag">
                   Leading: Bidder #218
                 </span>
-                <div style="font-size: 0.75rem; color: #2E7D32; margin-top: 4px;">
+                <div style="font-size: 0.75rem; color: #2E7D32;">
                   Your Firm is Current Leader
                 </div>
               </div>
@@ -584,6 +786,13 @@
               <div class="stream-title-bar">
                 <h3 id="stream-heading" class="stream-title-text">Live Bidding Activity</h3>
                 <span style="font-size: var(--font-size-xs); color: var(--color-text-muted);">Newest bids at top</span>
+              </div>
+
+              <!-- Aligned Stream Table Headers -->
+              <div class="bid-feed-header" aria-hidden="true">
+                <span>Bidder</span>
+                <span>Bid Amount</span>
+                <span>Time</span>
               </div>
 
               <div class="bid-feed-list" tabindex="0" aria-label="Live bid stream">
@@ -771,201 +980,6 @@
                 <div class="trading-metric-item">
                   <span class="trading-metric-label">Quantity</span>
                   <span class="trading-metric-value">3,000 kg</span>
-                </div>
-                <div class="trading-metric-item">
-                  <span class="trading-metric-label">Starting Price</span>
-                  <span class="trading-metric-value">₹22/kg</span>
-                </div>
-                <div class="trading-metric-item">
-                  <span class="trading-metric-label">Trading Date</span>
-                  <span class="trading-metric-value" style="font-size: 0.95rem;">15 September</span>
-                </div>
-                <div class="trading-metric-item">
-                  <span class="trading-metric-label">Start Time</span>
-                  <span class="trading-metric-value" style="font-size: 0.95rem;">10:00 AM</span>
-                </div>
-                <div class="trading-metric-item" style="grid-column: span 2; border-top: 1px dashed var(--color-border); padding-top: 6px;">
-                  <span class="trading-metric-label">Duration</span>
-                  <span class="trading-metric-value" style="font-size: 0.95rem;">1 Hour</span>
-                </div>
-              </div>
-
-              <div class="trading-card-footer">
-                <button type="button" class="btn btn-secondary btn-full">
-                  SET REMINDER
-                </button>
-              </div>
-            </div>
-          </article>
-
-          <!-- Upcoming Card 2: Kashmiri Apples -->
-          <article class="trading-card">
-            <div class="trading-card-banner">
-              <img src="assets/produce/apple.jpg" alt="Kashmiri Apples Produce">
-              <div class="trading-card-badge-pos">
-                <span class="badge-upcoming">UPCOMING</span>
-              </div>
-            </div>
-            <div class="trading-card-body">
-              <div class="trading-card-title-group">
-                <h3 class="trading-card-title">Kashmiri Apples</h3>
-                <span class="trading-card-fpo">Kashmir Valley Orchard FPO · Jammu &amp; Kashmir</span>
-              </div>
-
-              <div class="trading-metrics-grid">
-                <div class="trading-metric-item">
-                  <span class="trading-metric-label">Quantity</span>
-                  <span class="trading-metric-value">4,000 kg</span>
-                </div>
-                <div class="trading-metric-item">
-                  <span class="trading-metric-label">Starting Price</span>
-                  <span class="trading-metric-value">₹90/kg</span>
-                </div>
-                <div class="trading-metric-item">
-                  <span class="trading-metric-label">Trading Date</span>
-                  <span class="trading-metric-value" style="font-size: 0.95rem;">16 September</span>
-                </div>
-                <div class="trading-metric-item">
-                  <span class="trading-metric-label">Start Time</span>
-                  <span class="trading-metric-value" style="font-size: 0.95rem;">11:30 AM</span>
-                </div>
-                <div class="trading-metric-item" style="grid-column: span 2; border-top: 1px dashed var(--color-border); padding-top: 6px;">
-                  <span class="trading-metric-label">Duration</span>
-                  <span class="trading-metric-value" style="font-size: 0.95rem;">2 Hours</span>
-                </div>
-              </div>
-
-              <div class="trading-card-footer">
-                <button type="button" class="btn btn-secondary btn-full">
-                  SET REMINDER
-                </button>
-              </div>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ================================================================
-         13. MANDI FLASH SALE SECTION
-         (Direct purchase for failed auction lots voluntarily flashed by FPO)
-         ================================================================ -->
-    <section class="mandi-flash-section" id="mandi-flash" aria-labelledby="flash-heading-label">
-      <div class="container">
-        
-        <div class="trading-section-header">
-          <div>
-            <span class="badge-flash" style="margin-bottom: var(--space-2);">
-              DIRECT MANDI CLEARANCE
-            </span>
-            <h2 id="flash-heading-label" class="trading-section-title" style="color: #4E342E;">
-              Mandi Flash Sale
-            </h2>
-            <p style="font-size: var(--font-size-base); color: var(--color-text-secondary); max-width: 780px; margin-top: 4px; line-height: 1.5;">
-              Products that received no valid bids during Live Trading and were voluntarily listed for Flash Sale by their FPO. Available for instant direct purchase at the special mandi clearance rate.
-            </p>
-          </div>
-          <span class="mandi-flash-badge">Instant Wholesale Purchase</span>
-        </div>
-
-        <div class="trading-cards-grid">
-          
-          <!-- Flash Card 1: Premium Wheat -->
-          <article class="trading-card" style="border: 2px solid #D7CCC8;">
-            <div class="trading-card-banner" style="background-color: #FFFDF9;">
-              <img src="assets/produce/wheat.jpg" alt="Premium Wheat Produce">
-              <div class="trading-card-badge-pos">
-                <span class="badge-flash">MANDI FLASH SALE</span>
-              </div>
-              <div class="trading-card-timer-pos" style="background: rgba(198, 40, 40, 0.9);">
-                Offer Ends In: 05:42:18
-              </div>
-            </div>
-
-            <div class="trading-card-body">
-              <div class="trading-card-title-group">
-                <h3 class="trading-card-title">Premium Wheat</h3>
-                <span class="trading-card-fpo">Punjab Farmers Producer Organization · Punjab</span>
-              </div>
-
-              <div style="background-color: #FFFDF9; border: 1px solid #FFE082; border-radius: var(--radius-md); padding: var(--space-4);">
-                <div style="font-size: var(--font-size-xs); color: var(--color-text-muted); text-transform: uppercase;">
-                  Quantity Available: <strong>5,000 kg</strong>
-                </div>
-
-                <div class="flash-price-comparison">
-                  <div>
-                    <span style="font-size: 0.7rem; color: var(--color-text-muted); display: block;">Original Starting Price</span>
-                    <span class="original-price-strike">₹28/kg</span>
-                  </div>
-                  <div style="margin-left: auto; text-align: right;">
-                    <span style="font-size: 0.7rem; color: #C62828; font-weight: var(--font-weight-bold); text-transform: uppercase; display: block;">Special Flash Price</span>
-                    <span class="special-flash-price">₹25/kg</span>
-                  </div>
-                </div>
-
-                <div style="font-size: var(--font-size-xs); color: #795548; margin-top: 6px; border-top: 1px dashed #FFE082; padding-top: 6px;">
-                  Savings: ₹3.00/kg (₹15,000 total discount on entire lot)
-                </div>
-              </div>
-
-              <div class="trading-card-footer">
-                <button type="button" class="btn btn-primary btn-full" style="background-color: #C62828; border-color: #C62828; box-shadow: 0 4px 14px rgba(198, 40, 40, 0.25);">
-                  BUY NOW
-                </button>
-              </div>
-            </div>
-          </article>
-
-          <!-- Flash Card 2: Desi Chana / Chickpeas -->
-          <article class="trading-card" style="border: 2px solid #D7CCC8;">
-            <div class="trading-card-banner" style="background-color: #FFFDF9;">
-              <img src="assets/produce/chana.jpg" alt="Chickpeas Produce">
-              <div class="trading-card-badge-pos">
-                <span class="badge-flash">MANDI FLASH SALE</span>
-              </div>
-              <div class="trading-card-timer-pos" style="background: rgba(198, 40, 40, 0.9);">
-                Offer Ends In: 03:15:00
-              </div>
-            </div>
-
-            <div class="trading-card-body">
-              <div class="trading-card-title-group">
-                <h3 class="trading-card-title">Desi Chana</h3>
-                <span class="trading-card-fpo">Malwa Krishi Producer Co · Madhya Pradesh</span>
-              </div>
-
-              <div style="background-color: #FFFDF9; border: 1px solid #FFE082; border-radius: var(--radius-md); padding: var(--space-4);">
-                <div style="font-size: var(--font-size-xs); color: var(--color-text-muted); text-transform: uppercase;">
-                  Quantity Available: <strong>2,400 kg</strong>
-                </div>
-
-                <div class="flash-price-comparison">
-                  <div>
-                    <span style="font-size: 0.7rem; color: var(--color-text-muted); display: block;">Original Starting Price</span>
-                    <span class="original-price-strike">₹52/kg</span>
-                  </div>
-                  <div style="margin-left: auto; text-align: right;">
-                    <span style="font-size: 0.7rem; color: #C62828; font-weight: var(--font-weight-bold); text-transform: uppercase; display: block;">Special Flash Price</span>
-                    <span class="special-flash-price">₹46/kg</span>
-                  </div>
-                </div>
-
-                <div style="font-size: var(--font-size-xs); color: #795548; margin-top: 6px; border-top: 1px dashed #FFE082; padding-top: 6px;">
-                  Savings: ₹6.00/kg (₹14,400 total discount on entire lot)
-                </div>
-              </div>
-
-              <div class="trading-card-footer">
-                <button type="button" class="btn btn-primary btn-full" style="background-color: #C62828; border-color: #C62828; box-shadow: 0 4px 14px rgba(198, 40, 40, 0.25);">
-                  BUY NOW
-                </button>
-              </div>
-            </div>
-          </article>
-
-        </div>
                 </div>
                 <div class="trading-metric-item">
                   <span class="trading-metric-label">Starting Price</span>

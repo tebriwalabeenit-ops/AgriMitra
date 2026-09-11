@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160">
+  <defs>
+    <linearGradient id="farmerGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1C5A35" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#2E7D32" stop-opacity="0.4"/>
+    </linearGradient>
+  </defs>
+  <!-- Agrarian field contours -->
+  <path d="M10 135 Q 80 115 150 130" stroke="#1C5A35" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.3"/>
+  <path d="M5 148 Q 75 125 155 142" stroke="#1C5A35" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.2"/>
+  
+  <!-- Wheat Stalk Primary -->
+  <path d="M85 130 Q 88 65 85 25" stroke="#1C5A35" stroke-width="2.5" fill="none"/>
+  <path d="M85 25 C 72 20 74 34 85 36 C 96 34 98 20 85 25 Z" fill="url(#farmerGrad)"/>
+  <path d="M85 39 C 70 36 72 50 85 53 C 98 50 100 36 85 39 Z" fill="url(#farmerGrad)"/>
+  <path d="M85 56 C 70 53 72 67 85 70 C 98 67 100 53 85 56 Z" fill="url(#farmerGrad)"/>
+  <path d="M85 73 C 72 70 74 84 85 87 C 96 84 98 70 85 73 Z" fill="url(#farmerGrad)"/>
+
+  <!-- Wheat Stalk Secondary (Angled) -->
+  <path d="M85 130 Q 105 85 125 50" stroke="#1C5A35" stroke-width="2" fill="none"/>
+  <path d="M125 50 C 114 42 120 58 125 61 C 137 56 135 42 125 50 Z" fill="url(#farmerGrad)"/>
+  <path d="M117 63 C 106 57 113 70 117 75 C 129 69 127 57 117 63 Z" fill="url(#farmerGrad)"/>
+  <path d="M108 77 C 98 72 105 83 108 88 C 120 82 118 72 108 77 Z" fill="url(#farmerGrad)"/>
+
+  <!-- Tractor silhouette in farm field -->
+  <g transform="translate(18, 92)" fill="#1C5A35">
+    <rect x="18" y="10" width="26" height="15" rx="3" opacity="0.5"/>
+    <path d="M26 10 L 26 2 L 40 2 L 40 10 Z" opacity="0.5"/>
+    <rect x="29" y="4" width="8" height="5" rx="1" fill="#FFFFFF" opacity="0.8"/>
+    <rect x="12" y="14" width="8" height="11" rx="2" opacity="0.45"/>
+    <circle cx="20" cy="27" r="7" opacity="0.7"/>
+    <circle cx="20" cy="27" r="3" fill="#FFFFFF"/>
+    <circle cx="42" cy="24" r="10" opacity="0.8"/>
+    <circle cx="42" cy="24" r="4.5" fill="#FFFFFF"/>
+    <!-- Exhaust pipe -->
+    <line x1="16" y1="14" x2="16" y2="7" stroke="#1C5A35" stroke-width="1.8" opacity="0.6"/>
+  </g>
+</svg>

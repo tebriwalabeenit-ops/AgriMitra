@@ -86,7 +86,7 @@ assert(fpoHtml.includes("window.location.href = 'index.html'"), 'fpo-register.ht
 assert(fs.existsSync(path.join(fpoDir, 'index.html')), 'index.html (dashboard) exists in AgriMitra- FPO');
 
 console.log('\n=== 6. CHECKING ROOT FORWARDERS ===');
-['buyer.html', 'delivery-agent.html', 'fpo-register.html', 'buyer-dashboard.html'].forEach(rf => {
+['buyer.html', 'delivery-agent.html', 'fpo-register.html', 'buyer-dashboard.html', 'distributor-dashboard.html', 'wholesaler-dashboard.html'].forEach(rf => {
   const filePath = path.join(rootDir, rf);
   assert(fs.existsSync(filePath), `Root forwarder ${rf} exists`);
 });

@@ -1,0 +1,166 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <defs>
+    <!-- Role & Step 01: Farmer & Crop Furrows Motif -->
+    <g id="motif-farmer" viewBox="0 0 120 120">
+      <path d="M10 100 Q 60 75 110 95" stroke="#1C5A35" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.35"/>
+      <path d="M5 110 Q 55 88 115 106" stroke="#1C5A35" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.25"/>
+      <!-- Wheat stalk 1 -->
+      <path d="M60 90 Q 62 45 60 20" stroke="#1C5A35" stroke-width="2" fill="none"/>
+      <path d="M60 20 C 50 16 52 28 60 30 C 68 28 70 16 60 20 Z" fill="#1C5A35" opacity="0.5"/>
+      <path d="M60 32 C 48 30 50 42 60 44 C 70 42 72 30 60 32 Z" fill="#1C5A35" opacity="0.5"/>
+      <path d="M60 46 C 48 44 50 56 60 58 C 70 56 72 44 60 46 Z" fill="#1C5A35" opacity="0.5"/>
+      <path d="M60 60 C 50 58 52 70 60 72 C 68 70 70 58 60 60 Z" fill="#1C5A35" opacity="0.5"/>
+      <!-- Wheat stalk 2 (angled) -->
+      <path d="M60 90 Q 75 60 88 38" stroke="#1C5A35" stroke-width="1.8" fill="none"/>
+      <path d="M88 38 C 80 32 85 44 88 47 C 97 43 96 32 88 38 Z" fill="#1C5A35" opacity="0.45"/>
+      <path d="M82 48 C 74 44 79 54 82 58 C 91 53 90 44 82 48 Z" fill="#1C5A35" opacity="0.45"/>
+      <!-- Tractor silhouette in distance -->
+      <rect x="15" y="75" width="20" height="11" rx="2" fill="#1C5A35" opacity="0.4"/>
+      <rect x="22" y="68" width="11" height="8" rx="1" fill="#1C5A35" opacity="0.4"/>
+      <circle cx="18" cy="87" r="4.5" fill="#1C5A35" opacity="0.55"/>
+      <circle cx="32" cy="85" r="6.5" fill="#1C5A35" opacity="0.55"/>
+    </g>
+
+    <!-- Role & Step 02: Agricultural Produce & Harvest Crates -->
+    <g id="motif-produce" viewBox="0 0 120 120">
+      <!-- Stacking wooden harvest crate -->
+      <rect x="20" y="60" width="80" height="42" rx="4" fill="#1C5A35" opacity="0.15" stroke="#1C5A35" stroke-width="2"/>
+      <line x1="20" y1="74" x2="100" y2="74" stroke="#1C5A35" stroke-width="1.5" opacity="0.4"/>
+      <line x1="20" y1="88" x2="100" y2="88" stroke="#1C5A35" stroke-width="1.5" opacity="0.4"/>
+      <line x1="42" y1="60" x2="42" y2="102" stroke="#1C5A35" stroke-width="2" opacity="0.5"/>
+      <line x1="78" y1="60" x2="78" y2="102" stroke="#1C5A35" stroke-width="2" opacity="0.5"/>
+      <!-- Handle cutout -->
+      <rect x="50" y="65" width="20" height="5" rx="2.5" fill="#FFFFFF" opacity="0.9"/>
+      <!-- Produce overflowing: Tomatoes, Bell peppers, Grain sack -->
+      <circle cx="35" cy="54" r="10" fill="#1C5A35" opacity="0.4"/>
+      <circle cx="50" cy="50" r="12" fill="#1C5A35" opacity="0.5"/>
+      <circle cx="68" cy="52" r="11" fill="#1C5A35" opacity="0.45"/>
+      <circle cx="85" cy="55" r="9" fill="#1C5A35" opacity="0.4"/>
+      <circle cx="42" cy="42" r="8" fill="#1C5A35" opacity="0.35"/>
+      <circle cx="59" cy="38" r="9" fill="#1C5A35" opacity="0.4"/>
+      <!-- Fresh leaf sprigs -->
+      <path d="M50 36 C 45 28 55 24 59 32 C 55 35 52 35 50 36 Z" fill="#1C5A35" opacity="0.6"/>
+      <path d="M68 38 C 74 30 80 36 76 42 C 72 40 70 39 68 38 Z" fill="#1C5A35" opacity="0.6"/>
+    </g>
+
+    <!-- Role & Step 03: Mandi Bazaar & Wholesale Trading Stall -->
+    <g id="motif-mandi" viewBox="0 0 120 120">
+      <!-- Mandi canopy / shed roof -->
+      <polygon points="10,48 60,25 110,48" fill="#1C5A35" opacity="0.25" stroke="#1C5A35" stroke-width="2"/>
+      <path d="M10 48 Q 22 55 35 48 Q 47 55 60 48 Q 72 55 85 48 Q 97 55 110 48" fill="#1C5A35" opacity="0.35"/>
+      <!-- Pillars -->
+      <line x1="22" y1="52" x2="22" y2="102" stroke="#1C5A35" stroke-width="2.5" opacity="0.5"/>
+      <line x1="98" y1="52" x2="98" y2="102" stroke="#1C5A35" stroke-width="2.5" opacity="0.5"/>
+      <line x1="60" y1="48" x2="60" y2="102" stroke="#1C5A35" stroke-width="2" opacity="0.35"/>
+      <!-- Mandi platform base -->
+      <rect x="14" y="98" width="92" height="6" rx="2" fill="#1C5A35" opacity="0.5"/>
+      <!-- Traditional Balance Scale (Tarazu) of Mandi -->
+      <line x1="42" y1="62" x2="78" y2="62" stroke="#1C5A35" stroke-width="2" opacity="0.7"/>
+      <line x1="60" y1="55" x2="60" y2="72" stroke="#1C5A35" stroke-width="2" opacity="0.7"/>
+      <!-- Left Pan -->
+      <path d="M42 62 L 36 78 M 42 62 L 48 78" stroke="#1C5A35" stroke-width="1.2" opacity="0.5"/>
+      <path d="M34 78 Q 42 84 50 78 Z" fill="#1C5A35" opacity="0.5"/>
+      <!-- Right Pan -->
+      <path d="M78 62 L 72 78 M 78 62 L 84 78" stroke="#1C5A35" stroke-width="1.2" opacity="0.5"/>
+      <path d="M70 78 Q 78 84 86 78 Z" fill="#1C5A35" opacity="0.5"/>
+      <!-- Grain sacks on floor -->
+      <ellipse cx="28" cy="94" rx="8" ry="5" fill="#1C5A35" opacity="0.4"/>
+      <ellipse cx="90" cy="94" rx="9" ry="5" fill="#1C5A35" opacity="0.4"/>
+    </g>
+
+    <!-- Role & Step 04: Agricultural Transit & Logistics Truck -->
+    <g id="motif-delivery" viewBox="0 0 120 120">
+      <!-- Roadway -->
+      <line x1="5" y1="102" x2="115" y2="102" stroke="#1C5A35" stroke-width="2.5" opacity="0.4"/>
+      <line x1="15" y1="107" x2="35" y2="107" stroke="#1C5A35" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.3"/>
+      <line x1="50" y1="107" x2="70" y2="107" stroke="#1C5A35" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.3"/>
+      <line x1="85" y1="107" x2="105" y2="107" stroke="#1C5A35" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.3"/>
+      <!-- Indian Agricultural Transport Truck / Tempo -->
+      <!-- Cargo Body -->
+      <rect x="15" y="48" width="55" height="42" rx="3" fill="#1C5A35" opacity="0.25" stroke="#1C5A35" stroke-width="2"/>
+      <line x1="15" y1="62" x2="70" y2="62" stroke="#1C5A35" stroke-width="1.2" opacity="0.4"/>
+      <line x1="15" y1="76" x2="70" y2="76" stroke="#1C5A35" stroke-width="1.2" opacity="0.4"/>
+      <!-- Produce sacks in open truck bed -->
+      <circle cx="28" cy="44" r="7" fill="#1C5A35" opacity="0.4"/>
+      <circle cx="42" cy="42" r="8" fill="#1C5A35" opacity="0.45"/>
+      <circle cx="56" cy="44" r="7" fill="#1C5A35" opacity="0.4"/>
+      <!-- Cabin -->
+      <path d="M70 60 L 88 60 L 98 75 L 98 90 L 70 90 Z" fill="#1C5A35" opacity="0.35" stroke="#1C5A35" stroke-width="2"/>
+      <!-- Window -->
+      <path d="M74 65 L 86 65 L 92 75 L 74 75 Z" fill="#FFFFFF" opacity="0.8"/>
+      <!-- Wheels -->
+      <circle cx="34" cy="92" r="9" fill="#1C5A35" opacity="0.7"/>
+      <circle cx="34" cy="92" r="4" fill="#FFFFFF"/>
+      <circle cx="85" cy="92" r="9" fill="#1C5A35" opacity="0.7"/>
+      <circle cx="85" cy="92" r="4" fill="#FFFFFF"/>
+      <!-- GPS signal waves above truck -->
+      <path d="M45 28 A 12 12 0 0 1 65 28" stroke="#1C5A35" stroke-width="2" fill="none" opacity="0.6"/>
+      <path d="M49 33 A 6 6 0 0 1 61 33" stroke="#1C5A35" stroke-width="1.8" fill="none" opacity="0.7"/>
+      <circle cx="55" cy="38" r="2" fill="#1C5A35" opacity="0.8"/>
+    </g>
+
+    <!-- Role & Step 05: Bank Direct Benefit Transfer & Rupee Settlement -->
+    <g id="motif-settlement" viewBox="0 0 120 120">
+      <!-- Trust Shield -->
+      <path d="M60 18 L 92 30 C 92 65 60 92 60 98 C 60 92 28 65 28 30 Z" fill="#1C5A35" opacity="0.12" stroke="#1C5A35" stroke-width="2.5"/>
+      <!-- Inner circular seal -->
+      <circle cx="60" cy="54" r="24" fill="#1C5A35" opacity="0.25" stroke="#1C5A35" stroke-width="1.5"/>
+      <!-- Indian Rupee Symbol (₹) -->
+      <path d="M50 42 L 70 42 M 50 48 L 68 48 M 50 42 L 50 66 M 50 48 C 62 48 66 58 56 60 L 70 72" stroke="#1C5A35" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.75"/>
+      <!-- Wheat wreath branches around shield -->
+      <path d="M22 65 Q 18 82 32 94 Q 45 102 60 106 Q 75 102 88 94 Q 102 82 98 65" stroke="#1C5A35" stroke-width="2" fill="none" opacity="0.5"/>
+      <circle cx="28" cy="85" r="3" fill="#1C5A35" opacity="0.4"/>
+      <circle cx="40" cy="98" r="3" fill="#1C5A35" opacity="0.4"/>
+      <circle cx="80" cy="98" r="3" fill="#1C5A35" opacity="0.4"/>
+      <circle cx="92" cy="85" r="3" fill="#1C5A35" opacity="0.4"/>
+      <!-- Checkmark badge of verification -->
+      <circle cx="84" cy="36" r="10" fill="#1C5A35" opacity="0.8"/>
+      <path d="M79 36 L 83 40 L 89 33" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <!-- Role: FPO (Farmer Producer Organisation) Collective -->
+    <g id="motif-fpo" viewBox="0 0 120 120">
+      <!-- Grain Silo / Storage unit -->
+      <rect x="75" y="40" width="28" height="50" rx="3" fill="#1C5A35" opacity="0.2" stroke="#1C5A35" stroke-width="1.8"/>
+      <path d="M75 40 Q 89 28 103 40 Z" fill="#1C5A35" opacity="0.3" stroke="#1C5A35" stroke-width="1.8"/>
+      <line x1="75" y1="55" x2="103" y2="55" stroke="#1C5A35" stroke-width="1.2" opacity="0.4"/>
+      <line x1="75" y1="70" x2="103" y2="70" stroke="#1C5A35" stroke-width="1.2" opacity="0.4"/>
+      <!-- Group of 3 connected farmer figures representing collective aggregation -->
+      <!-- Center Leader -->
+      <circle cx="48" cy="45" r="7" fill="#1C5A35" opacity="0.6"/>
+      <path d="M38 68 C 38 56 58 56 58 68 Z" fill="#1C5A35" opacity="0.5"/>
+      <!-- Left Member -->
+      <circle cx="30" cy="52" r="6" fill="#1C5A35" opacity="0.5"/>
+      <path d="M20 72 C 20 62 40 62 40 72 Z" fill="#1C5A35" opacity="0.4"/>
+      <!-- Right Member -->
+      <circle cx="65" cy="52" r="6" fill="#1C5A35" opacity="0.5"/>
+      <path d="M55 72 C 55 62 75 62 75 72 Z" fill="#1C5A35" opacity="0.4"/>
+      <!-- Collective circular handshake / orbit arc -->
+      <path d="M15 88 Q 48 98 80 88" stroke="#1C5A35" stroke-width="2" fill="none" opacity="0.5"/>
+      <rect x="22" y="85" width="22" height="15" rx="2" fill="#1C5A35" opacity="0.3"/>
+      <rect x="52" y="85" width="22" height="15" rx="2" fill="#1C5A35" opacity="0.3"/>
+    </g>
+
+    <!-- Role: Distributor / Wholesaler Warehouse & Logistics Grid -->
+    <g id="motif-distributor" viewBox="0 0 120 120">
+      <!-- Large Agricultural Warehouse -->
+      <polygon points="15,55 60,30 105,55" fill="#1C5A35" opacity="0.25" stroke="#1C5A35" stroke-width="2"/>
+      <rect x="20" y="55" width="80" height="42" fill="#1C5A35" opacity="0.15" stroke="#1C5A35" stroke-width="2"/>
+      <!-- Roll-up Bay Doors -->
+      <rect x="30" y="70" width="22" height="27" fill="#1C5A35" opacity="0.35"/>
+      <line x1="30" y1="76" x2="52" y2="76" stroke="#FFFFFF" stroke-width="1.2" opacity="0.7"/>
+      <line x1="30" y1="82" x2="52" y2="82" stroke="#FFFFFF" stroke-width="1.2" opacity="0.7"/>
+      <line x1="30" y1="88" x2="52" y2="88" stroke="#FFFFFF" stroke-width="1.2" opacity="0.7"/>
+      <!-- Stacked Pallets and Crates -->
+      <rect x="65" y="75" width="25" height="10" rx="1.5" fill="#1C5A35" opacity="0.45"/>
+      <rect x="68" y="65" width="20" height="10" rx="1.5" fill="#1C5A35" opacity="0.45"/>
+      <rect x="71" y="56" width="14" height="9" rx="1.5" fill="#1C5A35" opacity="0.45"/>
+      <!-- Network Distribution Nodes -->
+      <circle cx="20" cy="35" r="4" fill="#1C5A35" opacity="0.6"/>
+      <circle cx="60" cy="18" r="4" fill="#1C5A35" opacity="0.6"/>
+      <circle cx="100" cy="35" r="4" fill="#1C5A35" opacity="0.6"/>
+      <line x1="20" y1="35" x2="60" y2="18" stroke="#1C5A35" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.5"/>
+      <line x1="60" y1="18" x2="100" y2="35" stroke="#1C5A35" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.5"/>
+    </g>
+  </defs>
+</svg>

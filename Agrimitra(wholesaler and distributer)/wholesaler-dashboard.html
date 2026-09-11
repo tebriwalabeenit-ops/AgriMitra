@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AgriMitra Wholesaler Dashboard - Participate in live mandi bidding, bulk agricultural produce procurement, wholesale storage and trading.">
+  <title>Wholesaler Dashboard | AgriMitra</title>
+
+  <!-- CSS Dependencies -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/distributor.css">
+  <link rel="stylesheet" href="css/modal.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script src="../assets/auth-guard.js"></script>
+</head>
+<body class="distributor-app">
+
+  <!-- ========================================================================
+       TOP HEADER NAVBAR
+       ======================================================================== -->
+  <header class="dist-header">
+    <div class="dist-header-inner">
+      
+      <!-- Brand Logo -->
+      <a href="wholesaler-dashboard.html" class="dist-brand">
+        <img src="logo.png" alt="AgriMitra Logo" style="width: 34px; height: 34px; object-fit: contain; border-radius: 6px;">
+        <span class="dist-brand-name">Agri<span>Mitra</span> <span style="font-size: 0.72rem; color: #166534; font-weight: 700; margin-left: 6px; padding: 2px 8px; background: #e8f5e9; border: 1px solid #c8e6c9; border-radius: 4px; vertical-align: middle;">WHOLESALER</span></span>
+      </a>
+
+      <!-- Primary Navigation -->
+      <nav aria-label="Main Navigation">
+        <ul class="dist-nav-links">
+          <li><a href="wholesaler-dashboard.html" class="dist-nav-link active">Overview</a></li>
+          <li><a href="javascript:void(0)" class="dist-nav-link" data-modal-target="modal-available-supply">Find Supply</a></li>
+          <li><a href="../wholesaler-trading.html" class="dist-nav-link" style="color: #1C5A35; font-weight: 700; display: inline-flex; align-items: center; gap: 4px;"><span style="width: 7px; height: 7px; background: #2E7D32; border-radius: 50%; display: inline-block;"></span>Live Bidding Cockpit</a></li>
+          <li><a href="javascript:void(0)" class="dist-nav-link" data-modal-target="modal-all-requirements">Requirements</a></li>
+          <li><a href="javascript:void(0)" class="dist-nav-link" data-modal-target="modal-full-inventory">Inventory</a></li>
+          <li><a href="javascript:void(0)" class="dist-nav-link" data-modal-target="modal-all-orders">Orders</a></li>
+          <li><a href="javascript:void(0)" class="dist-nav-link" id="header-nav-profile-link" data-modal-target="modal-profile">Profile</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right User Profile Trigger -->
+      <div class="dist-user-profile" id="header-profile-trigger" title="View Wholesaler Profile (#WS-DEL-218)">
+        <div class="user-avatar-circle" style="background-color: #0D47A1;">KM</div>
+        <span class="user-business-name" id="header-business-name">Kisan Mandi Traders Pvt Ltd</span>
+        <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor" style="color: var(--color-text-muted);">
+          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+        </svg>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       WORKFLOW RIBBON
+       SOURCE → PURCHASE → RECEIVE → STORE → DISTRIBUTE
+       ======================================================================== -->
+  <aside class="workflow-ribbon-bar" aria-label="Procurement Lifecycle">
+    <div class="workflow-ribbon-inner">
+      <span class="workflow-step active">1. BID / TRADE</span>
+      <span class="workflow-arrow">→</span>
+      <span class="workflow-step active">2. SOURCE</span>
+      <span class="workflow-arrow">→</span>
+      <span class="workflow-step active">3. PURCHASE</span>
+      <span class="workflow-arrow">→</span>
+      <span class="workflow-step active">4. RECEIVE</span>
+      <span class="workflow-arrow">→</span>
+      <span class="workflow-step active">5. STORE</span>
+      <span class="workflow-arrow">→</span>
+      <span class="workflow-step active">6. DISTRIBUTE</span>
+    </div>
+  </aside>
+
+  <!-- ========================================================================
+       MAIN DASHBOARD WORKSPACE
+       ======================================================================== -->
+  <main class="dist-main-content">
+    
+    <!-- Greeting Section -->
+    <section class="dist-welcome-section">
+      <div>
+        <h1 class="dist-welcome-title">
+          Good morning, <span id="greeting-business-name">Kisan Mandi Traders Pvt Ltd</span>
+        </h1>
+        <p class="dist-welcome-sub">
+          Manage your live mandi bidding, bulk agricultural produce sourcing, wholesale inventory and distribution.
+        </p>
+      </div>
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+        <a href="../wholesaler-trading.html" class="btn btn-secondary" style="text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">
+          <span style="width: 8px; height: 8px; background-color: #2E7D32; border-radius: 50%; display: inline-block;"></span>
+          <span>Live Mandi Cockpit →</span>
+        </a>
+        <button type="button" class="btn btn-primary" data-modal-target="modal-create-requirement">
+          <span>+ Create Requirement</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Summary Metric Cards (Clicking opens relevant modal) -->
+    <section class="summary-cards-grid" aria-label="Operational Summary">
+      
+      <!-- Open Requirements -->
+      <div class="metric-card" id="metric-card-requirements" role="button" tabindex="0" title="Click to view all requirements">
+        <div class="metric-card-label">
+          <span>Open Requirements</span>
+          <span class="metric-card-arrow">→</span>
+        </div>
+        <div class="metric-card-value" id="metric-requirements-count">5</div>
+        <div class="metric-card-hint">Produce sourcing requests</div>
+      </div>
+
+      <!-- Incoming Supply -->
+      <div class="metric-card" id="metric-card-incoming" role="button" tabindex="0" title="Click to view incoming shipments">
+        <div class="metric-card-label">
+          <span>Incoming Supply</span>
+          <span class="metric-card-arrow">→</span>
+        </div>
+        <div class="metric-card-value">12.4 <span style="font-size: 1.125rem; font-weight: 600;">tonnes</span></div>
+        <div class="metric-card-hint">2 shipments arriving soon</div>
+      </div>
+
+      <!-- Current Inventory -->
+      <div class="metric-card" id="metric-card-inventory" role="button" tabindex="0" title="Click to view full inventory">
+        <div class="metric-card-label">
+          <span>Current Inventory</span>
+          <span class="metric-card-arrow">→</span>
+        </div>
+        <div class="metric-card-value">24.8 <span style="font-size: 1.125rem; font-weight: 600;">tonnes</span></div>
+        <div class="metric-card-hint">Across 3 warehouse bays</div>
+      </div>
+
+      <!-- Active Orders -->
+      <div class="metric-card" id="metric-card-orders" role="button" tabindex="0" title="Click to view active orders">
+        <div class="metric-card-label">
+          <span>Active Orders</span>
+          <span class="metric-card-arrow">→</span>
+        </div>
+        <div class="metric-card-value" id="metric-orders-count">4</div>
+        <div class="metric-card-hint">In transit & dispatch</div>
+      </div>
+
+    </section>
+
+    <!-- ====================================================================
+         LIVE MANDI BIDDING SECTION (WHOLESALER / DISTRIBUTOR DASHBOARD)
+         ==================================================================== -->
+    <section class="dash-section" id="live-bidding" style="background: #FFFFFF; border: 2px solid #1C5A35; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; scroll-margin-top: 80px; box-shadow: 0 4px 16px rgba(28, 90, 53, 0.08);">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.25rem; border-bottom: 1px solid #D7E2D8; padding-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+            <span style="display: inline-flex; align-items: center; gap: 6px; background-color: #E8F5E9; color: #1B5E20; border: 1px solid #A5D6A7; font-size: 0.75rem; font-weight: 700; padding: 2px 10px; border-radius: 9999px; text-transform: uppercase;">
+              <span style="width: 8px; height: 8px; background-color: #2E7D32; border-radius: 50%; display: inline-block;"></span>
+              LIVE BIDDING ACTIVE
+            </span>
+            <span style="font-size: 0.75rem; color: #647568; font-weight: 600;">YOUR BIDDER ID: #218</span>
+          </div>
+          <h2 style="font-size: 1.5rem; font-weight: 700; color: #1C5A35; margin: 0;">
+            Live Mandi Agricultural Bidding
+          </h2>
+          <p style="font-size: 0.875rem; color: #425245; margin-top: 4px;">
+            Participate in real-time mandi auction sessions. Bids close automatically to the highest valid bidder.
+          </p>
+        </div>
+
+        <div>
+          <a href="../wholesaler-trading.html" class="btn btn-primary" style="text-decoration: none; padding: 0.65rem 1.25rem; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">
+            Open Full Trading Cockpit
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Live Bidding Grid -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem;">
+        
+        <!-- Live Bidding Card 1: Premium Wheat (SELECTED LEADER) -->
+        <div style="background-color: #F7FAF7; border: 1px solid #C8DEC9; border-radius: 10px; padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="display: inline-flex; align-items: center; gap: 4px; background-color: #E8F5E9; color: #1B5E20; font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 9999px;">
+                <span style="width: 6px; height: 6px; background-color: #2E7D32; border-radius: 50%;"></span>
+                LIVE NOW
+              </span>
+              <span style="font-size: 0.85rem; font-weight: 700; color: #C62828; font-variant-numeric: tabular-nums;">
+                00:12:45
+              </span>
+            </div>
+
+            <h3 style="font-size: 1.2rem; font-weight: 700; color: #142017; margin-bottom: 2px;">Premium Wheat</h3>
+            <div style="font-size: 0.75rem; color: #647568; margin-bottom: 12px;">Punjab Farmers FPO · Ludhiana (5,000 kg)</div>
+
+            <div style="background-color: #FFFFFF; border: 1px solid #D7E2D8; border-radius: 8px; padding: 10px; margin-bottom: 12px;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 4px;">
+                <span style="color: #647568;">Starting Floor:</span>
+                <span style="color: #142017; font-weight: 600;">₹28.00/kg</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.9rem; border-top: 1px dashed #D7E2D8; padding-top: 6px;">
+                <span style="color: #1B5E20; font-weight: 700;">Current Highest Bid:</span>
+                <span style="color: #1B5E20; font-weight: 800; font-size: 1.15rem;">₹32.50/kg</span>
+              </div>
+              <div style="font-size: 0.75rem; color: #2E7D32; font-weight: 600; text-align: right; margin-top: 2px;">
+                Leading: Bidder #218 (Your Firm)
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 8px;">
+            <a href="../wholesaler-trading.html#selected-session" class="btn btn-primary" style="flex: 1; text-align: center; text-decoration: none; font-size: 0.875rem;">
+              Place Next Bid (₹33.00)
+            </a>
+          </div>
+        </div>
+
+        <!-- Live Bidding Card 2: Fresh Potatoes -->
+        <div style="background-color: #F7FAF7; border: 1px solid #C8DEC9; border-radius: 10px; padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="display: inline-flex; align-items: center; gap: 4px; background-color: #E8F5E9; color: #1B5E20; font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 9999px;">
+                <span style="width: 6px; height: 6px; background-color: #2E7D32; border-radius: 50%;"></span>
+                LIVE NOW
+              </span>
+              <span style="font-size: 0.85rem; font-weight: 700; color: #C62828; font-variant-numeric: tabular-nums;">
+                00:08:15
+              </span>
+            </div>
+
+            <h3 style="font-size: 1.2rem; font-weight: 700; color: #142017; margin-bottom: 2px;">Fresh Potatoes</h3>
+            <div style="font-size: 0.75rem; color: #647568; margin-bottom: 12px;">Nashik Farmers Collective · Maharashtra (3,200 kg)</div>
+
+            <div style="background-color: #FFFFFF; border: 1px solid #D7E2D8; border-radius: 8px; padding: 10px; margin-bottom: 12px;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 4px;">
+                <span style="color: #647568;">Starting Floor:</span>
+                <span style="color: #142017; font-weight: 600;">₹20.00/kg</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.9rem; border-top: 1px dashed #D7E2D8; padding-top: 6px;">
+                <span style="color: #1B5E20; font-weight: 700;">Current Highest Bid:</span>
+                <span style="color: #1B5E20; font-weight: 800; font-size: 1.15rem;">₹24.00/kg</span>
+              </div>
+              <div style="font-size: 0.75rem; color: #647568; text-align: right; margin-top: 2px;">
+                Leading: Bidder #104
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 8px;">
+            <a href="../wholesaler-trading.html#live-now-heading" class="btn btn-secondary" style="flex: 1; text-align: center; text-decoration: none; font-size: 0.875rem;">
+              View &amp; Bid
+            </a>
+          </div>
+        </div>
+
+        <!-- Live Bidding Card 3: Basmati Rice -->
+        <div style="background-color: #F7FAF7; border: 1px solid #C8DEC9; border-radius: 10px; padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="display: inline-flex; align-items: center; gap: 4px; background-color: #E8F5E9; color: #1B5E20; font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 9999px;">
+                <span style="width: 6px; height: 6px; background-color: #2E7D32; border-radius: 50%;"></span>
+                LIVE NOW
+              </span>
+              <span style="font-size: 0.85rem; font-weight: 700; color: #C62828; font-variant-numeric: tabular-nums;">
+                00:21:10
+              </span>
+            </div>
+
+            <h3 style="font-size: 1.2rem; font-weight: 700; color: #142017; margin-bottom: 2px;">Basmati Rice</h3>
+            <div style="font-size: 0.75rem; color: #647568; margin-bottom: 12px;">Karnal Organic Producers · Haryana (4,500 kg)</div>
+
+            <div style="background-color: #FFFFFF; border: 1px solid #D7E2D8; border-radius: 8px; padding: 10px; margin-bottom: 12px;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 4px;">
+                <span style="color: #647568;">Starting Floor:</span>
+                <span style="color: #142017; font-weight: 600;">₹60.00/kg</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.9rem; border-top: 1px dashed #D7E2D8; padding-top: 6px;">
+                <span style="color: #1B5E20; font-weight: 700;">Current Highest Bid:</span>
+                <span style="color: #1B5E20; font-weight: 800; font-size: 1.15rem;">₹68.50/kg</span>
+              </div>
+              <div style="font-size: 0.75rem; color: #647568; text-align: right; margin-top: 2px;">
+                Leading: Bidder #356
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 8px;">
+            <a href="../wholesaler-trading.html#live-now-heading" class="btn btn-secondary" style="flex: 1; text-align: center; text-decoration: none; font-size: 0.875rem;">
+              View &amp; Bid
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Two-Column Primary / Secondary Grid -->
+    <div class="dashboard-grid-layout">
+      
+      <!-- ====================================================================
+           PRIMARY WORKSPACE COLUMN
+           ==================================================================== -->
+      <div class="dashboard-primary-col">
+        
+        <!-- SECTION: MY REQUIREMENTS -->
+        <section class="dash-section">
+          <div class="dash-section-header">
+            <h2 class="dash-section-title">
+              <span>My Requirements</span>
+              <span class="badge badge-gray" style="font-size: 0.6875rem;">Active Procurement</span>
+            </h2>
+            <button type="button" class="btn btn-primary btn-sm" data-modal-target="modal-create-requirement">
+              + Create Requirement
+            </button>
+          </div>
+
+          <div class="req-cards-list" id="my-requirements-list">
+            <!-- Dynamically populated by JS -->
+          </div>
+        </section>
+
+        <!-- SECTION: AVAILABLE SUPPLY -->
+        <section class="dash-section">
+          <div class="dash-section-header">
+            <h2 class="dash-section-title">
+              <span>Available Supply</span>
+              <span class="badge badge-green" style="font-size: 0.6875rem;">Verified Lots</span>
+            </h2>
+            <button type="button" class="btn btn-outline btn-sm" data-modal-target="modal-available-supply">
+              View All Supply
+            </button>
+          </div>
+
+          <!-- Filters -->
+          <div class="supply-filter-tabs">
+            <button class="filter-tab-btn active" data-filter="all">Best Match</button>
+            <button class="filter-tab-btn" data-filter="price">Lowest Price</button>
+            <button class="filter-tab-btn" data-filter="nearest">Nearest</button>
+            <button class="filter-tab-btn" data-filter="largest">Largest Lot</button>
+          </div>
+
+          <!-- Supply Cards Grid -->
+          <div class="supply-cards-grid" id="supply-lots-grid">
+            <!-- Dynamically populated by JS -->
+          </div>
+        </section>
+
+        <!-- SECTION: RECOMMENDED PROCUREMENT (Best Match Highlight) -->
+        <section class="dash-section">
+          <div class="dash-section-header">
+            <h2 class="dash-section-title">
+              <span>Recommended Supply</span>
+              <span class="badge badge-amber" style="font-size: 0.6875rem;">Algorithmic Match</span>
+            </h2>
+          </div>
+
+          <div class="recommended-card">
+            <div class="rec-badge-row">
+              <span class="badge badge-green" style="font-weight: 700;">★ Best Match</span>
+              <span class="badge badge-gray">24 km away</span>
+            </div>
+
+            <div class="rec-lot-name">
+              Tomatoes — 5.5 tonnes (Grade A)
+            </div>
+
+            <div class="rec-metrics-row">
+              <div>
+                <span style="font-size: var(--font-size-xs); color: var(--color-text-muted); display: block;">Farm Price</span>
+                <span style="font-size: 1.125rem; font-weight: 800; color: var(--color-primary);">₹33/kg</span>
+              </div>
+              <div>
+                <span style="font-size: var(--font-size-xs); color: var(--color-text-muted); display: block;">Est. Transport</span>
+                <span style="font-size: 1.125rem; font-weight: 600; color: var(--color-text-secondary);">₹1.80/kg</span>
+              </div>
+              <div>
+                <span style="font-size: var(--font-size-xs); color: var(--color-text-muted); display: block;">Est. Landed Cost</span>
+                <span style="font-size: 1.125rem; font-weight: 800; color: var(--color-text-primary);">₹34.80/kg</span>
+              </div>
+            </div>
+
+            <div class="rec-reason-box">
+              <strong>Strong Match:</strong> Matches your current tomato requirement for 5 tonnes Grade A delivered to Pune area.
+            </div>
+
+            <div style="display: flex; justify-content: flex-end;">
+              <button type="button" class="btn btn-primary" id="btn-view-recommended">
+                View Supply →
+              </button>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- ====================================================================
+           SECONDARY SIDEBAR COLUMN
+           ==================================================================== -->
+      <div class="dashboard-secondary-col">
+        
+        <!-- SECTION: QUICK ACTIONS -->
+        <section class="dash-section">
+          <div class="dash-section-header">
+            <h2 class="dash-section-title">Quick Actions</h2>
+          </div>
+          <div class="quick-actions-grid">
+            <button class="quick-action-btn" id="qa-create-req" type="button">
+              <span style="color: var(--color-primary); font-weight: 800;">+</span>
+              <span>Create Requirement</span>
+            </button>
+            <button class="quick-action-btn" id="qa-find-supply" type="button">
+              <span>🔍</span>
+              <span>Find Supply</span>
+            </button>
+            <button class="quick-action-btn" id="qa-view-inventory" type="button">
+              <span>📦</span>
+              <span>View Inventory</span>
+            </button>
+            <button class="quick-action-btn" id="qa-view-orders" type="button">
+              <span>🚚</span>
+              <span>View Orders</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- SECTION: INVENTORY SUMMARY TABLE -->
+        <section class="dash-section">
+          <div class="dash-section-header">
+            <h2 class="dash-section-title">Inventory</h2>
+            <button type="button" class="btn btn-outline btn-sm" data-modal-target="modal-full-inventory">
+              View Inventory
+            </button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Crop</th>
+                  <th>Stock</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="inventory-table-body">
+                <!-- Dynamically populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- SECTION: RECENT ORDERS -->
+        <section class="dash-section">
+          <div class="dash-section-header">
+            <h2 class="dash-section-title">Recent Orders</h2>
+            <button type="button" class="btn btn-outline btn-sm" data-modal-target="modal-all-orders">
+              View Orders
+            </button>
+          </div>
+
+          <div class="orders-mini-list" id="recent-orders-list">
+            <!-- Dynamically populated by JS -->
+          </div>
+        </section>
+
+        <!-- SECTION: MARKET SNAPSHOT -->
+        <section class="dash-section">
+          <div class="dash-section-header">
+            <h2 class="dash-section-title">Market Snapshot</h2>
+            <button type="button" class="btn btn-outline btn-sm" data-modal-target="modal-market-prices">
+              View Market Prices
+            </button>
+          </div>
+
+          <div class="market-mini-list" id="market-snapshot-list">
+            <!-- Dynamically populated by JS -->
+          </div>
+          
+          <button type="button" class="btn btn-secondary btn-sm btn-block" data-modal-target="modal-market-prices">
+            Open Mandi Rate Board →
+          </button>
+        </section>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ========================================================================
+       FLOATING CHATBOT WIDGET: AGRIMITRA ASSISTANT
+       ======================================================================== -->
+  <button type="button" class="chatbot-trigger-btn" id="chatbot-toggle-btn" aria-label="Open AgriMitra Assistant">
+    <span class="chatbot-pulse-dot"></span>
+    <span>AgriMitra Assistant</span>
+  </button>
+
+  <aside class="chatbot-drawer" id="chatbot-drawer" aria-label="AgriMitra Assistant Drawer">
+    <div class="chatbot-header">
+      <div class="chatbot-title-block">
+        <h4>AgriMitra Assistant</h4>
+        <p>Your sourcing and inventory assistant</p>
+      </div>
+      <button type="button" class="modal-close-btn" id="chatbot-close-btn" aria-label="Close Assistant">×</button>
+    </div>
+
+    <div class="chatbot-messages-wrap" id="chatbot-messages">
+      <div class="chat-msg bot">
+        <div class="chat-bubble">
+          Hello! I can help you find verified agricultural produce, monitor warehouse stock, or track active logistics.
+        </div>
+        <div class="chat-quick-actions">
+          <button class="chat-action-btn">Find tomatoes</button>
+          <button class="chat-action-btn">Check my inventory</button>
+          <button class="chat-action-btn">Show incoming orders</button>
+          <button class="chat-action-btn">Find bulk supply</button>
+          <button class="chat-action-btn">Check market price</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="chatbot-footer">
+      <form class="chat-form" id="chatbot-form">
+        <input type="text" class="chat-input" id="chatbot-input" placeholder="Ask about crop supply, stock, or prices..." autocomplete="off">
+        <button type="submit" class="btn btn-primary btn-sm chat-send-btn">Send</button>
+      </form>
+    </div>
+  </aside>
+
+  <!-- ========================================================================
+       MODAL SYSTEM DIALOGS
+       ======================================================================== -->
+
+  <!-- 1. CREATE REQUIREMENT MODAL -->
+  <div class="modal-overlay" id="modal-create-requirement" role="dialog" aria-modal="true" aria-labelledby="title-create-req">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <h3 class="modal-title" id="title-create-req">Create Requirement</h3>
+          <span class="modal-subtitle">Post your wholesale demand to verified farmers and FPOs</span>
+        </div>
+        <button type="button" class="modal-close-btn" data-close-modal aria-label="Close">×</button>
+      </div>
+
+      <!-- Form View -->
+      <div class="modal-body" id="create-req-form-wrap">
+        <form id="form-create-requirement" novalidate>
+          <div class="form-group">
+            <label for="new-req-crop" class="form-label">Crop Name</label>
+            <input type="text" id="new-req-crop" class="form-input" placeholder="e.g. Tomatoes, Onions, Potatoes" required>
+          </div>
+
+          <div class="form-grid-row">
+            <div class="form-group">
+              <label for="new-req-qty" class="form-label">Quantity (Tonnes)</label>
+              <input type="number" id="new-req-qty" class="form-input" placeholder="e.g. 5" min="0.5" step="0.5" required>
+            </div>
+            <div class="form-group">
+              <label for="new-req-grade" class="form-label">Quality / Grade</label>
+              <select id="new-req-grade" class="form-select">
+                <option value="Grade A" selected>Grade A (Premium)</option>
+                <option value="Grade B">Grade B (Standard)</option>
+                <option value="Commercial">Commercial / Processing</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-grid-row">
+            <div class="form-group">
+              <label for="new-req-price" class="form-label">Maximum Target Price (₹/kg)</label>
+              <input type="number" id="new-req-price" class="form-input" placeholder="e.g. 34" required>
+            </div>
+            <div class="form-group">
+              <label for="new-req-date" class="form-label">Required By</label>
+              <input type="text" id="new-req-date" class="form-input" placeholder="e.g. 15 Sept">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="new-req-location" class="form-label">Preferred Sourcing Location</label>
+            <input type="text" id="new-req-location" class="form-input" placeholder="e.g. Within 50 km or Nashik belt" value="Within 50 km">
+          </div>
+
+          <div class="modal-footer" style="padding: 1rem 0 0 0; background: transparent; border-top: 1px solid var(--color-border-subtle);">
+            <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
+            <button type="submit" class="btn btn-primary">Post Requirement</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Success State View (Inside Modal) -->
+      <div class="modal-body" id="create-req-success-wrap" style="display: none;">
+        <div class="modal-success-state">
+          <div class="modal-success-icon">✓</div>
+          <h4 class="modal-success-title">Requirement Posted</h4>
+          <p class="modal-success-desc">
+            Your requirement has been added to the board. Farmers and FPOs in your designated radius will be notified immediately.
+          </p>
+          <button type="button" class="btn btn-primary btn-lg" id="btn-req-done">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. REQUIREMENT DETAILS MODAL -->
+  <div class="modal-overlay" id="modal-requirement-details" role="dialog" aria-modal="true" aria-labelledby="title-req-details">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <h3 class="modal-title" id="title-req-details">Requirement Details</h3>
+          <span class="modal-subtitle">Active sourcing specification</span>
+        </div>
+        <button type="button" class="modal-close-btn" data-close-modal aria-label="Close">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="detail-grid">
+          <div class="detail-item">
+            <span class="detail-label">Crop</span>
+            <span class="detail-value" id="modal-req-crop">Tomatoes</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Required Quantity</span>
+            <span class="detail-value" id="modal-req-quantity">5 tonnes</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Quality Grade</span>
+            <span class="detail-value" id="modal-req-grade">Grade A</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Target Price</span>
+            <span class="detail-value" id="modal-req-maxprice">Up to ₹34/kg</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Required By</span>
+            <span class="detail-value" id="modal-req-requiredby">12 Sept</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Preferred Location</span>
+            <span class="detail-value" id="modal-req-location">Within 50 km</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Status</span>
+            <span class="badge badge-green" id="modal-req-status" style="width: fit-content;">Open</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close-modal>Close</button>
+        <button type="button" class="btn btn-outline" onclick="alert('Requirement updated.')">Edit Requirement</button>
+        <button type="button" class="btn btn-primary" id="btn-req-find-supply">Find Matching Supply</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. SUPPLY LOT MODAL -->
+  <div class="modal-overlay" id="modal-supply-lot" role="dialog" aria-modal="true" aria-labelledby="title-supply-lot">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <h3 class="modal-title" id="title-supply-lot">Supply Lot Details</h3>
+          <span class="modal-subtitle">Verified farm-gate lot</span>
+        </div>
+        <button type="button" class="modal-close-btn" data-close-modal aria-label="Close">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="detail-grid">
+          <div class="detail-item">
+            <span class="detail-label">Crop</span>
+            <span class="detail-value" id="modal-lot-crop">Tomatoes</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Available Quantity</span>
+            <span class="detail-value" id="modal-lot-available">6 tonnes</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Grade</span>
+            <span class="detail-value" id="modal-lot-grade">A</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Farm Gate Price</span>
+            <span class="detail-value" id="modal-lot-price" style="color: var(--color-primary);">₹33/kg</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Distance</span>
+            <span class="detail-value" id="modal-lot-distance">28 km</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Seller</span>
+            <span class="detail-value" id="modal-lot-seller">Nashik Farmers Collective</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Est. Transport</span>
+            <span class="detail-value" id="modal-lot-transport">₹1.80/kg</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Est. Landed Cost</span>
+            <span class="detail-value" id="modal-lot-landed">₹34.80/kg</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Status</span>
+            <span class="badge badge-green" id="modal-lot-status" style="width: fit-content;">Available</span>
+          </div>
+        </div>
+
+        <!-- Quantity Stepper Requirement -->
+        <div style="background-color: var(--color-surface-muted); padding: 1rem; border-radius: var(--radius-md); margin-top: 1rem; display: flex; align-items: center; justify-content: space-between;">
+          <div>
+            <span style="font-size: var(--font-size-xs); font-weight: 700; color: var(--color-text-muted); text-transform: uppercase;">Procurement Quantity:</span>
+            <div style="font-size: var(--font-size-xs); color: var(--color-text-muted);">Adjust tonnes to purchase</div>
+          </div>
+          <div class="quantity-stepper">
+            <button type="button" class="stepper-btn" id="btn-qty-minus" aria-label="Decrease quantity">−</button>
+            <span class="stepper-val" id="lot-purchase-quantity-val">1 tonne</span>
+            <button type="button" class="stepper-btn" id="btn-qty-plus" aria-label="Increase quantity">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close-modal>Close</button>
+        <button type="button" class="btn btn-primary btn-lg" id="btn-purchase-lot">Purchase / Create Order</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. ORDER CONFIRMED MODAL -->
+  <div class="modal-overlay" id="modal-order-confirmed" role="dialog" aria-modal="true">
+    <div class="modal-container modal-sm">
+      <div class="modal-body">
+        <div class="modal-success-state">
+          <div class="modal-success-icon">✓</div>
+          <h4 class="modal-success-title">Order Created</h4>
+          <p class="modal-success-desc">
+            Purchase order <strong id="confirm-order-id">#A1049</strong> for <span id="confirm-order-crop">1 tonne of Tomatoes</span> (<span id="confirm-order-total">₹33,000</span>) has been submitted.
+          </p>
+          <button type="button" class="btn btn-primary btn-block" data-close-modal>Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. ORDER DETAILS MODAL -->
+  <div class="modal-overlay" id="modal-order-details" role="dialog" aria-modal="true" aria-labelledby="title-order-details">
+    <div class="modal-container modal-lg">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <h3 class="modal-title" id="title-order-details">Order Details — <span id="modal-order-id">#A1048</span></h3>
+          <span class="modal-subtitle">Direct Mandi Procurement & Logistics</span>
+        </div>
+        <button type="button" class="modal-close-btn" data-close-modal aria-label="Close">×</button>
+      </div>
+      <div class="modal-body">
+        
+        <!-- 4-Stage Status Tracker -->
+        <div class="order-status-stepper" id="order-details-stepper">
+          <div class="order-step completed" data-step="1">
+            <div class="order-step-circle">✓</div>
+            <span class="order-step-text">Offer Accepted</span>
+          </div>
+          <div class="order-step completed" data-step="2">
+            <div class="order-step-circle">✓</div>
+            <span class="order-step-text">Pickup</span>
+          </div>
+          <div class="order-step current" data-step="3">
+            <div class="order-step-circle">3</div>
+            <span class="order-step-text">In Transit</span>
+          </div>
+          <div class="order-step" data-step="4">
+            <div class="order-step-circle">4</div>
+            <span class="order-step-text">Delivered</span>
+          </div>
+        </div>
+
+        <div class="detail-grid">
+          <div class="detail-item">
+            <span class="detail-label">Crop</span>
+            <span class="detail-value" id="modal-order-crop">Tomatoes</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Quantity</span>
+            <span class="detail-value" id="modal-order-quantity">5 tonnes</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Unit Price</span>
+            <span class="detail-value" id="modal-order-price">₹33/kg</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Total Value</span>
+            <span class="detail-value" id="modal-order-total" style="color: var(--color-primary); font-size: 1.125rem;">₹1,65,000</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Supplier</span>
+            <span class="detail-value" id="modal-order-supplier">Nashik Farmers Collective</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Pickup Location</span>
+            <span class="detail-value" id="modal-order-pickup">Nashik</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Delivery Destination</span>
+            <span class="detail-value" id="modal-order-delivery">Pune</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Payment Status</span>
+            <span class="badge badge-amber" id="modal-order-payment" style="width: fit-content;">Pending</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Delivery Agent</span>
+            <span class="detail-value" id="modal-order-agent">Raj Transport</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Expected Arrival</span>
+            <span class="detail-value" id="modal-order-arrival">12 Sept</span>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close-modal>Close</button>
+        <button type="button" class="btn btn-primary" id="btn-track-order">Track Order</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. INVENTORY MODAL (Detailed Stock) -->
+  <div class="modal-overlay" id="modal-full-inventory" role="dialog" aria-modal="true" aria-labelledby="title-inv-modal">
+    <div class="modal-container modal-lg">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <h3 class="modal-title" id="title-inv-modal">Distributor Inventory Breakdown</h3>
+          <span class="modal-subtitle">Real-time stock across warehouse bays</span>
+        </div>
+        <button type="button" class="modal-close-btn" data-close-modal aria-label="Close">×</button>
+      </div>
+      <div class="modal-body">
+        
+        <!-- Tomatoes detailed breakdown matching prompt -->
+        <div style="border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1.25rem; background-color: #ffffff;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+            <h4 style="font-size: 1.125rem; font-weight: 700; color: var(--color-text-primary);">Tomatoes</h4>
+            <span class="badge badge-gray">Normal</span>
+          </div>
+          <div class="detail-grid" style="margin-bottom: 0.75rem;">
+            <div class="detail-item">
+              <span class="detail-label">Current Stock</span>
+              <span class="detail-value">6.2 tonnes</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Incoming</span>
+              <span class="detail-value">3 tonnes</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Reserved</span>
+              <span class="detail-value">1.5 tonnes</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Available</span>
+              <span class="detail-value" style="color: var(--color-primary);">4.7 tonnes</span>
+            </div>
+          </div>
+          <div style="background-color: var(--color-surface-muted); padding: 0.75rem; border-radius: var(--radius-sm); font-size: var(--font-size-xs);">
+            <strong>Recent incoming shipment:</strong> 5 tonnes from FreshFoods Supplier (Expected: 11 Sept)
+          </div>
+        </div>
+
+        <!-- Onions & Potatoes Cards -->
+        <div class="form-grid-row">
+          <div style="border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 1rem;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+              <strong>Onions</strong>
+              <span class="badge badge-amber">Status: High</span>
+            </div>
+            <div style="font-size: var(--font-size-xl); font-weight: 800; color: var(--color-text-primary); margin-bottom: 0.25rem;">
+              10.5 tonnes
+            </div>
+            <div style="font-size: var(--font-size-xs); color: var(--color-text-muted);">Incoming: 4 tonnes • Available: 8.5 tonnes</div>
+          </div>
+
+          <div style="border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 1rem;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+              <strong>Potatoes</strong>
+              <span class="badge badge-red">Status: Low</span>
+            </div>
+            <div style="font-size: var(--font-size-xl); font-weight: 800; color: var(--color-text-primary); margin-bottom: 0.25rem;">
+              2.1 tonnes
+            </div>
+            <div style="font-size: var(--font-size-xs); color: var(--color-text-muted);">Incoming: 4 tonnes • Available: 1.3 tonnes</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-close-modal>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. INDIVIDUAL CROP INVENTORY MODAL -->
+  <div class="modal-overlay" id="modal-crop-inventory" role="dialog" aria-modal="true">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <h3 class="modal-title" id="modal-inv-crop">Crop Inventory</h3>
+          <span class="modal-subtitle">Stock position & pending arrivals</span>
+        </div>
+        <button type="button" class="modal-close-btn" data-close-modal aria-label="Close">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="detail-grid">
+          <div class="detail-item">
+            <span class="detail-label">Current Stock</span>
+            <span class="detail-value" id="modal-inv-stock">6.2 tonnes</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Incoming</span>
+            <span class="detail-value" id="modal-inv-incoming">3 tonnes</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Reserved</span>
+            <span class="detail-value" id="modal-inv-reserved">1.5 tonnes</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Available for Sale</span>
+            <span class="detail-value" id="modal-inv-available" style="color: var(--color-primary);">4.7 tonnes</span>
+          </div>
+        </div>
+
+        <div id="modal-inv-recent-wrap" style="background-color: var(--color-surface-muted); padding: 0.875rem; border-radius: var(--radius-md); margin-top: 1rem;">
+          <span class="detail-label">Recent Incoming Shipment</span>
+          <div style="font-weight: 600; font-size: var(--font-size-sm); margin-top: 0.25rem;">
+            <span id="modal-inv-shipment-qty">5 tonnes</span> from <span id="modal-inv-shipment-supplier">FreshFoods Supplier</span>
+          </div>
+          <div style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin-top: 0.15rem;">
+            Expected Arrival: <strong id="modal-inv-shipment-date">11 Sept</strong>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close-modal>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. MARKET PRICES MODAL -->
+  <div class="modal-overlay" id="modal-market-prices" role="dialog" aria-modal="true" aria-labelledby="title-market-prices">
+    <div class="modal-container modal-lg">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <h3 class="modal-title" id="title-market-prices">Market Prices</h3>
+          <span class="modal-subtitle">Agricultural intelligence & Mandi trends</span>
+        </div>
+        <button type="button" class="modal-close-btn" data-close-modal aria-label="Close">×</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin-bottom: 1rem;">
+          Indicative farm-gate and wholesale mandi benchmark rates for Western India.
+        </p>
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Crop</th>
+                <th>Current Price</th>
+                <th>Trend</th>
+                <th>Demand</th>
+                <th>Supply</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Tomato</strong></td>
+                <td>₹33/kg</td>
+                <td><span class="market-trend-up">↑ 4%</span></td>
+                <td>High</td>
+                <td>Moderate</td>
+              </tr>
+              <tr>
+                <td><strong>Onion</strong></td>
+                <td>₹29/kg</td>
+                <td><span class="market-trend-stable">Stable</span></td>
+                <td>High</td>
+                <td>Strong</td>
+              </tr>
+              <tr>
+                <td><strong>Potato</strong></td>
+                <td>₹24/kg</td>
+                <td><span class="market-trend-down">↓ 2%</span></td>
+                <td>Moderate</td>
+                <td>Excess</td>
+              </tr>
+              <tr>
+                <td><strong>Wheat</strong></td>
+                <td>₹27/kg</td>
+                <td><span class="market-trend-up">↑ 1.5%</span></td>
+                <td>Steady</td>
+                <td>Balanced</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-close-modal>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. AVAILABLE SUPPLY SOURCING MODAL -->
+  <div class="modal-overlay" id="modal-available-supply" role="dialog" aria-modal="true" aria-labelledby="title-avail-supply">
+    <div class="modal-container modal-lg">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <h3 class="modal-title" id="title-avail-supply">Find Supply — Verified Farmer Lots</h3>
+          <span class="modal-subtitle">Direct procurement from farmer collectives and FPOs</span>
+        </div>
+        <button type="button" class="modal-close-btn" data-close-modal aria-label="Close">×</button>
+      </div>
+      <div class="modal-body" id="all-supply-modal-list">
+        <!-- Dynamically injected supply cards -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close-modal>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. ALL REQUIREMENTS MODAL -->
+  <div class="modal-overlay" id="modal-all-requirements" role="dialog" aria-modal="true" aria-labelledby="title-all-reqs">
+    <div class="modal-container modal-lg">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <h3 class="modal-title" id="title-all-reqs">Open Requirements</h3>
+          <span class="modal-subtitle">5 Active sourcing tenders</span>
+        </div>
+        <button type="button" class="modal-close-btn" data-close-modal aria-label="Close">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="req-cards-list">
+          <div class="req-item-card">
+            <div>
+              <div class="req-crop-name">Tomatoes</div>
+              <div class="req-crop-meta">5 tonnes • Grade A • Up to ₹34/kg • Required by 12 Sept</div>
+            </div>
+            <span class="badge badge-green">Open</span>
+          </div>
+          <div class="req-item-card">
+            <div>
+              <div class="req-crop-name">Onions</div>
+              <div class="req-crop-meta">8 tonnes • Grade A • Up to ₹30/kg • Required by 15 Sept</div>
+            </div>
+            <span class="badge badge-green">Open</span>
+          </div>
+          <div class="req-item-card">
+            <div>
+              <div class="req-crop-name">Potatoes (Jyoti)</div>
+              <div class="req-crop-meta">10 tonnes • Grade A • Up to ₹25/kg • Required by 18 Sept</div>
+            </div>
+            <span class="badge badge-green">Open</span>
+          </div>
+          <div class="req-item-card">
+            <div>
+              <div class="req-crop-name">Wheat (Sharbati)</div>
+              <div class="req-crop-meta">15 tonnes • Grade A • Up to ₹28/kg • Required by 20 Sept</div>
+            </div>
+            <span class="badge badge-green">Open</span>
+          </div>
+          <div class="req-item-card">
+            <div>
+              <div class="req-crop-name">Green Chillies</div>
+              <div class="req-crop-meta">2 tonnes • Grade A • Up to ₹45/kg • Required by 14 Sept</div>
+            </div>
+            <span class="badge badge-green">Open</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close-modal>Close</button>
+        <button type="button" class="btn btn-primary" onclick="window.closeModal(); setTimeout(() => window.openModal('modal-create-requirement'), 200);">+ Create Requirement</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11. INCOMING SUPPLY MODAL -->
+  <div class="modal-overlay" id="modal-incoming-supply" role="dialog" aria-modal="true" aria-labelledby="title-incoming">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <h3 class="modal-title" id="title-incoming">Incoming Supply — 12.4 Tonnes</h3>
+          <span class="modal-subtitle">Scheduled arrivals at distribution hub</span>
+        </div>
+        <button type="button" class="modal-close-btn" data-close-modal aria-label="Close">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="orders-mini-list">
+          <div class="order-mini-card">
+            <div class="order-mini-info">
+              <span class="order-id-tag">Shipment #IN-401</span>
+              <span class="order-crop-summary">5 tonnes Tomatoes — FreshFoods Supplier</span>
+              <span class="order-supplier-name">Expected: 11 Sept, 3:00 PM</span>
+            </div>
+            <span class="badge badge-amber">In Transit</span>
+          </div>
+          <div class="order-mini-card">
+            <div class="order-mini-info">
+              <span class="order-id-tag">Shipment #IN-402</span>
+              <span class="order-crop-summary">7.4 tonnes Onions — Maharashtra FPO Network</span>
+              <span class="order-supplier-name">Expected: 12 Sept, 9:00 AM</span>
+            </div>
+            <span class="badge badge-blue">Dispatched</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-close-modal>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12. ALL ORDERS MODAL -->
+  <div class="modal-overlay" id="modal-all-orders" role="dialog" aria-modal="true" aria-labelledby="title-all-orders">
+    <div class="modal-container modal-lg">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <h3 class="modal-title" id="title-all-orders">All Distributor Orders</h3>
+          <span class="modal-subtitle">Complete procurement ledger and tracking</span>
+        </div>
+        <button type="button" class="modal-close-btn" data-close-modal aria-label="Close">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Crop & Quantity</th>
+                <th>Supplier</th>
+                <th>Amount</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>#A1048</strong></td>
+                <td>Tomatoes — 5 tonnes</td>
+                <td>Nashik Farmers Collective</td>
+                <td>₹1,65,000</td>
+                <td><span class="badge badge-amber">In Transit</span></td>
+              </tr>
+              <tr>
+                <td><strong>#A1047</strong></td>
+                <td>Onions — 3 tonnes</td>
+                <td>Maharashtra FPO Network</td>
+                <td>₹87,000</td>
+                <td><span class="badge badge-green">Delivered</span></td>
+              </tr>
+              <tr>
+                <td><strong>#A1046</strong></td>
+                <td>Potatoes — 4 tonnes</td>
+                <td>Manchar Potato Grower Cooperative</td>
+                <td>₹96,000</td>
+                <td><span class="badge badge-blue">Pickup</span></td>
+              </tr>
+              <tr>
+                <td><strong>#A1045</strong></td>
+                <td>Wheat — 10 tonnes</td>
+                <td>Vidarbha Agro FPO</td>
+                <td>₹2,70,000</td>
+                <td><span class="badge badge-gray">Offer Accepted</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-close-modal>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 13. PROFILE MODAL -->
+  <div class="modal-overlay" id="modal-profile" role="dialog" aria-modal="true" aria-labelledby="title-dist-profile">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <h3 class="modal-title" id="title-dist-profile">Distributor Profile</h3>
+          <span class="modal-subtitle">Verified wholesale merchant credentials</span>
+        </div>
+        <button type="button" class="modal-close-btn" data-close-modal aria-label="Close">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="detail-grid">
+          <div class="detail-item">
+            <span class="detail-label">Business Name</span>
+            <span class="detail-value" id="profile-business-name">MahaAgro Wholesale Dist.</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Contact Person</span>
+            <span class="detail-value" id="profile-contact">Praveen Singhania</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Phone</span>
+            <span class="detail-value" id="profile-phone">+91 9822019482</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Business Type</span>
+            <span class="detail-value" id="profile-type">Agricultural Wholesaler & Mandi Trading</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Location</span>
+            <span class="detail-value" id="profile-location">Azadpur Mandi Hub, Delhi NCR</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Main Produce</span>
+            <span class="detail-value" id="profile-produce">Tomato, Onion, Potato</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Storage Capacity</span>
+            <span class="detail-value" id="profile-capacity">Above 25 tonnes</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="AgriMitraAuth.logout('../index.html');">Logout</button>
+        <button type="button" class="btn btn-outline" onclick="alert('Password reset link sent to verified phone number.');">Change Password</button>
+        <button type="button" class="btn btn-primary" id="btn-edit-profile">Edit Profile</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 14. EDIT PROFILE MODAL -->
+  <div class="modal-overlay" id="modal-edit-profile" role="dialog" aria-modal="true" aria-labelledby="title-edit-prof">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <h3 class="modal-title" id="title-edit-prof">Edit Distributor Profile</h3>
+          <span class="modal-subtitle">Update business details</span>
+        </div>
+        <button type="button" class="modal-close-btn" data-close-modal aria-label="Close">×</button>
+      </div>
+      <div class="modal-body">
+        <form id="form-edit-profile">
+          <div class="form-group">
+            <label for="edit-prof-name" class="form-label">Business Name</label>
+            <input type="text" id="edit-prof-name" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-prof-contact" class="form-label">Contact Person</label>
+            <input type="text" id="edit-prof-contact" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-prof-phone" class="form-label">Phone</label>
+            <input type="tel" id="edit-prof-phone" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-prof-city" class="form-label">Area / City</label>
+            <input type="text" id="edit-prof-city" class="form-input" required>
+          </div>
+          <div class="modal-footer" style="padding: 1rem 0 0 0; background: transparent; border-top: 1px solid var(--color-border-subtle);">
+            <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="js/main.js"></script>
+  <script src="js/modal.js"></script>
+  
+  <script>
+    (function() {
+      // Set Wholesaler profile seed in localStorage if empty or default
+      try {
+        const authUser = window.AgriMitraAuth ? window.AgriMitraAuth.getCurrentUser() : null;
+        const stored = localStorage.getItem('agrimitra_distributor_profile');
+        if (!stored || (authUser && authUser.role === 'wholesaler')) {
+          const wsProfile = {
+            businessName: (authUser && authUser.full_name) ? authUser.full_name : 'Kisan Mandi Traders Pvt Ltd',
+            contactPerson: (authUser && authUser.full_name) ? authUser.full_name : 'Praveen Singhania',
+            phone: (authUser && authUser.phone) ? authUser.phone : '9823456789',
+            businessType: 'Wholesaler & Mandi Trading',
+            city: 'Azadpur Mandi',
+            district: (authUser && authUser.district) ? authUser.district : 'North Delhi',
+            state: (authUser && authUser.state) ? authUser.state : 'Delhi',
+            mainProduce: ['Wheat', 'Tomato', 'Onion', 'Potato'],
+            purchaseQuantity: '20–50 tonnes',
+            storageCapacity: 'Above 25 tonnes',
+            mainSupplyArea: 'Delhi NCR, Punjab, Haryana & Western UP'
+          };
+          localStorage.setItem('agrimitra_distributor_profile', JSON.stringify(wsProfile));
+        }
+      } catch(e) { console.warn('Wholesaler seed error:', e); }
+    })();
+  </script>
+  <script src="js/distributor-dashboard.js"></script>
+
+  <!-- AgriMitra Multi-Language Support Engine -->
+  <script src="../i18n.js"></script>
+</body>
+</html>

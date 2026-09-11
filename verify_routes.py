@@ -69,7 +69,7 @@ check("window.location.href = 'index.html'" in fpo_html, 'fpo-register.html redi
 check(os.path.exists(os.path.join(fpoDir, 'index.html')), 'index.html (dashboard) exists in AgriMitra- FPO')
 
 print('\n=== 6. CHECKING ROOT FORWARDERS ===')
-for rf in ['buyer.html', 'delivery-agent.html', 'fpo-register.html', 'buyer-dashboard.html']:
+for rf in ['buyer.html', 'delivery-agent.html', 'fpo-register.html', 'buyer-dashboard.html', 'distributor-dashboard.html', 'wholesaler-dashboard.html']:
     check(os.path.exists(os.path.join(rootDir, rf)), f'Root forwarder {rf} exists')
 
 print(f'\nTOTAL: {passed} PASSED, {failed} FAILED')
