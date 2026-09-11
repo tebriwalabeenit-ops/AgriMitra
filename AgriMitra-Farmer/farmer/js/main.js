@@ -640,6 +640,14 @@
       if (cropLocationInput && !cropLocationInput.value) {
         cropLocationInput.value = `${farmerProfile.district} APMC Warehouse`;
       }
+      const payoutBeneficiary = document.getElementById('payouts-beneficiary-name');
+      const payoutUpi = document.getElementById('payouts-upi-val');
+      const hubPayoutsAccountText = document.getElementById('hub-payouts-account-text');
+      if (payoutBeneficiary) payoutBeneficiary.textContent = farmerProfile.full_name;
+      if (payoutUpi) payoutUpi.textContent = farmerProfile.upi_id || 'ramesh.kisan@oksbi';
+      if (hubPayoutsAccountText && farmerProfile.upi_id) {
+        hubPayoutsAccountText.innerHTML = `Linked: SBI &bull;&bull;&bull;&bull; 4291 (${farmerProfile.upi_id}) &bull; Tap to view ledger &rarr;`;
+      }
     }
 
     syncProfileUI();
@@ -1142,7 +1150,7 @@
               </span>
               <div class="crop-actions-btns">
                 <button type="button" class="btn-sm-action mark-sold-btn">Mark Sold</button>
-                <button type="button" class="btn-sm-action btn-sm-primary" onclick="alert('Your listing is live! 14 registered buyers have received an alert.')">Share Bids</button>
+                <button type="button" class="btn-sm-action btn-sm-primary view-crop-bids-btn" data-crop="${cropName} (${cropVariety})" data-qty="${cropQty} ${cropUnit}" data-price="${cropPrice}" data-location="${cropLocation}">View Bids</button>
               </div>
             </div>
           `;
@@ -1167,9 +1175,304 @@
       });
     }
 
-    // Accept Buyer Offer Handler
+    // -----------------------------------------------------------------------
+    // Interactive Crop Bids Modal Logic
+    // -----------------------------------------------------------------------
+    const cropBidsModal = document.getElementById('crop-bids-modal');
+    const closeCropBidsModalBtn = document.getElementById('close-crop-bids-modal-btn');
+    const closeCropBidsBtn = document.getElementById('close-crop-bids-btn');
+    const scrollToBidsPanelBtn = document.getElementById('scroll-to-bids-panel-btn');
+    const cropBidsProduceSummary = document.getElementById('crop-bids-produce-summary');
+    const cropBidsModalList = document.getElementById('crop-bids-modal-list');
+    const cropBidsModalCropName = document.getElementById('modal-crop-bids-title');
+
+    function getBidsForCrop(cropName, expectedPrice = 2500, qty = '50 Qtl', location = 'Krishnagiri APMC Warehouse') {
+      const lower = (cropName || '').toLowerCase();
+      const numPrice = parseFloat(String(expectedPrice).replace(/[^0-9.]/g, '')) || 2500;
+
+      if (lower.includes('paddy') || lower.includes('rice')) {
+        return [
+          {
+            buyer: 'Cauvery Valley Farmers Producer Co. (FPO)',
+            badge: 'Verified FPO Buyer • Tamil Nadu',
+            rate: '₹ 2,680 / Qtl',
+            rateHighlight: '+₹30 above expected rate',
+            qty: '60 Quintals',
+            total: '₹ 1,60,800',
+            pickup: 'Krishnagiri Warehouse • Immediate RTGS on vehicle pickup',
+            phone: '09845122334'
+          },
+          {
+            buyer: 'Lakshmi Agro Millers & Traders',
+            badge: 'Verified APMC Mandi Processor',
+            rate: '₹ 2,850 / Qtl',
+            rateHighlight: '+₹200 premium lot bid',
+            qty: '40 Quintals',
+            total: '₹ 1,14,000',
+            pickup: 'Krishnagiri Mandi Hub • Direct Bank Transfer',
+            phone: '09876543210'
+          },
+          {
+            buyer: 'Sri Murugan Modern Rice Mill',
+            badge: 'Direct Grain Merchant',
+            rate: '₹ 2,650 / Qtl',
+            rateHighlight: '100% target match',
+            qty: 'Full Lot (120 Quintals)',
+            total: '₹ 3,18,000',
+            pickup: 'Farm Gate or Warehouse • Same day NEFT',
+            phone: '09443211098'
+          }
+        ];
+      } else if (lower.includes('tomato')) {
+        return [
+          {
+            buyer: 'AgroFresh Wholesale Distributors',
+            badge: 'Verified APMC Commission Agent',
+            rate: '₹ 700 / Crate',
+            rateHighlight: '+₹20 above expected',
+            qty: '30 Crates',
+            total: '₹ 21,000',
+            pickup: 'Farm Gate (Buyer vehicle arranged) • Same day UPI / NEFT',
+            phone: '09443211098'
+          },
+          {
+            buyer: 'Reliance Fresh Direct Sourcing',
+            badge: 'Verified Corporate Buyer',
+            rate: '₹ 720 / Crate',
+            rateHighlight: '+₹40 premium quality',
+            qty: '50 Crates',
+            total: '₹ 36,000',
+            pickup: 'Direct Farm Pickup • Instant UPI Payout',
+            phone: '09845122334'
+          }
+        ];
+      } else if (lower.includes('moringa') || lower.includes('drumstick')) {
+        return [
+          {
+            buyer: 'Salem Spice & Agro Exports Ltd.',
+            badge: 'Verified Exporter • Salem',
+            rate: '₹ 3,550 / Qtl',
+            rateHighlight: '+₹150 export premium',
+            qty: '20 Quintals',
+            total: '₹ 71,000',
+            pickup: 'Cold Storage Krishnagiri • Advance 30% + Balance on dispatch',
+            phone: '09887766554'
+          },
+          {
+            buyer: 'Coimbatore Wholesale Veg Mart',
+            badge: 'APMC Authorized Wholesaler',
+            rate: '₹ 3,400 / Qtl',
+            rateHighlight: '100% price match',
+            qty: '15 Quintals',
+            total: '₹ 51,000',
+            pickup: 'Mandi Gate Delivery • Instant UPI',
+            phone: '09445566778'
+          }
+        ];
+      } else {
+        const rate1 = Math.round(numPrice * 1.04);
+        const rate2 = Math.round(numPrice * 1.08);
+        return [
+          {
+            buyer: 'Regional Kisan Agro Federation (FPO)',
+            badge: 'Verified Institutional Buyer',
+            rate: `₹ ${rate2.toLocaleString('en-IN')} / Unit`,
+            rateHighlight: `+₹${rate2 - numPrice} top offer`,
+            qty: qty || 'Standard Lot',
+            total: `₹ ${(rate2 * 25).toLocaleString('en-IN')}`,
+            pickup: `${location || 'Mandi Hub'} • Direct Bank Settlement (DBT)`,
+            phone: '09845122334'
+          },
+          {
+            buyer: 'National Mandi Trading Syndicate',
+            badge: 'APMC Certified Buyer',
+            rate: `₹ ${rate1.toLocaleString('en-IN')} / Unit`,
+            rateHighlight: `+₹${rate1 - numPrice} above base`,
+            qty: qty || 'Standard Lot',
+            total: `₹ ${(rate1 * 25).toLocaleString('en-IN')}`,
+            pickup: `${location || 'Mandi Hub'} • Verified RTGS on weighing`,
+            phone: '09443211098'
+          }
+        ];
+      }
+    }
+
+    function openCropBidsModal(cropName, qty, price, location) {
+      if (!cropBidsModal) return;
+
+      if (cropBidsModalCropName) {
+        cropBidsModalCropName.textContent = `Buyer Bids: ${cropName}`;
+      }
+
+      if (cropBidsProduceSummary) {
+        cropBidsProduceSummary.innerHTML = `
+          <div>
+            <div class="crop-bids-produce-title">${cropName}</div>
+            <div class="crop-bids-produce-meta">📦 Lot Size: ${qty || 'Standard Lot'} &bull; Base Rate: &#8377;${price || 'Market Rate'} &bull; 📍 ${location || 'Krishnagiri Warehouse'}</div>
+          </div>
+          <span class="hub-badge badge-urgent" style="font-size: 0.75rem;">Active Bidding</span>
+        `;
+      }
+
+      const bids = getBidsForCrop(cropName, price, qty, location);
+      if (cropBidsModalList) {
+        cropBidsModalList.innerHTML = bids.map((bid, idx) => `
+          <div class="crop-bid-card" data-bid-idx="${idx}">
+            <div class="crop-bid-top">
+              <div>
+                <div class="crop-bid-buyer-name">${bid.buyer}</div>
+                <span class="crop-bid-badge">&#9989; ${bid.badge}</span>
+              </div>
+              <div>
+                <div class="crop-bid-rate-val">${bid.rate}</div>
+                <div class="crop-bid-total-payout">${bid.rateHighlight}</div>
+              </div>
+            </div>
+            <div class="crop-bid-details">
+              <strong>Order Quantity:</strong> ${bid.qty} &bull; <strong>Total Payout:</strong> ${bid.total}<br>
+              <strong>Pickup / Terms:</strong> ${bid.pickup}
+            </div>
+            <div class="crop-bid-actions">
+              <button type="button" class="btn-accept-offer modal-accept-bid-btn" data-buyer="${bid.buyer}">
+                <span>&#10003;</span>
+                <span>Accept Offer</span>
+              </button>
+              <a href="tel:${bid.phone}" class="btn-call-buyer">
+                <span>&#128222;</span>
+                <span>Call Buyer</span>
+              </a>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      cropBidsModal.classList.add('active');
+    }
+
+    function closeCropBidsModal() {
+      if (cropBidsModal) cropBidsModal.classList.remove('active');
+    }
+
+    if (closeCropBidsModalBtn) closeCropBidsModalBtn.addEventListener('click', closeCropBidsModal);
+    if (closeCropBidsBtn) closeCropBidsBtn.addEventListener('click', closeCropBidsModal);
+    if (cropBidsModal) {
+      cropBidsModal.addEventListener('click', (e) => {
+        if (e.target === cropBidsModal) closeCropBidsModal();
+      });
+    }
+
+    // Scroll to Bids panel with pulse animation
+    function scrollToBidsPanel() {
+      const bidsSection = document.getElementById('buyer-bids-section');
+      if (bidsSection) {
+        closeCropBidsModal();
+        bidsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        bidsSection.classList.remove('highlight-pulse');
+        void bidsSection.offsetWidth;
+        bidsSection.classList.add('highlight-pulse');
+        setTimeout(() => {
+          bidsSection.classList.remove('highlight-pulse');
+        }, 1800);
+      }
+    }
+
+    if (scrollToBidsPanelBtn) scrollToBidsPanelBtn.addEventListener('click', scrollToBidsPanel);
+
+    // Attach scroll highlight to Hub Card 2 (Buyer Offers & Orders)
+    const hubBidsCard = document.querySelector('a[href="#buyer-bids-section"]');
+    if (hubBidsCard) {
+      hubBidsCard.addEventListener('click', (e) => {
+        e.preventDefault();
+        scrollToBidsPanel();
+      });
+    }
+
+    // -----------------------------------------------------------------------
+    // Interactive Bank Payouts Ledger Modal Logic
+    // -----------------------------------------------------------------------
+    const payoutsModal = document.getElementById('payouts-modal');
+    const hubPayoutsCard = document.getElementById('hub-payouts-card');
+    const closePayoutsModalBtn = document.getElementById('close-payouts-modal-btn');
+    const cancelPayoutsModalBtn = document.getElementById('cancel-payouts-modal-btn');
+    const openProfileFromPayoutsBtn = document.getElementById('open-profile-from-payouts-btn');
+    const downloadPayoutStatementBtn = document.getElementById('download-payout-statement-btn');
+
+    function openPayoutsModal() {
+      if (!payoutsModal) return;
+      const beneficiaryEl = document.getElementById('payouts-beneficiary-name');
+      const upiEl = document.getElementById('payouts-upi-val');
+      if (beneficiaryEl) beneficiaryEl.textContent = farmerProfile.full_name || 'Ramesh Patel';
+      if (upiEl) upiEl.textContent = farmerProfile.upi_id || 'ramesh.kisan@oksbi';
+      payoutsModal.classList.add('active');
+    }
+
+    function closePayoutsModal() {
+      if (payoutsModal) payoutsModal.classList.remove('active');
+    }
+
+    if (hubPayoutsCard) {
+      hubPayoutsCard.addEventListener('click', openPayoutsModal);
+      hubPayoutsCard.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openPayoutsModal();
+        }
+      });
+    }
+
+    if (closePayoutsModalBtn) closePayoutsModalBtn.addEventListener('click', closePayoutsModal);
+    if (cancelPayoutsModalBtn) cancelPayoutsModalBtn.addEventListener('click', closePayoutsModal);
+    if (payoutsModal) {
+      payoutsModal.addEventListener('click', (e) => {
+        if (e.target === payoutsModal) closePayoutsModal();
+      });
+    }
+
+    if (openProfileFromPayoutsBtn) {
+      openProfileFromPayoutsBtn.addEventListener('click', () => {
+        closePayoutsModal();
+        openProfileModal();
+      });
+    }
+
+    if (downloadPayoutStatementBtn) {
+      downloadPayoutStatementBtn.addEventListener('click', () => {
+        showToast('📄 Settlement statement downloaded (PDF) successfully!');
+      });
+    }
+
+    // Global Click Delegation for View Bids, Modal Actions & Produce Operations
     document.addEventListener('click', (e) => {
-      const acceptBtn = e.target.closest('.btn-accept-offer');
+      // 1. View Bids in Crop Listing
+      const viewBidsBtn = e.target.closest('.view-crop-bids-btn');
+      if (viewBidsBtn) {
+        e.preventDefault();
+        const cropName = viewBidsBtn.getAttribute('data-crop') || 'Produce';
+        const qty = viewBidsBtn.getAttribute('data-qty') || '';
+        const price = viewBidsBtn.getAttribute('data-price') || '';
+        const location = viewBidsBtn.getAttribute('data-location') || '';
+        openCropBidsModal(cropName, qty, price, location);
+        return;
+      }
+
+      // 2. Accept Offer from Modal
+      const modalAcceptBtn = e.target.closest('.modal-accept-bid-btn');
+      if (modalAcceptBtn) {
+        const card = modalAcceptBtn.closest('.crop-bid-card');
+        if (card) {
+          card.classList.add('accepted');
+          modalAcceptBtn.innerHTML = '<span>&#10003;</span> <span>Offer Accepted</span>';
+          modalAcceptBtn.disabled = true;
+          modalAcceptBtn.style.backgroundColor = '#166534';
+          modalAcceptBtn.style.cursor = 'default';
+        }
+        const buyer = modalAcceptBtn.getAttribute('data-buyer') || 'Buyer';
+        showToast(`✅ Offer from ${buyer} accepted! Pickup & payment scheduled.`);
+        return;
+      }
+
+      // 3. Accept Buyer Offer Handler (Direct Dashboard List)
+      const acceptBtn = e.target.closest('.btn-accept-offer:not(.modal-accept-bid-btn)');
       if (acceptBtn) {
         const bidCard = acceptBtn.closest('.bid-item');
         if (bidCard) {
@@ -1182,9 +1485,10 @@
           const buyerName = bidCard.querySelector('.buyer-name')?.textContent || 'Buyer';
           showToast(`✅ Offer from ${buyerName} accepted! Pickup scheduled.`);
         }
+        return;
       }
 
-      // Mark as sold handler
+      // 4. Mark as sold handler
       const markSoldBtn = e.target.closest('.mark-sold-btn');
       if (markSoldBtn) {
         const cropCard = markSoldBtn.closest('.crop-card-item');
@@ -1200,9 +1504,10 @@
           markSoldBtn.style.cursor = 'default';
           showToast('Lot marked as sold! Added to your payment records.');
         }
+        return;
       }
 
-      // Request callback button
+      // 5. Request callback button
       const callbackBtn = e.target.closest('.request-callback-btn');
       if (callbackBtn) {
         callbackBtn.textContent = '✓ Callback Requested';
