@@ -473,12 +473,28 @@ body {
   border: 1px solid var(--c-border);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-float);
-  z-index: 100;
+  z-index: 999;
   padding: 8px 0;
 }
 
-#toggle-notif:checked ~ .notif-drawer {
+#toggle-notif:checked ~ .app-container .notif-drawer,
+#toggle-notif:checked ~ .notif-drawer,
+.notif-wrapper.open .notif-drawer,
+.notif-drawer.open,
+.notif-drawer.active {
   display: block;
+  animation: notifFadeIn 0.18s ease-out;
+}
+
+@keyframes notifFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .notif-drawer-header {
@@ -1472,7 +1488,7 @@ body {
 }
 
 /* ==========================================================================
-   CSS Logistics Route Map Visualization
+   CSS Logistics Route Map Visualization (Corrected Alignment & Typography)
    ========================================================================== */
 .route-schematic-card {
   background: var(--c-surface);
@@ -1484,10 +1500,10 @@ body {
 }
 
 .route-schematic-canvas {
-  background: #f4efe6;
-  border: 1px solid var(--c-border);
+  background: #fdfaf5;
+  border: 1px solid #e7dfcf;
   border-radius: var(--radius-sm);
-  padding: 32px 24px;
+  padding: 28px 20px 24px;
   position: relative;
   overflow: hidden;
   margin: 16px 0;
@@ -1511,33 +1527,39 @@ body {
 .route-highway-line {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  margin: 30px 40px;
+  margin: 10px 30px 10px;
+  padding-top: 2px;
 }
 
+/* Highway Track Base (Locked strictly to the center of waypoint pins at top: 15px) */
 .route-highway-line::before {
   content: "";
   position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
+  top: 15px;
+  left: 30px;
+  right: 30px;
   height: 6px;
-  background: #c2b59b;
+  background: #d1c7b7;
   transform: translateY(-50%);
-  border-radius: 3px;
+  border-radius: 4px;
+  z-index: 1;
 }
 
+/* Highway Track Progress (Completed segment) */
 .route-highway-line::after {
   content: "";
   position: absolute;
-  top: 50%;
-  left: 0;
-  width: 50%;
+  top: 15px;
+  left: 30px;
+  width: 48%;
   height: 6px;
-  background: #276738;
+  background: linear-gradient(90deg, #15803d, #22c55e);
   transform: translateY(-50%);
-  border-radius: 3px;
+  border-radius: 4px;
+  z-index: 1;
+  box-shadow: 0 1px 4px rgba(22, 101, 52, 0.3);
 }
 
 .route-waypoint {
@@ -1546,56 +1568,305 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  min-width: 140px;
 }
 
 .waypoint-pin {
-  width: 26px;
-  height: 26px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background: #ffffff;
-  border: 4px solid #276738;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-  margin-bottom: 8px;
+  border: 4px solid #16a34a;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16);
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.waypoint-pin::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #16a34a;
 }
 
 .waypoint-pin.current {
-  border-color: var(--c-harvest-gold);
-  background: #fff;
+  border-color: #d97706;
+  background: #ffffff;
   transform: scale(1.15);
-  box-shadow: 0 0 0 4px rgba(201, 130, 22, 0.25);
+  box-shadow: 0 0 0 5px rgba(217, 119, 6, 0.25), 0 4px 10px rgba(0, 0, 0, 0.15);
+  animation: pulse-pin 2s infinite ease-in-out;
+}
+
+.waypoint-pin.current::after {
+  background: #d97706;
 }
 
 .waypoint-pin.upcoming {
-  border-color: #9ca3af;
+  border-color: #94a3b8;
 }
 
+.waypoint-pin.upcoming::after {
+  background: #94a3b8;
+}
+
+@keyframes pulse-pin {
+  0% { box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.6), 0 4px 10px rgba(0,0,0,0.15); }
+  70% { box-shadow: 0 0 0 10px rgba(217, 119, 6, 0), 0 4px 10px rgba(0,0,0,0.15); }
+  100% { box-shadow: 0 0 0 0 rgba(217, 119, 6, 0), 0 4px 10px rgba(0,0,0,0.15); }
+}
+
+/* Elevated Place Name Badge (Placed completely clear below the highway track) */
 .waypoint-title {
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   font-weight: 700;
   color: var(--c-text-primary);
+  background: #ffffff;
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--c-border);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+  margin-bottom: 6px;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
 }
 
 .waypoint-tag {
   font-size: 0.72rem;
-  font-weight: 600;
-  padding: 2px 6px;
+  font-weight: 700;
+  padding: 3px 8px;
   border-radius: 4px;
-  margin-top: 2px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
 }
 
 .waypoint-tag.tag-pickup {
   background-color: #fef3c7;
   color: #92400e;
+  border: 1px solid #fde68a;
 }
 
 .waypoint-tag.tag-current {
-  background-color: #dbeafe;
-  color: #1e40af;
+  background-color: #e0e7ff;
+  color: #3730a3;
+  border: 1px solid #c7d2fe;
 }
 
 .waypoint-tag.tag-dest {
   background-color: #dcfce7;
   color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+/* Highway Corridor Middle Badge */
+.route-segment-indicator {
+  align-self: flex-start;
+  margin-top: 4px;
+  z-index: 2;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 9999px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Interactive Leaflet Map & GPS Navigation HUD Styles
+   ========================================================================== */
+.delivery-map-card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  box-shadow: var(--shadow-subtle);
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.map-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.map-card-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.map-card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--c-text-primary);
+}
+
+.map-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.map-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  animation: pulse-dot 1.8s infinite;
+}
+
+@keyframes pulse-dot {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { box-shadow: 0 0 0 7px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+.map-btn-group {
+  display: flex;
+  gap: 8px;
+}
+
+.map-action-btn {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  color: var(--c-text-primary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+
+.map-action-btn:hover {
+  background: var(--c-surface-subtle);
+  border-color: var(--c-text-secondary);
+}
+
+.map-action-btn.active {
+  background: var(--c-green-primary);
+  color: #ffffff;
+  border-color: var(--c-green-primary);
+}
+
+.delivery-map-canvas {
+  height: 420px;
+  width: 100%;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--c-border);
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.06);
+  position: relative;
+  z-index: 1;
+}
+
+.map-telemetry-hud {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--c-border-subtle);
+}
+
+.telemetry-item {
+  background: var(--c-surface-subtle);
+  border: 1px solid var(--c-border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+}
+
+.telemetry-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--c-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 3px;
+}
+
+.telemetry-value {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--c-text-primary);
+}
+
+/* Custom Marker Pin Icons for Leaflet */
+.leaflet-custom-pin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 11px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  border: 2px solid #ffffff;
+}
+
+.pin-pickup {
+  background: #16a34a;
+}
+
+.pin-current {
+  background: #d97706;
+  animation: pulse-pin 2s infinite;
+}
+
+.pin-dest {
+  background: #2563eb;
+}
+
+.truck-marker-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: #15803d;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.35);
+  color: #ffffff;
+  font-size: 16px;
+  animation: pulse-pin 2s infinite;
+}
+
+.mini-map-preview {
+  height: 180px;
+  width: 100%;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--c-border);
+  overflow: hidden;
+  margin-top: 12px;
+  position: relative;
+  z-index: 1;
 }
 
 .route-stops-list {

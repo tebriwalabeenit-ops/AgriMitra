@@ -118,19 +118,25 @@
             
             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--color-border-light); padding-bottom: var(--space-4); margin-bottom: var(--space-5);">
               <div>
-                <span class="trading-section-title" style="font-size: 1.4rem; color: var(--color-primary);">
-                  <span class="live-dot" aria-hidden="true"></span>
-                  LIVE BIDDING
-                </span>
-                <div style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin-top: 2px;">
-                  Session closes at 11:00 AM IST
+                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                  <span class="trading-section-title" style="font-size: 1.4rem; color: var(--color-primary); margin-bottom: 0;">
+                    <span class="live-dot" aria-hidden="true"></span>
+                    LIVE BIDDING
+                  </span>
+                  <div class="live-clock-badge" title="Live synchronized Mandi trading time">
+                    <span class="live-clock-dot"></span>
+                    <span>Clock: <strong class="mandi-clock-value" id="mandi-clock-fpo">--:--:--</strong></span>
+                  </div>
+                </div>
+                <div id="session-close-time-fpo" style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin-top: 4px;">
+                  Session closes at 11:30 AM IST
                 </div>
               </div>
 
-              <!-- TIME REMAINING (Visually Noticeable) -->
+              <!-- TIME REMAINING (Visually Noticeable & Active Countdown) -->
               <div class="live-timer-box" style="text-align: right;">
                 <span class="live-timer-label">TIME REMAINING</span>
-                <div class="live-timer-counter" style="font-size: 2.25rem; color: #C62828;">00:12:45</div>
+                <div class="live-timer-counter" id="live-timer-fpo" style="font-size: 2.25rem; color: #C62828;">00:14:45</div>
                 <span class="badge-live" style="margin-top: 2px; align-self: flex-end;">LIVE</span>
               </div>
             </div>
@@ -281,5 +287,6 @@
 
     </div>
   </main>
+  <script src="assets/frontend_api.js"></script>
 </body>
 </html>

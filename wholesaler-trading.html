@@ -498,20 +498,26 @@
           <!-- RIGHT COLUMN: High-Stakes Bidding Console -->
           <div class="bidding-cockpit-card">
             
-            <!-- 8. TIME REMAINING & Live Status -->
+            <!-- 8. TIME REMAINING & Live Real-Time Clock -->
             <div class="bidding-header-status">
               <div>
-                <span class="badge-live" style="font-size: 0.85rem; padding: 4px 12px;">
-                  <span class="live-dot" aria-hidden="true"></span> LIVE
-                </span>
-                <div style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin-top: 4px;">
-                  Session closes at 11:00 AM IST
+                <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                  <span class="badge-live" style="font-size: 0.85rem; padding: 4px 12px;">
+                    <span class="live-dot" aria-hidden="true"></span> LIVE
+                  </span>
+                  <div class="live-clock-badge" title="Live synchronized Mandi trading time">
+                    <span class="live-clock-dot"></span>
+                    <span>Clock: <strong class="mandi-clock-value" id="mandi-clock-wholesaler">--:--:--</strong></span>
+                  </div>
+                </div>
+                <div id="session-close-time-wholesaler" style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin-top: 6px;">
+                  Session closes at 11:30 AM IST
                 </div>
               </div>
 
               <div class="live-timer-box">
                 <span class="live-timer-label">TIME REMAINING</span>
-                <div class="live-timer-counter" aria-live="polite">00:12:45</div>
+                <div class="live-timer-counter" id="live-timer-wholesaler" aria-live="polite">00:14:45</div>
               </div>
             </div>
 
@@ -965,5 +971,6 @@
     </section>
 
   </main>
+  <script src="assets/frontend_api.js"></script>
 </body>
 </html>

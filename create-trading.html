@@ -80,7 +80,7 @@
           </p>
         </div>
 
-        <form action="fpo-trading-dashboard.html" method="get">
+        <form id="create-trading-form" action="fpo-trading-dashboard.html" method="post">
 
           <!-- Section 1: Product Details -->
           <div class="form-section-block">
@@ -114,21 +114,49 @@
             </div>
 
             <div class="form-field-group" style="margin-top: var(--space-4);">
-              <label class="form-field-label">Product Image</label>
-              <div style="border: 2px dashed var(--color-border); border-radius: var(--radius-md); padding: var(--space-6); text-align: center; background-color: var(--color-surface-alt);">
-                <div style="width: 48px; height: 48px; border-radius: 50%; background-color: var(--color-primary-subtle); display: inline-flex; align-items: center; justify-content: center; color: var(--color-primary); margin-bottom: var(--space-2);">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                    <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                    <polyline points="21 15 16 10 5 21"></polyline>
-                  </svg>
+              <label for="bidding-product-image" class="form-field-label" style="display: flex; justify-content: space-between; align-items: center;">
+                <span>Product Sample Image</span>
+                <span style="font-size: 0.75rem; color: var(--color-text-muted); font-weight: normal;">From Computer or Phone</span>
+              </label>
+
+              <!-- Native File Input for Desktop & Mobile Upload -->
+              <input type="file" id="bidding-product-image" name="produce_image" accept="image/*" style="display: none;">
+
+              <!-- Clickable Upload Dropzone -->
+              <div id="image-upload-dropzone" role="button" tabindex="0" aria-label="Upload produce photograph from computer or phone"
+                style="border: 2px dashed var(--color-border); border-radius: var(--radius-md); padding: var(--space-5); text-align: center; background-color: var(--color-surface-alt); display: flex; align-items: center; gap: 1.25rem; justify-content: center; flex-wrap: wrap; cursor: pointer; transition: all 0.2s ease;">
+                
+                <img id="product-image-preview" src="assets/produce/wheat.jpg" alt="Selected Sample Photograph"
+                  style="width: 84px; height: 84px; object-fit: cover; border-radius: var(--radius-md); border: 2px solid var(--color-border); box-shadow: 0 2px 8px rgba(0,0,0,0.08); flex-shrink: 0;">
+                
+                <div style="text-align: left; max-width: 400px;">
+                  <div id="product-image-filename"
+                    style="font-weight: var(--font-weight-semibold); color: var(--color-text-main); font-size: var(--font-size-sm); margin-bottom: 2px; word-break: break-all;">
+                    sample_wheat_grade_a.jpg
+                  </div>
+                  <div id="product-image-meta" style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin-bottom: 8px;">
+                    Default sample attached · Click to choose photo from computer or phone
+                  </div>
+                  <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                    <button type="button" id="btn-trigger-upload" class="btn btn-secondary"
+                      style="padding: 6px 14px; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 6px; cursor: pointer;">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                      </svg>
+                      <span>Choose Photo from Device</span>
+                    </button>
+                    <button type="button" id="btn-reset-image" class="btn"
+                      style="padding: 5px 10px; font-size: 0.75rem; color: #C62828; background: #FFEBEE; border: 1px solid #FFCDD2; border-radius: 4px; display: none; cursor: pointer;">
+                      Reset
+                    </button>
+                  </div>
                 </div>
-                <div style="font-weight: var(--font-weight-semibold); color: var(--color-text-main); font-size: var(--font-size-sm); margin-bottom: 4px;">
-                  Upload Product Image
-                </div>
-                <div style="font-size: var(--font-size-xs); color: var(--color-text-muted);">
-                  PNG, JPG or WEBP up to 10MB (Clear photo of produce sample)
-                </div>
+              </div>
+              <div style="font-size: 0.75rem; color: var(--color-text-muted); margin-top: 6px; display: flex; justify-content: space-between; align-items: center;">
+                <span>Click the box or button to browse files on your computer or camera/gallery on your phone.</span>
+                <span>Max: 10 MB (JPG, PNG, WEBP)</span>
               </div>
             </div>
           </div>
@@ -321,5 +349,6 @@
       </div>
     </div>
   </main>
+  <script src="assets/frontend_api.js"></script>
 </body>
 </html>

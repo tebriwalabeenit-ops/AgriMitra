@@ -481,6 +481,27 @@
         const cropPrice = cropPriceInput ? cropPriceInput.value : '2500';
         const cropLocation = (cropLocationInput && cropLocationInput.value.trim()) ? cropLocationInput.value.trim() : 'Krishnagiri APMC Warehouse';
 
+        // Persist to backend database API
+        fetch('/api/farmer/produce', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'same-origin',
+          body: JSON.stringify({
+            crop_name: cropName,
+            variety: cropVariety,
+            quantity: parseFloat(cropQty) || 50.0,
+            unit: cropUnit,
+            expected_price: parseFloat(cropPrice) || 2500.0,
+            location: cropLocation
+          })
+        }).then(res => res.json()).then(data => {
+          if (data && data.success) {
+            console.log('[KrishiLink] Produce saved to database record:', data.produce);
+          }
+        }).catch(err => {
+          console.warn('[KrishiLink] Backend call notice:', err);
+        });
+
         // Prepend new listing card to #crop-cards-list
         const cropCardsList = document.getElementById('crop-cards-list');
         if (cropCardsList) {

@@ -124,16 +124,116 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Form Handling for Login (Redirects to selected role's dashboard)
+  // --------------------------------------------------------------------------
+  // Demo Account 1-Click Auto-Fill Controller
+  // --------------------------------------------------------------------------
+  const demoButtons = document.querySelectorAll('.demo-account-btn');
+  const roleSelect = document.getElementById('login-role');
+  const phoneInput = document.getElementById('login-phone');
+  const passwordInput = document.getElementById('login-password');
+  const demoStatusDiv = document.getElementById('demo-account-status');
+
+  demoButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      demoButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const role = btn.getAttribute('data-role');
+      const phone = btn.getAttribute('data-phone');
+      const pass = btn.getAttribute('data-pass');
+
+      if (roleSelect) roleSelect.value = role;
+      if (phoneInput) phoneInput.value = phone;
+      if (passwordInput) passwordInput.value = pass;
+
+      // Clear any prior error
+      const errorDiv = document.getElementById('login-error-msg');
+      if (errorDiv) errorDiv.remove();
+
+      // Show confirmation badge
+      if (demoStatusDiv) {
+        demoStatusDiv.style.display = 'flex';
+        const roleName = btn.querySelector('.demo-btn-role') ? btn.querySelector('.demo-btn-role').textContent : role;
+        demoStatusDiv.innerHTML = `<span class="status-check">✓</span> <span>Pre-filled <strong>${roleName}</strong> credentials: <code>${phone}</code> • Ready to sign in!</span>`;
+      }
+    });
+  });
+
+  // Form Handling for Login (Authenticates with Flask backend & redirects to role dashboard)
   const loginForm = document.getElementById('login-form');
   if (loginForm) {
-    loginForm.addEventListener('submit', (e) => {
+    loginForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const roleSelect = document.getElementById('login-role');
+      const submitBtn = loginForm.querySelector('button[type="submit"]');
+
       const selectedRole = roleSelect ? roleSelect.value : 'farmer';
-      const targetDashboard = roleDashboardRoutes[selectedRole] || 'AgriMitra-Farmer/farmer/dashboard.html';
-      closeDialog(loginDialog);
-      window.location.href = targetDashboard;
+      const phone = phoneInput ? phoneInput.value.trim() : '';
+      const password = passwordInput ? passwordInput.value : '';
+
+      // Clean any existing error message
+      let errorDiv = document.getElementById('login-error-msg');
+      if (errorDiv) errorDiv.remove();
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Authenticating...';
+      }
+
+      try {
+        const response = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'same-origin',
+          body: JSON.stringify({ phone, password, role: selectedRole })
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          // Save active session metadata locally
+          if (data.user) {
+            localStorage.setItem('krishilink_user', JSON.stringify(data.user));
+          }
+          const actualRole = (data.user && data.user.role) ? data.user.role : selectedRole;
+          
+          // Specific destination logic for demo flows
+          let targetDashboard = roleDashboardRoutes[selectedRole] || roleDashboardRoutes[actualRole];
+          if (selectedRole === 'buyer') {
+            targetDashboard = 'AgriMitra-Buyer/buyer-dashboard.html';
+          } else if (selectedRole === 'distributor') {
+            targetDashboard = 'wholesaler-trading.html';
+          } else if (selectedRole === 'delivery' || actualRole === 'delivery_agent') {
+            targetDashboard = 'delivery-dashboard.html';
+          } else if (selectedRole === 'fpo') {
+            targetDashboard = 'fpo-bidding-status.html';
+          }
+
+          closeDialog(loginDialog);
+          window.location.href = targetDashboard || 'AgriMitra-Farmer/farmer/dashboard.html';
+        } else {
+          // Display error message inside modal
+          errorDiv = document.createElement('div');
+          errorDiv.id = 'login-error-msg';
+          errorDiv.style.cssText = 'color: #DC2626; background: #FEF2F2; border: 1px solid #FCA5A5; padding: 8px 12px; border-radius: 6px; font-size: 0.825rem; margin-top: 10px; text-align: center;';
+          errorDiv.textContent = data.message || 'Invalid credentials. Please verify phone number and password.';
+          const modalBody = loginForm.querySelector('.modal-body');
+          if (modalBody) modalBody.appendChild(errorDiv);
+        }
+      } catch (networkErr) {
+        console.warn('[KrishiLink] Login API unreachable, continuing in offline demo mode:', networkErr);
+        let targetDashboard = roleDashboardRoutes[selectedRole] || 'AgriMitra-Farmer/farmer/dashboard.html';
+        if (selectedRole === 'buyer') targetDashboard = 'AgriMitra-Buyer/buyer-dashboard.html';
+        else if (selectedRole === 'distributor') targetDashboard = 'wholesaler-trading.html';
+        else if (selectedRole === 'delivery') targetDashboard = 'delivery-dashboard.html';
+        else if (selectedRole === 'fpo') targetDashboard = 'fpo-bidding-status.html';
+        closeDialog(loginDialog);
+        window.location.href = targetDashboard;
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Login to Dashboard';
+        }
+      }
     });
   }
 });

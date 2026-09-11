@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Create Live Bidding Session | AgriMitra FPO</title>
-  <meta name="description" content="Add product details, set floor price, and schedule an agricultural live bidding session on AgriMitra FPO platform.">
+  <meta name="description"
+    content="Add product details, set floor price, and schedule an agricultural live bidding session on AgriMitra FPO platform.">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <!-- Subtle Background Pattern -->
   <div class="bg-subtle-pattern" aria-hidden="true"></div>
@@ -36,7 +39,8 @@
       <div class="trading-nav-actions">
         <!-- Notification Icon -->
         <button type="button" class="icon-button" aria-label="View Notifications" title="Notifications">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
             <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
           </svg>
@@ -57,11 +61,13 @@
   <!-- Main Content -->
   <main id="main-content" style="padding: var(--space-8) 0 var(--space-16);">
     <div class="container">
-      
+
       <!-- Back Link -->
       <div style="margin-bottom: var(--space-4);">
-        <a href="fpo-live-bidding.html" class="nav-link" style="padding-left: 0; display: inline-flex; align-items: center; gap: 6px;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <a href="fpo-live-bidding.html" class="nav-link"
+          style="padding-left: 0; display: inline-flex; align-items: center; gap: 6px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="19" y1="12" x2="5" y2="12"></line>
             <polyline points="12 19 5 12 12 5"></polyline>
           </svg>
@@ -71,11 +77,13 @@
 
       <!-- Main Form Container Card -->
       <div class="form-container-card">
-        
+
         <!-- Page Heading -->
-        <div style="border-bottom: 1px solid var(--color-border-light); padding-bottom: var(--space-6); margin-bottom: var(--space-8);">
+        <div
+          style="border-bottom: 1px solid var(--color-border-light); padding-bottom: var(--space-6); margin-bottom: var(--space-8);">
           <span class="form-section-eyebrow">FPO Auction Setup</span>
-          <h1 class="form-section-heading" style="font-size: 2rem; color: var(--color-primary); margin-bottom: var(--space-2);">
+          <h1 class="form-section-heading"
+            style="font-size: 2rem; color: var(--color-primary); margin-bottom: var(--space-2);">
             Create Live Bidding Session
           </h1>
           <p class="form-section-desc" style="font-size: var(--font-size-base);">
@@ -83,20 +91,22 @@
           </p>
         </div>
 
-        <form action="fpo-live-bidding.html" method="get">
+        <form id="create-bidding-form" action="fpo-live-bidding.html" method="post">
 
           <!-- SECTION 1: PRODUCT DETAILS -->
           <div class="form-section-block">
             <div class="form-section-header">
               <span class="form-section-eyebrow">Step 01</span>
               <h2 class="form-section-heading">Product Details</h2>
-              <p class="form-section-desc">Specify the agricultural commodity to be listed for live electronic bidding.</p>
+              <p class="form-section-desc">Specify the agricultural commodity to be listed for live electronic bidding.
+              </p>
             </div>
 
             <div class="form-grid-row">
               <div class="form-field-group">
                 <label for="bidding-product-name" class="form-field-label">Product Name</label>
-                <input type="text" id="bidding-product-name" class="form-field-input" placeholder="Enter Product Name" value="Premium Wheat" required>
+                <input type="text" id="bidding-product-name" class="form-field-input" placeholder="Enter Product Name"
+                  value="Premium Wheat" required>
               </div>
 
               <div class="form-field-group">
@@ -113,22 +123,54 @@
 
             <div class="form-field-group">
               <label for="bidding-description" class="form-field-label">Product Description</label>
-              <textarea id="bidding-description" rows="3" class="form-field-textarea" placeholder="Describe Your Product">High-grade MP Sharbati wheat aggregated from member farmers. Machine cleaned, uniform bold grain, low moisture, and verified by mandi QC lab.</textarea>
+              <textarea id="bidding-description" rows="3" class="form-field-textarea"
+                placeholder="Describe Your Product">High-grade MP Sharbati wheat aggregated from member farmers. Machine cleaned, uniform bold grain, low moisture, and verified by mandi QC lab.</textarea>
             </div>
 
             <div class="form-field-group" style="margin-top: var(--space-4);">
-              <label class="form-field-label">Product Image</label>
-              <div style="border: 2px dashed var(--color-border); border-radius: var(--radius-md); padding: var(--space-4); text-align: center; background-color: var(--color-surface-alt); display: flex; align-items: center; gap: 1.25rem; justify-content: center; flex-wrap: wrap;">
-                <img src="assets/produce/wheat.jpg" alt="Selected Sample Photograph" style="width: 80px; height: 80px; object-fit: cover; border-radius: var(--radius-md); border: 2px solid var(--color-border);">
-                <div style="text-align: left;">
-                  <div style="font-weight: var(--font-weight-semibold); color: var(--color-text-main); font-size: var(--font-size-sm); margin-bottom: 2px;">
+              <label for="bidding-product-image" class="form-field-label" style="display: flex; justify-content: space-between; align-items: center;">
+                <span>Product Sample Image</span>
+                <span style="font-size: 0.75rem; color: var(--color-text-muted); font-weight: normal;">From Computer or Phone</span>
+              </label>
+
+              <!-- Native File Input for Desktop & Mobile Upload -->
+              <input type="file" id="bidding-product-image" name="produce_image" accept="image/*" style="display: none;">
+
+              <!-- Clickable Upload Dropzone -->
+              <div id="image-upload-dropzone" role="button" tabindex="0" aria-label="Upload produce photograph from computer or phone"
+                style="border: 2px dashed var(--color-border); border-radius: var(--radius-md); padding: var(--space-5); text-align: center; background-color: var(--color-surface-alt); display: flex; align-items: center; gap: 1.25rem; justify-content: center; flex-wrap: wrap; cursor: pointer; transition: all 0.2s ease;">
+                
+                <img id="product-image-preview" src="assets/produce/wheat.jpg" alt="Selected Sample Photograph"
+                  style="width: 84px; height: 84px; object-fit: cover; border-radius: var(--radius-md); border: 2px solid var(--color-border); box-shadow: 0 2px 8px rgba(0,0,0,0.08); flex-shrink: 0;">
+                
+                <div style="text-align: left; max-width: 400px;">
+                  <div id="product-image-filename"
+                    style="font-weight: var(--font-weight-semibold); color: var(--color-text-main); font-size: var(--font-size-sm); margin-bottom: 2px; word-break: break-all;">
                     sample_wheat_grade_a.jpg
                   </div>
-                  <div style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin-bottom: 6px;">
-                    Real photograph attached · 1.4 MB · Mandi Verified
+                  <div id="product-image-meta" style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin-bottom: 8px;">
+                    Default sample attached · Click to choose photo from computer or phone
                   </div>
-                  <span style="font-size: 0.75rem; color: var(--color-primary); font-weight: 600; text-decoration: underline; cursor: pointer;">Change Photo</span>
+                  <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                    <button type="button" id="btn-trigger-upload" class="btn btn-secondary"
+                      style="padding: 6px 14px; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 6px; cursor: pointer;">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                      </svg>
+                      <span>Choose Photo from Device</span>
+                    </button>
+                    <button type="button" id="btn-reset-image" class="btn"
+                      style="padding: 5px 10px; font-size: 0.75rem; color: #C62828; background: #FFEBEE; border: 1px solid #FFCDD2; border-radius: 4px; display: none; cursor: pointer;">
+                      Reset
+                    </button>
+                  </div>
                 </div>
+              </div>
+              <div style="font-size: 0.75rem; color: var(--color-text-muted); margin-top: 6px; display: flex; justify-content: space-between; align-items: center;">
+                <span>Click the box or button to browse files on your computer or camera/gallery on your phone.</span>
+                <span>Max: 10 MB (JPG, PNG, WEBP)</span>
               </div>
             </div>
           </div>
@@ -138,7 +180,8 @@
             <div class="form-section-header">
               <span class="form-section-eyebrow">Step 02</span>
               <h2 class="form-section-heading">Quality Details</h2>
-              <p class="form-section-desc">Accurate grading ensures high confidence and transparent valuation from buyers.</p>
+              <p class="form-section-desc">Accurate grading ensures high confidence and transparent valuation from
+                buyers.</p>
             </div>
 
             <div class="form-field-group">
@@ -161,7 +204,8 @@
 
             <div class="form-field-group" style="margin-top: var(--space-4);">
               <label for="quality-specs" class="form-field-label">Additional Quality Details</label>
-              <input type="text" id="quality-specs" class="form-field-input" placeholder="Add Quality Details" value="Moisture 9.8%, Foreign Matter < 0.2%, No weevils, Machine Sorted">
+              <input type="text" id="quality-specs" class="form-field-input" placeholder="Add Quality Details"
+                value="Moisture 9.8%, Foreign Matter < 0.2%, No weevils, Machine Sorted">
             </div>
           </div>
 
@@ -170,13 +214,15 @@
             <div class="form-section-header">
               <span class="form-section-eyebrow">Step 03</span>
               <h2 class="form-section-heading">Quantity</h2>
-              <p class="form-section-desc">Specify available volume. The winning bidder will purchase the entire designated quantity.</p>
+              <p class="form-section-desc">Specify available volume. The winning bidder will purchase the entire
+                designated quantity.</p>
             </div>
 
             <div class="form-grid-row">
               <div class="form-field-group">
                 <label for="quantity-input" class="form-field-label">Quantity Available</label>
-                <input type="number" id="quantity-input" class="form-field-input" placeholder="Enter Quantity" value="5000" min="1" required>
+                <input type="number" id="quantity-input" class="form-field-input" placeholder="Enter Quantity"
+                  value="5000" min="1" required>
               </div>
 
               <div class="form-field-group">
@@ -195,7 +241,8 @@
             <div class="form-section-header">
               <span class="form-section-eyebrow">Step 04</span>
               <h2 class="form-section-heading">Bidding Details</h2>
-              <p class="form-section-desc">Set the floor price and increment parameters. Bidders must adhere to these baselines.</p>
+              <p class="form-section-desc">Set the floor price and increment parameters. Bidders must adhere to these
+                baselines.</p>
             </div>
 
             <div class="form-grid-row">
@@ -203,19 +250,23 @@
                 <label for="start-price-input" class="form-field-label">Starting Price</label>
                 <div class="input-currency-wrapper">
                   <span class="currency-symbol">₹</span>
-                  <input type="number" id="start-price-input" class="form-field-input" placeholder="Enter Starting Price" value="28" step="0.50" min="1" required>
+                  <input type="number" id="start-price-input" class="form-field-input"
+                    placeholder="Enter Starting Price" value="28" step="0.50" min="1" required>
                 </div>
-                <span class="form-field-helper">Base floor rate per kilogram. Bidding cannot start below this amount.</span>
+                <span class="form-field-helper">Base floor rate per kilogram. Bidding cannot start below this
+                  amount.</span>
               </div>
 
               <div class="form-field-group">
                 <label for="bid-increment-input" class="form-field-label">Minimum Bid Increment</label>
                 <div class="input-currency-wrapper">
                   <span class="currency-symbol">₹</span>
-                  <input type="number" id="bid-increment-input" class="form-field-input" placeholder="Enter Minimum Bid Increment" value="0.50" step="0.10" min="0.10" required>
+                  <input type="number" id="bid-increment-input" class="form-field-input"
+                    placeholder="Enter Minimum Bid Increment" value="0.50" step="0.10" min="0.10" required>
                 </div>
                 <span class="form-field-helper">
-                  Every new bid must be higher than the current highest bid by at least the selected minimum bid increment.
+                  Every new bid must be higher than the current highest bid by at least the selected minimum bid
+                  increment.
                 </span>
               </div>
             </div>
@@ -251,7 +302,8 @@
           <div class="trading-commitment-card" role="region" aria-labelledby="commitment-heading">
             <div class="commitment-header">
               <div class="commitment-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                 </svg>
               </div>
@@ -260,10 +312,13 @@
 
             <div class="commitment-body">
               <p>
-                <strong>By starting this Live Bidding session, you agree that the highest valid bid when the bidding period ends will automatically become the final sale price.</strong>
+                <strong>By starting this Live Bidding session, you agree that the highest valid bid when the bidding
+                  period ends will automatically become the final sale price.</strong>
               </p>
               <p>
-                <strong>You cannot reject the highest valid bid because the final price is lower than expected.</strong> The transaction is binding upon completion. The winning Wholesaler or Distributor will be automatically confirmed, and order fulfillment logistics will initiate immediately.
+                <strong>You cannot reject the highest valid bid because the final price is lower than expected.</strong>
+                The transaction is binding upon completion. The winning Wholesaler or Distributor will be automatically
+                confirmed, and order fulfillment logistics will initiate immediately.
               </p>
             </div>
 
@@ -308,11 +363,13 @@
 
           <!-- SECTION 8: FINAL BUTTON -->
           <div style="margin-top: var(--space-8); text-align: center;">
-            <button type="submit" class="btn btn-primary btn-large" style="width: 100%; max-width: 480px; box-shadow: 0 4px 16px rgba(28, 90, 53, 0.25);">
+            <button type="submit" class="btn btn-primary btn-large"
+              style="width: 100%; max-width: 480px; box-shadow: 0 4px 16px rgba(28, 90, 53, 0.25);">
               CREATE LIVE BIDDING SESSION
             </button>
             <div style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin-top: var(--space-3);">
-              Once submitted, the session will be published on the mandi calendar and broadcasted to verified Wholesalers &amp; Distributors.
+              Once submitted, the session will be published on the mandi calendar and broadcasted to verified
+              Wholesalers &amp; Distributors.
             </div>
           </div>
 
@@ -322,5 +379,7 @@
 
     </div>
   </main>
+  <script src="../assets/frontend_api.js"></script>
 </body>
+
 </html>

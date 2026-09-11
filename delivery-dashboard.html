@@ -7,6 +7,9 @@
   <title>AgriMitra — Delivery Agent Portal</title>
   <link rel="stylesheet" href="AgriMitra-delivery agent/style.css">
   <link rel="stylesheet" href="style.css">
+  <!-- Leaflet Interactive Maps CSS & JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
 <body>
 
@@ -516,6 +519,15 @@
                   <span style="color: var(--c-text-secondary);">Trip Earnings:</span>
                   <strong style="color: var(--c-green-primary);">₹680</strong>
                 </div>
+              </div>
+
+              <!-- Live Route Mini-Map Preview Card -->
+              <div style="margin-top: 14px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                  <span style="font-size: 0.76rem; font-weight: 700; color: var(--c-text-secondary); text-transform: uppercase;">Live Route GPS Preview</span>
+                  <span style="font-size: 0.72rem; color: var(--c-green-primary); font-weight: 700;">● Live On Road</span>
+                </div>
+                <div id="delivery-overview-map" class="mini-map-preview" title="Click to open full route navigation map"></div>
               </div>
 
               <label for="view-route" class="btn btn-secondary btn-block" style="margin-top: 14px;">
@@ -1148,10 +1160,54 @@
           <span class="status-pill status-online">Total Planned: 47 km • 3 Stops</span>
         </div>
 
-        <!-- CSS Logistics Route Visualization Map -->
+        <!-- Live Route Navigation Map Card (Interactive Leaflet GPS Tracking) -->
+        <div class="delivery-map-card">
+          <div class="map-card-header">
+            <div class="map-card-title-group">
+              <span class="map-card-title">Live Corridor GPS Navigation</span>
+              <span class="map-live-badge">
+                <span class="map-live-dot"></span>
+                LIVE GPS TELEMETRY: 42 km/h • ON SCHEDULE
+              </span>
+            </div>
+            <div class="map-btn-group">
+              <button type="button" class="map-action-btn" id="btn-center-vehicle" title="Center map on delivery vehicle">
+                📍 Center Vehicle
+              </button>
+              <button type="button" class="map-action-btn active" id="btn-fit-route" title="Fit complete corridor in view">
+                🗺️ Full Corridor
+              </button>
+            </div>
+          </div>
+
+          <!-- Interactive Leaflet Map Canvas -->
+          <div id="delivery-route-map" class="delivery-map-canvas"></div>
+
+          <!-- Live Telemetry HUD Bar -->
+          <div class="map-telemetry-hud">
+            <div class="telemetry-item">
+              <div class="telemetry-label">Active Vehicle</div>
+              <div class="telemetry-value" id="hud-vehicle-model">Tata Ace (PB 08 AX 4821)</div>
+            </div>
+            <div class="telemetry-item">
+              <div class="telemetry-label">Current Position</div>
+              <div class="telemetry-value" id="hud-current-pos">Near Shankar, NH 703</div>
+            </div>
+            <div class="telemetry-item">
+              <div class="telemetry-label">Next Stop &amp; ETA</div>
+              <div class="telemetry-value" id="hud-next-stop" style="color: #b45309;">Nakodar (10:45 AM)</div>
+            </div>
+            <div class="telemetry-item">
+              <div class="telemetry-label">Remaining Distance</div>
+              <div class="telemetry-value" id="hud-rem-dist" style="color: var(--c-green-primary);">28.4 km / 47.0 km</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CSS Logistics Route Visualization Map (Corrected Alignment & Waypoint Badges) -->
         <div class="route-schematic-card">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-            <span style="font-size: 0.82rem; font-weight: 700; color: var(--c-text-secondary); text-transform: uppercase;">Corridor Path Map</span>
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--c-text-secondary); text-transform: uppercase;">Corridor Path Schematic</span>
             <span style="font-size: 0.76rem; color: var(--c-green-primary); font-weight: 600;">Status: On Schedule • NH 703 Corridor</span>
           </div>
 
@@ -1160,26 +1216,32 @@
               
               <!-- Waypoint 1: Jalandhar -->
               <div class="route-waypoint">
-                <div class="waypoint-pin"></div>
+                <div class="waypoint-pin" title="Origin Collection Point"></div>
                 <span class="waypoint-title">Jalandhar</span>
                 <span class="waypoint-tag tag-pickup">Collection Point</span>
-                <span style="font-size: 0.7rem; color: var(--c-text-muted); margin-top: 2px;">Dep: 10:15 AM</span>
+                <span style="font-size: 0.72rem; color: var(--c-text-muted); margin-top: 2px;">Dep: 10:15 AM</span>
               </div>
+
+              <!-- Route Segment 1 -->
+              <div class="route-segment-indicator">18.6 km • Leg 1</div>
 
               <!-- Waypoint 2: Nakodar (Current Stop) -->
               <div class="route-waypoint">
-                <div class="waypoint-pin current"></div>
+                <div class="waypoint-pin current" title="Current Active Transit Stop"></div>
                 <span class="waypoint-title">Nakodar</span>
                 <span class="waypoint-tag tag-current">Current Stop</span>
-                <span style="font-size: 0.7rem; color: var(--c-text-muted); margin-top: 2px;">ETA: 10:45 AM</span>
+                <span style="font-size: 0.72rem; color: #b45309; font-weight: 700; margin-top: 2px;">ETA: 10:45 AM</span>
               </div>
+
+              <!-- Route Segment 2 -->
+              <div class="route-segment-indicator">26.4 km • Leg 2</div>
 
               <!-- Waypoint 3: Phagwara -->
               <div class="route-waypoint">
-                <div class="waypoint-pin upcoming"></div>
+                <div class="waypoint-pin upcoming" title="Destination Mandi"></div>
                 <span class="waypoint-title">Phagwara</span>
                 <span class="waypoint-tag tag-dest">Wholesale Mandi</span>
-                <span style="font-size: 0.7rem; color: var(--c-text-muted); margin-top: 2px;">ETA: 12:30 PM</span>
+                <span style="font-size: 0.72rem; color: var(--c-text-muted); margin-top: 2px;">ETA: 12:30 PM</span>
               </div>
 
             </div>
@@ -1484,5 +1546,6 @@
     </main>
   </div>
 
+  <script src="assets/frontend_api.js"></script>
 </body>
 </html>

@@ -326,6 +326,47 @@
     </div>
     <form method="dialog" id="login-form">
       <div class="modal-body">
+        <!-- Quick Demo Accounts Auto-Fill Cards -->
+        <div class="demo-accounts-wrapper">
+          <div class="demo-accounts-top">
+            <span class="demo-accounts-label">Demo Test Accounts (1-Click Fill)</span>
+            <span class="demo-accounts-badge">SIH Evaluation Mode</span>
+          </div>
+          <p class="demo-accounts-subtext">Click any role below to pre-fill verified demo credentials:</p>
+          <div class="demo-accounts-grid">
+            <button type="button" class="demo-account-btn" data-role="farmer" data-phone="9876543210" data-pass="farmer123">
+              <span class="demo-btn-role badge-farmer">Farmer</span>
+              <span class="demo-btn-name">Ramesh Patel</span>
+              <span class="demo-btn-phone">9876543210</span>
+            </button>
+            <button type="button" class="demo-account-btn" data-role="buyer" data-phone="9811122233" data-pass="buyer123">
+              <span class="demo-btn-role badge-buyer">Buyer</span>
+              <span class="demo-btn-name">Priyansh Sharma</span>
+              <span class="demo-btn-phone">9811122233</span>
+            </button>
+            <button type="button" class="demo-account-btn" data-role="fpo" data-phone="9812345678" data-pass="fpo123">
+              <span class="demo-btn-role badge-fpo">FPO</span>
+              <span class="demo-btn-name">Punjab FPO</span>
+              <span class="demo-btn-phone">9812345678</span>
+            </button>
+            <button type="button" class="demo-account-btn" data-role="distributor" data-phone="9823456789" data-pass="distributor123">
+              <span class="demo-btn-role badge-distributor">Wholesaler</span>
+              <span class="demo-btn-name">Kisan Mandi</span>
+              <span class="demo-btn-phone">9823456789</span>
+            </button>
+            <button type="button" class="demo-account-btn" data-role="delivery" data-phone="9834567890" data-pass="delivery123">
+              <span class="demo-btn-role badge-delivery">Delivery</span>
+              <span class="demo-btn-name">Ramesh Kumar</span>
+              <span class="demo-btn-phone">9834567890</span>
+            </button>
+          </div>
+          <div id="demo-account-status" class="demo-account-status" style="display: none;"></div>
+        </div>
+
+        <div class="login-divider">
+          <span>Or Enter Custom Credentials</span>
+        </div>
+
         <div class="form-group" style="margin-bottom: 0.85rem;">
           <label for="login-role" class="form-label">Select Role Portal</label>
           <select id="login-role" class="form-control" style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid var(--color-border); border-radius: var(--radius-md); font-family: inherit; font-size: 0.875rem; background: var(--color-surface); cursor: pointer;">
