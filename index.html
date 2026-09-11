@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AgriMitra | Connect. Trade. Grow.</title>
   <meta name="description" content="Helping farmers discover better markets, connect with reliable buyers, and manage produce sales from farm to delivery.">
+  
+  <!-- Google Fonts: Plus Jakarta Sans and Pan-Indian Unicode Scripts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Kannada:wght@400;500;600;700&family=Noto+Sans+Malayalam:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,20 +27,70 @@
         <img src="logo.png" alt="AgriMitra" class="brand-logo-img">
         <div class="brand-text-block">
           <span class="brand-name">AgriMitra</span>
-          <span class="brand-subtext">Market Intelligence &amp; Trade</span>
+          <span class="brand-subtext" data-i18n="brand_subtext">Market Intelligence &amp; Trade</span>
         </div>
       </a>
 
       <nav class="header-nav" aria-label="Main Navigation">
         <ul class="nav-links">
-          <li><a href="#about-modal" class="nav-link" id="nav-about-link">About</a></li>
-          <li><a href="#supply-chain" class="nav-link">How It Works</a></li>
+          <li><a href="#about-modal" class="nav-link" id="nav-about-link" data-i18n="nav_about">About</a></li>
+          <li><a href="#supply-chain" class="nav-link" data-i18n="nav_how_it_works">How It Works</a></li>
         </ul>
       </nav>
 
       <div class="header-actions">
-        <button type="button" class="btn btn-secondary" id="header-login-btn">Login</button>
-        <button type="button" class="btn btn-primary" id="header-register-btn">Register</button>
+        <!-- Clean Desi Language Selector (Landing Page Only) -->
+        <div class="lang-selector-dropdown" id="lang-selector-dropdown">
+          <button type="button" class="lang-selector-btn" id="lang-selector-toggle" aria-haspopup="listbox" aria-expanded="false" aria-label="Select Language">
+            <span class="lang-globe-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+            </span>
+            <span class="lang-btn-text">
+              <span class="lang-btn-label" data-i18n="language">Language</span>
+              <span class="lang-btn-current" id="current-lang-display">English</span>
+            </span>
+            <svg class="lang-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <ul class="lang-dropdown-menu" id="lang-dropdown-menu" role="listbox" aria-label="Language options">
+            <li role="option" data-lang="en" class="lang-option active" aria-selected="true" tabindex="0">
+              <span class="lang-native">English</span>
+              <span class="lang-check" aria-hidden="true">✓</span>
+            </li>
+            <li role="option" data-lang="hi" class="lang-option" aria-selected="false" tabindex="0">
+              <span class="lang-native">हिन्दी</span>
+              <span class="lang-check" aria-hidden="true">✓</span>
+            </li>
+            <li role="option" data-lang="ta" class="lang-option" aria-selected="false" tabindex="0">
+              <span class="lang-native">தமிழ்</span>
+              <span class="lang-check" aria-hidden="true">✓</span>
+            </li>
+            <li role="option" data-lang="ml" class="lang-option" aria-selected="false" tabindex="0">
+              <span class="lang-native">മലയാളം</span>
+              <span class="lang-check" aria-hidden="true">✓</span>
+            </li>
+            <li role="option" data-lang="kn" class="lang-option" aria-selected="false" tabindex="0">
+              <span class="lang-native">ಕನ್ನಡ</span>
+              <span class="lang-check" aria-hidden="true">✓</span>
+            </li>
+            <li role="option" data-lang="mr" class="lang-option" aria-selected="false" tabindex="0">
+              <span class="lang-native">मराठी</span>
+              <span class="lang-check" aria-hidden="true">✓</span>
+            </li>
+            <li role="option" data-lang="bn" class="lang-option" aria-selected="false" tabindex="0">
+              <span class="lang-native">বাংলা</span>
+              <span class="lang-check" aria-hidden="true">✓</span>
+            </li>
+          </ul>
+        </div>
+
+        <button type="button" class="btn btn-secondary" id="header-login-btn" data-i18n="login">Login</button>
+        <button type="button" class="btn btn-primary" id="header-register-btn" data-i18n="register">Register</button>
       </div>
     </div>
   </header>
@@ -47,40 +103,40 @@
         <div class="hero-content">
           <div class="platform-badge">
             <span class="badge-dot" aria-hidden="true"></span>
-            <span>Public Agricultural Trading Infrastructure</span>
+            <span data-i18n="platform_badge">Public Agricultural Trading Infrastructure</span>
           </div>
 
           <div class="hero-title-group">
             <h1 id="hero-heading" class="hero-brand">AgriMitra</h1>
-            <p class="hero-tagline">Connect. Trade. Grow.</p>
+            <p class="hero-tagline" data-i18n="hero_tagline">Connect. Trade. Grow.</p>
           </div>
 
-          <p class="hero-description">
+          <p class="hero-description" data-i18n="hero_desc">
             Helping farmers discover better markets, connect with reliable buyers, and manage produce sales from farm to delivery.
           </p>
 
           <div class="hero-actions">
             <button type="button" class="btn btn-primary btn-large" id="main-login-btn">
-              Login
+              <span data-i18n="login">Login</span>
               <svg class="btn-icon-end" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
             </button>
-            <button type="button" class="btn btn-secondary btn-large" id="main-register-btn">
+            <button type="button" class="btn btn-secondary btn-large" id="main-register-btn" data-i18n="register">
               Register
             </button>
           </div>
 
           <!-- Active Roles Strip (No Admin) -->
           <div class="ecosystem-roles">
-            <span class="ecosystem-label">Connected Ecosystem Roles</span>
+            <span class="ecosystem-label" data-i18n="ecosystem_roles_label">Connected Ecosystem Roles</span>
             <div class="role-chips">
-              <a href="AgriMitra-Farmer/farmer/register.html" class="role-chip" style="text-decoration: none;"><span class="role-chip-indicator" aria-hidden="true"></span>Farmer</a>
-              <a href="AgriMitra-Buyer/buyer.html" class="role-chip" style="text-decoration: none;"><span class="role-chip-indicator" aria-hidden="true"></span>Buyer</a>
-              <a href="AgriMitra- FPO/fpo-register.html" class="role-chip" style="text-decoration: none;"><span class="role-chip-indicator" aria-hidden="true"></span>FPO</a>
-              <a href="AgriMitra-delivery agent/delivery-agent.html" class="role-chip" style="text-decoration: none;"><span class="role-chip-indicator" aria-hidden="true"></span>Delivery Agent</a>
-              <a href="Agrimitra(wholesaler and distributer)/register-distributor.html" class="role-chip" style="text-decoration: none;"><span class="role-chip-indicator" aria-hidden="true"></span>Distributor / Wholesaler</a>
+              <a href="AgriMitra-Farmer/farmer/register.html" class="role-chip" style="text-decoration: none;"><span class="role-chip-indicator" aria-hidden="true"></span><span data-i18n="role_farmer">Farmer</span></a>
+              <a href="AgriMitra-Buyer/buyer.html" class="role-chip" style="text-decoration: none;"><span class="role-chip-indicator" aria-hidden="true"></span><span data-i18n="role_buyer">Buyer</span></a>
+              <a href="AgriMitra- FPO/fpo-register.html" class="role-chip" style="text-decoration: none;"><span class="role-chip-indicator" aria-hidden="true"></span><span data-i18n="role_fpo">FPO</span></a>
+              <a href="AgriMitra-delivery agent/delivery-agent.html" class="role-chip" style="text-decoration: none;"><span class="role-chip-indicator" aria-hidden="true"></span><span data-i18n="role_delivery">Delivery Agent</span></a>
+              <a href="Agrimitra(wholesaler and distributer)/register-distributor.html" class="role-chip" style="text-decoration: none;"><span class="role-chip-indicator" aria-hidden="true"></span><span data-i18n="role_distributor_wholesaler">Distributor / Wholesaler</span></a>
             </div>
           </div>
         </div>
@@ -88,13 +144,12 @@
     </section>
 
     <!-- Supply Chain Visual Section -->
-    <!-- Farmer → Produce → Buyer → Delivery → Payment -->
     <section id="supply-chain" class="supply-chain-section" aria-labelledby="chain-heading">
       <div class="container">
         <div class="section-header">
-          <span class="section-eyebrow">End-to-End Transparency</span>
-          <h2 id="chain-heading" class="section-title">Agricultural Supply Chain</h2>
-          <p class="section-subtitle">
+          <span class="section-eyebrow" data-i18n="chain_eyebrow">End-to-End Transparency</span>
+          <h2 id="chain-heading" class="section-title" data-i18n="chain_title">Agricultural Supply Chain</h2>
+          <p class="section-subtitle" data-i18n="chain_subtitle">
             A unified workflow ensuring transparent price discovery, quality assessment, and timely settlement.
           </p>
         </div>
@@ -109,11 +164,11 @@
                 <circle cx="12" cy="7" r="4"></circle>
               </svg>
             </div>
-            <h3 class="step-name">Farmer</h3>
-            <p class="step-description">
+            <h3 class="step-name" data-i18n="step_1_name">Farmer</h3>
+            <p class="step-description" data-i18n="step_1_desc">
               Discovers transparent market rates and lists harvest quantities without intermediary price suppression.
             </p>
-            <a href="AgriMitra-Farmer/farmer/register.html" class="step-feature" style="text-decoration: none;">Fair Price Discovery &rarr;</a>
+            <a href="AgriMitra-Farmer/farmer/register.html" class="step-feature" style="text-decoration: none;" data-i18n="step_1_feat">Fair Price Discovery &rarr;</a>
             <div class="chain-arrow" aria-hidden="true">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <polyline points="9 18 15 12 9 6"></polyline>
@@ -131,11 +186,11 @@
                 <line x1="12" y1="22.08" x2="12" y2="12"></line>
               </svg>
             </div>
-            <h3 class="step-name">Produce</h3>
-            <p class="step-description">
+            <h3 class="step-name" data-i18n="step_2_name">Produce</h3>
+            <p class="step-description" data-i18n="step_2_desc">
               Standardized lot cataloging with verified grade, moisture content, storage status, and harvest dates.
             </p>
-            <div class="step-feature">Quality Graded Lots</div>
+            <div class="step-feature" data-i18n="step_2_feat">Quality Graded Lots</div>
             <div class="chain-arrow" aria-hidden="true">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <polyline points="9 18 15 12 9 6"></polyline>
@@ -152,11 +207,11 @@
                 <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
               </svg>
             </div>
-            <h3 class="step-name">Buyer</h3>
-            <p class="step-description">
+            <h3 class="step-name" data-i18n="step_3_name">Buyer</h3>
+            <p class="step-description" data-i18n="step_3_desc">
               Accesses certified produce lots with escrow-secured bidding, advance logistics scheduling, and direct invoicing.
             </p>
-            <a href="AgriMitra-Buyer/buyer.html" class="step-feature" style="text-decoration: none;">Verified Sourcing &rarr;</a>
+            <a href="AgriMitra-Buyer/buyer.html" class="step-feature" style="text-decoration: none;" data-i18n="step_3_feat">Verified Sourcing &rarr;</a>
             <div class="chain-arrow" aria-hidden="true">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <polyline points="9 18 15 12 9 6"></polyline>
@@ -170,16 +225,16 @@
             <div class="step-icon-wrap" aria-hidden="true">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="1" y="3" width="15" height="13"></rect>
-                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                <polygon points="16 8 20 8 23 11 23 16 16 16 8"></polygon>
                 <circle cx="5.5" cy="18.5" r="2.5"></circle>
                 <circle cx="18.5" cy="18.5" r="2.5"></circle>
               </svg>
             </div>
-            <h3 class="step-name">Delivery</h3>
-            <p class="step-description">
+            <h3 class="step-name" data-i18n="step_4_name">Delivery</h3>
+            <p class="step-description" data-i18n="step_4_desc">
               GPS-monitored agricultural transit partners ensure temperature compliance, timely dispatch, and verified handoff.
             </p>
-            <a href="AgriMitra-delivery agent/delivery-agent.html" class="step-feature" style="text-decoration: none;">GPS Monitored Fleet &rarr;</a>
+            <a href="AgriMitra-delivery agent/delivery-agent.html" class="step-feature" style="text-decoration: none;" data-i18n="step_4_feat">GPS Monitored Fleet &rarr;</a>
             <div class="chain-arrow" aria-hidden="true">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <polyline points="9 18 15 12 9 6"></polyline>
@@ -196,11 +251,11 @@
                 <line x1="2" y1="10" x2="22" y2="10"></line>
               </svg>
             </div>
-            <h3 class="step-name">Bank Settlement</h3>
-            <p class="step-description">
+            <h3 class="step-name" data-i18n="step_5_name">Bank Settlement</h3>
+            <p class="step-description" data-i18n="step_5_desc">
               Automated escrow release directly to farmer account upon digital delivery confirmation and quality signoff.
             </p>
-            <div class="step-feature">Direct Bank Transfer</div>
+            <div class="step-feature" data-i18n="step_5_feat">Direct Bank Transfer</div>
           </article>
         </div>
       </div>
@@ -210,9 +265,9 @@
     <section class="platform-core-section" aria-labelledby="core-heading">
       <div class="container">
         <div class="section-header">
-          <span class="section-eyebrow">Market Intelligence</span>
-          <h2 id="core-heading" class="section-title">Informed Selling Decisions</h2>
-          <p class="section-subtitle">
+          <span class="section-eyebrow" data-i18n="core_eyebrow">Market Intelligence</span>
+          <h2 id="core-heading" class="section-title" data-i18n="core_title">Informed Selling Decisions</h2>
+          <p class="section-subtitle" data-i18n="core_subtitle">
             AgriMitra equips producers with actionable answers instead of raw data tables.
           </p>
         </div>
@@ -227,9 +282,9 @@
                   <line x1="6" y1="20" x2="6" y2="14"></line>
                 </svg>
               </div>
-              <h3 class="core-card-title">What and When to Sell</h3>
+              <h3 class="core-card-title" data-i18n="pillar_1_title">What and When to Sell</h3>
             </div>
-            <p class="core-card-text">
+            <p class="core-card-text" data-i18n="pillar_1_desc">
               Real-time Mandi price aggregation and seasonal price forecasting to optimize harvesting schedules and warehouse holding decisions.
             </p>
           </div>
@@ -242,9 +297,9 @@
                   <circle cx="12" cy="10" r="3"></circle>
                 </svg>
               </div>
-              <h3 class="core-card-title">Where to Sell</h3>
+              <h3 class="core-card-title" data-i18n="pillar_2_title">Where to Sell</h3>
             </div>
-            <p class="core-card-text">
+            <p class="core-card-text" data-i18n="pillar_2_desc">
               Net realisation calculator comparing local mandi returns against distant regional hubs factoring in transport and handling costs.
             </p>
           </div>
@@ -258,18 +313,11 @@
                   <polyline points="17 11 19 13 23 9"></polyline>
                 </svg>
               </div>
-              <h3 class="core-card-title">Who to Sell To</h3>
+              <h3 class="core-card-title" data-i18n="pillar_3_title">Who to Sell To</h3>
             </div>
-            <p class="core-card-text">
+            <p class="core-card-text" data-i18n="pillar_3_desc">
               Verified buyers, FPO aggregators, and institutional processors with verifiable credit and on-time settlement ratings.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Site Footer -->
+            </p>  <!-- Site Footer -->
   <footer class="site-footer" role="contentinfo">
     <div class="container">
       <div class="footer-inner">
@@ -278,35 +326,35 @@
             <img src="logo.png" alt="AgriMitra" class="brand-logo-img footer-logo-img">
             <span class="brand-name">AgriMitra</span>
           </div>
-          <p class="footer-statement">
+          <p class="footer-statement" data-i18n="footer_statement">
             Connect. Trade. Grow. Direct market access, real-time intelligence, and verified fulfillment across the agricultural supply chain.
           </p>
         </div>
 
         <div class="footer-nav-group">
           <div>
-            <h4 class="footer-col-title">Platform Roles</h4>
+            <h4 class="footer-col-title" data-i18n="footer_platform_roles">Platform Roles</h4>
             <ul class="footer-links">
-              <li><a href="AgriMitra-Farmer/farmer/register.html" class="footer-link">Farmer</a></li>
-              <li><a href="AgriMitra-Buyer/buyer.html" class="footer-link">Buyer</a></li>
-              <li><a href="AgriMitra- FPO/fpo-register.html" class="footer-link">FPO</a></li>
-              <li><a href="AgriMitra-delivery agent/delivery-agent.html" class="footer-link">Delivery Agent</a></li>
-              <li><a href="Agrimitra(wholesaler and distributer)/register-distributor.html" class="footer-link">Distributor / Wholesaler</a></li>
+              <li><a href="AgriMitra-Farmer/farmer/register.html" class="footer-link" data-i18n="role_farmer">Farmer</a></li>
+              <li><a href="AgriMitra-Buyer/buyer.html" class="footer-link" data-i18n="role_buyer">Buyer</a></li>
+              <li><a href="AgriMitra- FPO/fpo-register.html" class="footer-link" data-i18n="role_fpo">FPO</a></li>
+              <li><a href="AgriMitra-delivery agent/delivery-agent.html" class="footer-link" data-i18n="role_delivery">Delivery Agent</a></li>
+              <li><a href="Agrimitra(wholesaler and distributer)/register-distributor.html" class="footer-link" data-i18n="role_distributor_wholesaler">Distributor / Wholesaler</a></li>
             </ul>
           </div>
           <div>
-            <h4 class="footer-col-title">Information</h4>
+            <h4 class="footer-col-title" data-i18n="footer_information">Information</h4>
             <ul class="footer-links">
-              <li><a href="#about-modal" class="footer-link" id="footer-about-link">About AgriMitra</a></li>
-              <li><a href="#supply-chain" class="footer-link">Supply Chain Flow</a></li>
+              <li><a href="#about-modal" class="footer-link" id="footer-about-link" data-i18n="footer_about">About AgriMitra</a></li>
+              <li><a href="#supply-chain" class="footer-link" data-i18n="footer_supply_chain">Supply Chain Flow</a></li>
             </ul>
           </div>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <span>AgriMitra Agricultural Trading &amp; Intelligence Platform. All rights reserved.</span>
-        <span>Secure Infrastructure &bull; Public Impact Standard</span>
+        <span data-i18n="footer_copyright">AgriMitra Agricultural Trading &amp; Intelligence Platform. All rights reserved.</span>
+        <span data-i18n="footer_subtext">Secure Infrastructure &bull; Public Impact Standard</span>
       </div>
     </div>
   </footer>
@@ -316,7 +364,7 @@
        ========================================================================== -->
   <dialog id="login-dialog" class="modal-dialog" aria-labelledby="login-dialog-title">
     <div class="modal-header">
-      <h2 id="login-dialog-title" class="modal-title">Sign In to AgriMitra</h2>
+      <h2 id="login-dialog-title" class="modal-title" data-i18n="login_dialog_title">Sign In to AgriMitra</h2>
       <button type="button" class="btn-close" data-close-modal="login-dialog" aria-label="Close dialog">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -329,33 +377,33 @@
         <!-- Quick Demo Accounts Auto-Fill Cards -->
         <div class="demo-accounts-wrapper">
           <div class="demo-accounts-top">
-            <span class="demo-accounts-label">Demo Test Accounts (1-Click Fill)</span>
-            <span class="demo-accounts-badge">SIH Evaluation Mode</span>
+            <span class="demo-accounts-label" data-i18n="demo_accounts_label">Demo Test Accounts (1-Click Fill)</span>
+            <span class="demo-accounts-badge" data-i18n="demo_accounts_badge">SIH Evaluation Mode</span>
           </div>
-          <p class="demo-accounts-subtext">Click any role below to pre-fill verified demo credentials:</p>
+          <p class="demo-accounts-subtext" data-i18n="demo_accounts_subtext">Click any role below to pre-fill verified demo credentials:</p>
           <div class="demo-accounts-grid">
             <button type="button" class="demo-account-btn" data-role="farmer" data-phone="9876543210" data-pass="farmer123">
-              <span class="demo-btn-role badge-farmer">Farmer</span>
+              <span class="demo-btn-role badge-farmer" data-i18n="role_farmer">Farmer</span>
               <span class="demo-btn-name">Ramesh Patel</span>
               <span class="demo-btn-phone">9876543210</span>
             </button>
             <button type="button" class="demo-account-btn" data-role="buyer" data-phone="9811122233" data-pass="buyer123">
-              <span class="demo-btn-role badge-buyer">Buyer</span>
+              <span class="demo-btn-role badge-buyer" data-i18n="role_buyer">Buyer</span>
               <span class="demo-btn-name">Priyansh Sharma</span>
               <span class="demo-btn-phone">9811122233</span>
             </button>
             <button type="button" class="demo-account-btn" data-role="fpo" data-phone="9812345678" data-pass="fpo123">
-              <span class="demo-btn-role badge-fpo">FPO</span>
+              <span class="demo-btn-role badge-fpo" data-i18n="role_fpo">FPO</span>
               <span class="demo-btn-name">Punjab FPO</span>
               <span class="demo-btn-phone">9812345678</span>
             </button>
             <button type="button" class="demo-account-btn" data-role="distributor" data-phone="9823456789" data-pass="distributor123">
-              <span class="demo-btn-role badge-distributor">Wholesaler</span>
+              <span class="demo-btn-role badge-distributor" data-i18n="role_wholesaler">Wholesaler</span>
               <span class="demo-btn-name">Kisan Mandi</span>
               <span class="demo-btn-phone">9823456789</span>
             </button>
             <button type="button" class="demo-account-btn" data-role="delivery" data-phone="9834567890" data-pass="delivery123">
-              <span class="demo-btn-role badge-delivery">Delivery</span>
+              <span class="demo-btn-role badge-delivery" data-i18n="role_delivery">Delivery</span>
               <span class="demo-btn-name">Ramesh Kumar</span>
               <span class="demo-btn-phone">9834567890</span>
             </button>
@@ -364,33 +412,33 @@
         </div>
 
         <div class="login-divider">
-          <span>Or Enter Custom Credentials</span>
+          <span data-i18n="or_enter_custom">Or Enter Custom Credentials</span>
         </div>
 
         <div class="form-group" style="margin-bottom: 0.85rem;">
-          <label for="login-role" class="form-label">Select Role Portal</label>
+          <label for="login-role" class="form-label" data-i18n="select_role_portal">Select Role Portal</label>
           <select id="login-role" class="form-control" style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid var(--color-border); border-radius: var(--radius-md); font-family: inherit; font-size: 0.875rem; background: var(--color-surface); cursor: pointer;">
-            <option value="farmer">Farmer Portal &amp; Dashboard</option>
-            <option value="buyer">Buyer Dashboard &amp; Marketplace</option>
-            <option value="delivery">Delivery Agent Logistics Portal</option>
-            <option value="distributor">Distributor / Wholesaler Dashboard</option>
-            <option value="fpo">FPO Portal &amp; Aggregation</option>
+            <option value="farmer" data-i18n="portal_opt_farmer">Farmer Portal &amp; Dashboard</option>
+            <option value="buyer" data-i18n="portal_opt_buyer">Buyer Dashboard &amp; Marketplace</option>
+            <option value="delivery" data-i18n="portal_opt_delivery">Delivery Agent Logistics Portal</option>
+            <option value="distributor" data-i18n="portal_opt_distributor">Distributor / Wholesaler Dashboard</option>
+            <option value="fpo" data-i18n="portal_opt_fpo">FPO Portal &amp; Aggregation</option>
           </select>
         </div>
 
         <div class="form-group" style="margin-bottom: 0.85rem;">
-          <label for="login-phone" class="form-label">Phone Number</label>
-          <input type="tel" id="login-phone" class="form-control" placeholder="Enter 10-digit phone number" required pattern="[0-9]{10}">
+          <label for="login-phone" class="form-label" data-i18n="phone_label">Phone Number</label>
+          <input type="tel" id="login-phone" class="form-control" placeholder="Enter 10-digit phone number" data-i18n-placeholder="phone_placeholder" required pattern="[0-9]{10}">
         </div>
 
         <div class="form-group">
-          <label for="login-password" class="form-label">Password</label>
-          <input type="password" id="login-password" class="form-control" placeholder="Enter your password" required>
+          <label for="login-password" class="form-label" data-i18n="password_label">Password</label>
+          <input type="password" id="login-password" class="form-control" placeholder="Enter your password" data-i18n-placeholder="password_placeholder" required>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-close-modal="login-dialog">Cancel</button>
-        <button type="submit" class="btn btn-primary">Login to Dashboard</button>
+        <button type="button" class="btn btn-secondary" data-close-modal="login-dialog" data-i18n="cancel">Cancel</button>
+        <button type="submit" class="btn btn-primary" data-i18n="login_to_dashboard">Login to Dashboard</button>
       </div>
     </form>
   </dialog>
@@ -401,8 +449,8 @@
   <dialog id="register-dialog" class="modal-dialog role-modal-dialog" aria-labelledby="register-dialog-title">
     <div class="modal-header">
       <div class="modal-header-content">
-        <h2 id="register-dialog-title" class="modal-title">Join AgriMitra</h2>
-        <p class="modal-subtitle">I am joining as:</p>
+        <h2 id="register-dialog-title" class="modal-title" data-i18n="register_dialog_title">Join AgriMitra</h2>
+        <p class="modal-subtitle" data-i18n="register_joining_as">I am joining as:</p>
       </div>
       <button type="button" class="btn-close" data-close-modal="register-dialog" aria-label="Close dialog">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -422,8 +470,8 @@
             </svg>
           </div>
           <div class="role-select-content">
-            <span class="role-select-title">Farmer</span>
-            <span class="role-select-desc">Sell harvest lots, compare mandi prices, and connect with verified buyers</span>
+            <span class="role-select-title" data-i18n="role_farmer">Farmer</span>
+            <span class="role-select-desc" data-i18n="reg_farmer_desc">Sell harvest lots, compare mandi prices, and connect with verified buyers</span>
           </div>
           <div class="role-select-arrow" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -441,8 +489,8 @@
             </svg>
           </div>
           <div class="role-select-content">
-            <span class="role-select-title">Buyer</span>
-            <span class="role-select-desc">Source quality graded produce lots directly with transparent contracts</span>
+            <span class="role-select-title" data-i18n="role_buyer">Buyer</span>
+            <span class="role-select-desc" data-i18n="reg_buyer_desc">Source quality graded produce lots directly with transparent contracts</span>
           </div>
           <div class="role-select-arrow" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -462,8 +510,8 @@
             </svg>
           </div>
           <div class="role-select-content">
-            <span class="role-select-title">FPO (Farmer Producer Organisation)</span>
-            <span class="role-select-desc">Aggregate member harvest, negotiate institutional bulk deals and logistics</span>
+            <span class="role-select-title" data-i18n="role_fpo_full">FPO (Farmer Producer Organisation)</span>
+            <span class="role-select-desc" data-i18n="reg_fpo_desc">Aggregate member harvest, negotiate institutional bulk deals and logistics</span>
           </div>
           <div class="role-select-arrow" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -477,14 +525,14 @@
           <div class="role-select-icon" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <rect x="1" y="3" width="15" height="13"></rect>
-              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+              <polygon points="16 8 20 8 23 11 23 16 16 16 8"></polygon>
               <circle cx="5.5" cy="18.5" r="2.5"></circle>
               <circle cx="18.5" cy="18.5" r="2.5"></circle>
             </svg>
           </div>
           <div class="role-select-content">
-            <span class="role-select-title">Delivery Agent</span>
-            <span class="role-select-desc">Accept agricultural transit contracts with GPS tracking and quick payout</span>
+            <span class="role-select-title" data-i18n="role_delivery">Delivery Agent</span>
+            <span class="role-select-desc" data-i18n="reg_delivery_desc">Accept agricultural transit contracts with GPS tracking and quick payout</span>
           </div>
           <div class="role-select-arrow" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -503,8 +551,8 @@
             </svg>
           </div>
           <div class="role-select-content">
-            <span class="role-select-title">Distributor / Wholesaler</span>
-            <span class="role-select-desc">Manage warehouse inventory, bulk mandi arrivals, and regional distribution</span>
+            <span class="role-select-title" data-i18n="role_distributor_wholesaler">Distributor / Wholesaler</span>
+            <span class="role-select-desc" data-i18n="reg_distributor_desc">Manage warehouse inventory, bulk mandi arrivals, and regional distribution</span>
           </div>
           <div class="role-select-arrow" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -521,7 +569,7 @@
        ========================================================================== -->
   <dialog id="about-dialog" class="modal-dialog" aria-labelledby="about-dialog-title">
     <div class="modal-header">
-      <h2 id="about-dialog-title" class="modal-title">About AgriMitra</h2>
+      <h2 id="about-dialog-title" class="modal-title" data-i18n="about_dialog_title">About AgriMitra</h2>
       <button type="button" class="btn-close" data-close-modal="about-dialog" aria-label="Close dialog">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -530,22 +578,23 @@
       </button>
     </div>
     <div class="modal-body">
-      <p style="margin-bottom: 1rem; color: var(--color-text-secondary); line-height: 1.6;">
+      <p style="margin-bottom: 1rem; color: var(--color-text-secondary); line-height: 1.6;" data-i18n="about_p1">
         AgriMitra is an open, technology-driven market intelligence and agricultural trade platform built to solve the fundamental question for producers:
       </p>
-      <blockquote style="padding: 0.8rem 1rem; background: var(--color-surface-alt); border-left: 3px solid var(--color-primary); margin-bottom: 1.25rem; font-weight: 500; font-size: 0.95rem;">
+      <blockquote style="padding: 0.8rem 1rem; background: var(--color-surface-alt); border-left: 3px solid var(--color-primary); margin-bottom: 1.25rem; font-weight: 500; font-size: 0.95rem;" data-i18n="about_quote">
         &ldquo;What should I sell, where should I sell it, when should I sell it, and who should I sell it to?&rdquo;
       </blockquote>
-      <p style="margin-bottom: 1rem; color: var(--color-text-secondary); line-height: 1.6;">
+      <p style="margin-bottom: 1rem; color: var(--color-text-secondary); line-height: 1.6;" data-i18n="about_p2">
         By bringing together verified farmers, FPOs, wholesale buyers, logistics partners, and transparent bank settlement, AgriMitra reduces price volatility and post-harvest losses.
       </p>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-primary" data-close-modal="about-dialog">Close</button>
+      <button type="button" class="btn btn-primary" data-close-modal="about-dialog" data-i18n="close">Close</button>
     </div>
   </dialog>
 
   <!-- JavaScript -->
+  <script src="i18n.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

@@ -6,10 +6,10 @@
   <title>Farmer Dashboard | AgriMitra - Connect. Trade. Grow.</title>
   <meta name="description" content="Simple and essential farmer dashboard to sell produce, view live mandi prices, manage buyer bids, and track bank payouts.">
 
-  <!-- Google Fonts: Plus Jakarta Sans -->
+  <!-- Google Fonts: Plus Jakarta Sans & Indic Script Fallbacks -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&family=Noto+Sans+Malayalam:wght@400;500;600;700&family=Noto+Sans+Kannada:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Stylesheets -->
   <!-- Favicon -->
@@ -31,7 +31,7 @@
           <img src="images/logo.png" alt="AgriMitra Logo" class="brand-logo-img" />
           <span class="brand-name">Agri<span>Mitra</span></span>
         </a>
-        <span class="farmer-portal-badge">Farmer Portal</span>
+        <span class="farmer-portal-badge" data-i18n="farmer_portal">Farmer Portal</span>
       </div>
 
       <div class="dash-nav-right">
@@ -44,21 +44,21 @@
           </div>
         </div>
         
-        <a href="../../index.html" class="btn-signout" id="home-nav-btn" title="AgriMitra Main Portal" style="margin-right: 0.5rem; text-decoration: none;">
+        <a href="../../index.html" class="btn-signout" id="home-nav-btn" title="AgriMitra Main Portal" style="margin-right: 0.5rem; text-decoration: none;" data-i18n-title="home">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
             <polyline points="9 22 9 12 15 12 15 22"></polyline>
           </svg>
-          <span>Home</span>
+          <span data-i18n="home">Home</span>
         </a>
 
-        <a href="register.html" class="btn-signout" id="sign-out-btn" title="Sign Out">
+        <a href="register.html" class="btn-signout" id="sign-out-btn" title="Sign Out" data-i18n-title="sign_out">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
             <polyline points="16 17 21 12 16 7"></polyline>
             <line x1="21" y1="12" x2="9" y2="12"></line>
           </svg>
-          <span>Sign Out</span>
+          <span data-i18n="sign_out">Sign Out</span>
         </a>
       </div>
     </div>
@@ -81,7 +81,7 @@
       </div>
       <button type="button" class="btn-add-produce open-produce-modal-btn">
         <span style="font-size: 1.25rem;">+</span>
-        <span>Sell Crop / List Produce</span>
+        <span data-i18n="sell_crop">Sell Crop / List Produce</span>
       </button>
     </div>
 
@@ -94,7 +94,7 @@
           <div class="hub-icon-box hub-icon-green">&#128230;</div>
           <span class="hub-badge badge-success">3 Active</span>
         </div>
-        <div class="hub-card-title">My Active Produce</div>
+        <div class="hub-card-title" data-i18n="my_active_produce">My Active Produce</div>
         <div class="hub-card-value" id="hub-listings-val">3 Crops Listed</div>
         <div class="hub-card-subtext">190 Quintals Ready &bull; Tap to add +</div>
       </div>
@@ -105,7 +105,7 @@
           <div class="hub-icon-box hub-icon-amber">&#129309;</div>
           <span class="hub-badge badge-urgent">2 New Offers</span>
         </div>
-        <div class="hub-card-title">Buyer Offers & Orders</div>
+        <div class="hub-card-title" data-i18n="buyer_orders_bids">Buyer Offers & Orders</div>
         <div class="hub-card-value">&#8377; 1,81,800 Bids</div>
         <div class="hub-card-subtext">Action required &bull; Tap to review</div>
       </a>
@@ -116,7 +116,7 @@
           <div class="hub-icon-box hub-icon-blue">&#128200;</div>
           <span class="hub-badge badge-neutral">APMC Live</span>
         </div>
-        <div class="hub-card-title">Today's Mandi Bhav</div>
+        <div class="hub-card-title" data-i18n="live_mandi_prices">Today's Mandi Bhav</div>
         <div class="hub-card-value">&#8377; 2,350 <span style="font-size: 0.9rem; font-weight: normal; color: var(--color-primary);">(+&#8377;40)</span></div>
         <div class="hub-card-subtext">Paddy benchmark rate today</div>
       </a>
@@ -127,7 +127,7 @@
           <div class="hub-icon-box hub-icon-emerald">&#128179;</div>
           <span class="hub-badge badge-success">100% Settled</span>
         </div>
-        <div class="hub-card-title">Direct Bank Payouts</div>
+        <div class="hub-card-title" data-i18n="bank_payouts">Direct Bank Payouts</div>
         <div class="hub-card-value">&#8377; 4,82,500</div>
         <div class="hub-card-subtext">Linked: State Bank of India &bull;&bull;&bull;&bull; 4291</div>
       </div>
@@ -473,6 +473,7 @@
   </footer>
 
   <!-- Scripts -->
+  <script src="../../i18n.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

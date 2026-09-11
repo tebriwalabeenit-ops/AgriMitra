@@ -6,10 +6,10 @@
   <title>Register as a Buyer | AgriMitra - Connect. Trade. Grow.</title>
   <meta name="description" content="Join AgriMitra as a verified buyer. Source quality-graded agricultural produce lots directly from farmers and FPOs with transparent pricing.">
 
-  <!-- Google Fonts: Plus Jakarta Sans for crisp, modern fintech-grade typography -->
+  <!-- Google Fonts: Plus Jakarta Sans & Indic Script Fallbacks -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&family=Noto+Sans+Malayalam:wght@400;500;600;700&family=Noto+Sans+Kannada:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -43,7 +43,7 @@
     }
 
     body {
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: 'Plus Jakarta Sans', 'Noto Sans', 'Noto Sans Devanagari', 'Noto Sans Tamil', 'Noto Sans Malayalam', 'Noto Sans Kannada', 'Noto Sans Bengali', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background-color: var(--color-surface-subtle);
       color: var(--color-text-primary);
       min-height: 100vh;
@@ -747,11 +747,11 @@
         <span class="brand-name">Agri<span>Mitra</span></span>
       </a>
 
-      <a href="index.html" class="header-back-btn" id="header-back-btn" title="Back to main page">
+      <a href="index.html" class="header-back-btn" id="header-back-btn" title="Back to main page" data-i18n-title="back_to_home">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
           <path d="M19 12H5M12 19l-7-7 7-7"/>
         </svg>
-        <span>Back</span>
+        <span data-i18n="back_to_home">Back</span>
       </a>
     </div>
   </header>
@@ -774,7 +774,7 @@
           </h1>
         </div>
 
-        <p class="brand-tagline">
+        <p class="brand-tagline" data-i18n="hero_tagline">
           Connect. Trade. Grow.
         </p>
 
@@ -1429,5 +1429,6 @@
     });
   </script>
 
+  <script src="i18n.js"></script>
 </body>
 </html>

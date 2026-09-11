@@ -23,6 +23,10 @@ def register():
     state = (data.get('state') or '').strip() or None
     district = (data.get('district') or '').strip() or None
     
+    preferred_language = (data.get('preferred_language') or 'en').strip().lower()
+    if preferred_language not in ['en', 'hi', 'ta', 'ml', 'kn', 'mr', 'bn']:
+        preferred_language = 'en'
+
     # Validations
     if not phone or len(phone) < 10:
         return jsonify({"success": False, "message": "A valid 10-digit phone number is required."}), 400
@@ -59,11 +63,11 @@ def register():
     conn = get_mysql_connection()
     try:
         with conn.cursor() as cursor:
-            # 1. Insert user
+            # 1. Insert user with preferred_language
             cursor.execute("""
-                INSERT INTO users (phone, password_hash, role, full_name, email, state, district)
-                VALUES (%s, %s, %s, %s, %s, %s, %s)
-            """, (phone_clean, pwd_hash, role, full_name, email, state, district))
+                INSERT INTO users (phone, password_hash, role, full_name, email, state, district, preferred_language)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            """, (phone_clean, pwd_hash, role, full_name, email, state, district, preferred_language))
             user_id = cursor.lastrowid
 
             # 2. Create role-specific profile
@@ -143,7 +147,7 @@ def login():
         phone_clean = phone_clean[-10:]
 
     user = query_db("""
-        SELECT id, phone, password_hash, role, full_name, email, state, district
+        SELECT id, phone, password_hash, role, full_name, email, state, district, preferred_language
         FROM users WHERE phone = %s
     """, (phone_clean,), one=True)
 
@@ -165,6 +169,15 @@ def login():
                 "success": False, 
                 "message": f"This account is registered as a {user['role'].title()}, not as a {role_requested.title()}."
             }), 403
+
+    # Sync preferred_language if provided in login request
+    incoming_lang = (data.get('preferred_language') or '').strip().lower()
+    if incoming_lang in ['en', 'hi', 'ta', 'ml', 'kn', 'mr', 'bn']:
+        try:
+            execute_db("UPDATE users SET preferred_language = %s WHERE id = %s", (incoming_lang, user['id']))
+            user['preferred_language'] = incoming_lang
+        except Exception:
+            pass
 
     login_user(user)
 
@@ -191,9 +204,27 @@ def login():
             "phone": user['phone'],
             "role": user['role'],
             "full_name": user['full_name'],
+            "preferred_language": user.get('preferred_language') or 'en',
             "profile": profile_info
         }
     })
+
+@auth_bp.route('/language', methods=['POST'])
+def update_language():
+    """Update user preferred language setting"""
+    data = request.get_json(silent=True) or request.form
+    pref_lang = (data.get('preferred_language') or 'en').strip().lower()
+    if pref_lang not in ['en', 'hi', 'ta', 'ml', 'kn', 'mr', 'bn']:
+        return jsonify({"success": False, "message": "Unsupported language"}), 400
+    
+    user = get_current_user()
+    if user and user.get('id'):
+        try:
+            execute_db("UPDATE users SET preferred_language = %s WHERE id = %s", (pref_lang, user['id']))
+            user['preferred_language'] = pref_lang
+        except Exception:
+            pass
+    return jsonify({"success": True, "preferred_language": pref_lang})
 
 @auth_bp.route('/logout', methods=['POST', 'GET'])
 def logout():

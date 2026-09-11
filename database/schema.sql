@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS `users` (
     `email` VARCHAR(100) NULL,
     `state` VARCHAR(50) NULL,
     `district` VARCHAR(50) NULL,
+    `preferred_language` VARCHAR(10) DEFAULT 'en',
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     INDEX `idx_users_phone` (`phone`),

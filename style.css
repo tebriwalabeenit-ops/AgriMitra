@@ -34,8 +34,8 @@
   --color-status-info: #0D47A1;
   --color-status-info-bg: #E3F2FD;
 
-  /* Typography */
-  --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* Typography with Pan-Indian Unicode Script Support */
+  --font-family-base: "Plus Jakarta Sans", "Noto Sans", "Noto Sans Devanagari", "Noto Sans Tamil", "Noto Sans Malayalam", "Noto Sans Kannada", "Noto Sans Bengali", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-size-xs: 0.8125rem;
   /* 13px */
   --font-size-sm: 0.9375rem;
@@ -283,6 +283,173 @@ body {
   display: flex;
   align-items: center;
   gap: var(--space-3);
+}
+
+/* ==========================================================================
+   Language Selector Component (Desi Agricultural Theme)
+   ========================================================================== */
+.lang-selector-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.lang-selector-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-surface);
+  color: var(--color-text-main);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.35rem 0.85rem;
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-height: 42px;
+  box-shadow: 0 1px 2px rgba(20, 32, 23, 0.05);
+  text-align: left;
+}
+
+.lang-selector-btn:hover {
+  background-color: var(--color-primary-subtle);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.lang-selector-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.lang-globe-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.lang-btn-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.lang-btn-label {
+  font-size: 0.6875rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.lang-btn-current {
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+}
+
+.lang-chevron {
+  color: var(--color-text-muted);
+  transition: transform var(--transition-fast);
+  flex-shrink: 0;
+  margin-left: 0.15rem;
+}
+
+.lang-selector-dropdown.open .lang-chevron {
+  transform: rotate(180deg);
+}
+
+.lang-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 175px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 25px -5px rgba(20, 32, 23, 0.15), 0 4px 6px -2px rgba(20, 32, 23, 0.05);
+  list-style: none;
+  padding: 0.35rem;
+  margin: 0;
+  z-index: 1000;
+  animation: langDropdownFade 0.15s ease-out;
+}
+
+@keyframes langDropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.lang-selector-dropdown.open .lang-dropdown-menu {
+  display: block;
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9375rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-main);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+  user-select: none;
+}
+
+.lang-option:hover,
+.lang-option:focus {
+  background-color: var(--color-primary-subtle);
+  color: var(--color-primary);
+  outline: none;
+}
+
+.lang-option.active {
+  background-color: var(--color-primary-subtle);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+}
+
+.lang-option .lang-native {
+  font-family: inherit;
+  letter-spacing: 0.01em;
+}
+
+.lang-option .lang-check {
+  display: none;
+  font-size: 0.875rem;
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+.lang-option.active .lang-check {
+  display: inline-block;
+}
+
+@media (max-width: 640px) {
+  .header-actions {
+    gap: 0.4rem;
+  }
+  .lang-selector-btn {
+    padding: 0.35rem 0.55rem;
+  }
+  .lang-btn-label {
+    display: none;
+  }
+  .lang-dropdown-menu {
+    right: 0;
+    min-width: 155px;
+  }
 }
 
 /* Buttons */

@@ -80,6 +80,60 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // --------------------------------------------------------------------------
+  // Language Selector Controller (Landing Page)
+  // --------------------------------------------------------------------------
+  const langDropdown = document.getElementById('lang-selector-dropdown');
+  const langToggle = document.getElementById('lang-selector-toggle');
+  const langOptions = document.querySelectorAll('.lang-option');
+
+  if (langToggle && langDropdown) {
+    // Toggle dropdown open/close on click
+    langToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = langDropdown.classList.toggle('open');
+      langToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    // Option selection
+    langOptions.forEach(opt => {
+      opt.addEventListener('click', () => {
+        const selectedLang = opt.getAttribute('data-lang');
+        if (selectedLang && window.AgriMitraI18n) {
+          window.AgriMitraI18n.setLanguage(selectedLang);
+        }
+        langDropdown.classList.remove('open');
+        langToggle.setAttribute('aria-expanded', 'false');
+        langToggle.focus();
+      });
+
+      // Keyboard navigation (Enter / Space)
+      opt.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          opt.click();
+        }
+      });
+    });
+
+    // Close on click outside
+    document.addEventListener('click', (e) => {
+      if (!langDropdown.contains(e.target)) {
+        langDropdown.classList.remove('open');
+        langToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && langDropdown.classList.contains('open')) {
+        langDropdown.classList.remove('open');
+        langToggle.setAttribute('aria-expanded', 'false');
+        langToggle.focus();
+      }
+    });
+  }
+
+  // --------------------------------------------------------------------------
   // Role Navigation Mapping
   // --------------------------------------------------------------------------
   const roleRegistrationRoutes = {
@@ -180,11 +234,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       try {
+        const activeLang = window.AgriMitraI18n ? window.AgriMitraI18n.getCurrentLanguage() : 'en';
         const response = await fetch('/api/auth/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           credentials: 'same-origin',
-          body: JSON.stringify({ phone, password, role: selectedRole })
+          body: JSON.stringify({ phone, password, role: selectedRole, preferred_language: activeLang })
         });
 
         const data = await response.json();
@@ -193,6 +248,9 @@ document.addEventListener('DOMContentLoaded', () => {
           // Save active session metadata locally
           if (data.user) {
             localStorage.setItem('krishilink_user', JSON.stringify(data.user));
+            if (data.user.preferred_language && window.AgriMitraI18n) {
+              window.AgriMitraI18n.setLanguage(data.user.preferred_language);
+            }
           }
           const actualRole = (data.user && data.user.role) ? data.user.role : selectedRole;
           
