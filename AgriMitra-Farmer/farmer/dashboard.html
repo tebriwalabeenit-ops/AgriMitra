@@ -36,12 +36,60 @@
 
       <div class="dash-nav-right">
 
-        <div class="user-profile-pill">
+        <!-- Notification Bell & Interactive Dropdown -->
+        <div class="notif-wrapper" id="notif-wrapper">
+          <button type="button" class="notif-bell-btn" id="notif-bell-btn" aria-label="Notifications" aria-expanded="false" aria-haspopup="true" title="Notifications">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            <span class="notif-badge" id="notif-badge">5</span>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div class="notif-dropdown" id="notif-dropdown" role="region" aria-label="Farmer Notifications">
+            <div class="notif-dropdown-header">
+              <div class="notif-header-title">
+                <span class="notif-header-text">Notifications</span>
+                <span class="notif-count-pill" id="notif-unread-count">5 new</span>
+              </div>
+              <button type="button" class="notif-mark-read-btn" id="notif-mark-read-btn">Mark all as read</button>
+            </div>
+
+            <!-- Category Filter Tabs -->
+            <div class="notif-tabs" role="tablist">
+              <button type="button" class="notif-tab active" data-filter="all">All</button>
+              <button type="button" class="notif-tab" data-filter="bid">Buyer Bids</button>
+              <button type="button" class="notif-tab" data-filter="delivery">Orders & Logistics</button>
+              <button type="button" class="notif-tab" data-filter="feedback">Feedback</button>
+              <button type="button" class="notif-tab" data-filter="system">AI Tips</button>
+            </div>
+
+            <!-- Notification Items List -->
+            <div class="notif-list" id="notif-items-list" role="list">
+              <!-- Dynamically rendered by main.js -->
+            </div>
+
+            <div class="notif-dropdown-footer">
+              <span class="notif-footer-tip">🔔 Live alerts for Kisan trading & logistics</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- User Profile Pill with Edit Button -->
+        <div class="user-profile-pill" id="user-profile-pill" title="Click to view & edit profile" tabindex="0" role="button" aria-haspopup="dialog">
           <div class="user-avatar" title="Ramesh Patel">RP</div>
           <div class="user-meta">
             <span class="user-name">Ramesh Patel</span>
             <span class="user-location">Krishnagiri, Tamil Nadu</span>
           </div>
+          <button type="button" class="btn-edit-profile-icon" id="open-profile-modal-btn" title="Edit Profile" aria-label="Edit Profile">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+            </svg>
+            <span class="btn-edit-label">Edit</span>
+          </button>
         </div>
         
         <a href="../../index.html" class="btn-signout" id="home-nav-btn" title="AgriMitra Main Portal" style="margin-right: 0.5rem; text-decoration: none;" data-i18n-title="home">
@@ -453,6 +501,102 @@
             <span>Publish Crop Listing</span>
           </button>
           <button type="button" class="btn-sm-action" id="cancel-produce-modal-btn" style="padding: 0 1.25rem;">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       Interactive Modal: Edit Farmer Profile
+       ======================================================================== -->
+  <div id="profile-modal" class="produce-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-profile-title">
+    <div class="produce-modal-box profile-modal-box">
+      <div class="modal-header-row">
+        <div style="display: flex; align-items: center; gap: 0.6rem;">
+          <span style="font-size: 1.4rem;">👨‍🌾</span>
+          <div>
+            <h3 id="modal-profile-title" style="margin: 0; font-size: 1.25rem;">Edit Farmer Profile</h3>
+            <p style="margin: 0; font-size: 0.8rem; color: var(--color-text-muted);">Keep your contact, location & payout details up to date</p>
+          </div>
+        </div>
+        <button type="button" class="btn-close-modal" id="close-profile-modal-btn" aria-label="Close modal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <form id="edit-profile-form">
+        <!-- Full Name -->
+        <div class="form-group">
+          <label class="form-label" for="profile-name-input">Full Name *</label>
+          <div class="password-input-group">
+            <input type="text" id="profile-name-input" class="password-input" placeholder="e.g. Ramesh Patel" required />
+          </div>
+        </div>
+
+        <!-- Mobile Phone -->
+        <div class="form-group">
+          <label class="form-label" for="profile-phone-input">Mobile Number *</label>
+          <div class="password-input-group">
+            <input type="tel" id="profile-phone-input" class="password-input" placeholder="e.g. 98765 43210" maxlength="15" required />
+          </div>
+        </div>
+
+        <!-- State & District Dynamic Selects -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.875rem; margin-bottom: 1.25rem;">
+          <div>
+            <label class="form-label" for="profile-state-select">State / UT *</label>
+            <div class="password-input-group">
+              <select id="profile-state-select" class="form-select password-input" style="padding-right: 2rem; cursor: pointer;" required>
+                <option value="" disabled selected>Select State</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="form-label" for="profile-district-select">District *</label>
+            <div class="password-input-group">
+              <select id="profile-district-select" class="form-select password-input" style="padding-right: 2rem; cursor: pointer;" required>
+                <option value="" disabled selected>Select District</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Primary Crops -->
+        <div class="form-group">
+          <label class="form-label" for="profile-crops-input">Primary Crops Grown</label>
+          <div class="password-input-group">
+            <input type="text" id="profile-crops-input" class="password-input" placeholder="e.g. Paddy, Wheat, Fresh Tomatoes, Cotton" />
+          </div>
+        </div>
+
+        <!-- Farm / Village Location -->
+        <div class="form-group">
+          <label class="form-label" for="profile-location-input">Farm / Village / Mandi Location *</label>
+          <div class="password-input-group">
+            <input type="text" id="profile-location-input" class="password-input" placeholder="e.g. Krishnagiri, Tamil Nadu" required />
+          </div>
+        </div>
+
+        <!-- Bank UPI ID -->
+        <div class="form-group">
+          <label class="form-label" for="profile-upi-input">Bank UPI ID for Direct DBT Payouts</label>
+          <div class="password-input-group">
+            <input type="text" id="profile-upi-input" class="password-input" placeholder="e.g. ramesh.patel@oksbi" />
+          </div>
+          <p style="font-size: 0.75rem; color: var(--color-text-muted); margin-top: 0.35rem;">Payments from accepted buyer bids and mandi trades will be credited directly to this UPI ID.</p>
+        </div>
+
+        <div style="display: flex; gap: 0.875rem; margin-top: 1.5rem;">
+          <button type="submit" class="btn-primary" id="save-profile-btn" style="flex: 1;">
+            <span>Save Profile Updates</span>
+          </button>
+          <button type="button" class="btn-sm-action" id="cancel-profile-modal-btn" style="padding: 0 1.25rem;">
             Cancel
           </button>
         </div>

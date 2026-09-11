@@ -92,48 +92,51 @@
   });
 
   // =========================================================================
+  // Master Indian States and Districts Data (Shared across Portal)
+  // =========================================================================
+  const stateDistricts = {
+    'Andaman and Nicobar Islands': ['Nicobar', 'North and Middle Andaman', 'South Andaman'],
+    'Andhra Pradesh': ['Alluri Sitharama Raju', 'Anakapalli', 'Ananthapuramu', 'Annamayya', 'Bapatla', 'Chittoor', 'Dr. B.R. Ambedkar Konaseema', 'East Godavari', 'Eluru', 'Guntur', 'Kakinada', 'Krishna', 'Kurnool', 'Nandyal', 'NTR', 'Palnadu', 'Parvathipuram Manyam', 'Prakasam', 'Sri Potti Sriramulu Nellore', 'Sri Sathya Sai', 'Srikakulam', 'Tirupati', 'Visakhapatnam', 'Vizianagaram', 'West Godavari', 'YSR Kadapa'],
+    'Arunachal Pradesh': ['Anjaw', 'Changlang', 'Dibang Valley', 'East Kameng', 'East Siang', 'Itanagar Capital Complex', 'Kamle', 'Kra Daadi', 'Kurung Kumey', 'Lepa Rada', 'Lohit', 'Longding', 'Lower Dibang Valley', 'Lower Siang', 'Lower Subansiri', 'Namsai', 'Pakke Kessang', 'Papum Pare', 'Shi Yomi', 'Siang', 'Tawang', 'Tirap', 'Upper Siang', 'Upper Subansiri', 'West Kameng', 'West Siang'],
+    'Assam': ['Baksa', 'Barpeta', 'Biswanath', 'Bongaigaon', 'Cachar', 'Charaideo', 'Chirang', 'Darrang', 'Dhemaji', 'Dhubri', 'Dibrugarh', 'Dima Hasao', 'Goalpara', 'Golaghat', 'Hailakandi', 'Hojai', 'Jorhat', 'Kamrup', 'Kamrup Metropolitan', 'Karbi Anglong', 'Karimganj', 'Kokrajhar', 'Lakhimpur', 'Majuli', 'Morigaon', 'Nagaon', 'Nalbari', 'Sivasagar', 'Sonitpur', 'South Salmara-Mankachar', 'Tamulpur', 'Tinsukia', 'Udalguri', 'West Karbi Anglong'],
+    'Bihar': ['Araria', 'Arwal', 'Aurangabad', 'Banka', 'Begusarai', 'Bhagalpur', 'Bhojpur', 'Buxar', 'Darbhanga', 'East Champaran (Motihari)', 'Gaya', 'Gopalganj', 'Jamui', 'Jehanabad', 'Kaimur (Bhabua)', 'Katihar', 'Khagaria', 'Kishanganj', 'Lakhisarai', 'Madhepura', 'Madhubani', 'Munger', 'Muzaffarpur', 'Nalanda', 'Nawada', 'Patna', 'Purnia', 'Rohtas', 'Saharsa', 'Samastipur', 'Saran', 'Sheikhpura', 'Sheohar', 'Sitamarhi', 'Siwan', 'Supaul', 'Vaishali', 'West Champaran (Bettiah)'],
+    'Chandigarh': ['Chandigarh'],
+    'Chhattisgarh': ['Balod', 'Baloda Bazar-Bhatapara', 'Balrampur', 'Bastar', 'Bemetara', 'Bijapur', 'Bilaspur', 'Dantewada', 'Dhamtari', 'Durg', 'Gariaband', 'Gaurela-Pendra-Marwahi', 'Janjgir-Champa', 'Jashpur', 'Kabirdham', 'Kanker', 'Khairagarh-Chhuikhadan-Gandai', 'Kondagaon', 'Korba', 'Koriya', 'Mahasamund', 'Manendragarh-Chirmiri-Bharatpur', 'Mohla-Manpur-Ambagarh Chowki', 'Mungeli', 'Narayanpur', 'Raigarh', 'Raipur', 'Rajnandgaon', 'Sakti', 'Sarangarh-Bilaigarh', 'Sukma', 'Surajpur', 'Surguja'],
+    'Dadra and Nagar Haveli and Daman and Diu': ['Dadra and Nagar Haveli', 'Daman', 'Diu'],
+    'Delhi': ['Central Delhi', 'East Delhi', 'New Delhi', 'North Delhi', 'North East Delhi', 'North West Delhi', 'Shahdara', 'South Delhi', 'South East Delhi', 'South West Delhi', 'West Delhi'],
+    'Goa': ['North Goa', 'South Goa'],
+    'Gujarat': ['Ahmedabad', 'Amreli', 'Anand', 'Aravalli', 'Banaskantha', 'Bharuch', 'Bhavnagar', 'Botad', 'Chhota Udaipur', 'Dahod', 'Dang', 'Devbhumi Dwarka', 'Gandhinagar', 'Gir Somnath', 'Jamnagar', 'Junagadh', 'Kheda', 'Kutch', 'Mahisagar', 'Mehsana', 'Morbi', 'Narmada', 'Navsari', 'Panchmahal', 'Patan', 'Porbandar', 'Rajkot', 'Sabarkantha', 'Surat', 'Surendranagar', 'Tapi', 'Vadodara', 'Valsad'],
+    'Haryana': ['Ambala', 'Bhiwani', 'Charkhi Dadri', 'Faridabad', 'Fatehabad', 'Gurugram', 'Hisar', 'Jhajjar', 'Jind', 'Kaithal', 'Karnal', 'Kurukshetra', 'Mahendragarh', 'Nuh', 'Palwal', 'Panchkula', 'Panipat', 'Rewari', 'Rohtak', 'Sirsa', 'Sonipat', 'Yamunanagar'],
+    'Himachal Pradesh': ['Bilaspur', 'Chamba', 'Hamirpur', 'Kangra', 'Kinnaur', 'Kullu', 'Lahaul and Spiti', 'Mandi', 'Shimla', 'Sirmaur', 'Solan', 'Una'],
+    'Jammu and Kashmir': ['Anantnag', 'Bandipora', 'Baramulla', 'Budgam', 'Doda', 'Ganderbal', 'Jammu', 'Kathua', 'Kishtwar', 'Kulgam', 'Kupwara', 'Poonch', 'Pulwama', 'Rajouri', 'Ramban', 'Reasi', 'Samba', 'Shopian', 'Srinagar', 'Udhampur'],
+    'Jharkhand': ['Bokaro', 'Chatra', 'Deoghar', 'Dhanbad', 'Dumka', 'East Singhbhum', 'Garhwa', 'Giridih', 'Godda', 'Gumla', 'Hazaribagh', 'Jamtara', 'Khunti', 'Koderma', 'Latehar', 'Lohardaga', 'Pakur', 'Palamu', 'Ramgarh', 'Ranchi', 'Sahebganj', 'Seraikela Kharsawan', 'Simdega', 'West Singhbhum'],
+    'Karnataka': ['Bagalkote', 'Ballari', 'Belagavi', 'Bengaluru Rural', 'Bengaluru Urban', 'Bidar', 'Chamarajanagara', 'Chikkaballapura', 'Chikkamagaluru', 'Chitradurga', 'Dakshina Kannada', 'Davanagere', 'Dharwad', 'Gadag', 'Hassan', 'Haveri', 'Kalaburagi', 'Kodagu', 'Kolar', 'Koppal', 'Mandya', 'Mysuru', 'Raichur', 'Ramanagara', 'Shivamogga', 'Tumakuru', 'Udupi', 'Uttara Kannada', 'Vijayanagara', 'Vijayapura', 'Yadgir'],
+    'Kerala': ['Alappuzha', 'Ernakulam', 'Idukki', 'Kannur', 'Kasaragod', 'Kollam', 'Kottayam', 'Kozhikode', 'Malappuram', 'Palakkad', 'Pathanamthitta', 'Thiruvananthapuram', 'Thrissur', 'Wayanad'],
+    'Ladakh': ['Kargil', 'Leh'],
+    'Lakshadweep': ['Lakshadweep'],
+    'Madhya Pradesh': ['Agar Malwa', 'Alirajpur', 'Anuppur', 'Ashoknagar', 'Balaghat', 'Barwani', 'Betul', 'Bhind', 'Bhopal', 'Burhanpur', 'Chhatarpur', 'Chhindwara', 'Damoh', 'Datia', 'Dewas', 'Dhar', 'Dindori', 'Guna', 'Gwalior', 'Harda', 'Hoshangabad (Narmadapuram)', 'Indore', 'Jabalpur', 'Jhabua', 'Katni', 'Khandwa', 'Khargone', 'Maihar', 'Mandla', 'Mandsaur', 'Mauganj', 'Morena', 'Narsinghpur', 'Neemuch', 'Niwari', 'Pandhurna', 'Panna', 'Raisen', 'Rajgarh', 'Ratlam', 'Rewa', 'Sagar', 'Satna', 'Sehore', 'Seoni', 'Shahdol', 'Shajapur', 'Sheopur', 'Shivpuri', 'Sidhi', 'Singrauli', 'Tikamgarh', 'Ujjain', 'Umaria', 'Vidisha'],
+    'Maharashtra': ['Ahmednagar', 'Akola', 'Amravati', 'Chhatrapati Sambhajinagar', 'Beed', 'Bhandara', 'Buldhana', 'Chandrapur', 'Dhule', 'Gadchiroli', 'Gondia', 'Hingoli', 'Jalgaon', 'Jalna', 'Kolhapur', 'Latur', 'Mumbai City', 'Mumbai Suburban', 'Nagpur', 'Nanded', 'Nandurbar', 'Nashik', 'Dharashiv', 'Palghar', 'Parbhani', 'Pune', 'Raigad', 'Ratnagiri', 'Sangli', 'Satara', 'Sindhudurg', 'Solapur', 'Thane', 'Wardha', 'Washim', 'Yavatmal'],
+    'Manipur': ['Bishnupur', 'Chandel', 'Churachandpur', 'Imphal East', 'Imphal West', 'Jiribam', 'Kakching', 'Kamjong', 'Kangpokpi', 'Noney', 'Pherzawl', 'Senapati', 'Tamenglong', 'Tengnoupal', 'Thoubal', 'Ukhrul'],
+    'Meghalaya': ['East Garo Hills', 'East Jaintia Hills', 'East Khasi Hills', 'Eastern West Khasi Hills', 'North Garo Hills', 'Ri Bhoi', 'South Garo Hills', 'South West Garo Hills', 'South West Khasi Hills', 'West Garo Hills', 'West Jaintia Hills', 'West Khasi Hills'],
+    'Mizoram': ['Aizawl', 'Champhai', 'Hnahthial', 'Khawzawl', 'Kolasib', 'Lawngtlai', 'Lunglei', 'Mamit', 'Saitual', 'Serchhip', 'Siaha'],
+    'Nagaland': ['Chümoukedima', 'Dimapur', 'Kiphire', 'Kohima', 'Longleng', 'Mokokchung', 'Mon', 'Niuland', 'Noklak', 'Peren', 'Phek', 'Shamator', 'Tseminyu', 'Tuensang', 'Wokha', 'Zunheboto'],
+    'Odisha': ['Angul', 'Balangir', 'Balasore', 'Bargarh', 'Bhadrak', 'Boudh', 'Cuttack', 'Deogarh', 'Dhenkanal', 'Gajapati', 'Ganjam', 'Jagatsinghpur', 'Jajpur', 'Jharsuguda', 'Kalahandi', 'Kandhamal', 'Kendrapara', 'Kendujhar', 'Khordha', 'Koraput', 'Malkangiri', 'Mayurbhanj', 'Nabarangpur', 'Nayagarh', 'Nuapada', 'Puri', 'Rayagada', 'Sambalpur', 'Subarnapur', 'Sundargarh'],
+    'Puducherry': ['Karaikal', 'Mahe', 'Puducherry', 'Yanam'],
+    'Punjab': ['Amritsar', 'Barnala', 'Bathinda', 'Faridkot', 'Fatehgarh Sahib', 'Fazilka', 'Ferozepur', 'Gurdaspur', 'Hoshiarpur', 'Jalandhar', 'Kapurthala', 'Ludhiana', 'Malerkotla', 'Mansa', 'Moga', 'Muktsar', 'Pathankot', 'Patiala', 'Rupnagar', 'Sahibzada Ajit Singh Nagar (Mohali)', 'Sangrur', 'Shahid Bhagat Singh Nagar', 'Tarn Taran'],
+    'Rajasthan': ['Ajmer', 'Alwar', 'Anupgarh', 'Balotra', 'Banswara', 'Baran', 'Barmer', 'Beawar', 'Bharatpur', 'Bhilwara', 'Bikaner', 'Bundi', 'Chittorgarh', 'Churu', 'Dausa', 'Deeg', 'Dholpur', 'Didwana-Kuchaman', 'Dudu', 'Dungarpur', 'Gangapur City', 'Hanumangarh', 'Jaipur', 'Jaipur Rural', 'Jaisalmer', 'Jalore', 'Jhalawar', 'Jhunjhunu', 'Jodhpur', 'Jodhpur Rural', 'Karauli', 'Kekri', 'Khairthal-Tijara', 'Kota', 'Kotputli-Behror', 'Nagaur', 'Neem Ka Thana', 'Pali', 'Phalodi', 'Pratapgarh', 'Rajsamand', 'Salumbar', 'Sanchore', 'Sawai Madhopur', 'Shahpura', 'Sikar', 'Sirohi', 'Sri Ganganagar', 'Tonk', 'Udaipur'],
+    'Sikkim': ['Gangtok', 'Gyalshing', 'Mangan', 'Namchi', 'Pakyong', 'Soreng'],
+    'Tamil Nadu': ['Ariyalur', 'Chengalpattu', 'Chennai', 'Coimbatore', 'Cuddalore', 'Dharmapuri', 'Dindigul', 'Erode', 'Kallakurichi', 'Kanchipuram', 'Kanyakumari', 'Karur', 'Krishnagiri', 'Madurai', 'Mayiladuthurai', 'Nagapattinam', 'Namakkal', 'Nilgiris', 'Perambalur', 'Pudukkottai', 'Ramanathapuram', 'Ranipet', 'Salem', 'Sivaganga', 'Tenkasi', 'Thanjavur', 'Theni', 'Thoothukudi', 'Tiruchirappalli', 'Tirunelveli', 'Tirupathur', 'Tiruppur', 'Tiruvallur', 'Tiruvannamalai', 'Tiruvarur', 'Vellore', 'Viluppuram', 'Virudhunagar'],
+    'Telangana': ['Adilabad', 'Bhadradri Kothagudem', 'Hanamkonda', 'Hyderabad', 'Jagtial', 'Jangaon', 'Jayashankar Bhupalpally', 'Jogulamba Gadwal', 'Kamareddy', 'Karimnagar', 'Khammam', 'Kumuram Bheem Asifabad', 'Mahabubabad', 'Mahabubnagar', 'Mancherial', 'Medak', 'Medchal-Malkajgiri', 'Mulugu', 'Nagarkurnool', 'Nalgonda', 'Narayanpet', 'Nirmal', 'Nizamabad', 'Peddapalli', 'Rajanna Sircilla', 'Ranga Reddy', 'Sangareddy', 'Siddipet', 'Suryapet', 'Vikarabad', 'Wanaparthy', 'Warangal', 'Yadadri Bhuvanagiri'],
+    'Tripura': ['Dhalai', 'Gomati', 'Khowai', 'North Tripura', 'Sepahijala', 'South Tripura', 'Unakoti', 'West Tripura'],
+    'Uttar Pradesh': ['Agra', 'Aligarh', 'Ambedkar Nagar', 'Amethi', 'Amroha', 'Auraiya', 'Ayodhya', 'Azamgarh', 'Baghpat', 'Bahraich', 'Ballia', 'Balrampur', 'Banda', 'Barabanki', 'Bareilly', 'Basti', 'Bhadohi', 'Bijnor', 'Budaun', 'Bulandshahr', 'Chandauli', 'Chitrakoot', 'Deoria', 'Etah', 'Etawah', 'Farrukhabad', 'Fatehpur', 'Firozabad', 'Gautam Buddha Nagar (Noida)', 'Ghaziabad', 'Ghazipur', 'Gonda', 'Gorakhpur', 'Hamirpur', 'Hapur', 'Hardoi', 'Hathras', 'Jalaun', 'Jaunpur', 'Jhansi', 'Kannauj', 'Kanpur Dehat', 'Kanpur Nagar', 'Kasganj', 'Kaushambi', 'Kheri', 'Kushinagar', 'Lalitpur', 'Lucknow', 'Maharajganj', 'Mahoba', 'Mainpuri', 'Mathura', 'Mau', 'Meerut', 'Mirzapur', 'Moradabad', 'Muzaffarnagar', 'Pilibhit', 'Pratapgarh', 'Prayagraj', 'Raebareli', 'Rampur', 'Saharanpur', 'Sambhal', 'Sant Kabir Nagar', 'Shahjahanpur', 'Shamli', 'Shravasti', 'Siddharthnagar', 'Sitapur', 'Sonbhadra', 'Sultanpur', 'Unnao', 'Varanasi'],
+    'Uttarakhand': ['Almora', 'Bageshwar', 'Chamoli', 'Champawat', 'Dehradun', 'Haridwar', 'Nainital', 'Pauri Garhwal', 'Pithoragarh', 'Rudraprayag', 'Tehri Garhwal', 'Udham Singh Nagar', 'Uttarkashi'],
+    'West Bengal': ['Alipurduar', 'Bankura', 'Birbhum', 'Cooch Behar', 'Dakshin Dinajpur', 'Darjeeling', 'Hooghly', 'Howrah', 'Jalpaiguri', 'Jhargram', 'Kalimpong', 'Kolkata', 'Malda', 'Murshidabad', 'Nadia', 'North 24 Parganas', 'Paschim Bardhaman', 'Paschim Medinipur', 'Purba Bardhaman', 'Purba Medinipur', 'Purulia', 'South 24 Parganas', 'Uttar Dinajpur']
+  };
+
+  // =========================================================================
   // 1. Farmer Registration Logic
   // =========================================================================
   function initRegisterPage() {
-    const stateDistricts = {
-      'Andaman and Nicobar Islands': ['Nicobar', 'North and Middle Andaman', 'South Andaman'],
-      'Andhra Pradesh': ['Alluri Sitharama Raju', 'Anakapalli', 'Ananthapuramu', 'Annamayya', 'Bapatla', 'Chittoor', 'Dr. B.R. Ambedkar Konaseema', 'East Godavari', 'Eluru', 'Guntur', 'Kakinada', 'Krishna', 'Kurnool', 'Nandyal', 'NTR', 'Palnadu', 'Parvathipuram Manyam', 'Prakasam', 'Sri Potti Sriramulu Nellore', 'Sri Sathya Sai', 'Srikakulam', 'Tirupati', 'Visakhapatnam', 'Vizianagaram', 'West Godavari', 'YSR Kadapa'],
-      'Arunachal Pradesh': ['Anjaw', 'Changlang', 'Dibang Valley', 'East Kameng', 'East Siang', 'Itanagar Capital Complex', 'Kamle', 'Kra Daadi', 'Kurung Kumey', 'Lepa Rada', 'Lohit', 'Longding', 'Lower Dibang Valley', 'Lower Siang', 'Lower Subansiri', 'Namsai', 'Pakke Kessang', 'Papum Pare', 'Shi Yomi', 'Siang', 'Tawang', 'Tirap', 'Upper Siang', 'Upper Subansiri', 'West Kameng', 'West Siang'],
-      'Assam': ['Baksa', 'Barpeta', 'Biswanath', 'Bongaigaon', 'Cachar', 'Charaideo', 'Chirang', 'Darrang', 'Dhemaji', 'Dhubri', 'Dibrugarh', 'Dima Hasao', 'Goalpara', 'Golaghat', 'Hailakandi', 'Hojai', 'Jorhat', 'Kamrup', 'Kamrup Metropolitan', 'Karbi Anglong', 'Karimganj', 'Kokrajhar', 'Lakhimpur', 'Majuli', 'Morigaon', 'Nagaon', 'Nalbari', 'Sivasagar', 'Sonitpur', 'South Salmara-Mankachar', 'Tamulpur', 'Tinsukia', 'Udalguri', 'West Karbi Anglong'],
-      'Bihar': ['Araria', 'Arwal', 'Aurangabad', 'Banka', 'Begusarai', 'Bhagalpur', 'Bhojpur', 'Buxar', 'Darbhanga', 'East Champaran (Motihari)', 'Gaya', 'Gopalganj', 'Jamui', 'Jehanabad', 'Kaimur (Bhabua)', 'Katihar', 'Khagaria', 'Kishanganj', 'Lakhisarai', 'Madhepura', 'Madhubani', 'Munger', 'Muzaffarpur', 'Nalanda', 'Nawada', 'Patna', 'Purnia', 'Rohtas', 'Saharsa', 'Samastipur', 'Saran', 'Sheikhpura', 'Sheohar', 'Sitamarhi', 'Siwan', 'Supaul', 'Vaishali', 'West Champaran (Bettiah)'],
-      'Chandigarh': ['Chandigarh'],
-      'Chhattisgarh': ['Balod', 'Baloda Bazar-Bhatapara', 'Balrampur', 'Bastar', 'Bemetara', 'Bijapur', 'Bilaspur', 'Dantewada', 'Dhamtari', 'Durg', 'Gariaband', 'Gaurela-Pendra-Marwahi', 'Janjgir-Champa', 'Jashpur', 'Kabirdham', 'Kanker', 'Khairagarh-Chhuikhadan-Gandai', 'Kondagaon', 'Korba', 'Koriya', 'Mahasamund', 'Manendragarh-Chirmiri-Bharatpur', 'Mohla-Manpur-Ambagarh Chowki', 'Mungeli', 'Narayanpur', 'Raigarh', 'Raipur', 'Rajnandgaon', 'Sakti', 'Sarangarh-Bilaigarh', 'Sukma', 'Surajpur', 'Surguja'],
-      'Dadra and Nagar Haveli and Daman and Diu': ['Dadra and Nagar Haveli', 'Daman', 'Diu'],
-      'Delhi': ['Central Delhi', 'East Delhi', 'New Delhi', 'North Delhi', 'North East Delhi', 'North West Delhi', 'Shahdara', 'South Delhi', 'South East Delhi', 'South West Delhi', 'West Delhi'],
-      'Goa': ['North Goa', 'South Goa'],
-      'Gujarat': ['Ahmedabad', 'Amreli', 'Anand', 'Aravalli', 'Banaskantha', 'Bharuch', 'Bhavnagar', 'Botad', 'Chhota Udaipur', 'Dahod', 'Dang', 'Devbhumi Dwarka', 'Gandhinagar', 'Gir Somnath', 'Jamnagar', 'Junagadh', 'Kheda', 'Kutch', 'Mahisagar', 'Mehsana', 'Morbi', 'Narmada', 'Navsari', 'Panchmahal', 'Patan', 'Porbandar', 'Rajkot', 'Sabarkantha', 'Surat', 'Surendranagar', 'Tapi', 'Vadodara', 'Valsad'],
-      'Haryana': ['Ambala', 'Bhiwani', 'Charkhi Dadri', 'Faridabad', 'Fatehabad', 'Gurugram', 'Hisar', 'Jhajjar', 'Jind', 'Kaithal', 'Karnal', 'Kurukshetra', 'Mahendragarh', 'Nuh', 'Palwal', 'Panchkula', 'Panipat', 'Rewari', 'Rohtak', 'Sirsa', 'Sonipat', 'Yamunanagar'],
-      'Himachal Pradesh': ['Bilaspur', 'Chamba', 'Hamirpur', 'Kangra', 'Kinnaur', 'Kullu', 'Lahaul and Spiti', 'Mandi', 'Shimla', 'Sirmaur', 'Solan', 'Una'],
-      'Jammu and Kashmir': ['Anantnag', 'Bandipora', 'Baramulla', 'Budgam', 'Doda', 'Ganderbal', 'Jammu', 'Kathua', 'Kishtwar', 'Kulgam', 'Kupwara', 'Poonch', 'Pulwama', 'Rajouri', 'Ramban', 'Reasi', 'Samba', 'Shopian', 'Srinagar', 'Udhampur'],
-      'Jharkhand': ['Bokaro', 'Chatra', 'Deoghar', 'Dhanbad', 'Dumka', 'East Singhbhum', 'Garhwa', 'Giridih', 'Godda', 'Gumla', 'Hazaribagh', 'Jamtara', 'Khunti', 'Koderma', 'Latehar', 'Lohardaga', 'Pakur', 'Palamu', 'Ramgarh', 'Ranchi', 'Sahebganj', 'Seraikela Kharsawan', 'Simdega', 'West Singhbhum'],
-      'Karnataka': ['Bagalkote', 'Ballari', 'Belagavi', 'Bengaluru Rural', 'Bengaluru Urban', 'Bidar', 'Chamarajanagara', 'Chikkaballapura', 'Chikkamagaluru', 'Chitradurga', 'Dakshina Kannada', 'Davanagere', 'Dharwad', 'Gadag', 'Hassan', 'Haveri', 'Kalaburagi', 'Kodagu', 'Kolar', 'Koppal', 'Mandya', 'Mysuru', 'Raichur', 'Ramanagara', 'Shivamogga', 'Tumakuru', 'Udupi', 'Uttara Kannada', 'Vijayanagara', 'Vijayapura', 'Yadgir'],
-      'Kerala': ['Alappuzha', 'Ernakulam', 'Idukki', 'Kannur', 'Kasaragod', 'Kollam', 'Kottayam', 'Kozhikode', 'Malappuram', 'Palakkad', 'Pathanamthitta', 'Thiruvananthapuram', 'Thrissur', 'Wayanad'],
-      'Ladakh': ['Kargil', 'Leh'],
-      'Lakshadweep': ['Lakshadweep'],
-      'Madhya Pradesh': ['Agar Malwa', 'Alirajpur', 'Anuppur', 'Ashoknagar', 'Balaghat', 'Barwani', 'Betul', 'Bhind', 'Bhopal', 'Burhanpur', 'Chhatarpur', 'Chhindwara', 'Damoh', 'Datia', 'Dewas', 'Dhar', 'Dindori', 'Guna', 'Gwalior', 'Harda', 'Hoshangabad (Narmadapuram)', 'Indore', 'Jabalpur', 'Jhabua', 'Katni', 'Khandwa', 'Khargone', 'Maihar', 'Mandla', 'Mandsaur', 'Mauganj', 'Morena', 'Narsinghpur', 'Neemuch', 'Niwari', 'Pandhurna', 'Panna', 'Raisen', 'Rajgarh', 'Ratlam', 'Rewa', 'Sagar', 'Satna', 'Sehore', 'Seoni', 'Shahdol', 'Shajapur', 'Sheopur', 'Shivpuri', 'Sidhi', 'Singrauli', 'Tikamgarh', 'Ujjain', 'Umaria', 'Vidisha'],
-      'Maharashtra': ['Ahmednagar', 'Akola', 'Amravati', 'Chhatrapati Sambhajinagar', 'Beed', 'Bhandara', 'Buldhana', 'Chandrapur', 'Dhule', 'Gadchiroli', 'Gondia', 'Hingoli', 'Jalgaon', 'Jalna', 'Kolhapur', 'Latur', 'Mumbai City', 'Mumbai Suburban', 'Nagpur', 'Nanded', 'Nandurbar', 'Nashik', 'Dharashiv', 'Palghar', 'Parbhani', 'Pune', 'Raigad', 'Ratnagiri', 'Sangli', 'Satara', 'Sindhudurg', 'Solapur', 'Thane', 'Wardha', 'Washim', 'Yavatmal'],
-      'Manipur': ['Bishnupur', 'Chandel', 'Churachandpur', 'Imphal East', 'Imphal West', 'Jiribam', 'Kakching', 'Kamjong', 'Kangpokpi', 'Noney', 'Pherzawl', 'Senapati', 'Tamenglong', 'Tengnoupal', 'Thoubal', 'Ukhrul'],
-      'Meghalaya': ['East Garo Hills', 'East Jaintia Hills', 'East Khasi Hills', 'Eastern West Khasi Hills', 'North Garo Hills', 'Ri Bhoi', 'South Garo Hills', 'South West Garo Hills', 'South West Khasi Hills', 'West Garo Hills', 'West Jaintia Hills', 'West Khasi Hills'],
-      'Mizoram': ['Aizawl', 'Champhai', 'Hnahthial', 'Khawzawl', 'Kolasib', 'Lawngtlai', 'Lunglei', 'Mamit', 'Saitual', 'Serchhip', 'Siaha'],
-      'Nagaland': ['Chümoukedima', 'Dimapur', 'Kiphire', 'Kohima', 'Longleng', 'Mokokchung', 'Mon', 'Niuland', 'Noklak', 'Peren', 'Phek', 'Shamator', 'Tseminyu', 'Tuensang', 'Wokha', 'Zunheboto'],
-      'Odisha': ['Angul', 'Balangir', 'Balasore', 'Bargarh', 'Bhadrak', 'Boudh', 'Cuttack', 'Deogarh', 'Dhenkanal', 'Gajapati', 'Ganjam', 'Jagatsinghpur', 'Jajpur', 'Jharsuguda', 'Kalahandi', 'Kandhamal', 'Kendrapara', 'Kendujhar', 'Khordha', 'Koraput', 'Malkangiri', 'Mayurbhanj', 'Nabarangpur', 'Nayagarh', 'Nuapada', 'Puri', 'Rayagada', 'Sambalpur', 'Subarnapur', 'Sundargarh'],
-      'Puducherry': ['Karaikal', 'Mahe', 'Puducherry', 'Yanam'],
-      'Punjab': ['Amritsar', 'Barnala', 'Bathinda', 'Faridkot', 'Fatehgarh Sahib', 'Fazilka', 'Ferozepur', 'Gurdaspur', 'Hoshiarpur', 'Jalandhar', 'Kapurthala', 'Ludhiana', 'Malerkotla', 'Mansa', 'Moga', 'Muktsar', 'Pathankot', 'Patiala', 'Rupnagar', 'Sahibzada Ajit Singh Nagar (Mohali)', 'Sangrur', 'Shahid Bhagat Singh Nagar', 'Tarn Taran'],
-      'Rajasthan': ['Ajmer', 'Alwar', 'Anupgarh', 'Balotra', 'Banswara', 'Baran', 'Barmer', 'Beawar', 'Bharatpur', 'Bhilwara', 'Bikaner', 'Bundi', 'Chittorgarh', 'Churu', 'Dausa', 'Deeg', 'Dholpur', 'Didwana-Kuchaman', 'Dudu', 'Dungarpur', 'Gangapur City', 'Hanumangarh', 'Jaipur', 'Jaipur Rural', 'Jaisalmer', 'Jalore', 'Jhalawar', 'Jhunjhunu', 'Jodhpur', 'Jodhpur Rural', 'Karauli', 'Kekri', 'Khairthal-Tijara', 'Kota', 'Kotputli-Behror', 'Nagaur', 'Neem Ka Thana', 'Pali', 'Phalodi', 'Pratapgarh', 'Rajsamand', 'Salumbar', 'Sanchore', 'Sawai Madhopur', 'Shahpura', 'Sikar', 'Sirohi', 'Sri Ganganagar', 'Tonk', 'Udaipur'],
-      'Sikkim': ['Gangtok', 'Gyalshing', 'Mangan', 'Namchi', 'Pakyong', 'Soreng'],
-      'Tamil Nadu': ['Ariyalur', 'Chengalpattu', 'Chennai', 'Coimbatore', 'Cuddalore', 'Dharmapuri', 'Dindigul', 'Erode', 'Kallakurichi', 'Kanchipuram', 'Kanyakumari', 'Karur', 'Krishnagiri', 'Madurai', 'Mayiladuthurai', 'Nagapattinam', 'Namakkal', 'Nilgiris', 'Perambalur', 'Pudukkottai', 'Ramanathapuram', 'Ranipet', 'Salem', 'Sivaganga', 'Tenkasi', 'Thanjavur', 'Theni', 'Thoothukudi', 'Tiruchirappalli', 'Tirunelveli', 'Tirupathur', 'Tiruppur', 'Tiruvallur', 'Tiruvannamalai', 'Tiruvarur', 'Vellore', 'Viluppuram', 'Virudhunagar'],
-      'Telangana': ['Adilabad', 'Bhadradri Kothagudem', 'Hanamkonda', 'Hyderabad', 'Jagtial', 'Jangaon', 'Jayashankar Bhupalpally', 'Jogulamba Gadwal', 'Kamareddy', 'Karimnagar', 'Khammam', 'Kumuram Bheem Asifabad', 'Mahabubabad', 'Mahabubnagar', 'Mancherial', 'Medak', 'Medchal-Malkajgiri', 'Mulugu', 'Nagarkurnool', 'Nalgonda', 'Narayanpet', 'Nirmal', 'Nizamabad', 'Peddapalli', 'Rajanna Sircilla', 'Ranga Reddy', 'Sangareddy', 'Siddipet', 'Suryapet', 'Vikarabad', 'Wanaparthy', 'Warangal', 'Yadadri Bhuvanagiri'],
-      'Tripura': ['Dhalai', 'Gomati', 'Khowai', 'North Tripura', 'Sepahijala', 'South Tripura', 'Unakoti', 'West Tripura'],
-      'Uttar Pradesh': ['Agra', 'Aligarh', 'Ambedkar Nagar', 'Amethi', 'Amroha', 'Auraiya', 'Ayodhya', 'Azamgarh', 'Baghpat', 'Bahraich', 'Ballia', 'Balrampur', 'Banda', 'Barabanki', 'Bareilly', 'Basti', 'Bhadohi', 'Bijnor', 'Budaun', 'Bulandshahr', 'Chandauli', 'Chitrakoot', 'Deoria', 'Etah', 'Etawah', 'Farrukhabad', 'Fatehpur', 'Firozabad', 'Gautam Buddha Nagar (Noida)', 'Ghaziabad', 'Ghazipur', 'Gonda', 'Gorakhpur', 'Hamirpur', 'Hapur', 'Hardoi', 'Hathras', 'Jalaun', 'Jaunpur', 'Jhansi', 'Kannauj', 'Kanpur Dehat', 'Kanpur Nagar', 'Kasganj', 'Kaushambi', 'Kheri', 'Kushinagar', 'Lalitpur', 'Lucknow', 'Maharajganj', 'Mahoba', 'Mainpuri', 'Mathura', 'Mau', 'Meerut', 'Mirzapur', 'Moradabad', 'Muzaffarnagar', 'Pilibhit', 'Pratapgarh', 'Prayagraj', 'Raebareli', 'Rampur', 'Saharanpur', 'Sambhal', 'Sant Kabir Nagar', 'Shahjahanpur', 'Shamli', 'Shravasti', 'Siddharthnagar', 'Sitapur', 'Sonbhadra', 'Sultanpur', 'Unnao', 'Varanasi'],
-      'Uttarakhand': ['Almora', 'Bageshwar', 'Chamoli', 'Champawat', 'Dehradun', 'Haridwar', 'Nainital', 'Pauri Garhwal', 'Pithoragarh', 'Rudraprayag', 'Tehri Garhwal', 'Udham Singh Nagar', 'Uttarkashi'],
-      'West Bengal': ['Alipurduar', 'Bankura', 'Birbhum', 'Cooch Behar', 'Dakshin Dinajpur', 'Darjeeling', 'Hooghly', 'Howrah', 'Jalpaiguri', 'Jhargram', 'Kalimpong', 'Kolkata', 'Malda', 'Murshidabad', 'Nadia', 'North 24 Parganas', 'Paschim Bardhaman', 'Paschim Medinipur', 'Purba Bardhaman', 'Purba Medinipur', 'Purulia', 'South 24 Parganas', 'Uttar Dinajpur']
-    };
-
     const registerForms = document.querySelectorAll('.farmer-registration-form');
     if (!registerForms || registerForms.length === 0) return;
 
@@ -581,21 +584,456 @@
       window.AgriMitraAuth.guardRole('farmer', { strict: false });
     }
 
-    // Load registered farmer name if available
+    // -----------------------------------------------------------------------
+    // Profile Management & Profile Edit Modal
+    // -----------------------------------------------------------------------
+    const defaultProfile = {
+      full_name: 'Ramesh Patel',
+      phone: '9876543210',
+      state: 'Tamil Nadu',
+      district: 'Krishnagiri',
+      primary_crops: 'Paddy, Fresh Tomatoes',
+      location: 'Krishnagiri, Tamil Nadu',
+      upi_id: 'ramesh.kisan@oksbi'
+    };
+
+    let farmerProfile = { ...defaultProfile };
     try {
-      const storedName = localStorage.getItem('agriFarmerName');
-      if (storedName) {
-        const userNameEl = document.querySelector('.user-name');
-        const userAvatarEl = document.querySelector('.user-avatar');
-        const bannerHeading = document.querySelector('.farmer-banner-text h1');
-        if (userNameEl) userNameEl.textContent = storedName;
-        if (bannerHeading) bannerHeading.textContent = `Namaste, ${storedName.split(' ')[0]} Ji`;
-        if (userAvatarEl) {
-          const initials = storedName.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
-          userAvatarEl.textContent = initials || 'RP';
+      const savedProfile = localStorage.getItem('agriFarmerProfile');
+      if (savedProfile) {
+        farmerProfile = { ...defaultProfile, ...JSON.parse(savedProfile) };
+      } else {
+        const storedName = localStorage.getItem('agriFarmerName');
+        const storedPhone = localStorage.getItem('agriFarmerPhone');
+        if (storedName) farmerProfile.full_name = storedName;
+        if (storedPhone) farmerProfile.phone = storedPhone;
+      }
+    } catch(err) {
+      console.warn('[AgriMitra] Profile load error:', err);
+    }
+
+    function syncProfileUI() {
+      const userNameEl = document.querySelector('.user-name');
+      const userAvatarEl = document.querySelector('.user-avatar');
+      const userLocationEl = document.querySelector('.user-location');
+      const bannerHeading = document.querySelector('.farmer-banner-text h1');
+      const cropLocationInput = document.getElementById('crop-location');
+
+      if (userNameEl) userNameEl.textContent = farmerProfile.full_name;
+      if (userLocationEl) {
+        userLocationEl.textContent = farmerProfile.location || `${farmerProfile.district}, ${farmerProfile.state}`;
+      }
+      if (bannerHeading) {
+        const firstName = (farmerProfile.full_name || 'Kisan').split(' ')[0];
+        bannerHeading.textContent = `Namaste, ${firstName} Ji`;
+      }
+      if (userAvatarEl) {
+        const initials = (farmerProfile.full_name || 'RP')
+          .split(' ')
+          .map(n => n[0])
+          .join('')
+          .slice(0, 2)
+          .toUpperCase();
+        userAvatarEl.textContent = initials || 'RP';
+        userAvatarEl.title = farmerProfile.full_name;
+      }
+      if (cropLocationInput && !cropLocationInput.value) {
+        cropLocationInput.value = `${farmerProfile.district} APMC Warehouse`;
+      }
+    }
+
+    syncProfileUI();
+
+    // Profile Edit Modal Elements
+    const profileModal = document.getElementById('profile-modal');
+    const openProfileBtns = document.querySelectorAll('#open-profile-modal-btn, #user-profile-pill');
+    const closeProfileModalBtn = document.getElementById('close-profile-modal-btn');
+    const cancelProfileModalBtn = document.getElementById('cancel-profile-modal-btn');
+    const editProfileForm = document.getElementById('edit-profile-form');
+
+    const profileNameInput = document.getElementById('profile-name-input');
+    const profilePhoneInput = document.getElementById('profile-phone-input');
+    const profileStateSelect = document.getElementById('profile-state-select');
+    const profileDistrictSelect = document.getElementById('profile-district-select');
+    const profileCropsInput = document.getElementById('profile-crops-input');
+    const profileLocationInput = document.getElementById('profile-location-input');
+    const profileUpiInput = document.getElementById('profile-upi-input');
+
+    function populateProfileStates() {
+      if (!profileStateSelect || profileStateSelect.options.length > 1) return;
+      const states = Object.keys(stateDistricts).sort();
+      states.forEach(st => {
+        const opt = document.createElement('option');
+        opt.value = st;
+        opt.textContent = st;
+        profileStateSelect.appendChild(opt);
+      });
+    }
+
+    function populateProfileDistricts(selectedState, selectedDistrict = '') {
+      if (!profileDistrictSelect) return;
+      profileDistrictSelect.innerHTML = '<option value="" disabled selected>Select District</option>';
+      const districts = stateDistricts[selectedState] || [];
+      districts.forEach(dist => {
+        const opt = document.createElement('option');
+        opt.value = dist;
+        opt.textContent = dist;
+        if (dist === selectedDistrict) {
+          opt.selected = true;
+        }
+        profileDistrictSelect.appendChild(opt);
+      });
+    }
+
+    if (profileStateSelect) {
+      profileStateSelect.addEventListener('change', () => {
+        populateProfileDistricts(profileStateSelect.value);
+      });
+    }
+
+    function openProfileModal() {
+      if (!profileModal) return;
+      populateProfileStates();
+
+      if (profileNameInput) profileNameInput.value = farmerProfile.full_name || '';
+      if (profilePhoneInput) profilePhoneInput.value = farmerProfile.phone || '';
+      if (profileStateSelect) {
+        profileStateSelect.value = farmerProfile.state || 'Tamil Nadu';
+        populateProfileDistricts(farmerProfile.state || 'Tamil Nadu', farmerProfile.district || 'Krishnagiri');
+      }
+      if (profileCropsInput) profileCropsInput.value = farmerProfile.primary_crops || '';
+      if (profileLocationInput) profileLocationInput.value = farmerProfile.location || `${farmerProfile.district}, ${farmerProfile.state}`;
+      if (profileUpiInput) profileUpiInput.value = farmerProfile.upi_id || '';
+
+      profileModal.classList.add('active');
+      if (profileNameInput) profileNameInput.focus();
+    }
+
+    function closeProfileModal() {
+      if (profileModal) profileModal.classList.remove('active');
+    }
+
+    openProfileBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openProfileModal();
+      });
+    });
+
+    if (closeProfileModalBtn) closeProfileModalBtn.addEventListener('click', closeProfileModal);
+    if (cancelProfileModalBtn) cancelProfileModalBtn.addEventListener('click', closeProfileModal);
+    if (profileModal) {
+      profileModal.addEventListener('click', (e) => {
+        if (e.target === profileModal) closeProfileModal();
+      });
+    }
+
+    if (editProfileForm) {
+      editProfileForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const updatedName = profileNameInput ? profileNameInput.value.trim() : '';
+        const updatedPhone = profilePhoneInput ? profilePhoneInput.value.trim() : '';
+        const updatedState = profileStateSelect ? profileStateSelect.value : '';
+        const updatedDistrict = profileDistrictSelect ? profileDistrictSelect.value : '';
+        const updatedCrops = profileCropsInput ? profileCropsInput.value.trim() : '';
+        const updatedLocation = profileLocationInput ? profileLocationInput.value.trim() : '';
+        const updatedUpi = profileUpiInput ? profileUpiInput.value.trim() : '';
+
+        if (!updatedName) {
+          showToast('Please enter your full name.');
+          return;
+        }
+
+        farmerProfile = {
+          full_name: updatedName,
+          phone: updatedPhone || farmerProfile.phone,
+          state: updatedState || farmerProfile.state,
+          district: updatedDistrict || farmerProfile.district,
+          primary_crops: updatedCrops,
+          location: updatedLocation || `${updatedDistrict}, ${updatedState}`,
+          upi_id: updatedUpi
+        };
+
+        try {
+          localStorage.setItem('agriFarmerProfile', JSON.stringify(farmerProfile));
+          localStorage.setItem('agriFarmerName', farmerProfile.full_name);
+          localStorage.setItem('agriFarmerPhone', farmerProfile.phone);
+
+          const storedUser = localStorage.getItem('agrimitra_user');
+          if (storedUser) {
+            const userObj = JSON.parse(storedUser);
+            userObj.full_name = farmerProfile.full_name;
+            userObj.phone = farmerProfile.phone;
+            userObj.state = farmerProfile.state;
+            userObj.district = farmerProfile.district;
+            localStorage.setItem('agrimitra_user', JSON.stringify(userObj));
+          }
+        } catch(err) {
+          console.warn('[AgriMitra] Profile save notice:', err);
+        }
+
+        syncProfileUI();
+        closeProfileModal();
+        showToast('Farmer profile updated successfully! ✅');
+      });
+    }
+
+    // -----------------------------------------------------------------------
+    // Interactive Notification Bell & Dropdown Logic
+    // -----------------------------------------------------------------------
+    const defaultNotifications = [
+      {
+        id: 'notif-1',
+        type: 'bid',
+        title: 'New Buyer Bid Received',
+        desc: 'Lakshmi Agro placed a bid of ₹2,850/Qtl for your 40 Quintal Sona Masoori Paddy.',
+        time: '10m ago',
+        unread: true,
+        tagText: 'Buyer Bid',
+        tagClass: 'notif-tag-bid',
+        iconClass: 'notif-icon-bid',
+        icon: '💰',
+        actionText: 'Review Bid',
+        actionTarget: '#buyer-bids-section'
+      },
+      {
+        id: 'notif-2',
+        type: 'delivery',
+        title: 'Order Out for Delivery',
+        desc: 'Pickup vehicle KA-05-AB-3211 is out for delivery with 50 Crates Tomatoes.',
+        time: '35m ago',
+        unread: true,
+        tagText: 'Out for Delivery',
+        tagClass: 'notif-tag-delivery',
+        iconClass: 'notif-icon-delivery',
+        icon: '🚚',
+        actionText: 'Track Pickup',
+        actionTarget: '#hub-payouts-val'
+      },
+      {
+        id: 'notif-3',
+        type: 'delivery',
+        title: 'Order Reached Destination',
+        desc: 'Batch #WHT-9012 (60 Quintals Wheat) safely reached Bengaluru Central APMC Mandi. Quality Grade A+ approved.',
+        time: '2h ago',
+        unread: true,
+        tagText: 'Order Reached',
+        tagClass: 'notif-tag-reached',
+        iconClass: 'notif-icon-reached',
+        icon: '📦',
+        actionText: 'View Payout',
+        actionTarget: '#hub-payouts-val'
+      },
+      {
+        id: 'notif-4',
+        type: 'feedback',
+        title: 'Buyer Feedback (5.0 ★)',
+        desc: 'Trader Rajesh Gupta left feedback: "Crisp drumsticks, accurate weighing and prompt dispatch. Recommended!"',
+        time: 'Yesterday',
+        unread: true,
+        tagText: 'Buyer Review',
+        tagClass: 'notif-tag-feedback',
+        iconClass: 'notif-icon-feedback',
+        icon: '⭐',
+        actionText: 'Read Feedback',
+        actionTarget: '#hub-listings-val'
+      },
+      {
+        id: 'notif-5',
+        type: 'system',
+        title: 'System AI Recommendation',
+        desc: 'Mandi Price Surge Alert: Fresh Tomato rates in Krishnagiri APMC up +14% today. Ideal window to list produce.',
+        time: '1d ago',
+        unread: true,
+        tagText: 'AI Tip',
+        tagClass: 'notif-tag-system',
+        iconClass: 'notif-icon-system',
+        icon: '💡',
+        actionText: 'Sell Crop Now',
+        actionTarget: 'modal'
+      },
+      {
+        id: 'notif-6',
+        type: 'bid',
+        title: 'Buyer Outbid Update',
+        desc: 'Metro Fresh Foods raised bid to ₹3,120/Qtl for Lot #FM-98421 Onion harvest.',
+        time: '2d ago',
+        unread: false,
+        tagText: 'Bid Update',
+        tagClass: 'notif-tag-bid',
+        iconClass: 'notif-icon-bid',
+        icon: '📈',
+        actionText: 'View Bids',
+        actionTarget: '#buyer-bids-section'
+      }
+    ];
+
+    let notifications = [...defaultNotifications];
+    try {
+      const storedNotifs = localStorage.getItem('agriFarmerNotifications');
+      if (storedNotifs) {
+        notifications = JSON.parse(storedNotifs);
+      }
+    } catch(err) {
+      console.warn('[AgriMitra] Notif load notice:', err);
+    }
+
+    function saveNotifications() {
+      try {
+        localStorage.setItem('agriFarmerNotifications', JSON.stringify(notifications));
+      } catch(err) {}
+    }
+
+    const notifWrapper = document.getElementById('notif-wrapper');
+    const notifBellBtn = document.getElementById('notif-bell-btn');
+    const notifBadge = document.getElementById('notif-badge');
+    const notifDropdown = document.getElementById('notif-dropdown');
+    const notifUnreadCount = document.getElementById('notif-unread-count');
+    const notifMarkReadBtn = document.getElementById('notif-mark-read-btn');
+    const notifItemsList = document.getElementById('notif-items-list');
+    const notifTabs = document.querySelectorAll('.notif-tab');
+
+    let currentNotifFilter = 'all';
+
+    function renderNotifications(filter = currentNotifFilter) {
+      currentNotifFilter = filter;
+      if (!notifItemsList) return;
+
+      const unreadTotal = notifications.filter(n => n.unread).length;
+      if (notifBadge) {
+        notifBadge.textContent = unreadTotal;
+        if (unreadTotal > 0) {
+          notifBadge.classList.remove('hidden');
+          notifBadge.style.display = 'flex';
+        } else {
+          notifBadge.classList.add('hidden');
+          notifBadge.style.display = 'none';
         }
       }
-    } catch(err) {}
+      if (notifUnreadCount) {
+        notifUnreadCount.textContent = `${unreadTotal} new`;
+      }
+
+      const filtered = notifications.filter(n => {
+        if (filter === 'all') return true;
+        return n.type === filter;
+      });
+
+      if (filtered.length === 0) {
+        notifItemsList.innerHTML = `
+          <div class="notif-empty-state">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">📭</div>
+            <div>No notifications in this category.</div>
+          </div>
+        `;
+        return;
+      }
+
+      notifItemsList.innerHTML = filtered.map(item => `
+        <div class="notif-item ${item.unread ? 'unread' : ''}" data-id="${item.id}" role="listitem">
+          <div class="notif-icon-box ${item.iconClass || 'notif-icon-bid'}">
+            ${item.icon || '🔔'}
+          </div>
+          <div class="notif-content-wrap">
+            <div class="notif-item-header">
+              <span class="notif-item-title">${item.title}</span>
+              ${item.unread ? '<span class="notif-dot" title="Unread"></span>' : ''}
+            </div>
+            <div class="notif-item-desc">${item.desc}</div>
+            <div class="notif-item-meta">
+              <span>${item.time} &bull; <span class="notif-item-tag ${item.tagClass || ''}">${item.tagText || item.type}</span></span>
+              <a href="${item.actionTarget === 'modal' ? 'javascript:void(0)' : item.actionTarget}" class="notif-item-action" data-action="${item.actionTarget}">
+                ${item.actionText} &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    renderNotifications();
+
+    if (notifBellBtn && notifDropdown) {
+      notifBellBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = notifDropdown.classList.contains('active');
+        if (isOpen) {
+          notifDropdown.classList.remove('active');
+          notifBellBtn.setAttribute('aria-expanded', 'false');
+          notifBellBtn.classList.remove('active');
+        } else {
+          notifDropdown.classList.add('active');
+          notifBellBtn.setAttribute('aria-expanded', 'true');
+          notifBellBtn.classList.add('active');
+        }
+      });
+    }
+
+    // Close notification dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (notifWrapper && !notifWrapper.contains(e.target)) {
+        if (notifDropdown) notifDropdown.classList.remove('active');
+        if (notifBellBtn) {
+          notifBellBtn.setAttribute('aria-expanded', 'false');
+          notifBellBtn.classList.remove('active');
+        }
+      }
+    });
+
+    // Mark all as read
+    if (notifMarkReadBtn) {
+      notifMarkReadBtn.addEventListener('click', () => {
+        notifications.forEach(n => n.unread = false);
+        saveNotifications();
+        renderNotifications();
+        showToast('All notifications marked as read! ✔️');
+      });
+    }
+
+    // Filter tabs click
+    notifTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        notifTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const filter = tab.getAttribute('data-filter') || 'all';
+        renderNotifications(filter);
+      });
+    });
+
+    // Item click: mark individual as read & handle action
+    if (notifItemsList) {
+      notifItemsList.addEventListener('click', (e) => {
+        const itemEl = e.target.closest('.notif-item');
+        if (!itemEl) return;
+        const notifId = itemEl.getAttribute('data-id');
+        const targetNotif = notifications.find(n => n.id === notifId);
+        if (targetNotif && targetNotif.unread) {
+          targetNotif.unread = false;
+          saveNotifications();
+          renderNotifications();
+        }
+
+        const actionLink = e.target.closest('.notif-item-action');
+        if (actionLink) {
+          const action = actionLink.getAttribute('data-action');
+          if (action === 'modal') {
+            e.preventDefault();
+            if (produceModal) produceModal.classList.add('active');
+            if (notifDropdown) notifDropdown.classList.remove('active');
+          } else if (action && action.startsWith('#')) {
+            const sec = document.querySelector(action);
+            if (sec) {
+              e.preventDefault();
+              sec.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              sec.style.transition = 'box-shadow 0.3s ease';
+              sec.style.boxShadow = '0 0 0 3px #22c55e';
+              setTimeout(() => { sec.style.boxShadow = ''; }, 1800);
+              if (notifDropdown) notifDropdown.classList.remove('active');
+            }
+          }
+        }
+      });
+    }
 
     // Sign out button
     const signOutBtns = document.querySelectorAll('#sign-out-btn, .btn-signout');
