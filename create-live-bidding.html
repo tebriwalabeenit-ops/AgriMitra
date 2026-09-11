@@ -38,7 +38,7 @@
 
       <div class="trading-nav-actions">
         <!-- Notification Icon -->
-        <button type="button" class="icon-button" aria-label="View Notifications" title="Notifications">
+        <button type="button" id="btnNotificationBell" class="icon-button" aria-label="View Notifications" title="Notifications">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
@@ -374,11 +374,207 @@
           </div>
 
         </form>
+              <h2 class="form-section-heading">Quality Details</h2>
+              <p class="form-section-desc">Accurate grading ensures high confidence and transparent valuation from
+                buyers.</p>
+            </div>
+
+            <div class="form-field-group">
+              <label class="form-field-label">Quality Grade</label>
+              <div class="radio-choice-grid">
+                <label class="radio-choice-label">
+                  <input type="radio" name="quality-grade" value="A" checked>
+                  Grade A (Export / Premium)
+                </label>
+                <label class="radio-choice-label">
+                  <input type="radio" name="quality-grade" value="B">
+                  Grade B (Standard Commercial)
+                </label>
+                <label class="radio-choice-label">
+                  <input type="radio" name="quality-grade" value="C">
+                  Grade C (Processing / Bulk)
+                </label>
+              </div>
+            </div>
+
+            <div class="form-field-group" style="margin-top: var(--space-4);">
+              <label for="quality-specs" class="form-field-label">Additional Quality Details</label>
+              <input type="text" id="quality-specs" class="form-field-input" placeholder="Add Quality Details"
+                value="Moisture 9.8%, Foreign Matter < 0.2%, No weevils, Machine Sorted">
+            </div>
+          </div>
+
+          <!-- SECTION 3: QUANTITY -->
+          <div class="form-section-block">
+            <div class="form-section-header">
+              <span class="form-section-eyebrow">Step 03</span>
+              <h2 class="form-section-heading">Quantity</h2>
+              <p class="form-section-desc">Specify available volume. The winning bidder will purchase the entire
+                designated quantity.</p>
+            </div>
+
+            <div class="form-grid-row">
+              <div class="form-field-group">
+                <label for="quantity-input" class="form-field-label">Quantity Available</label>
+                <input type="number" id="quantity-input" class="form-field-input" placeholder="Enter Quantity"
+                  value="5000" min="1" required>
+              </div>
+
+              <div class="form-field-group">
+                <label for="quantity-unit-select" class="form-field-label">Unit</label>
+                <select id="quantity-unit-select" class="form-field-select" required>
+                  <option value="kg" selected>Kilogram (kg)</option>
+                  <option value="quintal">Quintal (qtl)</option>
+                  <option value="ton">Ton (MT)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 4: BIDDING DETAILS -->
+          <div class="form-section-block">
+            <div class="form-section-header">
+              <span class="form-section-eyebrow">Step 04</span>
+              <h2 class="form-section-heading">Bidding Details</h2>
+              <p class="form-section-desc">Set the floor price and increment parameters. Bidders must adhere to these
+                baselines.</p>
+            </div>
+
+            <div class="form-grid-row">
+              <div class="form-field-group">
+                <label for="start-price-input" class="form-field-label">Starting Price</label>
+                <div class="input-currency-wrapper">
+                  <span class="currency-symbol">₹</span>
+                  <input type="number" id="start-price-input" class="form-field-input"
+                    placeholder="Enter Starting Price" value="28" step="0.50" min="1" required>
+                </div>
+                <span class="form-field-helper">Base floor rate per kilogram. Bidding cannot start below this
+                  amount.</span>
+              </div>
+
+              <div class="form-field-group">
+                <label for="bid-increment-input" class="form-field-label">Minimum Bid Increment</label>
+                <div class="input-currency-wrapper">
+                  <span class="currency-symbol">₹</span>
+                  <input type="number" id="bid-increment-input" class="form-field-input"
+                    placeholder="Enter Minimum Bid Increment" value="0.50" step="0.10" min="0.10" required>
+                </div>
+                <span class="form-field-helper">
+                  Every new bid must be higher than the current highest bid by at least the selected minimum bid
+                  increment.
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 5: BIDDING SCHEDULE -->
+          <div class="form-section-block">
+            <div class="form-section-header">
+              <span class="form-section-eyebrow">Step 05</span>
+              <h2 class="form-section-heading">Bidding Schedule</h2>
+              <p class="form-section-desc">Designate the date and operating time window for this live auction.</p>
+            </div>
+
+            <div class="form-grid-3">
+              <div class="form-field-group">
+                <label for="schedule-date" class="form-field-label">Bidding Date</label>
+                <input type="date" id="schedule-date" class="form-field-input" value="2026-09-15" required>
+              </div>
+
+              <div class="form-field-group">
+                <label for="schedule-start" class="form-field-label">Start Time</label>
+                <input type="time" id="schedule-start" class="form-field-input" value="10:00" required>
+              </div>
+
+              <div class="form-field-group">
+                <label for="schedule-end" class="form-field-label">End Time</label>
+                <input type="time" id="schedule-end" class="form-field-input" value="11:00" required>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 6: BINDING SALE AGREEMENT -->
+          <div class="trading-commitment-card" role="region" aria-labelledby="commitment-heading">
+            <div class="commitment-header">
+              <div class="commitment-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+              </div>
+              <h2 id="commitment-heading" class="commitment-title">Trading Commitment</h2>
+            </div>
+
+            <div class="commitment-body">
+              <p>
+                <strong>By starting this Live Bidding session, you agree that the highest valid bid when the bidding
+                  period ends will automatically become the final sale price.</strong>
+              </p>
+              <p>
+                <strong>You cannot reject the highest valid bid because the final price is lower than expected.</strong>
+                The transaction is binding upon completion. The winning Wholesaler or Distributor will be automatically
+                confirmed, and order fulfillment logistics will initiate immediately.
+              </p>
+            </div>
+
+            <label class="commitment-checkbox-row">
+              <input type="checkbox" id="commitment-confirm" required checked>
+              <span class="commitment-checkbox-text">
+                I understand and agree that the highest valid bid will automatically become the final sale price.
+              </span>
+            </label>
+          </div>
+
+          <!-- SECTION 7: SESSION PREVIEW -->
+          <div class="session-preview-box">
+            <span class="preview-box-header">LIVE BIDDING SUMMARY</span>
+            <div class="preview-box-grid">
+              <div class="preview-row">
+                <span>Product</span>
+                <span>Premium Wheat</span>
+              </div>
+              <div class="preview-row">
+                <span>Quantity</span>
+                <span>5,000 kg</span>
+              </div>
+              <div class="preview-row">
+                <span>Starting Price</span>
+                <span>₹28/kg</span>
+              </div>
+              <div class="preview-row">
+                <span>Minimum Bid Increment</span>
+                <span>₹0.50/kg</span>
+              </div>
+              <div class="preview-row">
+                <span>Bidding Date</span>
+                <span>15 September</span>
+              </div>
+              <div class="preview-row">
+                <span>Time</span>
+                <span>10:00 AM – 11:00 AM</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 8: FINAL BUTTON -->
+          <div style="margin-top: var(--space-8); text-align: center;">
+            <button type="submit" class="btn btn-primary btn-large"
+              style="width: 100%; max-width: 480px; box-shadow: 0 4px 16px rgba(28, 90, 53, 0.25);">
+              CREATE LIVE BIDDING SESSION
+            </button>
+            <div style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin-top: var(--space-3);">
+              Once submitted, the session will be published on the mandi calendar and broadcasted to verified
+              Wholesalers &amp; Distributors.
+            </div>
+          </div>
+
+        </form>
 
       </div>
 
     </div>
   </main>
+  <script src="assets/auth-guard.js"></script>
   <script src="assets/frontend_api.js"></script>
 
   <!-- AgriMitra Multi-Language Support Engine -->

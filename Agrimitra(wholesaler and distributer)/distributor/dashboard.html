@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="../css/distributor.css">
   <link rel="stylesheet" href="../css/modal.css">
   <link rel="stylesheet" href="../css/responsive.css">
+  <script src="../../assets/auth-guard.js"></script>
 </head>
 <body class="distributor-app">
 
@@ -1060,7 +1061,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" onclick="alert('Session logged out.'); window.location.href='../register/distributor.html';">Logout</button>
+        <button type="button" class="btn btn-secondary" onclick="AgriMitraAuth.logout('../../index.html');">Logout</button>
         <button type="button" class="btn btn-outline" onclick="alert('Password reset link sent to verified phone number.');">Change Password</button>
         <button type="button" class="btn btn-primary" id="btn-edit-profile">Edit Profile</button>
       </div>

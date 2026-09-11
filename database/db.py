@@ -1,21 +1,17 @@
 """
-KrishiLink Database Connection & Transaction Manager
-Supports pure PyMySQL for MySQL database operations,
-with parameterized SQL execution, row locking, and transaction control.
-Also includes seamless fallback to SQLite for environments where MySQL is not yet active.
+AgriMitra Database Connection & Transaction Manager
+Primary Engine: SQLite for zero-dependency, permanent ACID storage.
+Supports parameterized SQL execution, row factories, transaction control,
+and optional fallback/interop with MySQL.
 """
 
 import os
 import re
 import sqlite3
-import pymysql
-import pymysql.cursors
 from config import Config
 
-_USE_SQLITE_FALLBACK = False
-
 class SQLiteCursorWrapper:
-    """Wraps SQLite cursor to match PyMySQL DictCursor interface."""
+    """Wraps SQLite cursor to match dictionary-based cursor interface."""
     def __init__(self, cursor):
         self._cursor = cursor
 
@@ -28,9 +24,9 @@ class SQLiteCursorWrapper:
         return self._cursor.rowcount
 
     def execute(self, query, args=()):
-        # Translate MySQL query to SQLite
+        # Translate MySQL query syntax to SQLite
         sql = query.replace('%s', '?')
-        # Remove FOR UPDATE since SQLite handles write locks at DB level
+        # Remove MySQL-specific FOR UPDATE since SQLite locks at DB level
         sql = re.sub(r'\s+FOR\s+UPDATE', '', sql, flags=re.IGNORECASE)
         sql = re.sub(r'NOW\(\)', 'CURRENT_TIMESTAMP', sql, flags=re.IGNORECASE)
         sql = re.sub(r"DATE_FORMAT\(([^,]+),\s*'[^']+'\)", r"strftime('%H:%M', \1)", sql, flags=re.IGNORECASE)
@@ -55,7 +51,7 @@ class SQLiteCursorWrapper:
         self._cursor.close()
 
 class SQLiteConnWrapper:
-    """Wraps SQLite connection to match PyMySQL interface."""
+    """Wraps SQLite connection to provide standard context manager and interface."""
     def __init__(self, conn):
         self._conn = conn
         self._conn.row_factory = sqlite3.Row
@@ -72,8 +68,9 @@ class SQLiteConnWrapper:
     def close(self):
         self._conn.close()
 
+
 def _create_sqlite_tables(conn):
-    """Initializes SQLite tables matching schema.sql."""
+    """Initializes all SQLite tables matching AgriMitra multi-role schema."""
     statements = [
         """CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -84,6 +81,7 @@ def _create_sqlite_tables(conn):
             email TEXT,
             state TEXT,
             district TEXT,
+            preferred_language TEXT DEFAULT 'en',
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )""",
@@ -102,6 +100,23 @@ def _create_sqlite_tables(conn):
             fpo_name TEXT NOT NULL,
             reg_number TEXT,
             warehouse_location TEXT,
+            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+        )""",
+        """CREATE TABLE IF NOT EXISTS buyers (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER UNIQUE NOT NULL,
+            buyer_code TEXT UNIQUE NOT NULL,
+            delivery_address TEXT,
+            pincode TEXT,
+            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+        )""",
+        """CREATE TABLE IF NOT EXISTS wholesalers (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER UNIQUE NOT NULL,
+            wholesaler_code TEXT UNIQUE NOT NULL,
+            business_name TEXT NOT NULL,
+            license_no TEXT,
+            city TEXT,
             FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
         )""",
         """CREATE TABLE IF NOT EXISTS distributors (
@@ -181,9 +196,7 @@ def _create_sqlite_tables(conn):
             hub_location TEXT,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (fpo_id) REFERENCES fpos(id) ON DELETE CASCADE,
-            FOREIGN KEY (current_highest_bidder_id) REFERENCES distributors(id) ON DELETE SET NULL,
-            FOREIGN KEY (winner_id) REFERENCES distributors(id) ON DELETE SET NULL
+            FOREIGN KEY (fpo_id) REFERENCES fpos(id) ON DELETE CASCADE
         )""",
         """CREATE TABLE IF NOT EXISTS bids (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -192,14 +205,14 @@ def _create_sqlite_tables(conn):
             bidder_tag TEXT NOT NULL,
             bid_amount REAL NOT NULL,
             bid_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (auction_id) REFERENCES auctions(id) ON DELETE CASCADE,
-            FOREIGN KEY (distributor_id) REFERENCES distributors(id) ON DELETE CASCADE
+            FOREIGN KEY (auction_id) REFERENCES auctions(id) ON DELETE CASCADE
         )""",
         """CREATE TABLE IF NOT EXISTS orders (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             order_code TEXT UNIQUE NOT NULL,
+            buyer_id INTEGER,
+            distributor_id INTEGER,
             auction_id INTEGER,
-            distributor_id INTEGER NOT NULL,
             fpo_id INTEGER,
             farmer_id INTEGER,
             product_name TEXT NOT NULL,
@@ -209,8 +222,9 @@ def _create_sqlite_tables(conn):
             total_amount REAL NOT NULL,
             status TEXT DEFAULT 'confirmed',
             payment_status TEXT DEFAULT 'escrow_held',
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (distributor_id) REFERENCES distributors(id) ON DELETE CASCADE
+            delivery_address TEXT,
+            items_json TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )""",
         """CREATE TABLE IF NOT EXISTS notifications (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -228,45 +242,29 @@ def _create_sqlite_tables(conn):
         cur.execute(s)
     conn.commit()
 
+
 def get_mysql_connection():
     """
-    Creates and returns a database connection.
-    Attempts pure PyMySQL connection to MySQL first.
-    If MySQL server is unavailable or USE_SQLITE_TEST_DB=True, seamlessly falls back to SQLite.
+    Returns database connection.
+    Defaults to permanent SQLite database at Config.SQLITE_DB_PATH.
     """
-    global _USE_SQLITE_FALLBACK
+    db_path = Config.SQLITE_DB_PATH
+    os.makedirs(os.path.dirname(os.path.abspath(db_path)), exist_ok=True)
+    raw_conn = sqlite3.connect(db_path, timeout=30.0, check_same_thread=False)
+    raw_conn.execute("PRAGMA foreign_keys = ON")
+    _create_sqlite_tables(raw_conn)
+    return SQLiteConnWrapper(raw_conn)
 
-    if Config.USE_SQLITE_TEST_DB or _USE_SQLITE_FALLBACK:
-        raw_conn = sqlite3.connect(Config.SQLITE_DB_PATH, timeout=30.0, check_same_thread=False)
-        _create_sqlite_tables(raw_conn)
-        return SQLiteConnWrapper(raw_conn)
 
-    try:
-        return pymysql.connect(
-            host=Config.MYSQL_HOST,
-            port=Config.MYSQL_PORT,
-            user=Config.MYSQL_USER,
-            password=Config.MYSQL_PASSWORD,
-            database=Config.MYSQL_DATABASE,
-            charset='utf8mb4',
-            cursorclass=pymysql.cursors.DictCursor,
-            autocommit=False,
-            connect_timeout=2
-        )
-    except (pymysql.err.OperationalError, ConnectionRefusedError, OSError):
-        # Graceful fallback to SQLite
-        _USE_SQLITE_FALLBACK = True
-        raw_conn = sqlite3.connect(Config.SQLITE_DB_PATH, timeout=30.0, check_same_thread=False)
-        _create_sqlite_tables(raw_conn)
-        return SQLiteConnWrapper(raw_conn)
+# Aliased for clarity
+get_db_connection = get_mysql_connection
+
 
 def query_db(query, args=(), one=False, conn=None):
-    """
-    Executes a SELECT query and returns rows as dictionaries.
-    """
+    """Executes a SELECT query and returns row(s) as dictionaries."""
     close_conn = False
     if conn is None:
-        conn = get_mysql_connection()
+        conn = get_db_connection()
         close_conn = True
 
     try:
@@ -278,14 +276,12 @@ def query_db(query, args=(), one=False, conn=None):
         if close_conn:
             conn.close()
 
+
 def execute_db(query, args=(), commit=True, conn=None):
-    """
-    Executes an INSERT, UPDATE, or DELETE statement.
-    Returns the last inserted id or affected row count.
-    """
+    """Executes an INSERT, UPDATE, or DELETE statement. Returns lastrowid or rowcount."""
     close_conn = False
     if conn is None:
-        conn = get_mysql_connection()
+        conn = get_db_connection()
         close_conn = True
 
     try:
@@ -304,43 +300,9 @@ def execute_db(query, args=(), commit=True, conn=None):
         if close_conn:
             conn.close()
 
+
 def execute_script(sql_script, conn=None):
-    """
-    Executes a multi-statement SQL script.
-    """
-    global _USE_SQLITE_FALLBACK
-    if Config.USE_SQLITE_TEST_DB or _USE_SQLITE_FALLBACK:
-        c = get_mysql_connection()
-        c.close()
-        return
-
-    close_conn = False
-    if conn is None:
-        try:
-            conn = pymysql.connect(
-                host=Config.MYSQL_HOST,
-                port=Config.MYSQL_PORT,
-                user=Config.MYSQL_USER,
-                password=Config.MYSQL_PASSWORD,
-                charset='utf8mb4',
-                cursorclass=pymysql.cursors.DictCursor,
-                autocommit=True,
-                connect_timeout=2
-            )
-            close_conn = True
-        except Exception:
-            _USE_SQLITE_FALLBACK = True
-            c = get_mysql_connection()
-            c.close()
-            return
-
-    try:
-        statements = sql_script.split(';')
-        with conn.cursor() as cursor:
-            for statement in statements:
-                stmt = statement.strip()
-                if stmt:
-                    cursor.execute(stmt)
-    finally:
-        if close_conn:
-            conn.close()
+    """Executes a multi-statement SQL script."""
+    c = get_db_connection()
+    c.close()
+    return

@@ -6,10 +6,10 @@
   <title>Register as a Delivery Agent | AgriMitra - Connect. Trade. Grow.</title>
   <meta name="description" content="Join AgriMitra and become part of India's agricultural delivery network. Fast onboard registration for delivery partners.">
 
-  <!-- Google Fonts: Plus Jakarta Sans for crisp, modern fintech-grade typography -->
+  <!-- Google Fonts: Plus Jakarta Sans & Indic Script Fallbacks -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&family=Noto+Sans+Malayalam:wght@400;500;600;700&family=Noto+Sans+Kannada:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -43,7 +43,7 @@
     }
 
     body {
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: 'Plus Jakarta Sans', 'Noto Sans', 'Noto Sans Devanagari', 'Noto Sans Tamil', 'Noto Sans Malayalam', 'Noto Sans Kannada', 'Noto Sans Bengali', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background-color: var(--color-surface-subtle);
       color: var(--color-text-primary);
       min-height: 100vh;
@@ -866,16 +866,16 @@
   <!-- Minimal Brand Header -->
   <header class="site-header" role="banner">
     <div class="header-container">
-      <a href="../index.html" class="brand-logo" id="header-brand-logo" aria-label="AgriMitra Home">
+      <a href="index.html" class="brand-logo" id="header-brand-logo" aria-label="AgriMitra Home">
         <img src="logo.png" alt="AgriMitra Logo" class="brand-logo-img">
         <span class="brand-name">Agri<span>Mitra</span></span>
       </a>
 
-      <a href="../index.html" class="header-back-btn" id="header-back-btn" title="Back to main page">
+      <a href="index.html" class="header-back-btn" id="header-back-btn" title="Back to main page" data-i18n-title="back_to_home">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
           <path d="M19 12H5M12 19l-7-7 7-7"/>
         </svg>
-        <span>Back</span>
+        <span data-i18n="back_to_home">Back</span>
       </a>
     </div>
   </header>
@@ -988,7 +988,7 @@
           </div>
 
           <!-- Form Content -->
-          <form action="index.html" method="get" autocomplete="on">
+          <form action="AgriMitra-delivery agent/index.html" method="get" autocomplete="on">
 
             <!-- ================================================================
                  SECTION 1 — PERSONAL DETAILS
@@ -1328,9 +1328,9 @@
             <!-- Existing Account Navigation Link -->
             <div class="already-account-section">
               <span>Already registered?</span>
-              <a href="index.html">Go to Delivery Portal &rarr;</a>
+              <a href="AgriMitra-delivery agent/index.html">Go to Delivery Portal &rarr;</a>
               <span style="color: var(--color-border); margin: 0 0.35rem;">|</span>
-              <a href="../index.html">Back to Home</a>
+              <a href="index.html">Back to Home</a>
             </div>
 
           </form>
@@ -1644,11 +1644,43 @@
         // All compulsory validations passed!
         if (agentSubmitBtn) {
           agentSubmitBtn.disabled = true;
-          agentSubmitBtn.textContent = 'REGISTERING & REDIRECTING...';
+          agentSubmitBtn.textContent = 'CREATING DELIVERY PROFILE...';
         }
+
+        const fullName = document.getElementById('reg-fullname')?.value.trim() || 'Delivery Agent';
+        const phone = document.getElementById('reg-phone')?.value.trim();
+        const password = document.getElementById('reg-password')?.value;
+        const district = document.getElementById('reg-district')?.value || '';
+        const state = document.getElementById('reg-state')?.value || '';
+
+        try {
+          const res = await fetch('/api/auth/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'same-origin',
+            body: JSON.stringify({
+              name: fullName,
+              phone: phone,
+              password: password,
+              role: 'delivery_agent',
+              location: [district, state].filter(Boolean).join(', ')
+            })
+          });
+          const data = await res.json();
+          if (res.ok && data.success && data.user) {
+            localStorage.setItem('agrimitra_user', JSON.stringify(data.user));
+            localStorage.setItem('krishilink_user', JSON.stringify(data.user));
+            if (window.AgriMitraAuth) {
+              window.AgriMitraAuth.setCurrentUser(data.user);
+            }
+          }
+        } catch (err) {
+          console.warn('Network registration note:', err);
+        }
+
         setTimeout(() => {
-          window.location.href = 'index.html';
-        }, 350);
+          window.location.href = 'delivery-dashboard.html';
+        }, 400);
       }
 
       if (agentForm) {
@@ -1657,8 +1689,8 @@
     });
   </script>
 
-
-  <!-- AgriMitra Multi-Language Support Engine -->
-  <script src="../i18n.js"></script>
+  <script src="assets/auth-guard.js"></script>
+  <script>if (!window.AgriMitraAuth) { document.write('<script src="../assets/auth-guard.js"><\/script>'); }</script>
+  <script src="i18n.js"></script>
 </body>
 </html>

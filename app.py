@@ -20,6 +20,7 @@ from routes.fpo import fpo_bp
 from routes.auction import auction_bp
 from routes.delivery import delivery_bp
 from routes.notifications import notif_bp
+from routes.orders import orders_bp
 
 app.register_blueprint(auth_bp)
 app.register_blueprint(farmer_bp)
@@ -27,6 +28,7 @@ app.register_blueprint(fpo_bp)
 app.register_blueprint(auction_bp)
 app.register_blueprint(delivery_bp)
 app.register_blueprint(notif_bp)
+app.register_blueprint(orders_bp)
 
 # ==============================================================================
 # CORS SUPPORT FOR BROWSER & STATIC CLIENT ACCESS
@@ -116,15 +118,14 @@ def server_error(e):
 # ==============================================================================
 
 def init_app():
-    """Attempt initial database connection check."""
+    """Ensure permanent SQLite database tables and seeds exist."""
     try:
         from database.seed import seed_database
-        print("Checking MySQL database connection and seed state...")
+        print("Checking AgriMitra SQLite database connection and seed state...")
         seed_database()
-        print("MySQL database ready.")
+        print("AgriMitra SQLite permanent database ready.")
     except Exception as e:
-        print(f"\n[Notice] MySQL server is not connected or requires credentials: {e}")
-        print("To configure MySQL, edit .env with your credentials and run: python database/seed.py\n")
+        print(f"[Notice] Database initialization check: {e}")
 
 if __name__ == '__main__':
     init_app()

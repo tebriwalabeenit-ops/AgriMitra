@@ -1644,11 +1644,43 @@
         // All compulsory validations passed!
         if (agentSubmitBtn) {
           agentSubmitBtn.disabled = true;
-          agentSubmitBtn.textContent = 'REGISTERING & REDIRECTING...';
+          agentSubmitBtn.textContent = 'CREATING DELIVERY PROFILE...';
         }
+
+        const fullName = document.getElementById('reg-fullname')?.value.trim() || 'Delivery Agent';
+        const phone = document.getElementById('reg-phone')?.value.trim();
+        const password = document.getElementById('reg-password')?.value;
+        const district = document.getElementById('reg-district')?.value || '';
+        const state = document.getElementById('reg-state')?.value || '';
+
+        try {
+          const res = await fetch('/api/auth/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'same-origin',
+            body: JSON.stringify({
+              name: fullName,
+              phone: phone,
+              password: password,
+              role: 'delivery_agent',
+              location: [district, state].filter(Boolean).join(', ')
+            })
+          });
+          const data = await res.json();
+          if (res.ok && data.success && data.user) {
+            localStorage.setItem('agrimitra_user', JSON.stringify(data.user));
+            localStorage.setItem('krishilink_user', JSON.stringify(data.user));
+            if (window.AgriMitraAuth) {
+              window.AgriMitraAuth.setCurrentUser(data.user);
+            }
+          }
+        } catch (err) {
+          console.warn('Network registration note:', err);
+        }
+
         setTimeout(() => {
-          window.location.href = 'AgriMitra-delivery agent/index.html';
-        }, 350);
+          window.location.href = 'delivery-dashboard.html';
+        }, 400);
       }
 
       if (agentForm) {
@@ -1657,6 +1689,7 @@
     });
   </script>
 
+  <script src="assets/auth-guard.js"></script>
   <script src="i18n.js"></script>
 </body>
 </html>

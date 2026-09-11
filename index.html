@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Kannada:wght@400;500;600;700&family=Noto+Sans+Malayalam:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="style.css">
+  <script src="assets/auth-guard.js"></script>
 </head>
 <body>
   <!-- Subtle Background Pattern -->
@@ -317,15 +318,25 @@
             </div>
             <p class="core-card-text" data-i18n="pillar_3_desc">
               Verified buyers, FPO aggregators, and institutional processors with verifiable credit and on-time settlement ratings.
-            </p>  <!-- Site Footer -->
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
   <footer class="site-footer" role="contentinfo">
     <div class="container">
       <div class="footer-inner">
         <div class="footer-brand">
-          <div class="brand-wrapper">
+          <a href="index.html" class="brand-wrapper" aria-label="AgriMitra Home">
             <img src="logo.png" alt="AgriMitra" class="brand-logo-img footer-logo-img">
-            <span class="brand-name">AgriMitra</span>
-          </div>
+            <div class="brand-text-block">
+              <span class="brand-name">AgriMitra</span>
+              <span class="brand-subtext" data-i18n="brand_subtext">Market Intelligence &amp; Trade</span>
+            </div>
+          </a>
           <p class="footer-statement" data-i18n="footer_statement">
             Connect. Trade. Grow. Direct market access, real-time intelligence, and verified fulfillment across the agricultural supply chain.
           </p>
@@ -397,10 +408,15 @@
               <span class="demo-btn-name">Punjab FPO</span>
               <span class="demo-btn-phone">9812345678</span>
             </button>
-            <button type="button" class="demo-account-btn" data-role="distributor" data-phone="9823456789" data-pass="distributor123">
+            <button type="button" class="demo-account-btn" data-role="wholesaler" data-phone="9823456789" data-pass="distributor123">
               <span class="demo-btn-role badge-distributor" data-i18n="role_wholesaler">Wholesaler</span>
               <span class="demo-btn-name">Kisan Mandi</span>
               <span class="demo-btn-phone">9823456789</span>
+            </button>
+            <button type="button" class="demo-account-btn" data-role="distributor" data-phone="9845678901" data-pass="distributor123">
+              <span class="demo-btn-role badge-distributor" data-i18n="role_distributor">Distributor</span>
+              <span class="demo-btn-name">MahaAgro Dist.</span>
+              <span class="demo-btn-phone">9845678901</span>
             </button>
             <button type="button" class="demo-account-btn" data-role="delivery" data-phone="9834567890" data-pass="delivery123">
               <span class="demo-btn-role badge-delivery" data-i18n="role_delivery">Delivery</span>
@@ -420,9 +436,10 @@
           <select id="login-role" class="form-control" style="width: 100%; padding: 0.65rem 0.85rem; border: 1px solid var(--color-border); border-radius: var(--radius-md); font-family: inherit; font-size: 0.875rem; background: var(--color-surface); cursor: pointer;">
             <option value="farmer" data-i18n="portal_opt_farmer">Farmer Portal &amp; Dashboard</option>
             <option value="buyer" data-i18n="portal_opt_buyer">Buyer Dashboard &amp; Marketplace</option>
-            <option value="delivery" data-i18n="portal_opt_delivery">Delivery Agent Logistics Portal</option>
-            <option value="distributor" data-i18n="portal_opt_distributor">Distributor / Wholesaler Dashboard</option>
             <option value="fpo" data-i18n="portal_opt_fpo">FPO Portal &amp; Aggregation</option>
+            <option value="wholesaler" data-i18n="role_wholesaler">Wholesaler Mandi Cockpit</option>
+            <option value="distributor" data-i18n="portal_opt_distributor">Distributor Dashboard</option>
+            <option value="delivery" data-i18n="portal_opt_delivery">Delivery Agent Logistics Portal</option>
           </select>
         </div>
 

@@ -10,6 +10,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="AgriMitra- FPO/style.css">
   <link rel="stylesheet" href="style.css">
+  <script src="assets/auth-guard.js"></script>
+  <script>if (!window.AgriMitraAuth) { document.write('<script src="../assets/auth-guard.js"><\/script>'); }</script>
 </head>
 <body>
 
@@ -68,13 +70,17 @@
 
       <!-- Sidebar Footer / FPO Badge -->
       <div class="sidebar-footer">
-        <div class="fpo-profile-card">
+        <div class="fpo-profile-card" style="cursor: pointer;" onclick="openModal('fpoProfileModal')" title="View FPO Profile & Settings">
           <div class="fpo-avatar">NF</div>
           <div class="fpo-details">
             <div class="fpo-name">Nashik Farmers Collective</div>
             <div class="fpo-role">FPO #MH-NSK-401 · Active</div>
           </div>
         </div>
+        <button type="button" class="ghost-btn" style="width: 100%; margin-top: 8px; justify-content: center; font-size: 0.8rem; color: #dc2626; border: 1px solid #fecaca; background: #fff5f5; border-radius: 6px; padding: 6px 10px; cursor: pointer; display: flex; align-items: center; gap: 6px;" onclick="AgriMitraAuth.logout()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+          Sign Out
+        </button>
       </div>
     </aside>
 
@@ -1524,6 +1530,15 @@
             </tr>
           </tbody>
         </table>
+              <td class="font-bold">PAY-9764</td>
+              <td>AgroMillers Consortium</td>
+              <td>Order #1045 (Wheat)</td>
+              <td>02 Sept (Settled)</td>
+              <td class="font-bold">₹1,28,250</td>
+              <td><span class="status-pill status-delivered">Released to FPO</span></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <div class="modal-footer">
         <button type="button" class="secondary-btn" onclick="closeModal('allPaymentsModal')">Close</button>
@@ -1531,12 +1546,57 @@
     </div>
   </div>
 
+  <!-- 9. FPO ORGANIZATION PROFILE & SETTINGS MODAL -->
+  <div class="modal-backdrop" id="fpoProfileModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">FPO Organization Profile</h3>
+          <p class="modal-sub">Verified Producer Organization credentials and Escrow account details</p>
+        </div>
+        <button class="modal-close" onclick="closeModal('fpoProfileModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center; margin-bottom: 1.25rem;">
+          <div style="width: 64px; height: 64px; border-radius: 50%; background: #1b4332; color: #fff; font-size: 1.5rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem auto;" id="modalFpoAvatar">NF</div>
+          <h4 style="margin: 0; font-size: 1.15rem; color: var(--color-primary);" id="modalFpoName">Nashik Farmers Collective</h4>
+          <p style="margin: 4px 0 0 0; font-size: 0.8rem; color: #64748b;">Registration: FPO #MH-NSK-401 · Ministry of Agriculture Verified</p>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; font-size: 0.85rem; margin-bottom: 1.25rem;">
+          <div style="background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0;">
+            <div style="color: #64748b; font-size: 0.75rem;">Member Farmers</div>
+            <div style="font-weight: 700; color: #0f172a; margin-top: 2px;">184 Verified</div>
+          </div>
+          <div style="background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0;">
+            <div style="color: #64748b; font-size: 0.75rem;">Aggregation Hub</div>
+            <div style="font-weight: 700; color: #0f172a; margin-top: 2px;">Nashik Central Godown</div>
+          </div>
+          <div style="background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0;">
+            <div style="color: #64748b; font-size: 0.75rem;">SafePay Escrow Account</div>
+            <div style="font-weight: 700; color: #166534; margin-top: 2px;">Active · ICICI Mandi Pool</div>
+          </div>
+          <div style="background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0;">
+            <div style="color: #64748b; font-size: 0.75rem;">QC Lab Certificate</div>
+            <div style="font-weight: 700; color: #0f172a; margin-top: 2px;">AGMARK Grade A</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="display: flex; justify-content: space-between; align-items: center;">
+        <button type="button" class="secondary-btn" style="color: #dc2626; border-color: #fca5a5;" onclick="AgriMitraAuth.logout()">
+          Sign Out of FPO
+        </button>
+        <button type="button" class="primary-btn" onclick="closeModal('fpoProfileModal')">Close</button>
+      </div>
+    </div>
+  </div>
+
   <!-- TOAST NOTIFICATION CONTAINER -->
   <div class="toast-container" id="toastContainer"></div>
+
 
   <script src="AgriMitra- FPO/app.js"></script>
 
   <!-- AgriMitra Multi-Language Support Engine -->
-  <script src="../i18n.js"></script>
+  <script src="i18n.js"></script>
 </body>
 </html>

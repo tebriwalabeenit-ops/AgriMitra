@@ -259,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Submit / Create Account
   if (btnCreateAccount) {
-    btnCreateAccount.addEventListener('click', () => {
+    btnCreateAccount.addEventListener('click', async () => {
       if (!validateStep3()) return;
 
       // Show Creating Account state
@@ -293,25 +293,52 @@ document.addEventListener('DOMContentLoaded', () => {
         window.AgriMitraStore.saveProfile(registeredProfile);
       }
 
-      // Simulate short network delay and auto-redirect to dashboard
-      setTimeout(() => {
-        // Hide form panels, show success view
-        if (wizardFormContainer && successContainer) {
-          wizardFormContainer.style.display = 'none';
-          successContainer.style.display = 'block';
+      const payload = {
+        name: registeredProfile.businessName || registeredProfile.contactPerson,
+        phone: registeredProfile.phone,
+        password: inputPassword.value,
+        role: 'distributor',
+        location: [registeredProfile.city, registeredProfile.district, registeredProfile.state].filter(Boolean).join(', ')
+      };
 
-          // Insert personalized name into success card
-          const successBusinessEl = document.getElementById('success-business-name');
-          if (successBusinessEl) {
-            successBusinessEl.textContent = registeredProfile.businessName || 'MahaAgro Wholesale Dist.';
+      try {
+        const response = await fetch('/api/auth/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'same-origin',
+          body: JSON.stringify(payload)
+        });
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          if (data.user) {
+            localStorage.setItem('agrimitra_user', JSON.stringify(data.user));
+            localStorage.setItem('krishilink_user', JSON.stringify(data.user));
+            if (window.AgriMitraAuth) {
+              window.AgriMitraAuth.setCurrentUser(data.user);
+            }
           }
         }
+      } catch (err) {
+        console.warn('Network registration note:', err);
+      }
 
-        // Auto-redirect to Distributor Dashboard
-        setTimeout(() => {
-          window.location.href = 'distributor/dashboard.html';
-        }, 700);
-      }, 400);
+      // Hide form panels, show success view
+      if (wizardFormContainer && successContainer) {
+        wizardFormContainer.style.display = 'none';
+        successContainer.style.display = 'block';
+
+        // Insert personalized name into success card
+        const successBusinessEl = document.getElementById('success-business-name');
+        if (successBusinessEl) {
+          successBusinessEl.textContent = registeredProfile.businessName || 'MahaAgro Wholesale Dist.';
+        }
+      }
+
+      // Auto-redirect to Distributor Dashboard
+      setTimeout(() => {
+        window.location.href = 'distributor-dashboard.html';
+      }, 1000);
     });
   }
 });

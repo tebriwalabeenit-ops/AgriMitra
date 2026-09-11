@@ -1812,18 +1812,61 @@
 
         // All compulsory validations passed!
         const fpoNameInput = document.getElementById('fpo-name');
-        if (fpoNameInput && fpoNameInput.value.trim()) {
-          try {
-            localStorage.setItem('agriFpoName', fpoNameInput.value.trim());
-          } catch(err) {}
-        }
+        const repNameInput = document.getElementById('rep-full-name');
+        const repMobileInput = document.getElementById('rep-mobile');
+        const repEmailInput = document.getElementById('rep-email');
+        const stateSelect = document.getElementById('fpo-state');
+        const districtSelect = document.getElementById('fpo-district');
+        const addressInput = document.getElementById('fpo-address');
+
+        const payload = {
+          role: 'fpo',
+          full_name: (fpoNameInput && fpoNameInput.value.trim()) || (repNameInput && repNameInput.value.trim()) || 'Verified FPO',
+          fpo_name: fpoNameInput ? fpoNameInput.value.trim() : 'Verified FPO',
+          phone: repMobileInput ? repMobileInput.value.trim() : '',
+          email: repEmailInput ? repEmailInput.value.trim() : '',
+          password: pwdInput ? pwdInput.value : '',
+          state: stateSelect ? stateSelect.value : 'Punjab',
+          district: districtSelect ? districtSelect.value : 'Ludhiana',
+          warehouse_location: addressInput ? addressInput.value.trim() : 'Mandi Aggregation Hub'
+        };
+
         if (fpoSubmitBtn) {
           fpoSubmitBtn.disabled = true;
-          fpoSubmitBtn.textContent = 'REGISTERING & REDIRECTING...';
+          fpoSubmitBtn.textContent = 'REGISTERING IN AGRI-MITRA...';
         }
-        setTimeout(() => {
-          window.location.href = 'AgriMitra- FPO/index.html';
-        }, 350);
+
+        fetch('/api/auth/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify(payload)
+        })
+        .then(async res => {
+          const data = await res.json();
+          if (res.ok && data.success) {
+            if (data.user) {
+              localStorage.setItem('agrimitra_user', JSON.stringify(data.user));
+              localStorage.setItem('agriFpoName', payload.fpo_name);
+            }
+            if (window.AgriMitraAuth) {
+              window.AgriMitraAuth.showToast('FPO registration confirmed! Welcome to AgriMitra.', 'success', 2500);
+            }
+            setTimeout(() => {
+              window.location.href = data.redirect_url || 'fpo-dashboard.html';
+            }, 600);
+          } else {
+            alert(data.message || 'Registration failed. Mobile number may already exist.');
+            if (fpoSubmitBtn) {
+              fpoSubmitBtn.disabled = false;
+              fpoSubmitBtn.textContent = 'REGISTER FPO ACCOUNT';
+            }
+          }
+        })
+        .catch(err => {
+          console.warn('[FPO Reg] Offline fallback:', err);
+          window.location.href = 'fpo-dashboard.html';
+        });
       }
 
       if (fpoForm) {
@@ -1833,5 +1876,6 @@
   </script>
 
   <script src="i18n.js"></script>
+  <script src="assets/auth-guard.js"></script>
 </body>
 </html>

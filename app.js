@@ -53,6 +53,15 @@ document.addEventListener('DOMContentLoaded', () => {
     openDialog(aboutDialog);
   });
 
+  // Auto-open modal based on URL hash
+  if (window.location.hash === '#register' || window.location.hash === '#role-selection') {
+    openDialog(registerDialog);
+  } else if (window.location.hash === '#login') {
+    openDialog(loginDialog);
+  } else if (window.location.hash === '#about-modal') {
+    openDialog(aboutDialog);
+  }
+
   // Generic Close Buttons
   document.querySelectorAll('[data-close-modal]').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -140,16 +149,20 @@ document.addEventListener('DOMContentLoaded', () => {
     farmer: 'AgriMitra-Farmer/farmer/register.html',
     buyer: 'AgriMitra-Buyer/buyer.html',
     fpo: 'AgriMitra- FPO/fpo-register.html',
+    wholesaler: 'Agrimitra(wholesaler and distributer)/register-distributor.html',
+    distributor: 'Agrimitra(wholesaler and distributer)/register-distributor.html',
     delivery: 'AgriMitra-delivery agent/delivery-agent.html',
-    distributor: 'Agrimitra(wholesaler and distributer)/register-distributor.html'
+    delivery_agent: 'AgriMitra-delivery agent/delivery-agent.html'
   };
 
   const roleDashboardRoutes = {
     farmer: 'AgriMitra-Farmer/farmer/dashboard.html',
-    buyer: 'AgriMitra-Buyer/buyer-dashboard.html',
-    fpo: 'AgriMitra- FPO/index.html',
-    delivery: 'AgriMitra-delivery agent/index.html',
-    distributor: 'Agrimitra(wholesaler and distributer)/distributor-dashboard.html'
+    buyer: 'buyer-dashboard.html',
+    fpo: 'fpo-dashboard.html',
+    wholesaler: 'wholesaler-trading.html',
+    distributor: 'Agrimitra(wholesaler and distributer)/distributor-dashboard.html',
+    delivery: 'delivery-dashboard.html',
+    delivery_agent: 'delivery-dashboard.html'
   };
 
   // Role trigger links in footer open either registration dialog or direct page
@@ -248,6 +261,10 @@ document.addEventListener('DOMContentLoaded', () => {
           // Save active session metadata locally
           if (data.user) {
             localStorage.setItem('krishilink_user', JSON.stringify(data.user));
+            localStorage.setItem('agrimitra_user', JSON.stringify(data.user));
+            if (window.AgriMitraAuth) {
+              window.AgriMitraAuth.setCurrentUser(data.user);
+            }
             if (data.user.preferred_language && window.AgriMitraI18n) {
               window.AgriMitraI18n.setLanguage(data.user.preferred_language);
             }
@@ -257,13 +274,15 @@ document.addEventListener('DOMContentLoaded', () => {
           // Specific destination logic for demo flows
           let targetDashboard = roleDashboardRoutes[selectedRole] || roleDashboardRoutes[actualRole];
           if (selectedRole === 'buyer') {
-            targetDashboard = 'AgriMitra-Buyer/buyer-dashboard.html';
-          } else if (selectedRole === 'distributor') {
+            targetDashboard = 'buyer-dashboard.html';
+          } else if (selectedRole === 'wholesaler') {
             targetDashboard = 'wholesaler-trading.html';
+          } else if (selectedRole === 'distributor') {
+            targetDashboard = 'Agrimitra(wholesaler and distributer)/distributor-dashboard.html';
           } else if (selectedRole === 'delivery' || actualRole === 'delivery_agent') {
             targetDashboard = 'delivery-dashboard.html';
           } else if (selectedRole === 'fpo') {
-            targetDashboard = 'fpo-bidding-status.html';
+            targetDashboard = 'fpo-dashboard.html';
           }
 
           closeDialog(loginDialog);
@@ -280,10 +299,11 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (networkErr) {
         console.warn('[KrishiLink] Login API unreachable, continuing in offline demo mode:', networkErr);
         let targetDashboard = roleDashboardRoutes[selectedRole] || 'AgriMitra-Farmer/farmer/dashboard.html';
-        if (selectedRole === 'buyer') targetDashboard = 'AgriMitra-Buyer/buyer-dashboard.html';
-        else if (selectedRole === 'distributor') targetDashboard = 'wholesaler-trading.html';
+        if (selectedRole === 'buyer') targetDashboard = 'buyer-dashboard.html';
+        else if (selectedRole === 'wholesaler') targetDashboard = 'wholesaler-trading.html';
+        else if (selectedRole === 'distributor') targetDashboard = 'Agrimitra(wholesaler and distributer)/distributor-dashboard.html';
         else if (selectedRole === 'delivery') targetDashboard = 'delivery-dashboard.html';
-        else if (selectedRole === 'fpo') targetDashboard = 'fpo-bidding-status.html';
+        else if (selectedRole === 'fpo') targetDashboard = 'fpo-dashboard.html';
         closeDialog(loginDialog);
         window.location.href = targetDashboard;
       } finally {

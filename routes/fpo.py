@@ -208,9 +208,17 @@ def create_auction():
             end_dt = now + timedelta(hours=1)
         status = 'active' if start_dt <= now < end_dt else ('upcoming' if now < start_dt else 'ended')
 
-    # Lot code e.g. TRD-WHT-925
+    # Generate guaranteed unique lot code e.g. TRD-WHT-925
     prefix = product_name[:3].upper() if len(product_name) >= 3 else "AGR"
-    lot_code = f"TRD-{prefix}-{random.randint(100, 999)}"
+    lot_code = None
+    for _ in range(30):
+        candidate = f"TRD-{prefix}-{random.randint(100, 999)}"
+        existing = query_db("SELECT id FROM auctions WHERE lot_code = %s", (candidate,), one=True)
+        if not existing:
+            lot_code = candidate
+            break
+    if not lot_code:
+        lot_code = f"TRD-{prefix}-{int(time.time()) % 100000}"
 
     # Check for custom image upload (base64 data URL or uploaded URL)
     custom_img = data.get('image_url') or data.get('image') or data.get('produce_image')

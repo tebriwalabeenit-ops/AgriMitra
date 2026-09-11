@@ -1,19 +1,27 @@
 import os
-from dotenv import load_dotenv
-
-# Load environment variables from .env if present
-load_dotenv()
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 
 class Config:
-    SECRET_KEY = os.environ.get('SECRET_KEY', 'krishilink-sih-2026-secret-key-development')
+    SECRET_KEY = os.environ.get('SECRET_KEY', 'agrimitra-sih-2026-secret-key-production')
     
-    # MySQL Database Configuration
+    # Base directory
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    
+    # Primary Database: Permanent SQLite Database File
+    # Stores all data permanently on disk in database/agrimitra.db
+    SQLITE_DB_PATH = os.environ.get('SQLITE_DB_PATH', os.path.join(BASE_DIR, 'database', 'agrimitra.db'))
+    
+    # Force SQLite primary engine
+    USE_SQLITE = True
+    USE_SQLITE_TEST_DB = True
+    
+    # Optional MySQL Config (fallback/remote integration if explicitly configured)
     MYSQL_HOST = os.environ.get('MYSQL_HOST', 'localhost')
     MYSQL_PORT = int(os.environ.get('MYSQL_PORT', 3306))
     MYSQL_USER = os.environ.get('MYSQL_USER', 'root')
     MYSQL_PASSWORD = os.environ.get('MYSQL_PASSWORD', '')
-    MYSQL_DATABASE = os.environ.get('MYSQL_DATABASE', 'krishilink_db')
-    
-    # Optional test DB override (for CI or running without live MySQL)
-    USE_SQLITE_TEST_DB = os.environ.get('USE_SQLITE_TEST_DB', 'False').lower() in ('true', '1', 'yes')
-    SQLITE_DB_PATH = os.environ.get('SQLITE_DB_PATH', 'krishilink_test.db')
+    MYSQL_DATABASE = os.environ.get('MYSQL_DATABASE', 'agrimitra_db')

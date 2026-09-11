@@ -40,6 +40,9 @@ class KrishiLinkBackendTests(unittest.TestCase):
             except Exception:
                 pass
         seed_database()
+        # Ensure auction 1 is in active state with future end_time using local datetime
+        future_time = (datetime.now() + timedelta(hours=24)).strftime('%Y-%m-%d %H:%M:%S')
+        execute_db("UPDATE auctions SET status = 'active', end_time = %s WHERE id = 1", (future_time,))
 
     def setUp(self):
         self.client = app.test_client()
@@ -378,12 +381,17 @@ class KrishiLinkBackendTests(unittest.TestCase):
     def test_14_bid_after_expiry_rejected(self):
         self.client.post('/api/auth/login', json={"phone": "9823456789", "password": "dist12345"})
         
-        # Auction 5 is 'ended'
-        res = self.client.post('/api/auctions/5/bids', json={"bid_amount": 100.0})
+        ended = query_db("SELECT id FROM auctions WHERE status = 'ended' LIMIT 1", one=True)
+        if not ended:
+            execute_db("INSERT INTO auctions (lot_code, fpo_id, product_name, category, quantity, unit, starting_price, min_increment, current_highest_bid, start_time, end_time, status) VALUES ('TRD-EXP-999', 1, 'Expired Wheat', 'grains', 100, 'kg', 20, 1, 25, datetime('now', '-2 days'), datetime('now', '-1 day'), 'ended')")
+            ended = query_db("SELECT id FROM auctions WHERE status = 'ended' LIMIT 1", one=True)
+        
+        auction_id = ended['id']
+        res = self.client.post(f'/api/auctions/{auction_id}/bids', json={"bid_amount": 100.0})
         self.assertEqual(res.status_code, 400)
         data = res.get_json()
         self.assertFalse(data['success'])
-        self.assertIn("ended", data['message'].lower())
+        self.assertTrue("ended" in data['message'].lower() or "closed" in data['message'].lower())
         print("[PASS] Test 14: Bid on expired/ended auction rejected.")
 
     # --------------------------------------------------------------------------

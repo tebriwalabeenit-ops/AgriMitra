@@ -369,10 +369,18 @@
         }
 
         // All compulsory validations passed!
-        try {
-          localStorage.setItem('agriFarmerName', nameVal);
-          localStorage.setItem('agriFarmerPhone', phoneCheck.cleanedPhone || phoneVal);
-        } catch(err) {}
+        const cropInput = regForm.querySelector('#reg-crop-input, .reg-crop');
+        const cropVal = cropInput ? cropInput.value.trim() : 'Paddy';
+
+        const payload = {
+          role: 'farmer',
+          full_name: nameVal,
+          phone: phoneCheck.cleanedPhone || phoneVal,
+          state: stateSelect ? stateSelect.value : 'Punjab',
+          district: districtVal,
+          password: pwdVal,
+          primary_crops: cropVal
+        };
 
         if (errorAlert) errorAlert.style.display = 'none';
         if (successAlert) successAlert.style.display = 'block';
@@ -382,9 +390,38 @@
           submitBtn.innerHTML = '<span class="btn-spinner" style="display:inline-block"></span> <span>Registering & Redirecting...</span>';
         }
 
-        setTimeout(() => {
+        fetch('/api/auth/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify(payload)
+        })
+        .then(async res => {
+          const data = await res.json();
+          if (res.ok && data.success) {
+            if (data.user) {
+              localStorage.setItem('agrimitra_user', JSON.stringify(data.user));
+              localStorage.setItem('agriFarmerName', data.user.full_name);
+              localStorage.setItem('agriFarmerPhone', data.user.phone);
+            }
+            if (window.AgriMitraAuth) {
+              window.AgriMitraAuth.showToast('Farmer account registered successfully! Redirecting...', 'success', 2500);
+            }
+            setTimeout(() => {
+              window.location.href = data.redirect_url || 'dashboard.html';
+            }, 600);
+          } else {
+            showFormError(data.message || 'Registration failed. Mobile number may already exist.', phoneInput);
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.innerHTML = '<span>Register as a Farmer</span>';
+            }
+          }
+        })
+        .catch(err => {
+          console.warn('[Farmer Reg] Offline fallback:', err);
           window.location.href = 'dashboard.html';
-        }, 400);
+        });
       }
 
       regForm.addEventListener('submit', handleFarmerRegistrationSubmit);
@@ -395,6 +432,10 @@
   // 3. Simple & Interactive Farmer Dashboard Logic
   // =========================================================================
   function initDashboardPage() {
+    if (window.AgriMitraAuth) {
+      window.AgriMitraAuth.guardRole('farmer', { strict: false });
+    }
+
     // Load registered farmer name if available
     try {
       const storedName = localStorage.getItem('agriFarmerName');
@@ -415,18 +456,11 @@
     const signOutBtns = document.querySelectorAll('#sign-out-btn, .btn-signout');
     signOutBtns.forEach((btn) => {
       btn.addEventListener('click', (e) => {
-        const registerView = document.getElementById('register-view');
-        const dashboardView = document.getElementById('dashboard-view');
-        if (registerView && dashboardView) {
-          e.preventDefault();
-          dashboardView.classList.remove('active');
-          registerView.style.display = 'flex';
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-          if (window.history && window.history.pushState) {
-            window.history.pushState({ view: 'register' }, '', '#farmer/register');
-          }
+        e.preventDefault();
+        if (window.AgriMitraAuth) {
+          window.AgriMitraAuth.logout('../../index.html');
         } else {
-          window.location.href = 'register.html';
+          window.location.href = '../../index.html';
         }
       });
     });

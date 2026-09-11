@@ -6,10 +6,10 @@
   <title>Register as a Buyer | AgriMitra - Connect. Trade. Grow.</title>
   <meta name="description" content="Join AgriMitra as a verified buyer. Source quality-graded agricultural produce lots directly from farmers and FPOs with transparent pricing.">
 
-  <!-- Google Fonts: Plus Jakarta Sans for crisp, modern fintech-grade typography -->
+  <!-- Google Fonts: Plus Jakarta Sans & Indic Script Fallbacks -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&family=Noto+Sans+Malayalam:wght@400;500;600;700&family=Noto+Sans+Kannada:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -43,7 +43,7 @@
     }
 
     body {
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: 'Plus Jakarta Sans', 'Noto Sans', 'Noto Sans Devanagari', 'Noto Sans Tamil', 'Noto Sans Malayalam', 'Noto Sans Kannada', 'Noto Sans Bengali', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background-color: var(--color-surface-subtle);
       color: var(--color-text-primary);
       min-height: 100vh;
@@ -742,16 +742,16 @@
   <!-- Minimal Brand Header -->
   <header class="site-header" role="banner">
     <div class="header-container">
-      <a href="../index.html" class="brand-logo" id="header-brand-logo" aria-label="AgriMitra Home">
+      <a href="index.html" class="brand-logo" id="header-brand-logo" aria-label="AgriMitra Home">
         <img src="logo.png" alt="AgriMitra Logo" class="brand-logo-img">
         <span class="brand-name">Agri<span>Mitra</span></span>
       </a>
 
-      <a href="../index.html" class="header-back-btn" id="header-back-btn" title="Back to main page">
+      <a href="index.html" class="header-back-btn" id="header-back-btn" title="Back to main page" data-i18n-title="back_to_home">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
           <path d="M19 12H5M12 19l-7-7 7-7"/>
         </svg>
-        <span>Back</span>
+        <span data-i18n="back_to_home">Back</span>
       </a>
     </div>
   </header>
@@ -774,7 +774,7 @@
           </h1>
         </div>
 
-        <p class="brand-tagline">
+        <p class="brand-tagline" data-i18n="hero_tagline">
           Connect. Trade. Grow.
         </p>
 
@@ -1112,7 +1112,7 @@
               <span>Already registered?</span>
               <a href="buyer-dashboard.html">Go to Buyer Dashboard &rarr;</a>
               <span style="color: var(--color-border); margin: 0 0.35rem;">|</span>
-              <a href="../index.html">Back to Home</a>
+              <a href="index.html">Back to Home</a>
             </div>
 
           </form>
@@ -1416,11 +1416,59 @@
         // All compulsory validations passed!
         if (buyerSubmitBtn) {
           buyerSubmitBtn.disabled = true;
-          buyerSubmitBtn.textContent = 'REGISTERING & REDIRECTING...';
+          buyerSubmitBtn.textContent = 'REGISTERING IN AGRI-MITRA...';
         }
-        setTimeout(() => {
+
+        const fullNameInput = document.getElementById('reg-fullname');
+        const phoneInput = document.getElementById('reg-phone');
+        const emailInput = document.getElementById('reg-email');
+        const stateSelect = document.getElementById('reg-state');
+        const districtSelect = document.getElementById('reg-district');
+        const pincodeInput = document.getElementById('reg-pincode');
+        const addressInput = document.getElementById('reg-address');
+
+        const payload = {
+          role: 'buyer',
+          full_name: fullNameInput ? fullNameInput.value.trim() : 'Verified Buyer',
+          phone: phoneInput ? phoneInput.value.trim() : '',
+          email: emailInput ? emailInput.value.trim() : '',
+          password: pwdInput ? pwdInput.value : '',
+          state: stateSelect ? stateSelect.value : '',
+          district: districtSelect ? districtSelect.value : '',
+          pincode: pincodeInput ? pincodeInput.value.trim() : '',
+          delivery_address: addressInput ? addressInput.value.trim() : ''
+        };
+
+        fetch('/api/auth/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify(payload)
+        })
+        .then(async res => {
+          const data = await res.json();
+          if (res.ok && data.success) {
+            if (data.user) {
+              localStorage.setItem('agrimitra_user', JSON.stringify(data.user));
+            }
+            if (window.AgriMitraAuth) {
+              window.AgriMitraAuth.showToast('Registration successful! Welcome to AgriMitra Buyer Mandi.', 'success', 2500);
+            }
+            setTimeout(() => {
+              window.location.href = data.redirect_url || 'buyer-dashboard.html';
+            }, 600);
+          } else {
+            alert(data.message || 'Registration failed. Phone number may already be registered.');
+            if (buyerSubmitBtn) {
+              buyerSubmitBtn.disabled = false;
+              buyerSubmitBtn.textContent = 'REGISTER AS BUYER';
+            }
+          }
+        })
+        .catch(err => {
+          console.warn('[Buyer Reg] Offline fallback:', err);
           window.location.href = 'buyer-dashboard.html';
-        }, 350);
+        });
       }
 
       if (buyerForm) {
@@ -1429,8 +1477,7 @@
     });
   </script>
 
-
-  <!-- AgriMitra Multi-Language Support Engine -->
-  <script src="../i18n.js"></script>
+  <script src="i18n.js"></script>
+  <script src="assets/auth-guard.js"></script>
 </body>
 </html>

@@ -39,7 +39,7 @@
 
       <div class="trading-nav-actions">
         <!-- Notification Icon -->
-        <button type="button" class="icon-button" aria-label="View Trading Alerts" title="Trading Alerts">
+        <button type="button" id="btnNotificationBell" class="icon-button" aria-label="View Trading Alerts" title="Trading Alerts">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
             <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
@@ -966,11 +966,208 @@
           </article>
 
         </div>
+                </div>
+                <div class="trading-metric-item">
+                  <span class="trading-metric-label">Starting Price</span>
+                  <span class="trading-metric-value">₹22/kg</span>
+                </div>
+                <div class="trading-metric-item">
+                  <span class="trading-metric-label">Trading Date</span>
+                  <span class="trading-metric-value" style="font-size: 0.95rem;">15 September</span>
+                </div>
+                <div class="trading-metric-item">
+                  <span class="trading-metric-label">Start Time</span>
+                  <span class="trading-metric-value" style="font-size: 0.95rem;">10:00 AM</span>
+                </div>
+                <div class="trading-metric-item" style="grid-column: span 2; border-top: 1px dashed var(--color-border); padding-top: 6px;">
+                  <span class="trading-metric-label">Duration</span>
+                  <span class="trading-metric-value" style="font-size: 0.95rem;">1 Hour</span>
+                </div>
+              </div>
+
+              <div class="trading-card-footer">
+                <button type="button" class="btn btn-secondary btn-full">
+                  SET REMINDER
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Upcoming Card 2: Kashmiri Apples -->
+          <article class="trading-card">
+            <div class="trading-card-banner">
+              <img src="assets/produce/apple.jpg" alt="Kashmiri Apples Produce">
+              <div class="trading-card-badge-pos">
+                <span class="badge-upcoming">UPCOMING</span>
+              </div>
+            </div>
+            <div class="trading-card-body">
+              <div class="trading-card-title-group">
+                <h3 class="trading-card-title">Kashmiri Apples</h3>
+                <span class="trading-card-fpo">Kashmir Valley Orchard FPO · Jammu &amp; Kashmir</span>
+              </div>
+
+              <div class="trading-metrics-grid">
+                <div class="trading-metric-item">
+                  <span class="trading-metric-label">Quantity</span>
+                  <span class="trading-metric-value">4,000 kg</span>
+                </div>
+                <div class="trading-metric-item">
+                  <span class="trading-metric-label">Starting Price</span>
+                  <span class="trading-metric-value">₹90/kg</span>
+                </div>
+                <div class="trading-metric-item">
+                  <span class="trading-metric-label">Trading Date</span>
+                  <span class="trading-metric-value" style="font-size: 0.95rem;">16 September</span>
+                </div>
+                <div class="trading-metric-item">
+                  <span class="trading-metric-label">Start Time</span>
+                  <span class="trading-metric-value" style="font-size: 0.95rem;">11:30 AM</span>
+                </div>
+                <div class="trading-metric-item" style="grid-column: span 2; border-top: 1px dashed var(--color-border); padding-top: 6px;">
+                  <span class="trading-metric-label">Duration</span>
+                  <span class="trading-metric-value" style="font-size: 0.95rem;">2 Hours</span>
+                </div>
+              </div>
+
+              <div class="trading-card-footer">
+                <button type="button" class="btn btn-secondary btn-full">
+                  SET REMINDER
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         13. MANDI FLASH SALE SECTION
+         (Direct purchase for failed auction lots voluntarily flashed by FPO)
+         ================================================================ -->
+    <section class="mandi-flash-section" id="mandi-flash" aria-labelledby="flash-heading-label">
+      <div class="container">
+        
+        <div class="trading-section-header">
+          <div>
+            <span class="badge-flash" style="margin-bottom: var(--space-2);">
+              DIRECT MANDI CLEARANCE
+            </span>
+            <h2 id="flash-heading-label" class="trading-section-title" style="color: #4E342E;">
+              Mandi Flash Sale
+            </h2>
+            <p style="font-size: var(--font-size-base); color: var(--color-text-secondary); max-width: 780px; margin-top: 4px; line-height: 1.5;">
+              Products that received no valid bids during Live Trading and were voluntarily listed for Flash Sale by their FPO. Available for instant direct purchase at the special mandi clearance rate.
+            </p>
+          </div>
+          <span class="mandi-flash-badge">Instant Wholesale Purchase</span>
+        </div>
+
+        <div class="trading-cards-grid">
+          
+          <!-- Flash Card 1: Premium Wheat -->
+          <article class="trading-card" style="border: 2px solid #D7CCC8;">
+            <div class="trading-card-banner" style="background-color: #FFFDF9;">
+              <img src="assets/produce/wheat.jpg" alt="Premium Wheat Produce">
+              <div class="trading-card-badge-pos">
+                <span class="badge-flash">MANDI FLASH SALE</span>
+              </div>
+              <div class="trading-card-timer-pos" style="background: rgba(198, 40, 40, 0.9);">
+                Offer Ends In: 05:42:18
+              </div>
+            </div>
+
+            <div class="trading-card-body">
+              <div class="trading-card-title-group">
+                <h3 class="trading-card-title">Premium Wheat</h3>
+                <span class="trading-card-fpo">Punjab Farmers Producer Organization · Punjab</span>
+              </div>
+
+              <div style="background-color: #FFFDF9; border: 1px solid #FFE082; border-radius: var(--radius-md); padding: var(--space-4);">
+                <div style="font-size: var(--font-size-xs); color: var(--color-text-muted); text-transform: uppercase;">
+                  Quantity Available: <strong>5,000 kg</strong>
+                </div>
+
+                <div class="flash-price-comparison">
+                  <div>
+                    <span style="font-size: 0.7rem; color: var(--color-text-muted); display: block;">Original Starting Price</span>
+                    <span class="original-price-strike">₹28/kg</span>
+                  </div>
+                  <div style="margin-left: auto; text-align: right;">
+                    <span style="font-size: 0.7rem; color: #C62828; font-weight: var(--font-weight-bold); text-transform: uppercase; display: block;">Special Flash Price</span>
+                    <span class="special-flash-price">₹25/kg</span>
+                  </div>
+                </div>
+
+                <div style="font-size: var(--font-size-xs); color: #795548; margin-top: 6px; border-top: 1px dashed #FFE082; padding-top: 6px;">
+                  Savings: ₹3.00/kg (₹15,000 total discount on entire lot)
+                </div>
+              </div>
+
+              <div class="trading-card-footer">
+                <button type="button" class="btn btn-primary btn-full" style="background-color: #C62828; border-color: #C62828; box-shadow: 0 4px 14px rgba(198, 40, 40, 0.25);">
+                  BUY NOW
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Flash Card 2: Desi Chana / Chickpeas -->
+          <article class="trading-card" style="border: 2px solid #D7CCC8;">
+            <div class="trading-card-banner" style="background-color: #FFFDF9;">
+              <img src="assets/produce/chana.jpg" alt="Chickpeas Produce">
+              <div class="trading-card-badge-pos">
+                <span class="badge-flash">MANDI FLASH SALE</span>
+              </div>
+              <div class="trading-card-timer-pos" style="background: rgba(198, 40, 40, 0.9);">
+                Offer Ends In: 03:15:00
+              </div>
+            </div>
+
+            <div class="trading-card-body">
+              <div class="trading-card-title-group">
+                <h3 class="trading-card-title">Desi Chana</h3>
+                <span class="trading-card-fpo">Malwa Krishi Producer Co · Madhya Pradesh</span>
+              </div>
+
+              <div style="background-color: #FFFDF9; border: 1px solid #FFE082; border-radius: var(--radius-md); padding: var(--space-4);">
+                <div style="font-size: var(--font-size-xs); color: var(--color-text-muted); text-transform: uppercase;">
+                  Quantity Available: <strong>2,400 kg</strong>
+                </div>
+
+                <div class="flash-price-comparison">
+                  <div>
+                    <span style="font-size: 0.7rem; color: var(--color-text-muted); display: block;">Original Starting Price</span>
+                    <span class="original-price-strike">₹52/kg</span>
+                  </div>
+                  <div style="margin-left: auto; text-align: right;">
+                    <span style="font-size: 0.7rem; color: #C62828; font-weight: var(--font-weight-bold); text-transform: uppercase; display: block;">Special Flash Price</span>
+                    <span class="special-flash-price">₹46/kg</span>
+                  </div>
+                </div>
+
+                <div style="font-size: var(--font-size-xs); color: #795548; margin-top: 6px; border-top: 1px dashed #FFE082; padding-top: 6px;">
+                  Savings: ₹6.00/kg (₹14,400 total discount on entire lot)
+                </div>
+              </div>
+
+              <div class="trading-card-footer">
+                <button type="button" class="btn btn-primary btn-full" style="background-color: #C62828; border-color: #C62828; box-shadow: 0 4px 14px rgba(198, 40, 40, 0.25);">
+                  BUY NOW
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
 
       </div>
     </section>
 
   </main>
+  <script src="assets/auth-guard.js"></script>
+  <script src="assets/wholesaler-cockpit.js"></script>
   <script src="assets/frontend_api.js"></script>
 
   <!-- AgriMitra Multi-Language Support Engine -->

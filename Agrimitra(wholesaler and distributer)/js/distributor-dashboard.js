@@ -8,6 +8,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // State Initialization
   // ------------------------------------------------------------------------
   let profile = window.AgriMitraStore ? window.AgriMitraStore.getProfile() : {};
+  if (window.AgriMitraAuth) {
+    window.AgriMitraAuth.guardRole('distributor');
+    const authUser = window.AgriMitraAuth.getCurrentUser();
+    if (authUser) {
+      if (authUser.full_name) {
+        profile.businessName = authUser.full_name;
+        profile.contactPerson = authUser.full_name;
+      }
+      if (authUser.phone) {
+        profile.phone = authUser.phone;
+      }
+    }
+  }
   let requirements = window.AgriMitraStore ? window.AgriMitraStore.getRequirements() : [];
   let orders = window.AgriMitraStore ? window.AgriMitraStore.getOrders() : [];
   let inventory = window.AgriMitraStore ? window.AgriMitraStore.getInventory() : [];

@@ -276,7 +276,7 @@ function handleSidebarNavigation(section) {
       showToast("Displaying payments & escrow balances");
       break;
     case "profile":
-      showToast("Nashik Farmers Collective · FPO #MH-NSK-401 (Verified)");
+      openModal("fpoProfileModal");
       break;
     default:
       break;
@@ -690,9 +690,62 @@ function showToast(message) {
 }
 
 // ==========================================================================
-// 10. DYNAMIC REGISTERED FPO GREETING
+// 10. DYNAMIC REGISTERED FPO GREETING & AUTH BINDINGS
 // ==========================================================================
 document.addEventListener('DOMContentLoaded', () => {
+  // Wire RBAC
+  if (window.AgriMitraAuth) {
+    AgriMitraAuth.guardRole('fpo');
+    const user = AgriMitraAuth.getCurrentUser();
+    if (user && user.full_name) {
+      const greetingEl = document.querySelector('.header-greeting');
+      if (greetingEl) greetingEl.textContent = `Good morning, ${user.full_name}`;
+      const titleEl = document.querySelector('.fpo-title');
+      if (titleEl) titleEl.textContent = user.full_name;
+      const modalNameEl = document.getElementById('modalFpoName');
+      if (modalNameEl) modalNameEl.textContent = user.full_name;
+      const avatarEl = document.querySelector('.header-avatar');
+      if (avatarEl) {
+        const initials = user.full_name
+          .split(' ')
+          .map(w => w[0])
+          .filter(Boolean)
+          .slice(0, 2)
+          .join('')
+          .toUpperCase();
+        if (initials) {
+          avatarEl.textContent = initials;
+          const modalAvatar = document.getElementById('modalFpoAvatar');
+          if (modalAvatar) modalAvatar.textContent = initials;
+        }
+      }
+    }
+  }
+
+  // Header profile button click -> opens fpoProfileModal
+  const headerProf = document.getElementById('headerProfileBtn');
+  if (headerProf) {
+    headerProf.style.cursor = 'pointer';
+    headerProf.addEventListener('click', () => openModal('fpoProfileModal'));
+  }
+
+  // Horizontal top nav links smooth scroll & modal bindings
+  document.querySelectorAll('.fpo-top-nav-bar a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (href === '#produce') {
+        e.preventDefault();
+        scrollToElement('produceSection');
+      } else if (href === '#orders') {
+        e.preventDefault();
+        scrollToElement('ordersSection');
+      } else if (href === '#profile') {
+        e.preventDefault();
+        openModal('fpoProfileModal');
+      }
+    });
+  });
+
   try {
     const savedFpoName = localStorage.getItem('agriFpoName');
     if (savedFpoName) {

@@ -1416,11 +1416,59 @@
         // All compulsory validations passed!
         if (buyerSubmitBtn) {
           buyerSubmitBtn.disabled = true;
-          buyerSubmitBtn.textContent = 'REGISTERING & REDIRECTING...';
+          buyerSubmitBtn.textContent = 'REGISTERING IN AGRI-MITRA...';
         }
-        setTimeout(() => {
+
+        const fullNameInput = document.getElementById('reg-fullname');
+        const phoneInput = document.getElementById('reg-phone');
+        const emailInput = document.getElementById('reg-email');
+        const stateSelect = document.getElementById('reg-state');
+        const districtSelect = document.getElementById('reg-district');
+        const pincodeInput = document.getElementById('reg-pincode');
+        const addressInput = document.getElementById('reg-address');
+
+        const payload = {
+          role: 'buyer',
+          full_name: fullNameInput ? fullNameInput.value.trim() : 'Verified Buyer',
+          phone: phoneInput ? phoneInput.value.trim() : '',
+          email: emailInput ? emailInput.value.trim() : '',
+          password: pwdInput ? pwdInput.value : '',
+          state: stateSelect ? stateSelect.value : '',
+          district: districtSelect ? districtSelect.value : '',
+          pincode: pincodeInput ? pincodeInput.value.trim() : '',
+          delivery_address: addressInput ? addressInput.value.trim() : ''
+        };
+
+        fetch('/api/auth/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify(payload)
+        })
+        .then(async res => {
+          const data = await res.json();
+          if (res.ok && data.success) {
+            if (data.user) {
+              localStorage.setItem('agrimitra_user', JSON.stringify(data.user));
+            }
+            if (window.AgriMitraAuth) {
+              window.AgriMitraAuth.showToast('Registration successful! Welcome to AgriMitra Buyer Mandi.', 'success', 2500);
+            }
+            setTimeout(() => {
+              window.location.href = data.redirect_url || 'buyer-dashboard.html';
+            }, 600);
+          } else {
+            alert(data.message || 'Registration failed. Phone number may already be registered.');
+            if (buyerSubmitBtn) {
+              buyerSubmitBtn.disabled = false;
+              buyerSubmitBtn.textContent = 'REGISTER AS BUYER';
+            }
+          }
+        })
+        .catch(err => {
+          console.warn('[Buyer Reg] Offline fallback:', err);
           window.location.href = 'buyer-dashboard.html';
-        }, 350);
+        });
       }
 
       if (buyerForm) {
@@ -1430,5 +1478,6 @@
   </script>
 
   <script src="i18n.js"></script>
+  <script src="assets/auth-guard.js"></script>
 </body>
 </html>
