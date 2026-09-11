@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FAF5FF" />
+      <stop offset="100%" stop-color="#F3E8FF" />
+    </linearGradient>
+    <linearGradient id="onionPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C084FC" />
+      <stop offset="40%" stop-color="#A855F7" />
+      <stop offset="80%" stop-color="#7E22CE" />
+      <stop offset="100%" stop-color="#581C87" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#581C87" flood-opacity="0.2" />
+    </filter>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#bgGrad)" rx="16" />
+  
+  <!-- Back Onion -->
+  <g filter="url(#shadow)">
+    <circle cx="260" cy="155" r="65" fill="#9333EA" opacity="0.8" />
+    <!-- Sprout top -->
+    <path d="M260 90 L260 70" stroke="#16A34A" stroke-width="4" stroke-linecap="round" />
+  </g>
+
+  <!-- Front Onion -->
+  <g filter="url(#shadow)">
+    <!-- Onion Body -->
+    <path d="M190 75 C195 70 205 70 210 75 C250 115 270 170 245 215 C220 250 160 250 135 215 C110 170 130 115 190 75 Z" fill="url(#onionPurple)" />
+    
+    <!-- Onion Skin Ribs / Streaks -->
+    <path d="M195 75 Q150 150 175 235" stroke="#E9D5FF" stroke-width="2.5" fill="none" opacity="0.4" />
+    <path d="M200 75 Q200 155 200 242" stroke="#E9D5FF" stroke-width="2.5" fill="none" opacity="0.4" />
+    <path d="M205 75 Q245 150 220 238" stroke="#E9D5FF" stroke-width="2.5" fill="none" opacity="0.4" />
+
+    <!-- Root Tufts at bottom -->
+    <path d="M185 240 L180 255 M195 242 L195 258 M205 242 L210 256 M190 240 L188 250" stroke="#D8B4FE" stroke-width="2.5" stroke-linecap="round" />
+    
+    <!-- Top Tip Dry Tip -->
+    <path d="M200 75 L200 60 L196 55" stroke="#A855F7" stroke-width="4" stroke-linecap="round" />
+    <path d="M200 68 L206 58" stroke="#22C55E" stroke-width="3" stroke-linecap="round" />
+  </g>
+  
+  <rect x="24" y="24" width="105" height="24" rx="6" fill="#9333EA" fill-opacity="0.15" />
+  <text x="76" y="40" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#6B21A8" text-anchor="middle">NASHIK RED</text>
+</svg>

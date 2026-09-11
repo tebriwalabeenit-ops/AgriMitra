@@ -1524,6 +1524,20 @@
         callbackBtn.textContent = '✓ Callback Requested';
         callbackBtn.disabled = true;
         showToast('📞 Kisan Sahayak will call you on +91 98765 43210 within 15 minutes.');
+        return;
+      }
+
+      // 6. Universal modal close button and backdrop handler
+      const closeBtn = e.target.closest('.btn-close-modal, .btn-cancel-modal, [data-close-modal]');
+      if (closeBtn) {
+        const modal = closeBtn.closest('.produce-modal-overlay');
+        if (modal) {
+          modal.classList.remove('active');
+        }
+        return;
+      }
+      if (e.target.classList.contains('produce-modal-overlay')) {
+        e.target.classList.remove('active');
       }
     });
 

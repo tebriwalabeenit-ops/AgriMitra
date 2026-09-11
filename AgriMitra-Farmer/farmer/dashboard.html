@@ -422,7 +422,7 @@
     <div class="produce-modal-box">
       <div class="modal-header-row">
         <h3 id="modal-crop-title">&#127806; Sell My Crop (Add Listing)</h3>
-        <button type="button" class="btn-close-modal" id="close-produce-modal-btn" aria-label="Close modal">
+        <button type="button" class="btn-close-modal" id="close-produce-modal-btn" aria-label="Close modal" onclick="this.closest('.produce-modal-overlay').classList.remove('active');">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -521,7 +521,7 @@
             <p style="margin: 0; font-size: 0.8rem; color: var(--color-text-muted);">Keep your contact, location & payout details up to date</p>
           </div>
         </div>
-        <button type="button" class="btn-close-modal" id="close-profile-modal-btn" aria-label="Close modal">
+        <button type="button" class="btn-close-modal" id="close-profile-modal-btn" aria-label="Close modal" onclick="this.closest('.produce-modal-overlay').classList.remove('active');">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -617,7 +617,7 @@
             <p id="modal-crop-bids-subtitle" style="margin: 0; font-size: 0.8rem; color: var(--color-text-muted);">Verified buyers offering live bids for your produce</p>
           </div>
         </div>
-        <button type="button" class="btn-close-modal" id="close-crop-bids-modal-btn" aria-label="Close modal">
+        <button type="button" class="btn-close-modal" id="close-crop-bids-modal-btn" aria-label="Close modal" onclick="this.closest('.produce-modal-overlay').classList.remove('active');">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -659,7 +659,7 @@
             <p style="margin: 0; font-size: 0.8rem; color: var(--color-text-muted);">100% verified DBT and UPI settlements linked to your Kisan account</p>
           </div>
         </div>
-        <button type="button" class="btn-close-modal" id="close-payouts-modal-btn" aria-label="Close modal">
+        <button type="button" class="btn-close-modal" id="close-payouts-modal-btn" aria-label="Close modal" onclick="this.closest('.produce-modal-overlay').classList.remove('active');">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
