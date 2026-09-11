@@ -376,28 +376,124 @@ body.is-registration-page::-webkit-scrollbar,
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
+/* ==========================================================================
+   State & District Form Dropdown Select ("Dropbox") Styling
+   ========================================================================== */
+.state-district-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.875rem;
+  margin-bottom: 1.25rem;
+  align-items: flex-start;
+}
+
+.form-select-group {
+  position: relative;
+  width: 100%;
+}
+
+.form-select {
+  display: block;
+  width: 100%;
+  height: var(--input-height, 50px);
+  padding: 0 2.5rem 0 0.95rem;
+  font-family: var(--font-family, inherit);
+  font-size: var(--font-size-base, 1rem);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-text-primary, #0f172a);
+  background-color: var(--color-surface, #ffffff);
+  border: 1.5px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-md, 10px);
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  box-sizing: border-box;
+  transition: border-color var(--transition-fast, 150ms ease), box-shadow var(--transition-fast, 150ms ease), background-color var(--transition-fast, 150ms ease);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 16px 16px;
+}
+
+.form-select:hover:not(:disabled) {
+  border-color: #94a3b8;
+}
+
+.form-select:focus {
+  border-color: var(--color-border-focus, #15803d);
+  box-shadow: 0 0 0 3px var(--color-primary-focus, rgba(21, 128, 61, 0.2));
+}
+
+.form-select:disabled {
+  background-color: #f1f5f9;
+  border-color: #e2e8f0;
+  color: #94a3b8;
+  cursor: not-allowed;
+  opacity: 0.85;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+.form-select option {
+  color: #0f172a;
+  background-color: #ffffff;
+  padding: 0.5rem;
+}
+
+.form-select optgroup {
+  font-weight: 700;
+  color: #475569;
+  background-color: #f8fafc;
+}
+
 /* Dynamic State-District Quick Suggestion Pills */
 .district-quick-suggestions {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 0.35rem;
-  margin-top: 0.4rem;
+  margin-top: -0.65rem;
+  margin-bottom: 1.25rem;
+}
+
+.quick-pills-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-text-muted, #64748b);
+  margin-right: 0.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
 .district-pill-btn {
-  background: var(--color-surface-muted);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-full);
+  background: var(--color-surface-muted, #f1f5f9);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-full, 9999px);
   font-size: 0.72rem;
-  color: var(--color-text-secondary);
-  padding: 0.15rem 0.5rem;
+  color: var(--color-text-secondary, #475569);
+  padding: 0.18rem 0.55rem;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: all var(--transition-fast, 150ms ease);
 }
 
 .district-pill-btn:hover {
-  background: var(--color-primary-light);
-  border-color: var(--color-primary-border);
-  color: var(--color-primary);
+  background: var(--color-primary-light, #f0fdf4);
+  border-color: var(--color-primary-border, #bbf7d0);
+  color: var(--color-primary, #15803d);
+}
+
+.district-pill-btn.active {
+  background: #166534;
+  border-color: #166534;
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(22, 101, 52, 0.25);
+}
+
+.district-pill-btn:focus-visible {
+  outline: 2px solid #166534;
+  outline-offset: 1px;
 }
 

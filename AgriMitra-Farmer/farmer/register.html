@@ -167,44 +167,69 @@
               </div>
             </div>
 
-            <!-- State / District -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.875rem; margin-bottom: 1.25rem;">
+            <!-- State / District Dropboxes -->
+            <div class="state-district-row">
               <div>
-                <label class="form-label" for="reg-state-select">State</label>
-                <div class="password-input-group">
-                  <select id="reg-state-select" class="password-input reg-state" style="padding-right: 0.875rem; background: transparent; cursor: pointer;">
-                    <option value="Tamil Nadu">Tamil Nadu</option>
-                    <option value="Maharashtra">Maharashtra</option>
-                    <option value="Karnataka">Karnataka</option>
-                    <option value="Andhra Pradesh">Andhra Pradesh</option>
-                    <option value="Punjab">Punjab</option>
-                    <option value="Madhya Pradesh">Madhya Pradesh</option>
-                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                <label class="form-label" for="reg-state-select">State / UT</label>
+                <div class="form-select-group">
+                  <select id="reg-state-select" class="form-select reg-state" required>
+                    <option value="" disabled selected>-- Select State / UT --</option>
+                    <optgroup label="States">
+                      <option value="Andhra Pradesh">Andhra Pradesh</option>
+                      <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                      <option value="Assam">Assam</option>
+                      <option value="Bihar">Bihar</option>
+                      <option value="Chhattisgarh">Chhattisgarh</option>
+                      <option value="Goa">Goa</option>
+                      <option value="Gujarat">Gujarat</option>
+                      <option value="Haryana">Haryana</option>
+                      <option value="Himachal Pradesh">Himachal Pradesh</option>
+                      <option value="Jharkhand">Jharkhand</option>
+                      <option value="Karnataka">Karnataka</option>
+                      <option value="Kerala">Kerala</option>
+                      <option value="Madhya Pradesh">Madhya Pradesh</option>
+                      <option value="Maharashtra">Maharashtra</option>
+                      <option value="Manipur">Manipur</option>
+                      <option value="Meghalaya">Meghalaya</option>
+                      <option value="Mizoram">Mizoram</option>
+                      <option value="Nagaland">Nagaland</option>
+                      <option value="Odisha">Odisha</option>
+                      <option value="Punjab">Punjab</option>
+                      <option value="Rajasthan">Rajasthan</option>
+                      <option value="Sikkim">Sikkim</option>
+                      <option value="Tamil Nadu">Tamil Nadu</option>
+                      <option value="Telangana">Telangana</option>
+                      <option value="Tripura">Tripura</option>
+                      <option value="Uttar Pradesh">Uttar Pradesh</option>
+                      <option value="Uttarakhand">Uttarakhand</option>
+                      <option value="West Bengal">West Bengal</option>
+                    </optgroup>
+                    <optgroup label="Union Territories">
+                      <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                      <option value="Chandigarh">Chandigarh</option>
+                      <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+                      <option value="Delhi">Delhi</option>
+                      <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                      <option value="Ladakh">Ladakh</option>
+                      <option value="Lakshadweep">Lakshadweep</option>
+                      <option value="Puducherry">Puducherry</option>
+                    </optgroup>
                   </select>
                 </div>
               </div>
 
               <div>
-                <label class="form-label" for="reg-district-input">District</label>
-                <div class="password-input-group">
-                  <input
-                    type="text"
-                    id="reg-district-input"
-                    class="password-input"
-                    placeholder="e.g. Krishnagiri"
-                    list="district-options"
-                  />
-                  <datalist id="district-options">
-                    <option value="Krishnagiri">
-                    <option value="Dharmapuri">
-                    <option value="Salem">
-                    <option value="Thanjavur">
-                    <option value="Coimbatore">
-                    <option value="Madurai">
-                  </datalist>
+                <label class="form-label" for="reg-district-select">District</label>
+                <div class="form-select-group">
+                  <select id="reg-district-select" name="district" class="form-select reg-district" required disabled>
+                    <option value="" disabled selected>-- Select State first --</option>
+                  </select>
                 </div>
               </div>
             </div>
+
+            <!-- Dynamic Quick District Suggestion Pills -->
+            <div id="district-quick-suggestions" class="district-quick-suggestions" style="display: none;"></div>
 
             <!-- Primary Crop Produce -->
             <div class="form-group">
