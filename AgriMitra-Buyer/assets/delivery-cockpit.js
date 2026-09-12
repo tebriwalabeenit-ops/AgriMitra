@@ -1,13 +1,8 @@
-/**
- * AgriMitra Delivery Agent Cockpit Controller
- * Manages live requirements claims, multi-stop route tracking,
- * Proof of Delivery digital escrow release, and agent state.
- */
+
 
 document.addEventListener('DOMContentLoaded', () => {
   'use strict';
 
-  // 1. RBAC and User Header Population
   if (window.AgriMitraAuth) {
     const user = window.AgriMitraAuth.guardRole('delivery_agent');
     if (user && user.full_name) {
@@ -16,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Auto wire logout on any sign-out element
     document.querySelectorAll('.logout-trigger, [data-action="logout"]').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -25,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 2. Multi-Requirement Selection & Acceptance Handlers
   const requirementMap = {
     'select-fm24081': { id: 1, code: 'FM-24081', crop: 'Tomatoes', qty: '354 kg', from: 'Jalandhar Hub', to: 'Nakodar' },
     'select-fm24082': { id: 2, code: 'FM-24082', crop: 'Potatoes', qty: '500 kg', from: 'Ludhiana Mandi', to: 'Phagwara' },
@@ -72,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 3. Proof of Delivery (POD) Digital Settlement Handler
   const podCheckbox = document.getElementById('pod-confirmed-toggle');
   if (podCheckbox) {
     podCheckbox.addEventListener('change', () => {
@@ -84,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 4. Help & Support Actions
   document.querySelectorAll('a[href="#help"]').forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
@@ -94,7 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 5. Settings / Profile Actions
   document.querySelectorAll('a[href="#settings"]').forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();

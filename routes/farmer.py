@@ -1,8 +1,3 @@
-"""
-Farmer API Routes for KrishiLink
-Produce Management, Mandi Rates, and Farmer Delivery Requirements
-"""
-
 from flask import Blueprint, request, jsonify, session
 from utils.auth import login_required, role_required
 from database.db import query_db, execute_db
@@ -16,7 +11,7 @@ def _get_farmer_id():
         f = query_db("SELECT id FROM farmers WHERE user_id = %s", (user_id,), one=True)
         if f:
             return f['id']
-    # Fallback to default demo farmer (id 1) for seamless browsing
+
     first = query_db("SELECT id FROM farmers LIMIT 1", one=True)
     return first['id'] if first else 1
 
@@ -24,20 +19,18 @@ def _get_farmer_id():
 def dashboard():
     farmer_id = _get_farmer_id()
 
-    # Active produce count & total quantity
     crops = query_db("""
         SELECT id, crop_name, variety, quantity, unit, expected_price, location, status, created_at
-        FROM produce 
-        WHERE farmer_id = %s 
+        FROM produce
+        WHERE farmer_id = %s
         ORDER BY id DESC
     """, (farmer_id,))
 
     active_crops = [c for c in crops if c['status'] == 'active']
     sold_crops = [c for c in crops if c['status'] == 'sold']
 
-    # Delivery requirements created by farmer
     reqs = query_db("""
-        SELECT fr.id, fr.req_code, fr.crop_name, fr.quantity, fr.unit, 
+        SELECT fr.id, fr.req_code, fr.crop_name, fr.quantity, fr.unit,
                fr.pickup_location, fr.destination_location, fr.pickup_window,
                fr.status, fr.compensation, fr.trip_distance_km, fr.created_at,
                u.full_name AS delivery_agent_name, da.vehicle_type
@@ -48,7 +41,6 @@ def dashboard():
         ORDER BY fr.id DESC
     """, (farmer_id,))
 
-    # Today's APMC Mandi Bhav (Benchmark rates)
     mandi_rates = [
         {"crop": "Paddy (Common)", "mandi": "Krishnagiri APMC", "rate": 2350, "unit": "Qtl", "trend": "+₹40 today", "up": True},
         {"crop": "Tomato (Hybrid)", "mandi": "Rayakottai Mandi", "rate": 26, "unit": "kg", "trend": "+₹2 today", "up": True},
@@ -77,8 +69,8 @@ def get_produce():
     farmer_id = _get_farmer_id()
     crops = query_db("""
         SELECT id, crop_name, variety, quantity, unit, expected_price, location, status, created_at
-        FROM produce 
-        WHERE farmer_id = %s 
+        FROM produce
+        WHERE farmer_id = %s
         ORDER BY id DESC
     """, (farmer_id,))
     for c in crops:
@@ -143,7 +135,7 @@ def mark_sold(produce_id):
 def get_requirements():
     farmer_id = _get_farmer_id()
     reqs = query_db("""
-        SELECT fr.id, fr.req_code, fr.crop_name, fr.quantity, fr.unit, 
+        SELECT fr.id, fr.req_code, fr.crop_name, fr.quantity, fr.unit,
                fr.pickup_location, fr.destination_location, fr.pickup_window,
                fr.notes, fr.status, fr.compensation, fr.trip_distance_km, fr.created_at,
                fr.accepted_at, fr.delivered_at,
@@ -185,16 +177,14 @@ def create_requirement():
     except (ValueError, TypeError):
         return jsonify({"success": False, "message": "Invalid quantity."}), 400
 
-    # Auto estimate distance and compensation
     distance_km = round(15.0 + (qty_val % 20), 1)
     compensation = round(300.0 + (distance_km * 12.5) + (qty_val * 0.25), 2)
 
-    # Generate unique code
-    import random
-    req_code = f"FM-{random.randint(24100, 24999)}"
+    import random, time
+    req_code = f"FM-{int(time.time()) % 100000:05d}{random.randint(10, 99)}"
 
     req_id = execute_db("""
-        INSERT INTO farmer_requirements 
+        INSERT INTO farmer_requirements
         (req_code, farmer_id, crop_name, quantity, unit, pickup_location, destination_location, pickup_window, notes, compensation, trip_distance_km, status)
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 'pending')
     """, (req_code, farmer_id, crop_name, qty_val, unit, pickup_location, destination_location, pickup_window, notes, compensation, distance_km))

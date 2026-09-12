@@ -1,14 +1,10 @@
-/* ==========================================================================
-   AgriMitra Core Data Store & Utilities
-   Provides unified localStorage persistence and default realistic seed data
-   ========================================================================== */
+
 
 const STORAGE_KEY_DISTRIBUTOR = 'agrimitra_distributor_profile';
 const STORAGE_KEY_REQUIREMENTS = 'agrimitra_requirements';
 const STORAGE_KEY_ORDERS = 'agrimitra_orders';
 const STORAGE_KEY_INVENTORY = 'agrimitra_inventory';
 
-// Default Distributor Profile
 const DEFAULT_PROFILE = {
   businessName: 'MahaAgro Wholesale Dist.',
   contactPerson: 'Rahul Deshmukh',
@@ -23,7 +19,6 @@ const DEFAULT_PROFILE = {
   mainSupplyArea: 'Pune, Mumbai & Western Maharashtra'
 };
 
-// Default My Requirements
 const DEFAULT_REQUIREMENTS = [
   {
     id: 'REQ-101',
@@ -51,7 +46,6 @@ const DEFAULT_REQUIREMENTS = [
   }
 ];
 
-// Available Supply Lots
 const SEED_SUPPLY_LOTS = [
   {
     id: 'LOT-901',
@@ -115,7 +109,6 @@ const SEED_SUPPLY_LOTS = [
   }
 ];
 
-// Default Active & Recent Orders
 const DEFAULT_ORDERS = [
   {
     id: '#A1048',
@@ -127,8 +120,8 @@ const DEFAULT_ORDERS = [
     supplier: 'Nashik Farmers Collective',
     pickup: 'Nashik',
     delivery: 'Pune Central Cold Storage',
-    currentStatus: 'In Transit', // Offer Accepted -> Pickup -> In Transit -> Delivered
-    statusStep: 3, // 1 to 4
+    currentStatus: 'In Transit',
+    statusStep: 3,
     paymentStatus: 'Pending',
     deliveryAgent: 'Raj Transport (MH-15-EG-4921)',
     expectedArrival: '12 Sept, 4:00 PM'
@@ -183,7 +176,6 @@ const DEFAULT_ORDERS = [
   }
 ];
 
-// Default Inventory Breakdown
 const DEFAULT_INVENTORY = [
   {
     crop: 'Tomatoes',
@@ -232,7 +224,6 @@ const DEFAULT_INVENTORY = [
   }
 ];
 
-// Market Snapshot Intelligence
 const MARKET_PRICES = [
   { crop: 'Tomato', price: '₹33/kg', trend: '↑ 4%', trendType: 'up', demand: 'High', supply: 'Moderate' },
   { crop: 'Onion', price: '₹29/kg', trend: 'Stable', trendType: 'stable', demand: 'High', supply: 'Strong' },
@@ -240,7 +231,6 @@ const MARKET_PRICES = [
   { crop: 'Wheat', price: '₹27/kg', trend: '↑ 1.5%', trendType: 'up', demand: 'Steady', supply: 'Balanced' }
 ];
 
-// LocalStorage Helper Utilities
 const AgriMitraStore = {
   getProfile() {
     try {

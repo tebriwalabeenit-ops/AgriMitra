@@ -5,23 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AgriMitra | Connect. Trade. Grow.</title>
   <meta name="description" content="Helping farmers discover better markets, connect with reliable buyers, and manage produce sales from farm to delivery.">
-  
-  <!-- Google Fonts: Plus Jakarta Sans and Pan-Indian Unicode Scripts -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Kannada:wght@400;500;600;700&family=Noto+Sans+Malayalam:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
+
   <link rel="stylesheet" href="style.css">
   <script src="assets/auth-guard.js"></script>
 </head>
 <body>
-  <!-- Subtle Background Pattern -->
+
   <div class="bg-subtle-pattern" aria-hidden="true"></div>
 
-  <!-- Accessibility Skip Link -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <!-- Header -->
   <header class="site-header" role="banner">
     <div class="container header-inner">
       <a href="index.html" class="brand-wrapper" aria-label="AgriMitra Home">
@@ -40,7 +37,7 @@
       </nav>
 
       <div class="header-actions">
-        <!-- Clean Desi Language Selector (Landing Page Only) -->
+
         <div class="lang-selector-dropdown" id="lang-selector-dropdown">
           <button type="button" class="lang-selector-btn" id="lang-selector-toggle" aria-haspopup="listbox" aria-expanded="false" aria-label="Select Language">
             <span class="lang-globe-icon" aria-hidden="true">
@@ -96,9 +93,8 @@
     </div>
   </header>
 
-  <!-- Main Content -->
   <main id="main-content">
-    <!-- Hero Section -->
+
     <section class="hero-section" aria-labelledby="hero-heading">
       <div class="container">
         <div class="hero-content">
@@ -129,7 +125,6 @@
             </button>
           </div>
 
-          <!-- Active Roles Strip (No Admin) -->
           <div class="ecosystem-roles">
             <span class="ecosystem-label" data-i18n="ecosystem_roles_label">Connected Ecosystem Roles</span>
             <div class="role-chips">
@@ -144,7 +139,6 @@
       </div>
     </section>
 
-    <!-- Supply Chain Visual Section -->
     <section id="supply-chain" class="supply-chain-section" aria-labelledby="chain-heading">
       <div class="container">
         <div class="section-header">
@@ -156,7 +150,7 @@
         </div>
 
         <div class="chain-flow" role="list">
-          <!-- Step 1: Farmer -->
+
           <article class="chain-step" role="listitem">
             <span class="step-number" aria-label="Step 1">01</span>
             <div class="step-icon-wrap" aria-hidden="true">
@@ -177,7 +171,6 @@
             </div>
           </article>
 
-          <!-- Step 2: Produce -->
           <article class="chain-step" role="listitem">
             <span class="step-number" aria-label="Step 2">02</span>
             <div class="step-icon-wrap" aria-hidden="true">
@@ -199,7 +192,6 @@
             </div>
           </article>
 
-          <!-- Step 3: Buyer -->
           <article class="chain-step" role="listitem">
             <span class="step-number" aria-label="Step 3">03</span>
             <div class="step-icon-wrap" aria-hidden="true">
@@ -220,7 +212,6 @@
             </div>
           </article>
 
-          <!-- Step 4: Delivery -->
           <article class="chain-step" role="listitem">
             <span class="step-number" aria-label="Step 4">04</span>
             <div class="step-icon-wrap" aria-hidden="true">
@@ -243,7 +234,6 @@
             </div>
           </article>
 
-          <!-- Step 5: Bank Settlement -->
           <article class="chain-step" role="listitem">
             <span class="step-number" aria-label="Step 5">05</span>
             <div class="step-icon-wrap" aria-hidden="true">
@@ -262,7 +252,6 @@
       </div>
     </section>
 
-    <!-- Core Decision Pillars: What, Where, When, and Who -->
     <section class="platform-core-section" aria-labelledby="core-heading">
       <div class="container">
         <div class="section-header">
@@ -325,7 +314,6 @@
     </section>
   </main>
 
-  <!-- Site Footer -->
   <footer class="site-footer" role="contentinfo">
     <div class="container">
       <div class="footer-inner">
@@ -370,9 +358,6 @@
     </div>
   </footer>
 
-  <!-- ==========================================================================
-       Accessible Login Dialog
-       ========================================================================== -->
   <dialog id="login-dialog" class="modal-dialog" aria-labelledby="login-dialog-title">
     <div class="modal-header">
       <h2 id="login-dialog-title" class="modal-title" data-i18n="login_dialog_title">Sign In to AgriMitra</h2>
@@ -385,11 +370,11 @@
     </div>
     <form method="dialog" id="login-form">
       <div class="modal-body">
-        <!-- Quick Demo Accounts Auto-Fill Cards -->
+
         <div class="demo-accounts-wrapper">
           <div class="demo-accounts-top">
             <span class="demo-accounts-label" data-i18n="demo_accounts_label">Demo Test Accounts (1-Click Fill)</span>
-            <span class="demo-accounts-badge" data-i18n="demo_accounts_badge">SIH Evaluation Mode</span>
+            <span class="demo-accounts-badge" data-i18n="demo_accounts_badge">Demo Evaluation Mode</span>
           </div>
           <p class="demo-accounts-subtext" data-i18n="demo_accounts_subtext">Click any role below to pre-fill verified demo credentials:</p>
           <div class="demo-accounts-grid">
@@ -460,9 +445,6 @@
     </form>
   </dialog>
 
-  <!-- ==========================================================================
-       Accessible Register Dialog (Role Selection & Redirect)
-       ========================================================================== -->
   <dialog id="register-dialog" class="modal-dialog role-modal-dialog" aria-labelledby="register-dialog-title">
     <div class="modal-header">
       <div class="modal-header-content">
@@ -478,7 +460,7 @@
     </div>
     <div class="modal-body role-selection-body">
       <div class="role-select-list">
-        <!-- Farmer -->
+
         <a href="AgriMitra-Farmer/farmer/register.html" class="role-select-card" data-role="farmer">
           <div class="role-select-icon" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -497,7 +479,6 @@
           </div>
         </a>
 
-        <!-- Buyer -->
         <a href="AgriMitra-Buyer/buyer.html" class="role-select-card" data-role="buyer">
           <div class="role-select-icon" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -516,7 +497,6 @@
           </div>
         </a>
 
-        <!-- FPO -->
         <a href="AgriMitra- FPO/fpo-register.html" class="role-select-card" data-role="fpo">
           <div class="role-select-icon" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -537,7 +517,6 @@
           </div>
         </a>
 
-        <!-- Delivery Agent -->
         <a href="AgriMitra-delivery agent/delivery-agent.html" class="role-select-card" data-role="delivery">
           <div class="role-select-icon" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -558,7 +537,6 @@
           </div>
         </a>
 
-        <!-- Distributor / Wholesaler -->
         <a href="Agrimitra(wholesaler and distributer)/register-distributor.html" class="role-select-card" data-role="distributor">
           <div class="role-select-icon" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -581,9 +559,6 @@
     </div>
   </dialog>
 
-  <!-- ==========================================================================
-       About AgriMitra Dialog
-       ========================================================================== -->
   <dialog id="about-dialog" class="modal-dialog" aria-labelledby="about-dialog-title">
     <div class="modal-header">
       <h2 id="about-dialog-title" class="modal-title" data-i18n="about_dialog_title">About AgriMitra</h2>
@@ -610,7 +585,6 @@
     </div>
   </dialog>
 
-  <!-- JavaScript -->
   <script src="i18n.js"></script>
   <script src="app.js"></script>
 </body>

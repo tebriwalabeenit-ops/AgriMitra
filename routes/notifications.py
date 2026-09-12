@@ -1,7 +1,3 @@
-"""
-Notifications API Routes for KrishiLink
-"""
-
 from flask import Blueprint, jsonify, session
 from utils.auth import login_required
 from database.db import query_db, execute_db
@@ -12,7 +8,7 @@ notif_bp = Blueprint('notifications', __name__, url_prefix='/api/notifications')
 def get_notifications():
     user_id = session.get('user_id')
     if not user_id:
-        # Return empty list if not logged in
+
         return jsonify({"success": True, "notifications": [], "unread_count": 0})
 
     notifs = query_db("""

@@ -18,7 +18,6 @@ function assert(condition, message) {
 console.log('=== 1. CHECKING INDEX.HTML LINKS ===');
 const indexHtml = fs.readFileSync(path.join(rootDir, 'index.html'), 'utf8');
 
-// Match href="..."
 const hrefRegex = /href=["']([^"']+\.html)["']/g;
 let match;
 const indexHrefs = [];

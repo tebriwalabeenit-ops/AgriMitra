@@ -1,15 +1,10 @@
-/* ==========================================================================
-   AgriMitra Modal Component System
-   Clean, accessible, centered dialog overlays with smooth micro-transitions
-   ========================================================================== */
 
-/* Body locking when modal is open */
+
 body.modal-open {
   overflow: hidden;
   padding-right: 0px;
 }
 
-/* Modal Overlay / Backdrop */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -36,7 +31,6 @@ body.modal-open {
   visibility: visible;
 }
 
-/* Modal Container / Dialog Box */
 .modal-container {
   background-color: var(--color-surface);
   border-radius: var(--radius-lg);
@@ -69,7 +63,6 @@ body.modal-open {
   max-width: 440px;
 }
 
-/* Modal Header */
 .modal-header {
   display: flex;
   align-items: center;
@@ -119,7 +112,6 @@ body.modal-open {
   color: var(--color-text-primary);
 }
 
-/* Modal Body */
 .modal-body {
   padding: 1.5rem;
   overflow-y: auto;
@@ -128,7 +120,6 @@ body.modal-open {
   color: var(--color-text-secondary);
 }
 
-/* Modal Footer */
 .modal-footer {
   display: flex;
   align-items: center;
@@ -140,7 +131,6 @@ body.modal-open {
   flex-shrink: 0;
 }
 
-/* Key-Value Detail List Inside Modals */
 .detail-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -168,7 +158,6 @@ body.modal-open {
   color: var(--color-text-primary);
 }
 
-/* Stepper inside Order Details */
 .order-status-stepper {
   display: flex;
   align-items: center;
@@ -238,7 +227,6 @@ body.modal-open {
   font-weight: 600;
 }
 
-/* Modal Success View Box */
 .modal-success-state {
   text-align: center;
   padding: 1.5rem 1rem;

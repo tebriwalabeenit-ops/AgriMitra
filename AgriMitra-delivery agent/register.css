@@ -1,18 +1,14 @@
-/* ==========================================================================
-   AgriMitra - Delivery Agent Registration
-   Split-Screen Onboarding Design
-   Matching Brand Aesthetic and Reference Layout
-   ========================================================================== */
+
 
 :root {
-  /* AgriMitra Brand Palette */
+
   --c-green-dark: #1b432c;
   --c-green-primary: #276738;
   --c-green-leaf: #3d8b4e;
   --c-green-light: #eef6f0;
   --c-green-tint: #d5ebd9;
   --c-green-hover: #1f532d;
-  
+
   --c-canvas: #f4f6f3;
   --c-surface: #ffffff;
   --c-surface-subtle: #fafbf9;
@@ -36,9 +32,8 @@
   --c-success-light: #f0fdf4;
   --c-success-border: #86efac;
 
-  /* Typography & Geometry */
   --font-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  
+
   --radius-xs: 4px;
   --radius-sm: 7px;
   --radius-md: 10px;
@@ -52,7 +47,6 @@
   --shadow-error-focus: 0 0 0 3px rgba(185, 28, 28, 0.14);
 }
 
-/* Reset & Box Model */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -76,9 +70,6 @@ body {
   flex-direction: column;
 }
 
-/* ==========================================================================
-   Top Navigation Header
-   ========================================================================== */
 .top-nav-bar {
   background-color: var(--c-surface);
   border-bottom: 1px solid var(--c-border-subtle);
@@ -151,9 +142,6 @@ body {
   transform: translateX(-2px);
 }
 
-/* ==========================================================================
-   Page Layout & Split-Screen Card
-   ========================================================================== */
 .page-container {
   flex: 1;
   padding: 32px 20px 48px;
@@ -174,9 +162,6 @@ body {
   overflow: hidden;
 }
 
-/* ==========================================================================
-   LEFT COLUMN: HERO BRANDING & ILLUSTRATION
-   ========================================================================== */
 .left-hero-panel {
   padding: 42px 38px;
   display: flex;
@@ -276,9 +261,6 @@ body {
   flex-shrink: 0;
 }
 
-/* ==========================================================================
-   RIGHT COLUMN: REGISTRATION FORM
-   ========================================================================== */
 .right-form-panel {
   padding: 42px 42px;
   border-left: 1px solid var(--c-border-subtle);
@@ -314,9 +296,6 @@ body {
   color: var(--c-text-muted);
 }
 
-/* ==========================================================================
-   Stepper Navigation
-   ========================================================================== */
 .form-stepper {
   display: flex;
   align-items: flex-start;
@@ -359,7 +338,6 @@ body {
   transition: color 0.2s ease;
 }
 
-/* Active Node */
 .step-node.active .node-circle {
   background-color: var(--c-green-primary);
   border-color: var(--c-green-primary);
@@ -372,7 +350,6 @@ body {
   font-weight: 700;
 }
 
-/* Completed Node */
 .step-node.completed .node-circle {
   background-color: var(--c-green-light);
   border-color: var(--c-green-primary);
@@ -395,9 +372,6 @@ body {
   background-color: var(--c-green-primary);
 }
 
-/* ==========================================================================
-   Form Fields & Inputs
-   ========================================================================== */
 .form-step-view {
   display: none;
 }
@@ -475,7 +449,6 @@ body {
   box-shadow: var(--shadow-error-focus);
 }
 
-/* Phone Input Box */
 .phone-input-box {
   display: flex;
   align-items: stretch;
@@ -532,7 +505,6 @@ body {
   box-shadow: none;
 }
 
-/* Select Dropdown styling */
 .select-wrapper {
   position: relative;
 }
@@ -547,14 +519,12 @@ body {
   cursor: pointer;
 }
 
-/* Textarea */
 .textarea-control {
   height: auto;
   min-height: 75px;
   resize: vertical;
 }
 
-/* Error message label */
 .field-error {
   display: none;
   font-size: 0.76rem;
@@ -578,9 +548,6 @@ body {
   flex-shrink: 0;
 }
 
-/* ==========================================================================
-   Vehicle & Delivery Custom Controls
-   ========================================================================== */
 .vehicle-option-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -659,7 +626,6 @@ body {
   color: var(--c-green-dark);
 }
 
-/* Capacity Chips */
 .chip-option-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -707,14 +673,12 @@ body {
   font-weight: 600;
 }
 
-/* Availability Chips */
 .availability-chip-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
 }
 
-/* Buttons & Form Actions */
 .form-action-row {
   margin-top: 22px;
 }
@@ -804,7 +768,6 @@ body {
   color: var(--c-text-primary);
 }
 
-/* Spinner */
 .spin-loader {
   display: inline-block;
   width: 16px;
@@ -821,9 +784,6 @@ body {
   }
 }
 
-/* ==========================================================================
-   Success Panel
-   ========================================================================== */
 .success-screen {
   display: none;
   text-align: center;
@@ -948,9 +908,6 @@ body {
   gap: 10px;
 }
 
-/* ==========================================================================
-   Responsive Adaptations
-   ========================================================================== */
 @media (max-width: 960px) {
   .split-card {
     grid-template-columns: 1fr;

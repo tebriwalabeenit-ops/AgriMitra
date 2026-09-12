@@ -1,9 +1,3 @@
-"""
-Real-Time Event Broadcaster for KrishiLink Live Auctions
-Uses pure Python thread-safe Queues and Server-Sent Events (SSE).
-Zero external socket servers or heavy dependencies required.
-"""
-
 import json
 import time
 import queue
@@ -11,7 +5,7 @@ import threading
 
 class AuctionBroadcaster:
     def __init__(self):
-        self._listeners = {}  # {auction_id: [queue.Queue()]}
+        self._listeners = {}
         self._lock = threading.Lock()
 
     def subscribe(self, auction_id):
@@ -50,7 +44,6 @@ class AuctionBroadcaster:
             try:
                 q.put_nowait(message)
             except queue.Full:
-                pass  # Client is too slow or unresponsive
+                pass
 
-# Global singleton instance
 broadcaster = AuctionBroadcaster()

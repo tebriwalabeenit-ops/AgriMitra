@@ -8,10 +8,6 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
-    /* ==========================================================================
-       AgriMitra Buyer Dashboard Scoped Styles
-       Aesthetic: Clean Digital Indian Mandi • Authentic Photography • Zero Emojis
-       ========================================================================== */
 
     body.buyer-dashboard-body {
       padding-bottom: 0;
@@ -19,11 +15,10 @@
 
     @media (max-width: 768px) {
       body.buyer-dashboard-body {
-        padding-bottom: 74px; /* Clearance for fixed mobile bottom nav */
+        padding-bottom: 74px;
       }
     }
 
-    /* Common SVG icon helper */
     .ui-icon {
       display: inline-flex;
       align-items: center;
@@ -32,9 +27,6 @@
       vertical-align: middle;
     }
 
-    /* ==========================================================================
-       Grand Multi-Tier Marketplace Navbar Styling (Full Upper Section)
-       ========================================================================== */
     .site-header-mega {
       position: sticky;
       top: 0;
@@ -44,7 +36,6 @@
       width: 100%;
     }
 
-    /* 1. Top Utility Announcement Strip */
     .mega-topbar {
       background-color: #123820;
       color: #E8EFE9;
@@ -111,7 +102,6 @@
       text-decoration: underline;
     }
 
-    /* 2. Main Spacious Header Bar */
     .mega-main-bar {
       background-color: #FFFFFF;
       padding: 14px 0;
@@ -177,7 +167,6 @@
       margin-top: 2px;
     }
 
-    /* Delivery Location Box */
     .mega-location-box {
       display: inline-flex;
       align-items: center;
@@ -219,7 +208,6 @@
       color: var(--color-text-main);
     }
 
-    /* Center Navigation: All Categories & Direct Guarantee Badge */
     .mega-center-area {
       display: flex;
       align-items: center;
@@ -265,7 +253,6 @@
       gap: 7px;
     }
 
-    /* Right Action Elements */
     .mega-actions {
       display: flex;
       align-items: center;
@@ -377,7 +364,6 @@
       border-radius: var(--radius-full);
     }
 
-    /* Responsive adjustments for mega navbar */
     @media (max-width: 1200px) {
       .mega-direct-badge {
         display: none;
@@ -410,15 +396,11 @@
       }
     }
 
-    /* Main Container */
     .dashboard-main {
       padding-top: var(--space-6);
       padding-bottom: var(--space-16);
     }
 
-    /* ==========================================================================
-       1. Welcome Hero Section
-       ========================================================================== */
     .welcome-hero {
       background: linear-gradient(135deg, #FFFFFF 0%, #F1F8F1 60%, #EBF4ED 100%);
       border: 1px solid var(--color-primary-border);
@@ -486,7 +468,6 @@
       box-shadow: var(--shadow-subtle);
     }
 
-    /* Core Flow Strip */
     .supply-promise-strip {
       display: flex;
       align-items: center;
@@ -512,9 +493,6 @@
       font-size: 0.8rem;
     }
 
-    /* ==========================================================================
-       2. Search Bar Section
-       ========================================================================== */
     .search-section {
       margin-bottom: var(--space-10);
     }
@@ -577,7 +555,6 @@
       background-color: var(--color-primary-hover);
     }
 
-    /* Quick tags under search */
     .quick-search-tags {
       display: flex;
       align-items: center;
@@ -610,9 +587,6 @@
       background-color: var(--color-surface-alt);
     }
 
-    /* ==========================================================================
-       3. Shop by Category (Photographic Category Cards)
-       ========================================================================== */
     .section-title-wrap {
       display: flex;
       justify-content: space-between;
@@ -713,9 +687,6 @@
       color: var(--color-text-muted);
     }
 
-    /* ==========================================================================
-       4. Fresh from Nearby Farms (Real Produce Photography Cards)
-       ========================================================================== */
     .products-section {
       margin-bottom: var(--space-12);
     }
@@ -884,9 +855,6 @@
       box-shadow: 0 2px 6px rgba(28, 90, 53, 0.2);
     }
 
-    /* ==========================================================================
-       5. Direct Farmer Connection (Meet the Farmers)
-       ========================================================================== */
     .farmers-section {
       margin-bottom: var(--space-12);
       background-color: var(--color-surface-alt);
@@ -1040,9 +1008,6 @@
       color: var(--color-text-inverse);
     }
 
-    /* ==========================================================================
-       6. Bulk Order Banner
-       ========================================================================== */
     .bulk-order-banner {
       background: linear-gradient(135deg, #1C5A35 0%, #144326 100%);
       color: var(--color-text-inverse);
@@ -1151,9 +1116,6 @@
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.24);
     }
 
-    /* ==========================================================================
-       PURE CSS :target MODAL OVERLAYS (Zero JS, 100% Responsive)
-       ========================================================================== */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -1170,7 +1132,6 @@
       padding: var(--space-4);
     }
 
-    
     .modal-overlay:target:not(.is-closed):not(.is-closing),
     .modal-overlay.active:not(.is-closed):not(.is-closing) {
       opacity: 1 !important;
@@ -1321,7 +1282,6 @@
       box-shadow: 0 0 0 3px rgba(22, 101, 52, 0.15);
     }
 
-
     .modal-backdrop-close {
       position: absolute;
       inset: 0;
@@ -1414,7 +1374,6 @@
       z-index: 2;
     }
 
-    /* Orders Modal Specifics */
     .modal-orders-list {
       display: flex;
       flex-direction: column;
@@ -1536,7 +1495,6 @@
       color: var(--color-text-inverse);
     }
 
-    /* Cart Modal Specifics */
     .cart-items-list {
       display: flex;
       flex-direction: column;
@@ -1610,7 +1568,6 @@
       margin-top: var(--space-1);
     }
 
-    /* Notifications Modal */
     .notif-list {
       display: flex;
       flex-direction: column;
@@ -1655,7 +1612,6 @@
       margin-top: 4px;
     }
 
-    /* Profile Modal */
     .profile-card-top {
       display: flex;
       align-items: center;
@@ -1704,7 +1660,6 @@
       font-weight: var(--font-weight-medium);
     }
 
-    /* Categories Modal Grid */
     .modal-cat-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -1748,7 +1703,6 @@
       color: var(--color-text-muted);
     }
 
-    /* Produce Guide Table */
     .produce-compare-table {
       width: 100%;
       border-collapse: collapse;
@@ -1780,7 +1734,6 @@
       border-radius: var(--radius-sm);
     }
 
-    /* Bulk Form */
     .bulk-form-grid {
       display: flex;
       flex-direction: column;
@@ -1820,7 +1773,6 @@
       border-color: var(--color-primary);
     }
 
-    /* Delivery Location & Edit Address Modal Styles */
     .addr-card-current {
       background-color: var(--color-surface);
       border: 2px solid var(--color-primary);
@@ -1999,9 +1951,6 @@
       color: #FFFFFF;
     }
 
-    /* ==========================================================================
-       8. Mobile Bottom Navigation Bar (Fixed for Screens <= 768px - Zero Emojis)
-       ========================================================================== */
     .mobile-bottom-nav {
       display: none;
     }
@@ -2076,9 +2025,6 @@
       }
     }
 
-    /* ==========================================================================
-       Responsive Media Queries
-       ========================================================================== */
     @media (max-width: 1024px) {
       .category-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -2175,20 +2121,16 @@
         grid-template-columns: 1fr;
       }
     }
-  </style>
+</style>
 </head>
 <body class="buyer-dashboard-body">
-  <!-- Subtle Background Pattern from AgriMitra Theme -->
+
   <div class="bg-subtle-pattern" aria-hidden="true"></div>
 
-  <!-- Accessibility Skip Link -->
   <a href="#dashboard-content" class="skip-link">Skip to dashboard content</a>
 
-  <!-- ==========================================================================
-       1. GRAND MULTI-TIER MARKETPLACE HEADER (Full Upper Section)
-       ========================================================================== -->
   <header class="site-header-mega" role="banner">
-    <!-- Tier 1: Top Utility Announcement & Quick Links Strip -->
+
     <div class="mega-topbar">
       <div class="mega-topbar-inner">
         <div class="mega-topbar-left">
@@ -2235,10 +2177,9 @@
       </div>
     </div>
 
-    <!-- Tier 2: Main Spacious Marketplace Bar -->
     <div class="mega-main-bar">
       <div class="mega-main-inner">
-        <!-- Brand & Location Area -->
+
         <div class="mega-brand-area">
           <a href="index.html" class="mega-brand-link" aria-label="AgriMitra Home">
             <img src="logo.png" alt="AgriMitra Logo" class="mega-brand-logo">
@@ -2248,7 +2189,6 @@
             </div>
           </a>
 
-          <!-- Delivery Location Selector Box -->
           <a href="#modal-location" class="mega-location-box" title="View current address & edit delivery location">
             <span class="ui-icon" style="color: var(--color-primary);" aria-hidden="true">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -2263,7 +2203,6 @@
           </a>
         </div>
 
-        <!-- Center Group: All Categories Button & Direct Guarantee Badge -->
         <div class="mega-center-area">
           <a href="#categories" class="mega-cat-btn" title="View all product categories">
             <span class="ui-icon" aria-hidden="true">
@@ -2287,9 +2226,8 @@
           </div>
         </div>
 
-        <!-- Right User Actions Group -->
         <div class="mega-actions">
-          <!-- Orders Quick Access -->
+
           <a href="#modal-orders" class="mega-action-box" title="View Recent Orders and Deliveries">
             <span class="mega-action-icon" aria-hidden="true">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -2304,7 +2242,6 @@
             </div>
           </a>
 
-          <!-- Buyer Profile Quick Access -->
           <a href="#modal-profile" class="mega-action-box" title="Buyer Profile & Settings">
             <span class="mega-action-icon" aria-hidden="true">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -2318,7 +2255,6 @@
             </div>
           </a>
 
-          <!-- Notifications Button -->
           <a href="#modal-notifications" class="mega-notif-btn" aria-label="Notifications" title="Recent Notifications">
             <span class="ui-icon" aria-hidden="true">
               <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -2329,7 +2265,6 @@
             <span class="notif-unread-dot" aria-label="Unread notification"></span>
           </a>
 
-          <!-- Prominent Cart Pill Button -->
           <a href="#modal-cart" class="mega-cart-pill" aria-label="Shopping Cart with 3 items" title="View Cart">
             <span class="ui-icon" aria-hidden="true">
               <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -2346,16 +2281,9 @@
     </div>
   </header>
 
-  <!-- ==========================================================================
-       MAIN BUYER DASHBOARD CONTENT (Orders Section Removed as Requested)
-       ========================================================================== -->
   <main id="dashboard-content" class="dashboard-main">
     <div class="container">
 
-      <!-- ======================================================================
-           2. WELCOME SECTION
-           Warm greeting & core direct farm value proposition
-           ====================================================================== -->
       <section class="welcome-hero" aria-labelledby="welcome-title">
         <div class="welcome-header-row">
           <div class="welcome-text-block">
@@ -2378,7 +2306,6 @@
           </div>
         </div>
 
-        <!-- Visual Value Chain: FARMER → AGRIMITRA → BUYER -->
         <div class="supply-promise-strip">
           <span>Our Guarantee:</span>
           <span class="promise-flow-tag">Farmer Direct</span>
@@ -2392,10 +2319,6 @@
         </div>
       </section>
 
-      <!-- ======================================================================
-           3. SEARCH BAR SECTION
-           Prominent, large, rounded, touch-friendly
-           ====================================================================== -->
       <section class="search-section" aria-label="Search Agricultural Products">
         <form class="search-bar-container" action="javascript:void(0)" method="GET" role="search">
           <span class="search-icon-box" aria-hidden="true">
@@ -2414,7 +2337,6 @@
           <button type="submit" class="search-submit-btn">Search Mandi</button>
         </form>
 
-        <!-- Quick Trending Product Tags -->
         <div class="quick-search-tags">
           <span class="quick-tag-label">Frequently Searched:</span>
           <a href="#fresh-produce" class="quick-tag">Fresh Potatoes</a>
@@ -2425,9 +2347,6 @@
         </div>
       </section>
 
-      <!-- ======================================================================
-           4. SHOP BY CATEGORY (Real High-Res Produce Photos)
-           ====================================================================== -->
       <section class="categories-section" id="categories" aria-labelledby="category-heading">
         <div class="section-title-wrap">
           <h2 id="category-heading" class="section-main-heading">
@@ -2437,7 +2356,7 @@
         </div>
 
         <div class="category-grid">
-          <!-- Category 1: Vegetables -->
+
           <a href="#fresh-produce" class="category-card" data-category="vegetables" title="Filter Vegetables">
             <div class="category-img-container">
               <img
@@ -2452,7 +2371,6 @@
             </div>
           </a>
 
-          <!-- Category 2: Fruits -->
           <a href="#fresh-produce" class="category-card" data-category="fruits" title="Filter Fruits">
             <div class="category-img-container">
               <img
@@ -2467,7 +2385,6 @@
             </div>
           </a>
 
-          <!-- Category 3: Grains -->
           <a href="#fresh-produce" class="category-card" data-category="grains" title="Filter Grains">
             <div class="category-img-container">
               <img
@@ -2482,7 +2399,6 @@
             </div>
           </a>
 
-          <!-- Category 4: Pulses -->
           <a href="#fresh-produce" class="category-card" data-category="pulses" title="Filter Pulses">
             <div class="category-img-container">
               <img
@@ -2497,7 +2413,6 @@
             </div>
           </a>
 
-          <!-- Category 5: Other Farm Products -->
           <a href="#fresh-produce" class="category-card" data-category="other" title="Filter Honey, Oils & Farm Products">
             <div class="category-img-container">
               <img
@@ -2514,9 +2429,6 @@
         </div>
       </section>
 
-      <!-- ======================================================================
-           5. FRESH FROM NEARBY FARMS (Real High-Res Produce Photos)
-           ====================================================================== -->
       <section class="products-section" id="fresh-produce" aria-labelledby="fresh-heading">
         <div class="section-title-wrap">
           <h2 id="fresh-heading" class="section-main-heading">
@@ -2525,7 +2437,6 @@
           <a href="#modal-produce" class="section-view-all">Daily Mandi Pricing Guide →</a>
         </div>
 
-        <!-- Category Filter Pills Bar -->
         <div class="category-filter-pills-bar" role="tablist" aria-label="Filter Produce by Category">
           <button type="button" class="category-filter-pill active" data-category="all">
             <span>🌿 All Produce (9)</span>
@@ -2547,14 +2458,13 @@
           </button>
         </div>
 
-        <!-- Dynamic Filter & Search Status Bar -->
         <div id="filter-status-bar" class="filter-status-bar">
           <span class="filter-status-text">Showing 9 produce lots</span>
           <button type="button" id="btn-clear-filters" class="btn-clear-filter">✕ Show All Produce</button>
         </div>
 
         <div class="products-grid">
-          <!-- Product Card 1: Fresh Potatoes -->
+
           <article class="product-card" data-category="vegetables">
             <div class="product-image-container">
               <img
@@ -2609,7 +2519,6 @@
             </div>
           </article>
 
-          <!-- Product Card 2: Farm Tomatoes -->
           <article class="product-card" data-category="vegetables">
             <div class="product-image-container">
               <img
@@ -2664,7 +2573,6 @@
             </div>
           </article>
 
-          <!-- Product Card 3: Nashik Red Onions -->
           <article class="product-card" data-category="vegetables">
             <div class="product-image-container">
               <img
@@ -2719,7 +2627,6 @@
             </div>
           </article>
 
-          <!-- Product Card 4: Alphonso Mangoes -->
           <article class="product-card" data-category="fruits">
             <div class="product-image-container">
               <img
@@ -2774,7 +2681,6 @@
             </div>
           </article>
 
-          <!-- Product Card 5: Sharbati Whole Wheat -->
           <article class="product-card" data-category="grains">
             <div class="product-image-container">
               <img
@@ -2829,7 +2735,6 @@
             </div>
           </article>
 
-          <!-- Product Card 6: Desi Chana -->
           <article class="product-card" data-category="pulses">
             <div class="product-image-container">
               <img
@@ -2883,7 +2788,7 @@
               </a>
             </div>
           </article>
-          <!-- Product Card 7: Nagpur Oranges -->
+
           <article class="product-card" data-category="fruits">
             <div class="product-image-container">
               <img
@@ -2933,7 +2838,6 @@
             </div>
           </article>
 
-          <!-- Product Card 8: Cold Pressed Mustard Oil -->
           <article class="product-card" data-category="other">
             <div class="product-image-container">
               <img
@@ -2983,7 +2887,6 @@
             </div>
           </article>
 
-          <!-- Product Card 9: Wild Forest Raw Honey -->
           <article class="product-card" data-category="other">
             <div class="product-image-container">
               <img
@@ -3035,9 +2938,6 @@
         </div>
       </section>
 
-      <!-- ======================================================================
-           6. DIRECT FARMER CONNECTION SECTION (Meet the Farmers)
-           ====================================================================== -->
       <section class="farmers-section" id="farmers" aria-labelledby="meet-farmers-heading">
         <div class="farmers-header">
           <h2 id="meet-farmers-heading" class="farmers-heading">
@@ -3049,7 +2949,7 @@
         </div>
 
         <div class="farmers-grid">
-          <!-- Farmer Card 1 -->
+
           <article class="farmer-profile-card">
             <div class="farmer-card-top">
               <div class="farmer-avatar-default" aria-label="Default Farmer Avatar">
@@ -3092,7 +2992,6 @@
             <a href="#modal-farmers" class="btn-view-farm">View Farm Profile</a>
           </article>
 
-          <!-- Farmer Card 2 -->
           <article class="farmer-profile-card">
             <div class="farmer-card-top">
               <div class="farmer-avatar-default" aria-label="Default Farmer Avatar">
@@ -3135,7 +3034,6 @@
             <a href="#modal-farmers" class="btn-view-farm">View Farm Profile</a>
           </article>
 
-          <!-- Farmer Card 3 -->
           <article class="farmer-profile-card">
             <div class="farmer-card-top">
               <div class="farmer-avatar-default" aria-label="Default Farmer Avatar">
@@ -3180,9 +3078,6 @@
         </div>
       </section>
 
-      <!-- ======================================================================
-           7. BULK ORDER SECTION (Banner with direct popup trigger)
-           ====================================================================== -->
       <section class="bulk-order-banner" id="bulk-order" aria-labelledby="bulk-heading">
         <div class="bulk-content">
           <span class="bulk-eyebrow">
@@ -3221,20 +3116,6 @@
     </div>
   </main>
 
-  <!-- ==========================================================================
-       POPUP MODAL PAGES (Pure CSS :target • Zero JS)
-       0. Delivery Location & Edit Address Modal (#modal-location)
-       1. My Orders Modal (#modal-orders)
-       2. Categories Explorer Modal (#modal-categories)
-       3. Fresh Produce & Mandi Guide Modal (#modal-produce)
-       4. Verified Farmers Directory Modal (#modal-farmers)
-       5. Bulk Order Form Modal (#modal-bulk)
-       6. Shopping Cart Modal (#modal-cart)
-       7. Notifications Modal (#modal-notifications)
-       8. Profile & Preferences Modal (#modal-profile)
-       ========================================================================== -->
-
-  <!-- 0. DELIVERY LOCATION & EDIT ADDRESS POPUP MODAL -->
   <div id="modal-location" class="modal-overlay" role="dialog" aria-labelledby="modal-loc-title" aria-modal="true">
     <a href="#!" class="modal-backdrop-close" onclick="window.closeBuyerModal(event)" aria-label="Close popup"></a>
     <div class="modal-window">
@@ -3255,7 +3136,7 @@
       </div>
 
       <div class="modal-window-body">
-        <!-- 1. Current Active Delivery Address Card -->
+
         <div class="addr-card-current">
           <div class="addr-card-header">
             <span class="addr-badge-active">
@@ -3292,7 +3173,6 @@
           </div>
         </div>
 
-        <!-- 2. Edit Delivery Address Form -->
         <div class="addr-section-divider">
           <span>Edit Delivery Address</span>
         </div>
@@ -3368,7 +3248,6 @@
           </div>
         </form>
 
-        <!-- 3. Alternate Saved Addresses for Fast Switch -->
         <div class="addr-section-divider" style="margin-top: var(--space-5);">
           <span>Or Deliver to Saved Location</span>
         </div>
@@ -3402,7 +3281,6 @@
     </div>
   </div>
 
-  <!-- 1. MY ORDERS POPUP MODAL -->
   <div id="modal-orders" class="modal-overlay" role="dialog" aria-labelledby="modal-orders-title" aria-modal="true">
     <a href="#!" class="modal-backdrop-close" onclick="window.closeBuyerModal(event)" aria-label="Close popup"></a>
     <div class="modal-window">
@@ -3424,7 +3302,7 @@
 
       <div class="modal-window-body">
         <div class="modal-orders-list">
-          <!-- Active Order 1: Out for Delivery -->
+
           <article class="modal-order-card">
             <div class="order-header-row">
               <div class="order-id-block">
@@ -3461,7 +3339,6 @@
             </div>
           </article>
 
-          <!-- Active Order 2: Delivered -->
           <article class="modal-order-card">
             <div class="order-header-row">
               <div class="order-id-block">
@@ -3495,7 +3372,6 @@
           </article>
         </div>
 
-        <!-- First-time buyer preview notice -->
         <div style="background-color: var(--color-surface-alt); border: 1px dashed var(--color-border); border-radius: var(--radius-md); padding: var(--space-4); text-align: center;">
           <p style="font-size: var(--font-size-xs); color: var(--color-text-secondary); margin-bottom: var(--space-2);">
             All your farm direct purchases are covered by the AgriMitra Freshness Guarantee.
@@ -3510,7 +3386,6 @@
     </div>
   </div>
 
-  <!-- 2. CATEGORIES EXPLORER POPUP MODAL -->
   <div id="modal-categories" class="modal-overlay" role="dialog" aria-labelledby="modal-cat-title" aria-modal="true">
     <a href="#!" class="modal-backdrop-close" onclick="window.closeBuyerModal(event)" aria-label="Close popup"></a>
     <div class="modal-window">
@@ -3587,7 +3462,6 @@
     </div>
   </div>
 
-  <!-- 3. FRESH PRODUCE & MANDI GUIDE POPUP MODAL -->
   <div id="modal-produce" class="modal-overlay" role="dialog" aria-labelledby="modal-prod-title" aria-modal="true">
     <a href="#!" class="modal-backdrop-close" onclick="window.closeBuyerModal(event)" aria-label="Close popup"></a>
     <div class="modal-window">
@@ -3661,7 +3535,6 @@
     </div>
   </div>
 
-  <!-- 4. MEET FARMERS DIRECTORY POPUP MODAL -->
   <div id="modal-farmers" class="modal-overlay" role="dialog" aria-labelledby="modal-farmers-title" aria-modal="true">
     <a href="#!" class="modal-backdrop-close" onclick="window.closeBuyerModal(event)" aria-label="Close popup"></a>
     <div class="modal-window">
@@ -3689,7 +3562,7 @@
         </p>
 
         <div style="display: flex; flex-direction: column; gap: var(--space-4);">
-          <!-- Farmer 1 -->
+
           <div style="display: flex; gap: var(--space-3); padding: var(--space-3); background-color: var(--color-surface-alt); border-radius: var(--radius-md); border: 1px solid var(--color-border-light); align-items: center;">
             <div class="farmer-avatar-default" aria-label="Default Farmer Avatar" style="width:48px; height:48px; border-radius:50%;">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:24px; height:24px;">
@@ -3704,7 +3577,6 @@
             </div>
           </div>
 
-          <!-- Farmer 2 -->
           <div style="display: flex; gap: var(--space-3); padding: var(--space-3); background-color: var(--color-surface-alt); border-radius: var(--radius-md); border: 1px solid var(--color-border-light); align-items: center;">
             <div class="farmer-avatar-default" aria-label="Default Farmer Avatar" style="width:48px; height:48px; border-radius:50%;">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:24px; height:24px;">
@@ -3719,7 +3591,6 @@
             </div>
           </div>
 
-          <!-- Farmer 3 -->
           <div style="display: flex; gap: var(--space-3); padding: var(--space-3); background-color: var(--color-surface-alt); border-radius: var(--radius-md); border: 1px solid var(--color-border-light); align-items: center;">
             <div class="farmer-avatar-default" aria-label="Default Farmer Avatar" style="width:48px; height:48px; border-radius:50%;">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:24px; height:24px;">
@@ -3742,7 +3613,6 @@
     </div>
   </div>
 
-  <!-- 5. BULK ORDER FORM POPUP MODAL -->
   <div id="modal-bulk" class="modal-overlay" role="dialog" aria-labelledby="modal-bulk-title" aria-modal="true">
     <a href="#!" class="modal-backdrop-close" onclick="window.closeBuyerModal(event)" aria-label="Close popup"></a>
     <div class="modal-window">
@@ -3819,7 +3689,6 @@
     </div>
   </div>
 
-  <!-- 6. SHOPPING CART POPUP MODAL -->
   <div id="modal-cart" class="modal-overlay" role="dialog" aria-labelledby="modal-cart-title" aria-modal="true">
     <a href="#!" class="modal-backdrop-close" onclick="window.closeBuyerModal(event)" aria-label="Close popup"></a>
     <div class="modal-window">
@@ -3842,7 +3711,7 @@
 
       <div class="modal-window-body">
         <div class="cart-items-list">
-          <!-- Item 1 -->
+
           <div class="cart-item-row">
             <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=600&q=80" alt="Potatoes" class="cart-item-thumb">
             <div class="cart-item-info">
@@ -3852,7 +3721,6 @@
             <div class="cart-item-total">₹150</div>
           </div>
 
-          <!-- Item 2 -->
           <div class="cart-item-row">
             <img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=600&q=80" alt="Tomatoes" class="cart-item-thumb">
             <div class="cart-item-info">
@@ -3862,7 +3730,6 @@
             <div class="cart-item-total">₹80</div>
           </div>
 
-          <!-- Item 3 -->
           <div class="cart-item-row">
             <img src="https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=600&q=80" alt="Mangoes" class="cart-item-thumb">
             <div class="cart-item-info">
@@ -3900,7 +3767,6 @@
     </div>
   </div>
 
-  <!-- 7. NOTIFICATIONS POPUP MODAL -->
   <div id="modal-notifications" class="modal-overlay" role="dialog" aria-labelledby="modal-notif-title" aria-modal="true">
     <a href="#!" class="modal-backdrop-close" onclick="window.closeBuyerModal(event)" aria-label="Close popup"></a>
     <div class="modal-window">
@@ -3975,7 +3841,6 @@
     </div>
   </div>
 
-  <!-- 8. PROFILE & PREFERENCES POPUP MODAL -->
   <div id="modal-profile" class="modal-overlay" role="dialog" aria-labelledby="modal-prof-title" aria-modal="true">
     <a href="#!" class="modal-backdrop-close" onclick="window.closeBuyerModal(event)" aria-label="Close popup"></a>
     <div class="modal-window">
@@ -3997,7 +3862,7 @@
       </div>
 
       <div class="modal-window-body">
-        <!-- View Mode Section -->
+
         <div id="profile-view-section">
           <div class="profile-card-top">
             <div class="profile-avatar-box">
@@ -4038,11 +3903,10 @@
           </div>
         </div>
 
-        <!-- Edit Mode Section -->
         <div id="profile-edit-section" style="display: none;">
           <h4 style="font-size: 1rem; font-weight: 700; color: var(--color-primary); margin-bottom: 0.5rem;">Edit Your Buyer Profile</h4>
           <p style="font-size: 0.8rem; color: var(--color-text-muted); margin-bottom: 1rem;">Keep your contact and address details up to date for smooth farmer dispatches.</p>
-          
+
           <form id="profile-edit-form">
             <div class="profile-form-grid">
               <div class="profile-input-group">
@@ -4115,12 +3979,8 @@
     </div>
   </div>
 
-<!-- ==========================================================================
-       9. MOBILE BOTTOM NAVIGATION (Fixed on screens <= 768px - Triggers Popups)
-       4 Tabs: Home | Cart (Popup) | Orders (Popup) | Profile (Popup)
-       ========================================================================== -->
   <nav class="mobile-bottom-nav" aria-label="Mobile Bottom Navigation">
-    <!-- Tab 1: Home (Active) -->
+
     <a href="buyer-dashboard.html" class="mobile-nav-item active" aria-current="page">
       <span class="mobile-nav-icon-wrap" aria-hidden="true">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -4131,7 +3991,6 @@
       <span class="mobile-nav-label">Home</span>
     </a>
 
-    <!-- Tab 2: Cart with Badge -> Opens Cart Modal -->
     <a href="#modal-cart" class="mobile-nav-item">
       <span class="mobile-nav-icon-wrap" aria-hidden="true">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -4144,7 +4003,6 @@
       <span class="mobile-nav-badge" aria-label="3 items in cart">3</span>
     </a>
 
-    <!-- Tab 3: Orders -> Opens Orders Modal -->
     <a href="#modal-orders" class="mobile-nav-item">
       <span class="mobile-nav-icon-wrap" aria-hidden="true">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -4155,7 +4013,6 @@
       <span class="mobile-nav-label">Orders</span>
     </a>
 
-    <!-- Tab 4: Profile -> Opens Profile Modal -->
     <a href="#modal-profile" class="mobile-nav-item">
       <span class="mobile-nav-icon-wrap" aria-hidden="true">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -4167,9 +4024,6 @@
     </a>
   </nav>
 
-  <!-- ==========================================================================
-       SITE FOOTER (Consistent with AgriMitra Design System)
-       ========================================================================== -->
   <footer class="site-footer" role="contentinfo">
     <div class="container">
       <div class="footer-inner">
@@ -4206,7 +4060,6 @@
     </div>
   </footer>
 
-  <!-- AgriMitra Multi-Language Support Engine -->
   <script src="i18n.js"></script>
   <script src="assets/auth-guard.js"></script>
   <script src="assets/buyer-marketplace.js"></script>

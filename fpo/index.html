@@ -13,11 +13,9 @@
 <body>
 
   <div class="app-layout" id="appLayout">
-    
-    <!-- Mobile Navigation Overlay -->
+
     <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
-    <!-- LEFT SIDEBAR -->
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
         <div class="brand-block">
@@ -29,7 +27,6 @@
         </div>
       </div>
 
-      <!-- Navigation Links -->
       <nav class="sidebar-nav">
         <div class="nav-group-label">Management</div>
         <a href="#overview" class="nav-item active" data-section="overview">
@@ -58,14 +55,13 @@
         <a href="#payments" class="nav-item" data-section="payments">
           <span class="nav-text">Payments</span>
         </a>
-        
+
         <div class="nav-group-label" style="margin-top: 1.5rem;">Settings</div>
         <a href="#profile" class="nav-item" data-section="profile">
           <span class="nav-text">Profile</span>
         </a>
       </nav>
 
-      <!-- Sidebar Footer / FPO Badge -->
       <div class="sidebar-footer">
         <div class="fpo-profile-card">
           <div class="fpo-avatar">NF</div>
@@ -77,10 +73,8 @@
       </div>
     </aside>
 
-    <!-- MAIN CONTENT AREA -->
     <div class="main-wrapper">
-      
-      <!-- TOP HEADER -->
+
       <header class="top-header">
         <div class="header-left">
           <button class="mobile-toggle-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">
@@ -97,7 +91,7 @@
         </div>
 
         <div class="header-right">
-          <!-- State Mode Simulator Pill for Demo/Hackathon -->
+
           <div class="demo-controls">
             <button class="ghost-btn" id="toggleStateBtn" title="Toggle between populated data and realistic empty state">
               <span class="dot-indicator"></span>
@@ -115,7 +109,6 @@
         </div>
       </header>
 
-      <!-- FPO Dashboard Horizontal Navbar: Dashboard | Products | Orders | Live Bidding | Profile -->
       <nav class="fpo-top-nav-bar" aria-label="FPO Primary Navigation" style="background: #FFFFFF; border-bottom: 1px solid var(--color-border); padding: 0.5rem 1.5rem; display: flex; align-items: center; gap: 0.75rem; overflow-x: auto;">
         <a href="index.html" class="nav-link active">Dashboard</a>
         <a href="#produceSection" class="nav-link">Products</a>
@@ -127,12 +120,10 @@
         <a href="#profile" class="nav-link">Profile</a>
       </nav>
 
-      <!-- DASHBOARD MAIN BODY -->
       <main class="dashboard-content" id="dashboardMain">
-        
-        <!-- SECTION 6: TOP SUMMARY CARDS -->
+
         <section class="metrics-grid" id="metricsSection">
-          
+
           <div class="metric-card" tabindex="0" role="button" onclick="handleMetricClick('farmers')">
             <div class="metric-label">Registered Farmers</div>
             <div class="metric-value">184</div>
@@ -161,7 +152,6 @@
 
         </section>
 
-        <!-- SECTION 7: MAIN ACTION BANNER -->
         <section class="main-action-banner">
           <div class="action-banner-content">
             <div class="action-banner-text">
@@ -175,7 +165,6 @@
           </div>
         </section>
 
-        <!-- LIVE TRADING & ACTIVE BIDDING SECTION (FPO DASHBOARD) -->
         <section class="content-card" id="live-trading" data-anchor="live-bidding" style="border: 2px solid var(--color-primary); margin-bottom: 2rem; scroll-margin-top: 80px;">
           <div id="live-bidding" style="position: relative; top: -80px;"></div>
           <div class="card-header" style="border-bottom: 1px solid var(--color-border-light); padding-bottom: 1rem; margin-bottom: 1.25rem;">
@@ -204,10 +193,8 @@
             </div>
           </div>
 
-          <!-- 3 Live Session Cards Grid -->
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
-            
-            <!-- Session 1: Premium Wheat -->
+
             <div style="background-color: var(--color-surface-alt, #F1F6F2); border: 1px solid var(--color-border); border-radius: var(--radius-md, 10px); padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between;">
               <div>
                 <img src="assets/produce/wheat.jpg" alt="Premium Wheat Real Photo" style="width: 100%; height: 130px; object-fit: cover; border-radius: 6px; margin-bottom: 10px;">
@@ -221,7 +208,7 @@
                 </div>
                 <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--color-text-main); margin: 4px 0;">Premium Wheat</h3>
                 <p style="font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 12px;">Lot #TRD-WHT-820 · Ludhiana Mandi Hub</p>
-                
+
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.8rem; margin-bottom: 12px; background: #FFFFFF; padding: 8px 10px; border-radius: 6px; border: 1px solid var(--color-border-light);">
                   <div>
                     <span style="color: var(--color-text-muted); display: block; font-size: 0.7rem;">Quantity</span>
@@ -247,7 +234,6 @@
               </a>
             </div>
 
-            <!-- Session 2: Fresh Potatoes -->
             <div style="background-color: var(--color-surface-alt, #F1F6F2); border: 1px solid var(--color-border); border-radius: var(--radius-md, 10px); padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between;">
               <div>
                 <img src="assets/produce/potato.jpg" alt="Fresh Potatoes Real Photo" style="width: 100%; height: 130px; object-fit: cover; border-radius: 6px; margin-bottom: 10px;">
@@ -261,7 +247,7 @@
                 </div>
                 <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--color-text-main); margin: 4px 0;">Fresh Potatoes</h3>
                 <p style="font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 12px;">Lot #TRD-POT-114 · Malegaon Center</p>
-                
+
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.8rem; margin-bottom: 12px; background: #FFFFFF; padding: 8px 10px; border-radius: 6px; border: 1px solid var(--color-border-light);">
                   <div>
                     <span style="color: var(--color-text-muted); display: block; font-size: 0.7rem;">Quantity</span>
@@ -287,7 +273,6 @@
               </a>
             </div>
 
-            <!-- Session 3: Basmati Rice -->
             <div style="background-color: var(--color-surface-alt, #F1F6F2); border: 1px solid var(--color-border); border-radius: var(--radius-md, 10px); padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between;">
               <div>
                 <img src="assets/produce/rice.jpg" alt="Basmati Rice Real Photo" style="width: 100%; height: 130px; object-fit: cover; border-radius: 6px; margin-bottom: 10px;">
@@ -301,7 +286,7 @@
                 </div>
                 <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--color-text-main); margin: 4px 0;">Basmati Rice</h3>
                 <p style="font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 12px;">Lot #TRD-RIC-552 · Karnal Mandi Hub</p>
-                
+
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.8rem; margin-bottom: 12px; background: #FFFFFF; padding: 8px 10px; border-radius: 6px; border: 1px solid var(--color-border-light);">
                   <div>
                     <span style="color: var(--color-text-muted); display: block; font-size: 0.7rem;">Quantity</span>
@@ -330,7 +315,6 @@
           </div>
         </section>
 
-        <!-- SECTION 16: FPO SMART INSIGHT -->
         <section class="smart-insight-card" id="smartInsightSection">
           <div class="insight-pill">AgriMitra Insight</div>
           <div class="insight-body">
@@ -346,13 +330,10 @@
           </button>
         </section>
 
-        <!-- TWO COLUMN DASHBOARD GRID -->
         <div class="dashboard-columns">
-          
-          <!-- PRIMARY LEFT COLUMN (PRODUCE, DEMAND, RECOMMENDATIONS, BULK LOTS) -->
+
           <div class="primary-column">
-            
-            <!-- SECTION 8: AVAILABLE PRODUCE -->
+
             <section class="content-card" id="produceSection">
               <div class="card-header">
                 <div>
@@ -369,7 +350,6 @@
                 </div>
               </div>
 
-              <!-- Available Produce Table Container -->
               <div class="table-responsive" id="produceTableContainer">
                 <table class="data-table">
                   <thead>
@@ -449,7 +429,6 @@
               </div>
             </section>
 
-            <!-- SECTION 9: CURRENT BUYER DEMAND -->
             <section class="content-card" id="demandSection">
               <div class="card-header">
                 <div>
@@ -460,8 +439,7 @@
               </div>
 
               <div class="demand-cards-grid" id="demandCardsGrid">
-                
-                <!-- Card 1: FreshFoods -->
+
                 <div class="demand-card">
                   <div class="demand-card-top">
                     <div>
@@ -491,7 +469,6 @@
                   </div>
                 </div>
 
-                <!-- Card 2: Maharashtra Retail Group -->
                 <div class="demand-card">
                   <div class="demand-card-top">
                     <div>
@@ -521,7 +498,6 @@
                   </div>
                 </div>
 
-                <!-- Card 3: Hotel Supply Network -->
                 <div class="demand-card">
                   <div class="demand-card-top">
                     <div>
@@ -560,7 +536,6 @@
               </div>
             </section>
 
-            <!-- SECTION 10: RECOMMENDED OPPORTUNITIES -->
             <section class="content-card" id="recommendationsSection">
               <div class="card-header">
                 <div>
@@ -573,8 +548,7 @@
               </div>
 
               <div class="opportunities-list" id="opportunitiesList">
-                
-                <!-- Recommendation 1: Tomatoes -> FreshFoods -->
+
                 <div class="opportunity-card">
                   <div class="opportunity-top">
                     <div class="match-heading-group">
@@ -618,7 +592,6 @@
                   </div>
                 </div>
 
-                <!-- Recommendation 2: Onions -> Retail Group -->
                 <div class="opportunity-card">
                   <div class="opportunity-top">
                     <div class="match-heading-group">
@@ -665,7 +638,6 @@
               </div>
             </section>
 
-            <!-- SECTION 11: ACTIVE BULK LOTS -->
             <section class="content-card" id="lotsSection">
               <div class="card-header">
                 <div>
@@ -676,8 +648,7 @@
               </div>
 
               <div class="lots-grid" id="lotsGrid">
-                
-                <!-- Lot 1: #FPO1048 -->
+
                 <div class="lot-card" id="lot-FPO1048">
                   <div class="lot-header">
                     <div>
@@ -711,7 +682,6 @@
                   </div>
                 </div>
 
-                <!-- Lot 2: #FPO1047 -->
                 <div class="lot-card" id="lot-FPO1047">
                   <div class="lot-header">
                     <div>
@@ -750,10 +720,8 @@
 
           </div>
 
-          <!-- SECONDARY RIGHT COLUMN (MARKET SNAPSHOT, ORDERS, PAYMENTS, FARMER ACTIVITY) -->
           <div class="secondary-column">
-            
-            <!-- SECTION 15: MARKET SNAPSHOT -->
+
             <section class="content-card" id="marketSection">
               <div class="card-header">
                 <div>
@@ -804,7 +772,6 @@
               </div>
             </section>
 
-            <!-- SECTION 12: RECENT ORDERS -->
             <section class="content-card" id="ordersSection">
               <div class="card-header">
                 <div>
@@ -814,8 +781,7 @@
               </div>
 
               <div class="orders-list">
-                
-                <!-- Order #1048 -->
+
                 <div class="order-item">
                   <div class="order-main-line">
                     <span class="order-id">Order #1048</span>
@@ -831,7 +797,6 @@
                   </div>
                 </div>
 
-                <!-- Order #1047 -->
                 <div class="order-item">
                   <div class="order-main-line">
                     <span class="order-id">Order #1047</span>
@@ -847,7 +812,6 @@
                   </div>
                 </div>
 
-                <!-- Order #1046 -->
                 <div class="order-item">
                   <div class="order-main-line">
                     <span class="order-id">Order #1046</span>
@@ -872,7 +836,6 @@
               </div>
             </section>
 
-            <!-- SECTION 13: PAYMENTS -->
             <section class="content-card" id="paymentsSection">
               <div class="card-header">
                 <div>
@@ -881,7 +844,6 @@
                 </div>
               </div>
 
-              <!-- 3 Payments Summary Values -->
               <div class="payments-summary-grid">
                 <div class="pay-stat-box">
                   <div class="pay-stat-label">Pending</div>
@@ -897,7 +859,6 @@
                 </div>
               </div>
 
-              <!-- Recent Payments List -->
               <div class="payments-list">
                 <div class="payment-row">
                   <div class="pay-entity-col">
@@ -940,7 +901,6 @@
               </div>
             </section>
 
-            <!-- SECTION 14: RECENT FARMER ACTIVITY -->
             <section class="content-card" id="farmerActivitySection">
               <div class="card-header">
                 <div>
@@ -990,10 +950,6 @@
 
   </div>
 
-
-  <!-- INTERACTIVE MODALS & DRAWERS -->
-
-  <!-- 1. CREATE BULK LOT MODAL -->
   <div class="modal-backdrop" id="createLotModal">
     <div class="modal-dialog">
       <div class="modal-header">
@@ -1003,7 +959,7 @@
         </div>
         <button class="modal-close" onclick="closeModal('createLotModal')">✕</button>
       </div>
-      
+
       <form id="createLotForm" onsubmit="handleCreateLotSubmit(event)">
         <div class="modal-body">
           <div class="form-group">
@@ -1041,7 +997,6 @@
             </div>
           </div>
 
-          <!-- Calculated Aggregation Summary Box -->
           <div class="calc-summary-box">
             <div class="calc-row">
               <span class="calc-label">Estimated Participating Farmers</span>
@@ -1066,7 +1021,6 @@
     </div>
   </div>
 
-  <!-- 2. OPPORTUNITY DETAIL MODAL -->
   <div class="modal-backdrop" id="opportunityDetailModal">
     <div class="modal-dialog lg-dialog">
       <div class="modal-header">
@@ -1083,7 +1037,7 @@
 
       <div class="modal-body">
         <div class="opp-modal-grid">
-          
+
           <div class="opp-info-panel">
             <div class="panel-section-title">Buyer Specifications</div>
             <div class="spec-grid">
@@ -1113,7 +1067,7 @@
 
           <div class="opp-financial-panel">
             <div class="panel-section-title">Logistics & Realization Calculation</div>
-            
+
             <div class="breakdown-list">
               <div class="breakdown-item">
                 <span>Buyer Headline Offer</span>
@@ -1153,7 +1107,6 @@
     </div>
   </div>
 
-  <!-- 3. PRODUCE DETAIL DRAWER / MODAL -->
   <div class="modal-backdrop" id="produceDetailModal">
     <div class="modal-dialog">
       <div class="modal-header">
@@ -1182,7 +1135,7 @@
 
         <div class="panel-section-title" style="margin-top: 1.25rem;">Sample Member Farmer Contributions</div>
         <div class="farmer-contrib-list" id="farmerContribList">
-          <!-- Populated by JS -->
+
         </div>
       </div>
 
@@ -1193,7 +1146,6 @@
     </div>
   </div>
 
-  <!-- 4. ACTIVE LOT DETAIL MODAL -->
   <div class="modal-backdrop" id="lotDetailModal">
     <div class="modal-dialog">
       <div class="modal-header">
@@ -1255,7 +1207,6 @@
     </div>
   </div>
 
-  <!-- 5. MARKET PRICES MODAL -->
   <div class="modal-backdrop" id="marketPricesModal">
     <div class="modal-dialog">
       <div class="modal-header">
@@ -1315,7 +1266,6 @@
     </div>
   </div>
 
-  <!-- 6. ALL PRODUCE VIEW MODAL -->
   <div class="modal-backdrop" id="allProduceModal">
     <div class="modal-dialog lg-dialog">
       <div class="modal-header">
@@ -1394,7 +1344,6 @@
     </div>
   </div>
 
-  <!-- 7. ALL ORDERS MODAL -->
   <div class="modal-backdrop" id="allOrdersModal">
     <div class="modal-dialog lg-dialog">
       <div class="modal-header">
@@ -1463,7 +1412,6 @@
     </div>
   </div>
 
-  <!-- 8. ALL PAYMENTS MODAL -->
   <div class="modal-backdrop" id="allPaymentsModal">
     <div class="modal-dialog lg-dialog">
       <div class="modal-header">
@@ -1542,12 +1490,10 @@
     </div>
   </div>
 
-  <!-- TOAST NOTIFICATION CONTAINER -->
   <div class="toast-container" id="toastContainer"></div>
 
   <script src="app.js"></script>
 
-  <!-- AgriMitra Multi-Language Support Engine -->
   <script src="../i18n.js"></script>
 </body>
 </html>

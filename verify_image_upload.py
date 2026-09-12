@@ -64,7 +64,6 @@ with urllib.request.urlopen(post_req) as resp:
     assert os.path.exists(saved_img)
     print(f"Verified image file exists on disk: {saved_img} (Size: {os.path.getsize(saved_img)} bytes)")
 
-# Test fetching image via HTTP
 img_req = urllib.request.urlopen(f'http://127.0.0.1:5000/{saved_img}')
 assert img_req.status == 200
 img_bytes = img_req.read()

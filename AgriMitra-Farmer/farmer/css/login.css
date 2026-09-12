@@ -1,6 +1,5 @@
-/* AgriMitra - Login Page Layout & Specific Styles */
 
-/* --- Main Page Container --- */
+
 .login-main {
   flex: 1;
   display: flex;
@@ -12,7 +11,6 @@
   margin: 0 auto;
 }
 
-/* --- Responsive Two-Column Grid --- */
 .split-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -21,9 +19,6 @@
   width: 100%;
 }
 
-/* ==========================================================================
-   Left Column: Brand & Subtle Agricultural Visual Section
-   ========================================================================== */
 .brand-visual-pane {
   display: flex;
   flex-direction: column;
@@ -84,7 +79,6 @@
   margin-bottom: 2rem;
 }
 
-/* Subtle Agricultural Graphic Artwork */
 .agri-visual-container {
   position: relative;
   width: 100%;
@@ -105,7 +99,6 @@
   height: 100%;
 }
 
-/* Geometric agricultural feature tags */
 .visual-trust-pills {
   display: flex;
   flex-wrap: wrap;
@@ -132,9 +125,6 @@
   color: var(--color-primary);
 }
 
-/* ==========================================================================
-   Right Column: Centered Login Card
-   ========================================================================== */
 .form-pane {
   display: flex;
   justify-content: center;
@@ -157,7 +147,6 @@
   box-shadow: var(--shadow-lg);
 }
 
-/* Header inside Login Card */
 .card-header {
   margin-bottom: 1.75rem;
 }
@@ -186,7 +175,6 @@
   line-height: var(--line-height-relaxed);
 }
 
-/* Footer / Platform Copyright */
 .site-footer {
   padding: 1.25rem 1.5rem;
   text-align: center;
@@ -196,14 +184,11 @@
   margin-top: auto;
 }
 
-/* ==========================================================================
-   Responsive Adaptations
-   ========================================================================== */
 @media (max-width: 960px) {
   .split-layout {
     gap: 2rem;
   }
-  
+
   .login-card {
     padding: 2rem 1.75rem;
   }
@@ -223,7 +208,6 @@
     gap: 1.75rem;
   }
 
-  /* On mobile, login form remains primary focus */
   .form-pane {
     order: 1;
   }
@@ -264,18 +248,13 @@
   }
 }
 
-/* ==========================================================================
-   Static Left Pane & Dynamic Registration Form Styles
-   ========================================================================== */
-
-/* Invisible Scrollbar on Registration Page (Scrollable but completely invisible track & thumb) */
 html.is-registration-page,
 body.is-registration-page,
 .is-registration-page,
 .split-layout.is-registration,
 .split-layout.is-registration * {
-  scrollbar-width: none !important; /* Firefox */
-  -ms-overflow-style: none !important; /* IE and Edge */
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
 }
 
 html.is-registration-page::-webkit-scrollbar,
@@ -283,13 +262,12 @@ body.is-registration-page::-webkit-scrollbar,
 .is-registration-page::-webkit-scrollbar,
 .split-layout.is-registration::-webkit-scrollbar,
 .split-layout.is-registration *::-webkit-scrollbar {
-  display: none !important; /* Chrome, Safari, Opera */
+  display: none !important;
   width: 0 !important;
   height: 0 !important;
   background: transparent !important;
 }
 
-/* Left Pane Static / Sticky Layout */
 .split-layout.is-registration {
   align-items: start;
 }
@@ -320,7 +298,6 @@ body.is-registration-page::-webkit-scrollbar,
   }
 }
 
-/* AgriMitra Brand Showcase in Visual Pane */
 .brand-visual-logo-container {
   display: flex;
   align-items: center;
@@ -349,7 +326,6 @@ body.is-registration-page::-webkit-scrollbar,
   filter: drop-shadow(0 4px 10px rgba(22, 101, 52, 0.12));
 }
 
-/* Dynamic Interactive Form Features */
 .dynamic-field-hint {
   display: flex;
   align-items: center;
@@ -370,15 +346,11 @@ body.is-registration-page::-webkit-scrollbar,
   color: #15803d;
 }
 
-/* Subtle Animated Focus Glow on Interactive Elements */
 .farmer-registration-form input:focus,
 .farmer-registration-form select:focus {
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-/* ==========================================================================
-   State & District Form Dropdown Select ("Dropbox") Styling
-   ========================================================================== */
 .state-district-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -448,7 +420,6 @@ body.is-registration-page::-webkit-scrollbar,
   background-color: #f8fafc;
 }
 
-/* Dynamic State-District Quick Suggestion Pills */
 .district-quick-suggestions {
   display: flex;
   flex-wrap: wrap;
@@ -496,4 +467,3 @@ body.is-registration-page::-webkit-scrollbar,
   outline: 2px solid #166534;
   outline-offset: 1px;
 }
-

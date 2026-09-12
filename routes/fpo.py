@@ -1,8 +1,3 @@
-"""
-FPO (Farmer Producer Organisation) API Routes for KrishiLink
-Produce Aggregation, Dashboard, and Live Bidding Auction Creation & Management
-"""
-
 import os
 import base64
 import time
@@ -44,9 +39,9 @@ def dashboard():
     }
 
     auctions = query_db("""
-        SELECT id, lot_code, product_name, category, quantity, unit, starting_price, 
+        SELECT id, lot_code, product_name, category, quantity, unit, starting_price,
                current_highest_bid, status, start_time, end_time, image_url
-        FROM auctions 
+        FROM auctions
         WHERE fpo_id = %s
         ORDER BY id DESC
     """, (fpo_id,))
@@ -100,7 +95,6 @@ def get_auctions():
         start_dt = to_datetime(a['start_time'])
         end_dt = to_datetime(a['end_time'])
 
-        # Dynamically determine if active or upcoming based on current clock
         if a['status'] != 'ended':
             if start_dt <= now < end_dt:
                 a['status'] = 'active'
@@ -125,43 +119,42 @@ def create_auction():
     fpo_id = _get_fpo_id()
     data = request.get_json(silent=True) or request.form
 
-    # Support multiple parameter naming conventions from various frontend forms
     product_name = (
-        data.get('product_name') or 
-        data.get('title') or 
-        data.get('name') or 
-        data.get('bidding-product-name') or 
-        data.get('product-name') or 
+        data.get('product_name') or
+        data.get('title') or
+        data.get('name') or
+        data.get('bidding-product-name') or
+        data.get('product-name') or
         ''
     ).strip()
-    
+
     category = (
-        data.get('category') or 
-        data.get('crop_category') or 
-        data.get('bidding-category') or 
-        data.get('product-category') or 
+        data.get('category') or
+        data.get('crop_category') or
+        data.get('bidding-category') or
+        data.get('product-category') or
         'grains'
     ).strip()
-    
+
     description = (
-        data.get('description') or 
-        data.get('bidding-description') or 
-        data.get('product-description') or 
+        data.get('description') or
+        data.get('bidding-description') or
+        data.get('product-description') or
         ''
     ).strip()
-    
+
     quality_grade = (
-        data.get('quality_grade') or 
-        data.get('quality-grade') or 
+        data.get('quality_grade') or
+        data.get('quality-grade') or
         'A'
     ).strip()
-    
+
     quality_specs = (
-        data.get('quality_specs') or 
-        data.get('quality-specs') or 
+        data.get('quality_specs') or
+        data.get('quality-specs') or
         'Mandi Verified QC'
     ).strip()
-    
+
     quantity = data.get('quantity') or data.get('quantity-input')
     unit = (data.get('unit') or data.get('quantity-unit-select') or 'kg').strip()
     starting_price = data.get('starting_price') or data.get('start-price-input') or data.get('price')
@@ -195,20 +188,17 @@ def create_auction():
         start_dt = now
         end_dt = now + timedelta(hours=1)
 
-    # Determine status:
-    # 1. If start_dt is in the future, mark as upcoming and preserve scheduled dates
     if start_dt > now:
         status = 'upcoming'
         if end_dt <= start_dt:
             end_dt = start_dt + timedelta(hours=1)
     else:
-        # If scheduled end time is in the past, default to active session for the next hour
+
         if end_dt <= now:
             start_dt = now
             end_dt = now + timedelta(hours=1)
         status = 'active' if start_dt <= now < end_dt else ('upcoming' if now < start_dt else 'ended')
 
-    # Generate guaranteed unique lot code e.g. TRD-WHT-925
     prefix = product_name[:3].upper() if len(product_name) >= 3 else "AGR"
     lot_code = None
     for _ in range(30):
@@ -220,7 +210,6 @@ def create_auction():
     if not lot_code:
         lot_code = f"TRD-{prefix}-{int(time.time()) % 100000}"
 
-    # Check for custom image upload (base64 data URL or uploaded URL)
     custom_img = data.get('image_url') or data.get('image') or data.get('produce_image')
     image_data = data.get('image_data')
 
@@ -246,7 +235,6 @@ def create_auction():
     elif custom_img and isinstance(custom_img, str) and len(custom_img.strip()) > 0:
         img = custom_img.strip()
 
-    # Fallback to default matching images if no custom image was uploaded
     if not img:
         p_lower = product_name.lower()
         if 'wheat' in p_lower:
@@ -271,9 +259,9 @@ def create_auction():
             img = 'assets/produce/wheat.jpg'
 
     auction_id = execute_db("""
-        INSERT INTO auctions 
-        (lot_code, fpo_id, product_name, category, description, quality_grade, quality_specs, 
-         quantity, unit, starting_price, min_increment, current_highest_bid, start_time, end_time, 
+        INSERT INTO auctions
+        (lot_code, fpo_id, product_name, category, description, quality_grade, quality_specs,
+         quantity, unit, starting_price, min_increment, current_highest_bid, start_time, end_time,
          status, image_url, hub_location)
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 'Central Mandi Hub')
     """, (lot_code, fpo_id, product_name, category, description, quality_grade, quality_specs,
@@ -310,11 +298,11 @@ def create_auction():
 @fpo_bp.route('/auctions/<int:auction_id>/close', methods=['POST'])
 def close_auction(auction_id):
     fpo_id = _get_fpo_id()
-    # Check ownership
+
     auction = query_db("SELECT id, fpo_id, status FROM auctions WHERE id = %s", (auction_id,), one=True)
     if not auction:
         return jsonify({"success": False, "message": "Auction not found."}), 404
-    
+
     success, result = finalize_auction(auction_id)
     if success:
         return jsonify({"success": True, "data": result})

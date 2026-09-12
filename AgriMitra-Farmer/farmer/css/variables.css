@@ -1,52 +1,46 @@
-/* AgriMitra Design System - Core Variables */
-:root {
-  /* Brand Agricultural Palette */
-  --color-primary: #15803d;         /* Deep leaf green - authoritative, dependable */
-  --color-primary-hover: #166534;   /* Darker green for hover state */
-  --color-primary-active: #14532d;  /* Active click state */
-  --color-primary-light: #f0fdf4;   /* Subtle tinted background */
-  --color-primary-border: #bbf7d0;  /* Light green border */
-  --color-primary-focus: rgba(21, 128, 61, 0.2); /* Focus ring */
 
-  /* Secondary Accents */
-  --color-accent-amber: #d97706;    /* Harvest gold/amber accent */
+:root {
+
+  --color-primary: #15803d;
+  --color-primary-hover: #166534;
+  --color-primary-active: #14532d;
+  --color-primary-light: #f0fdf4;
+  --color-primary-border: #bbf7d0;
+  --color-primary-focus: rgba(21, 128, 61, 0.2);
+
+  --color-accent-amber: #d97706;
   --color-accent-amber-light: #fef3c7;
 
-  /* Neutral Surface & Background Colors */
-  --color-bg: #f8fafc;              /* Soft, clean off-white / light slate canvas */
-  --color-surface: #ffffff;         /* Pure white cards */
-  --color-surface-muted: #f1f5f9;   /* Muted elements */
-  --color-surface-subtle: #f8faf9;  /* Subtle warm agricultural tint */
+  --color-bg: #f8fafc;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f1f5f9;
+  --color-surface-subtle: #f8faf9;
 
-  /* Neutral Border & Dividers */
-  --color-border: #e2e8f0;          /* Subtle neutral border */
+  --color-border: #e2e8f0;
   --color-border-subtle: #edf2f7;
   --color-border-focus: #15803d;
 
-  /* Typography Colors */
-  --color-text-primary: #0f172a;    /* High-contrast dark slate */
-  --color-text-secondary: #475569;  /* Medium contrast secondary slate */
-  --color-text-muted: #64748b;      /* Muted helper text */
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-muted: #64748b;
   --color-text-disabled: #94a3b8;
   --color-text-inverse: #ffffff;
 
-  /* Feedback & Validation Colors */
-  --color-error: #dc2626;           /* Red for validation messages */
+  --color-error: #dc2626;
   --color-error-bg: #fef2f2;
   --color-error-border: #fecaca;
   --color-success: #16a34a;
   --color-success-bg: #f0fdf4;
 
-  /* Typography System */
   --font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-size-xs: 0.75rem;    /* 12px */
-  --font-size-sm: 0.875rem;   /* 14px */
-  --font-size-base: 1rem;     /* 16px */
-  --font-size-lg: 1.125rem;   /* 18px */
-  --font-size-xl: 1.25rem;    /* 20px */
-  --font-size-2xl: 1.5rem;    /* 24px */
-  --font-size-3xl: 1.875rem;  /* 30px */
-  --font-size-4xl: 2.25rem;   /* 36px */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
 
   --font-weight-normal: 400;
   --font-weight-medium: 500;
@@ -57,24 +51,20 @@
   --line-height-normal: 1.5;
   --line-height-relaxed: 1.625;
 
-  /* Elevation & Shadows (Subtle, clean, non-flashy) */
   --shadow-xs: 0 1px 2px 0 rgba(15, 23, 42, 0.04);
   --shadow-sm: 0 2px 4px -1px rgba(15, 23, 42, 0.05), 0 1px 2px -1px rgba(15, 23, 42, 0.03);
   --shadow-md: 0 4px 12px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
   --shadow-lg: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
 
-  /* Border Radii (Moderate, professional) */
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
   --radius-xl: 18px;
   --radius-full: 9999px;
 
-  /* Transitions */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 220ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* Dimensions */
   --input-height: 50px;
   --button-height: 50px;
   --container-max-width: 1200px;

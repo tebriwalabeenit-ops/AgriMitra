@@ -1,6 +1,5 @@
-/* AgriMitra - Reusable UI Components */
 
-/* --- Reset & Base Styles --- */
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -19,7 +18,6 @@ body {
   flex-direction: column;
 }
 
-/* --- Accessibility Focus Rings --- */
 :focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
@@ -29,7 +27,6 @@ button, input, a {
   font-family: inherit;
 }
 
-/* --- Brand Logo / Mark Component --- */
 .brand-logo {
   display: inline-flex;
   align-items: center;
@@ -82,7 +79,6 @@ button, input, a {
   color: var(--color-primary);
 }
 
-/* --- Header Component --- */
 .site-header {
   height: 64px;
   background-color: var(--color-surface);
@@ -128,7 +124,6 @@ button, input, a {
   stroke-width: 2.2;
 }
 
-/* --- Form Components --- */
 .form-group {
   margin-bottom: 1.25rem;
   display: flex;
@@ -143,7 +138,6 @@ button, input, a {
   display: block;
 }
 
-/* Phone Number Field with Indian +91 Prefix */
 .phone-input-group {
   display: flex;
   align-items: center;
@@ -206,7 +200,6 @@ button, input, a {
   font-size: var(--font-size-sm);
 }
 
-/* Password Input Field with Show/Hide Toggle */
 .password-input-group {
   position: relative;
   display: flex;
@@ -269,7 +262,6 @@ button, input, a {
   height: 18px;
 }
 
-/* --- Inline Validation Message --- */
 .validation-message {
   display: none;
   align-items: center;
@@ -292,7 +284,6 @@ button, input, a {
   flex-shrink: 0;
 }
 
-/* General / Form Level Alert */
 .form-alert {
   display: none;
   align-items: flex-start;
@@ -318,7 +309,6 @@ button, input, a {
   margin-top: 1px;
 }
 
-/* --- Secondary Links --- */
 .form-options {
   display: flex;
   justify-content: flex-end;
@@ -343,7 +333,6 @@ button, input, a {
   text-decoration: underline;
 }
 
-/* --- Primary Action Button --- */
 .btn-primary {
   width: 100%;
   height: var(--button-height);
@@ -378,7 +367,6 @@ button, input, a {
   cursor: not-allowed;
 }
 
-/* Button Loading Spinner */
 .btn-spinner {
   display: none;
   width: 18px;
@@ -397,7 +385,6 @@ button, input, a {
   opacity: 0.95;
 }
 
-/* --- Registration Section --- */
 .registration-section {
   margin-top: 1.75rem;
   padding-top: 1.25rem;
@@ -426,7 +413,6 @@ button, input, a {
   text-decoration: underline;
 }
 
-/* --- Accessible Modal for Forgot Password Assistance --- */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -501,7 +487,6 @@ button, input, a {
   background-color: var(--color-border);
 }
 
-/* --- Keyframe Animations --- */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -519,11 +504,6 @@ button, input, a {
   }
 }
 
-/* ==========================================================================
-   AgriMitra Dynamic Form Enhancements (Registration & Onboarding)
-   ========================================================================== */
-
-/* Password Strength Meter */
 .password-strength-wrap {
   margin-top: 0.45rem;
   margin-bottom: 0.35rem;
@@ -546,19 +526,19 @@ button, input, a {
 }
 
 .strength-segment.active-weak {
-  background-color: #ef4444; /* red */
+  background-color: #ef4444;
 }
 
 .strength-segment.active-fair {
-  background-color: #f59e0b; /* amber */
+  background-color: #f59e0b;
 }
 
 .strength-segment.active-good {
-  background-color: #3b82f6; /* blue */
+  background-color: #3b82f6;
 }
 
 .strength-segment.active-strong {
-  background-color: #10b981; /* emerald */
+  background-color: #10b981;
 }
 
 .password-strength-meta {
@@ -584,7 +564,6 @@ button, input, a {
   font-size: 0.72rem;
 }
 
-/* Real-Time Password Match Feedback */
 .password-match-status {
   display: none;
   align-items: center;
@@ -605,7 +584,6 @@ button, input, a {
   color: #dc2626;
 }
 
-/* Dynamic Phone Digits Counter & Valid Checkmark */
 .phone-dynamic-meta {
   display: flex;
   justify-content: flex-end;
@@ -625,7 +603,6 @@ button, input, a {
   font-weight: var(--font-weight-semibold);
 }
 
-/* Interactive Input Focus Highlight */
 .password-input-group.is-valid {
   border-color: #22c55e;
 }
@@ -633,4 +610,3 @@ button, input, a {
 .phone-input-group.is-valid {
   border-color: #22c55e;
 }
-

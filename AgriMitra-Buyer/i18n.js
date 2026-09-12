@@ -1,19 +1,4 @@
-/**
- * AgriMitra Internationalization (i18n) Engine
- * Supported Languages:
- *   en -> English
- *   hi -> हिन्दी (Hindi)
- *   ta -> தமிழ் (Tamil)
- *   ml -> മലയാളം (Malayalam)
- *   kn -> ಕನ್ನಡ (Kannada)
- *   mr -> मराठी (Marathi)
- *   bn -> বাংলা (Bengali)
- *
- * Rules:
- * - The brand name "AgriMitra" is NEVER translated.
- * - User-generated input data is NEVER translated.
- * - Language preference persists in localStorage ('agrimitraLanguage').
- */
+
 
 (function () {
   'use strict';
@@ -33,7 +18,7 @@
 
   const translations = {
     en: {
-      // General & Nav
+
       language: 'Language',
       select_language: 'Select Language',
       brand_subtext: 'Market Intelligence & Trade',
@@ -48,13 +33,11 @@
       sign_out: 'Sign Out',
       helpline: 'Helpline: 1800-123-AGRI',
 
-      // Hero
       platform_badge: 'Public Agricultural Trading Infrastructure',
       hero_tagline: 'Connect. Trade. Grow.',
       hero_desc: 'Helping farmers discover better markets, connect with reliable buyers, and manage produce sales from farm to delivery.',
       ecosystem_roles_label: 'Connected Ecosystem Roles',
 
-      // Roles
       role_farmer: 'Farmer',
       role_buyer: 'Buyer',
       role_fpo: 'FPO',
@@ -64,11 +47,10 @@
       role_distributor_wholesaler: 'Distributor / Wholesaler',
       role_delivery: 'Delivery Agent',
 
-      // Supply Chain Section
       chain_eyebrow: 'End-to-End Transparency',
       chain_title: 'Agricultural Supply Chain',
       chain_subtitle: 'A unified workflow ensuring transparent price discovery, quality assessment, and timely settlement.',
-      
+
       step_1_name: 'Farmer',
       step_1_desc: 'Discovers transparent market rates and lists harvest quantities without intermediary price suppression.',
       step_1_feat: 'Fair Price Discovery →',
@@ -89,7 +71,6 @@
       step_5_desc: 'Automated escrow release directly to farmer account upon digital delivery confirmation and quality signoff.',
       step_5_feat: 'Direct Bank Transfer',
 
-      // Core Decisions
       core_eyebrow: 'Market Intelligence',
       core_title: 'Informed Selling Decisions',
       core_subtitle: 'AgriMitra equips producers with actionable answers instead of raw data tables.',
@@ -103,7 +84,6 @@
       pillar_3_title: 'Who to Sell To',
       pillar_3_desc: 'Verified buyers, FPO aggregators, and institutional processors with verifiable credit and on-time settlement ratings.',
 
-      // Footer
       footer_statement: 'Connect. Trade. Grow. Direct market access, real-time intelligence, and verified fulfillment across the agricultural supply chain.',
       footer_platform_roles: 'Platform Roles',
       footer_information: 'Information',
@@ -112,10 +92,9 @@
       footer_copyright: 'AgriMitra Agricultural Trading & Intelligence Platform. All rights reserved.',
       footer_subtext: 'Secure Infrastructure • Public Impact Standard',
 
-      // Login Dialog
       login_dialog_title: 'Sign In to AgriMitra',
       demo_accounts_label: 'Demo Test Accounts (1-Click Fill)',
-      demo_accounts_badge: 'SIH Evaluation Mode',
+      demo_accounts_badge: 'Demo Evaluation Mode',
       demo_accounts_subtext: 'Click any role below to pre-fill verified demo credentials:',
       or_enter_custom: 'Or Enter Custom Credentials',
       select_role_portal: 'Select Role Portal',
@@ -131,7 +110,6 @@
       portal_opt_distributor: 'Distributor / Wholesaler Dashboard',
       portal_opt_fpo: 'FPO Portal & Aggregation',
 
-      // Register Dialog
       register_dialog_title: 'Join AgriMitra',
       register_joining_as: 'I am joining as:',
       reg_farmer_desc: 'Sell harvest lots, compare mandi prices, and connect with verified buyers',
@@ -140,7 +118,6 @@
       reg_delivery_desc: 'Accept agricultural transit contracts with GPS tracking and quick payout',
       reg_distributor_desc: 'Manage warehouse inventory, bulk mandi arrivals, and regional distribution',
 
-      // About Dialog
       about_dialog_title: 'About AgriMitra',
       about_p1: 'AgriMitra is an open, technology-driven market intelligence and agricultural trade platform built to solve the fundamental question for producers:',
       about_quote: '“What should I sell, where should I sell it, when should I sell it, and who should I sell it to?”',
@@ -148,7 +125,7 @@
     },
 
     hi: {
-      // General & Nav
+
       language: 'भाषा',
       select_language: 'भाषा चुनें',
       brand_subtext: 'बाजार आसूचना एवं व्यापार',
@@ -163,13 +140,11 @@
       sign_out: 'साइन आउट',
       helpline: 'हेल्पलाइन: 1800-123-AGRI',
 
-      // Hero
       platform_badge: 'सार्वजनिक कृषि व्यापार अवसंरचना',
       hero_tagline: 'जुड़ें. व्यापार करें. आगे बढ़ें.',
       hero_desc: 'किसानों को बेहतर बाजार खोजने, विश्वसनीय खरीदारों से जुड़ने और खेत से डिलीवरी तक उपज की बिक्री प्रबंधित करने में मदद करना।',
       ecosystem_roles_label: 'जुड़ी हुई कृषि भूमिकाएँ',
 
-      // Roles
       role_farmer: 'किसान',
       role_buyer: 'खरीदार',
       role_fpo: 'एफपीओ',
@@ -179,7 +154,6 @@
       role_distributor_wholesaler: 'वितरक / थोक विक्रेता',
       role_delivery: 'डिलीवरी एजेंट',
 
-      // Supply Chain Section
       chain_eyebrow: 'शुरुआत से अंत तक पूर्ण पारदर्शिता',
       chain_title: 'कृषि आपूर्ति श्रृंखला',
       chain_subtitle: 'पारदर्शी मूल्य निर्धारण, गुणवत्ता मूल्यांकन और समय पर बैंक भुगतान सुनिश्चित करने वाली एकीकृत प्रणाली।',
@@ -204,7 +178,6 @@
       step_5_desc: 'डिजिटल डिलीवरी पुष्टि और गुणवत्ता स्वीकृति के बाद सीधे किसान के बैंक खाते में स्वचालित भुगतान।',
       step_5_feat: 'सीधा बैंक खाता ट्रांसफर',
 
-      // Core Decisions
       core_eyebrow: 'बाजार आसूचना',
       core_title: 'सोच-समझकर बिक्री के निर्णय',
       core_subtitle: 'AgriMitra उत्पादकों को केवल तालिकाओं के बजाय स्पष्ट एवं व्यावहारिक उत्तर प्रदान करता है।',
@@ -218,7 +191,6 @@
       pillar_3_title: 'किसे बेचें',
       pillar_3_desc: 'सत्यापित साख और समय पर भुगतान रेटिंग वाले विश्वसनीय खरीदार, एफपीओ और संस्थागत प्रसंस्करणकर्ता।',
 
-      // Footer
       footer_statement: 'जुड़ें. व्यापार करें. आगे बढ़ें. संपूर्ण कृषि आपूर्ति श्रृंखला में सीधा बाजार संपर्क, त्वरित जानकारी और सुरक्षित पूर्ति।',
       footer_platform_roles: 'प्लेटफॉर्म भूमिकाएँ',
       footer_information: 'जानकारी',
@@ -227,10 +199,9 @@
       footer_copyright: 'AgriMitra कृषि व्यापार एवं आसूचना प्लेटफॉर्म। सर्वाधिकार सुरक्षित।',
       footer_subtext: 'सुरक्षित डिजिटल अवसंरचना • सार्वजनिक प्रभाव मानक',
 
-      // Login Dialog
       login_dialog_title: 'AgriMitra में साइन इन करें',
       demo_accounts_label: 'डेमो टेस्ट खाते (1-क्लिक भरें)',
-      demo_accounts_badge: 'एसआईएच मूल्यांकन मोड',
+      demo_accounts_badge: 'डेमो मूल्यांकन मोड',
       demo_accounts_subtext: 'सत्यापित डेमो विवरण स्वतः भरने के लिए नीचे किसी भी भूमिका पर क्लिक करें:',
       or_enter_custom: 'या कस्टम विवरण दर्ज करें',
       select_role_portal: 'भूमिका पोर्टल चुनें',
@@ -246,7 +217,6 @@
       portal_opt_distributor: 'वितरक / थोक विक्रेता डैशबोर्ड',
       portal_opt_fpo: 'एफपीओ पोर्टल एवं एकत्रीकरण',
 
-      // Register Dialog
       register_dialog_title: 'AgriMitra से जुड़ें',
       register_joining_as: 'मेरी भूमिका है:',
       reg_farmer_desc: 'फसल लॉट बेचें, मंडी भाव की तुलना करें और सत्यापित खरीदारों से जुड़ें',
@@ -255,7 +225,6 @@
       reg_delivery_desc: 'जीपीएस ट्रैकिंग और त्वरित भुगतान के साथ कृषि परिवहन अनुबंध स्वीकार करें',
       reg_distributor_desc: 'गोदाम इन्वेंट्री, थोक मंडी आवक और क्षेत्रीय वितरण का प्रबंधन करें',
 
-      // About Dialog
       about_dialog_title: 'AgriMitra के बारे में',
       about_p1: 'AgriMitra एक खुला, प्रौद्योगिकी-आधारित बाजार आसूचना एवं कृषि व्यापार मंच है जो उत्पादकों के मुख्य प्रश्नों का समाधान करता है:',
       about_quote: '“मुझे क्या बेचना चाहिए, कहाँ बेचना चाहिए, कब बेचना चाहिए और किसे बेचना चाहिए?”',
@@ -263,7 +232,7 @@
     },
 
     ta: {
-      // General & Nav
+
       language: 'மொழி',
       select_language: 'மொழியைத் தேர்ந்தெடுக்கவும்',
       brand_subtext: 'சந்தை நுண்ணறிவு மற்றும் வர்த்தகம்',
@@ -278,13 +247,11 @@
       sign_out: 'வெளியேறு',
       helpline: 'உதவி எண்: 1800-123-AGRI',
 
-      // Hero
       platform_badge: 'பொது விவசாய வர்த்தக உள்கட்டமைப்பு',
       hero_tagline: 'இணையுங்கள். வர்த்தகம் செய்யுங்கள். வளருங்கள்.',
       hero_desc: 'விவசாயிகள் சிறந்த சந்தைகளைக் கண்டறியவும், நம்பகமான வாங்குபவர்களுடன் இணையவும், பண்ணை முதல் விநியோகம் வரை விற்பனையை நிர்வகிக்கவும் உதவுகிறது.',
       ecosystem_roles_label: 'இணைக்கப்பட்ட சூழலியல் பாத்திரங்கள்',
 
-      // Roles
       role_farmer: 'விவசாயி',
       role_buyer: 'வாங்குபவர்',
       role_fpo: 'எஃப்பிஓ',
@@ -294,7 +261,6 @@
       role_distributor_wholesaler: 'விநியோகஸ்தர் / மொத்த விற்பனையாளர்',
       role_delivery: 'டெலிவரி முகவர்',
 
-      // Supply Chain Section
       chain_eyebrow: 'முழுமையான வெளிப்படைத்தன்மை',
       chain_title: 'விவசாய விநியோகச் சங்கிலி',
       chain_subtitle: 'வெளிப்படையான விலை நிர்ணயம், தர மதிப்பீடு மற்றும் சரியான நேரத்தில் பணம் வழங்குவதை உறுதி செய்யும் ஒருங்கிணைந்த அமைப்பு.',
@@ -319,7 +285,6 @@
       step_5_desc: 'டிஜிட்டல் டெலிவரி உறுதிசெய்யப்பட்டதும் நேரடியாக விவசாயியின் வங்கிக் கணக்கிற்கு பணம் செலுத்தப்படுகிறது.',
       step_5_feat: 'நேரடி வங்கிப் பரிமாற்றம்',
 
-      // Core Decisions
       core_eyebrow: 'சந்தை நுண்ணறிவு',
       core_title: 'தகவலறிந்த விற்பனை முடிவுகள்',
       core_subtitle: 'AgriMitra வெறும் தரவுகளுக்குப் பதிலாக விவசாயிகளுக்கு நடைமுறை தீர்வுகளை வழங்குகிறது.',
@@ -333,7 +298,6 @@
       pillar_3_title: 'யாருக்கு விற்க வேண்டும்',
       pillar_3_desc: 'சரியான நேரத்தில் பணம் செலுத்தும் சான்றளிக்கப்பட்ட நம்பகமான வாங்குபவர்கள் மற்றும் எஃப்பிஓக்கள்.',
 
-      // Footer
       footer_statement: 'இணையுங்கள். வர்த்தகம் செய்யுங்கள். வளருங்கள். நேரடி சந்தை அணுகல் மற்றும் விவசாய விநியோகச் சங்கிலி நுண்ணறிவு.',
       footer_platform_roles: 'தளத்தின் பாத்திரங்கள்',
       footer_information: 'தகவல்',
@@ -342,10 +306,9 @@
       footer_copyright: 'AgriMitra விவசாய வர்த்தக தளம். அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.',
       footer_subtext: 'பாதுகாப்பான உள்கட்டமைப்பு • பொது நன்மை தரம்',
 
-      // Login Dialog
       login_dialog_title: 'AgriMitra-வில் உள்நுழையவும்',
       demo_accounts_label: 'டெமோ கணக்குகள் (1-கிளிக் நிரப்புதல்)',
-      demo_accounts_badge: 'SIH மதிப்பீட்டு முறைமை',
+      demo_accounts_badge: 'டெமோ மதிப்பீட்டு முறைமை',
       demo_accounts_subtext: 'முன் நிரப்பப்பட்ட விவரங்களுக்கு கீழே உள்ள எந்தவொரு பாத்திரத்தையும் கிளிக் செய்யவும்:',
       or_enter_custom: 'அல்லது உங்கள் விவரங்களை உள்ளிடவும்',
       select_role_portal: 'போர்டல் பாத்திரத்தைத் தேர்ந்தெடுக்கவும்',
@@ -361,7 +324,6 @@
       portal_opt_distributor: 'விநியோகஸ்தர் / மொத்த விற்பனையாளர் டாஷ்போர்டு',
       portal_opt_fpo: 'எஃப்பிஓ போர்டல்',
 
-      // Register Dialog
       register_dialog_title: 'AgriMitra-வில் இணையுங்கள்',
       register_joining_as: 'நான் இணையும் பாத்திரம்:',
       reg_farmer_desc: 'விளைபொருட்களை விற்கவும், மண்டி விலைகளை ஒப்பிடவும், வாங்குபவர்களுடன் இணையவும்',
@@ -370,7 +332,6 @@
       reg_delivery_desc: 'ஜிபிஎஸ் கண்காணிப்புடன் போக்குவரத்து ஒப்பந்தங்களை ஏற்றுக்கொண்டு வருமானம் ஈட்டவும்',
       reg_distributor_desc: 'கிடங்கு இருப்பு மற்றும் பிராந்திய விநியோகத்தை நிர்வகிக்கவும்',
 
-      // About Dialog
       about_dialog_title: 'AgriMitra பற்றி',
       about_p1: 'AgriMitra என்பது விவசாயிகளின் முக்கிய கேள்விகளுக்கு தீர்வு காண உருவாக்கப்பட்ட ஒரு நவீன தளமாகும்:',
       about_quote: '“நான் எதை விற்க வேண்டும், எங்கு விற்க வேண்டும், எப்போது விற்க வேண்டும், யாருக்கு விற்க வேண்டும்?”',
@@ -378,7 +339,7 @@
     },
 
     ml: {
-      // General & Nav
+
       language: 'ഭാഷ',
       select_language: 'ഭാഷ തിരഞ്ഞെടുക്കുക',
       brand_subtext: 'മാർക്കറ്റ് ഇന്റലിജൻസും വ്യാപാരവും',
@@ -393,13 +354,11 @@
       sign_out: 'സൈൻ ഔട്ട്',
       helpline: 'ഹെൽപ്പ് ലൈൻ: 1800-123-AGRI',
 
-      // Hero
       platform_badge: 'പൊതു കാർഷിക വ്യാപാര പശ്ചാത്തലം',
       hero_tagline: 'ബന്ധപ്പെടുക. വ്യാപാരം ചെയ്യുക. വളരുക.',
       hero_desc: 'കർഷകർക്ക് മികച്ച വിപണികൾ കണ്ടെത്താനും വിശ്വസ്തരായ വാങ്ങുന്നവരുമായി ബന്ധപ്പെടാനും വിളവെടുപ്പ് മുതൽ വിതരണം വരെയുള്ള വിൽപ്പന നിയന്ത്രിക്കാനും സഹായിക്കുന്നു.',
       ecosystem_roles_label: 'ബന്ധിപ്പിച്ച പങ്കാളിത്ത ചുമതലകൾ',
 
-      // Roles
       role_farmer: 'കർഷകൻ',
       role_buyer: 'വാങ്ങുന്നയാൾ',
       role_fpo: 'എഫ്.പി.ഒ',
@@ -409,7 +368,6 @@
       role_distributor_wholesaler: 'വിതരണക്കാരൻ / മൊത്തവ്യാപാരി',
       role_delivery: 'ഡെലിവറി ഏജന്റ്',
 
-      // Supply Chain Section
       chain_eyebrow: 'സമ്പൂർണ്ണ സുതാര്യത',
       chain_title: 'കാർഷിക വിതരണ ശൃംഖല',
       chain_subtitle: 'സുതാര്യമായ വിലനിർണ്ണയം, ഗുണനിലവാര പരിശോധന, സമയബന്ധിതമായ പണമിടപാട് എന്നിവ ഉറപ്പാക്കുന്ന ഏകീകൃത സംവിധാനം.',
@@ -434,7 +392,6 @@
       step_5_desc: 'വിഭവങ്ങൾ കൈമാറി പരിശോധന കഴിഞ്ഞാലുടൻ തുക നേരിട്ട് കർഷകന്റെ അക്കൗണ്ടിലേക്ക്.',
       step_5_feat: 'നേരിട്ടുള്ള ബാങ്ക് ട്രാൻസ്ഫർ',
 
-      // Core Decisions
       core_eyebrow: 'മാർക്കറ്റ് ഇന്റലിജൻസ്',
       core_title: 'വിവേകപൂർണ്ണമായ വിൽപ്പന തീരുമാനങ്ങൾ',
       core_subtitle: 'AgriMitra കർഷകർക്ക് പ്രായോഗികമായ മാർഗ്ഗനിർദ്ദേശങ്ങൾ നൽകുന്നു.',
@@ -448,7 +405,6 @@
       pillar_3_title: 'ആർക്ക് വിൽക്കണം',
       pillar_3_desc: 'കൃത്യസമയത്ത് പണം നൽകുന്ന വിശ്വസ്തരായ വ്യാപാരികളും പ്രൊസസ്സറുകളും.',
 
-      // Footer
       footer_statement: 'ബന്ധപ്പെടുക. വ്യാപാരം ചെയ്യുക. വളരുക. കർഷകർക്കായി സമഗ്രമായ കാർഷിക വിപണി ശൃംഖല.',
       footer_platform_roles: 'പ്ലാറ്റ്ഫോം ചുമതലകൾ',
       footer_information: 'വിവരങ്ങൾ',
@@ -457,10 +413,9 @@
       footer_copyright: 'AgriMitra കാർഷിക വ്യാപാര പ്ലാറ്റ്‌ഫോം. എല്ലാ അവകാശങ്ങളും നിക്ഷിപ്തം.',
       footer_subtext: 'സുരക്ഷിത ഇൻഫ്രാസ്ട്രക്ചർ • പൊതു സേവന നിലവാരം',
 
-      // Login Dialog
       login_dialog_title: 'AgriMitra-യിലേക്ക് സൈൻ ഇൻ ചെയ്യുക',
       demo_accounts_label: 'ഡെമോ അക്കൗണ്ടുകൾ (1-ക്ലിക്ക് പൂരിപ്പിക്കൽ)',
-      demo_accounts_badge: 'SIH മൂല്യനിർണ്ണയ മോഡ്',
+      demo_accounts_badge: 'ഡെമോ മൂല്യനിർണ്ണയ മോഡ്',
       demo_accounts_subtext: 'ഡെമോ വിവരങ്ങൾക്കായി താഴെയുള്ള ഏതെങ്കിലും റോളിൽ ക്ലിക്ക് ചെയ്യുക:',
       or_enter_custom: 'അല്ലെങ്കിൽ വിവരങ്ങൾ രേഖപ്പെടുത്തുക',
       select_role_portal: 'പോർട്ടൽ തിരഞ്ഞെടുക്കുക',
@@ -476,7 +431,6 @@
       portal_opt_distributor: 'വിതരണക്കാരൻ / മൊത്തവ്യാപാരി ഡാഷ്‌ബോർഡ്',
       portal_opt_fpo: 'എഫ്.പി.ഒ പോർട്ടൽ',
 
-      // Register Dialog
       register_dialog_title: 'AgriMitra-യിൽ ചേരുക',
       register_joining_as: 'എന്റെ ചുമതല:',
       reg_farmer_desc: 'വിളവുകൾ വിൽക്കുക, മണ്ടി വിലകൾ താരതമ്യം ചെയ്യുക, വാങ്ങുന്നവരുമായി ബന്ധപ്പെടുക',
@@ -485,7 +439,6 @@
       reg_delivery_desc: 'ജിപിഎസ് ട്രാക്കിംഗോടെയുള്ള ട്രാൻസ്പോർട്ട് ഓർഡറുകൾ സ്വീകരിക്കുക',
       reg_distributor_desc: 'വെയർഹൗസ് ഇൻവെന്ററിയും വിതരണവും കൈകാര്യം ചെയ്യുക',
 
-      // About Dialog
       about_dialog_title: 'AgriMitra-യെ കുറിച്ച്',
       about_p1: 'കർഷകരുടെ പ്രധാന ആവശ്യങ്ങൾ പരിഹരിക്കുന്നതിനായി നിർമ്മിച്ച സാങ്കേതിക പ്ലാറ്റ്‌ഫോമാണ് AgriMitra:',
       about_quote: '“ഞാൻ എന്ത് വിൽക്കണം, എവിടെ വിൽക്കണം, എപ്പോൾ വിൽക്കണം, ആർക്ക് വിൽക്കണം?”',
@@ -493,7 +446,7 @@
     },
 
     kn: {
-      // General & Nav
+
       language: 'ಭಾಷೆ',
       select_language: 'ಭಾಷೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ',
       brand_subtext: 'ಮಾರುಕಟ್ಟೆ ಬುದ್ಧಿಮತ್ತೆ ಮತ್ತು ವ್ಯಾಪಾರ',
@@ -508,13 +461,11 @@
       sign_out: 'ಸೈನ್ ಔಟ್',
       helpline: 'ಸಹಾಯವಾಣಿ: 1800-123-AGRI',
 
-      // Hero
       platform_badge: 'ಸಾರ್ವಜನಿಕ ಕೃಷಿ ವ್ಯಾಪಾರ ಮೂಲಸೌಕರ್ಯ',
       hero_tagline: 'ಸಂಪರ್ಕಿಸಿ. ವ್ಯಾಪಾರ ಮಾಡಿ. ಬೆಳೆಯಿರಿ.',
       hero_desc: 'ರೈತರಿಗೆ ಉತ್ತಮ ಮಾರುಕಟ್ಟೆಗಳನ್ನು ಹುಡುಕಲು, ವಿಶ್ವಾಸಾರ್ಹ ಖರೀದಿದಾರರೊಂದಿಗೆ ಸಂಪರ್ಕ ಹೊಂದಲು ಮತ್ತು ಹೊಲದಿಂದ ವಿತರಣೆಯವರೆಗೆ ಉತ್ಪನ್ನಗಳ ಮಾರಾಟವನ್ನು ನಿರ್ವಹಿಸಲು ಸಹಾಯ ಮಾಡುವುದು.',
       ecosystem_roles_label: 'ಸಂಪರ್ಕಿತ ಪರಿಸರ ವ್ಯವಸ್ಥೆಯ ಪಾತ್ರಗಳು',
 
-      // Roles
       role_farmer: 'ರೈತ',
       role_buyer: 'ಖರೀದಿದಾರ',
       role_fpo: 'ಎಫ್‌ಪಿಒ',
@@ -524,7 +475,6 @@
       role_distributor_wholesaler: 'ವಿತರಕ / ಸಗಟು ವ್ಯಾಪಾರಿ',
       role_delivery: 'ಡೆಲಿವರಿ ಏಜೆಂಟ್',
 
-      // Supply Chain Section
       chain_eyebrow: 'ಸಂಪೂರ್ಣ ಪಾರದರ್ಶಕತೆ',
       chain_title: 'ಕೃಷಿ ಪೂರೈಕೆ ಸರಪಳಿ',
       chain_subtitle: 'ಪಾರದರ್ಶಕ ಬೆಲೆ ನಿರ್ಣಯ, ಗುಣಮಟ್ಟ ಪರಿಶೀಲನೆ ಮತ್ತು ಸಕಾಲಿಕ ಪಾವತಿಯನ್ನು ಖಚಿತಪಡಿಸುವ ಸಮಗ್ರ ಕಾರ್ಯವಿಧಾನ.',
@@ -549,7 +499,6 @@
       step_5_desc: 'ಡಿಜಿಟಲ್ ವಿತರಣೆ ಖಚಿತವಾದ ನಂತರ ನೇರವಾಗಿ ರೈತರ ಬ್ಯಾಂಕ್ ಖಾತೆಗೆ ಹಣ ವರ್ಗಾವಣೆ.',
       step_5_feat: 'ನೇರ ಬ್ಯಾಂಕ್ ವರ್ಗಾವಣೆ',
 
-      // Core Decisions
       core_eyebrow: 'ಮಾರುಕಟ್ಟೆ ಬುದ್ಧಿಮತ್ತೆ',
       core_title: 'ತಿಳುವಳಿಕೆಯುಕ್ತ ಮಾರಾಟ ನಿರ್ಧಾರಗಳು',
       core_subtitle: 'AgriMitra ಕೇವಲ ದತ್ತಾಂಶ ನೀಡದೆ ರೈತರಿಗೆ ಉಪಯುಕ್ತ ಪರಿಹಾರಗಳನ್ನು ಒದಗಿಸುತ್ತದೆ.',
@@ -563,7 +512,6 @@
       pillar_3_title: 'ಯಾರಿಗೆ ಮಾರಾಟ ಮಾಡಬೇಕು',
       pillar_3_desc: 'ಸಮಯಕ್ಕೆ ಸರಿಯಾಗಿ ಹಣ ಪಾವತಿಸುವ ಪರಿಶೀಲಿಸಿದ ಖರೀದಿದಾರರು ಮತ್ತು ಎಫ್‌ಪಿಒಗಳು.',
 
-      // Footer
       footer_statement: 'ಸಂಪರ್ಕಿಸಿ. ವ್ಯಾಪಾರ ಮಾಡಿ. ಬೆಳೆಯಿರಿ. ಕೃಷಿ ಪೂರೈಕೆ ಸರಪಳಿಯಾದ್ಯಂತ ನೇರ ಮಾರುಕಟ್ಟೆ ಪ್ರವೇಶ ಮತ್ತು ಭದ್ರತೆ.',
       footer_platform_roles: 'ವೇದಿಕೆಯ ಪಾತ್ರಗಳು',
       footer_information: 'ಮಾಹಿತಿ',
@@ -572,10 +520,9 @@
       footer_copyright: 'AgriMitra ಕೃಷಿ ವ್ಯಾಪಾರ ವೇದಿಕೆ. ಎಲ್ಲ ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.',
       footer_subtext: 'ಸುರಕ್ಷಿತ ಮೂಲಸೌಕರ್ಯ • ಸಾರ್ವಜನಿಕ ಸೇವಾ ಮಾನದಂಡ',
 
-      // Login Dialog
       login_dialog_title: 'AgriMitra ಗೆ ಸೈನ್ ಇನ್ ಮಾಡಿ',
       demo_accounts_label: 'ಡೆಮೊ ಖಾತೆಗಳು (1-ಕ್ಲಿಕ್ ಭರ್ತಿ)',
-      demo_accounts_badge: 'SIH ಮೌಲ್ಯಮಾಪನ ಮೋಡ್',
+      demo_accounts_badge: 'ಡೆಮೊ ಮೌಲ್ಯಮಾಪನ ಮೋಡ್',
       demo_accounts_subtext: 'ಪರಿಶೀಲಿಸಿದ ಡೆಮೊ ವಿವರಗಳನ್ನು ಭರ್ತಿ ಮಾಡಲು ಕೆಳಗಿನ ಯಾವುದೇ ಪಾತ್ರವನ್ನು ಕ್ಲಿಕ್ ಮಾಡಿ:',
       or_enter_custom: 'ಅಥವಾ ನಿಮ್ಮ ವಿವರಗಳನ್ನು ನಮೂದಿಸಿ',
       select_role_portal: 'ಪೋರ್ಟಲ್ ಆಯ್ಕೆಮಾಡಿ',
@@ -591,7 +538,6 @@
       portal_opt_distributor: 'ವಿತರಕ / ಸಗಟು ವ್ಯಾಪಾರಿ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್',
       portal_opt_fpo: 'ಎಫ್‌ಪಿಒ ಪೋರ್ಟಲ್',
 
-      // Register Dialog
       register_dialog_title: 'AgriMitra ಗೆ ಸೇರಿ',
       register_joining_as: 'ನನ್ನ ಪಾತ್ರ:',
       reg_farmer_desc: 'ಬೆಳೆಗಳನ್ನು ಮಾರಾಟ ಮಾಡಿ, ಮಂಡಿ ದರಗಳನ್ನು ಹೋಲಿಸಿ ಮತ್ತು ಖರೀದಿದಾರರೊಂದಿಗೆ ಸಂಪರ್ಕ ಸಾಧಿಸಿ',
@@ -600,7 +546,6 @@
       reg_delivery_desc: 'ಜಿಪಿಎಸ್ ಟ್ರ್ಯಾಕಿಂಗ್‌ನೊಂದಿಗೆ ಸಾರಿಗೆ ಒಪ್ಪಂದಗಳನ್ನು ಸ್ವೀಕರಿಸಿ',
       reg_distributor_desc: 'ಗೋದಾಮಿನ ದಾಸ್ತಾನು ಮತ್ತು ಪ್ರಾದೇಶಿಕ ವಿತರಣೆಯನ್ನು ನಿರ್ವಹಿಸಿ',
 
-      // About Dialog
       about_dialog_title: 'AgriMitra ಬಗ್ಗೆ',
       about_p1: 'AgriMitra ರೈತರ ಮೂಲಭೂತ ಪ್ರಶ್ನೆಗಳಿಗೆ ಪರಿಹಾರ ನೀಡಲು ಅಭಿವೃದ್ಧಿಪಡಿಸಲಾದ ಆಧುನಿಕ ಕೃಷಿ ವೇದಿಕೆಯಾಗಿದೆ:',
       about_quote: '“ನಾನು ಏನನ್ನು ಮಾರಾಟ ಮಾಡಬೇಕು, ಎಲ್ಲಿ ಮಾರಾಟ ಮಾಡಬೇಕು, ಯಾವಾಗ ಮಾರಾಟ ಮಾಡಬೇಕು ಮತ್ತು ಯಾರಿಗೆ ಮಾರಾಟ ಮಾಡಬೇಕು?”',
@@ -608,7 +553,7 @@
     },
 
     mr: {
-      // General & Nav
+
       language: 'भाषा',
       select_language: 'भाषा निवडा',
       brand_subtext: 'बाजार माहिती आणि व्यापार',
@@ -623,13 +568,11 @@
       sign_out: 'साइन आउट',
       helpline: 'हेल्पलाईन: 1800-123-AGRI',
 
-      // Hero
       platform_badge: 'सार्वजनिक कृषी व्यापार पायाभूत सुविधा',
       hero_tagline: 'जोडा. व्यापार करा. प्रगती करा.',
       hero_desc: 'शेतकऱ्यांना चांगली बाजारपेठ शोधण्यात, विश्वासू खरेदीदारांशी जोडण्यात आणि शेतापासून ते वितरणापर्यंत उत्पादनाची विक्री व्यवस्थापित करण्यात मदत करणे.',
       ecosystem_roles_label: 'संलग्न परिसंस्था भूमिका',
 
-      // Roles
       role_farmer: 'शेतकरी',
       role_buyer: 'खरेदीदार',
       role_fpo: 'एफपीओ',
@@ -639,7 +582,6 @@
       role_distributor_wholesaler: 'वितरक / घाऊक व्यापारी',
       role_delivery: 'डिलिव्हरी एजंट',
 
-      // Supply Chain Section
       chain_eyebrow: 'सुरुवातीपासून शेवटपर्यंत पारदर्शकता',
       chain_title: 'कृषी पुरवठा साखळी',
       chain_subtitle: 'पारदर्शक भाव शोध, गुणवत्ता तपासणी आणि वेळेवर पैसे मिळण्याची खात्री देणारी एकात्मिक कार्यप्रणाली.',
@@ -664,7 +606,6 @@
       step_5_desc: 'डिलिव्हरीची पुष्टी झाल्यानंतर थेट शेतकऱ्याच्या बँक खात्यात तत्काळ रक्कम जमा.',
       step_5_feat: 'थेट बँक ट्रान्सफर',
 
-      // Core Decisions
       core_eyebrow: 'बाजार माहिती',
       core_title: 'माहितीपूर्ण विक्री निर्णय',
       core_subtitle: 'AgriMitra उत्पादकांना केवळ आकडेवारी न देता थेट व्यावहारिक उत्तरे देते.',
@@ -678,7 +619,6 @@
       pillar_3_title: 'कोणाला विकावे',
       pillar_3_desc: 'वेळेवर पैसे देणारे आणि विश्वासार्ह रेटिंग असलेले खरेदीदार व प्रक्रियादार.',
 
-      // Footer
       footer_statement: 'जोडा. व्यापार करा. प्रगती करा. संपूर्ण कृषी पुरवठा साखळीत थेट बाजारपेठ आणि विश्वासार्हता.',
       footer_platform_roles: 'प्लॅटफॉर्म भूमिका',
       footer_information: 'माहिती',
@@ -687,10 +627,9 @@
       footer_copyright: 'AgriMitra कृषी व्यापार प्लॅटफॉर्म. सर्व हक्क राखीव.',
       footer_subtext: 'सुरक्षित पायाभूत सुविधा • सार्वजनिक प्रभाव मानक',
 
-      // Login Dialog
       login_dialog_title: 'AgriMitra मध्ये साइन इन करा',
       demo_accounts_label: 'डेमो खाती (१-क्लिक भरा)',
-      demo_accounts_badge: 'SIH मूल्यांकन मोड',
+      demo_accounts_badge: 'डेमो मूल्यांकन मोड',
       demo_accounts_subtext: 'डेमो माहिती भरण्यासाठी खालील कोणत्याही भूमिकेवर क्लिक करा:',
       or_enter_custom: 'किंवा तुमची माहिती प्रविष्ट करा',
       select_role_portal: 'भूमिका पोर्टल निवडा',
@@ -706,7 +645,6 @@
       portal_opt_distributor: 'वितरक / घाऊक व्यापारी डॅशबोर्ड',
       portal_opt_fpo: 'एफपीओ पोर्टल',
 
-      // Register Dialog
       register_dialog_title: 'AgriMitra मध्ये सामील व्हा',
       register_joining_as: 'माझी भूमिका आहे:',
       reg_farmer_desc: 'शेतमाल विका, बाजारभावाची तुलना करा आणि थेट खरेदीदारांशी जोडा',
@@ -715,7 +653,6 @@
       reg_delivery_desc: 'जीपीएस ट्रॅकिंगसह कृषी वाहतूक कंत्रாटे स्वीकारा आणि उत्पन्न मिळवा',
       reg_distributor_desc: 'गोदाम साठा आणि प्रादेशिक वितरणाचे व्यवस्थापन करा',
 
-      // About Dialog
       about_dialog_title: 'AgriMitra बद्दल',
       about_p1: 'AgriMitra हे शेतकऱ्यांच्या प्रमुख प्रश्नांची उत्तरे शोधण्यासाठी तयार केलेले आधुनिक व्यासपीठ आहे:',
       about_quote: '“मी काय विकावे, कुठे विकावे, कधी विकावे आणि कोणाला विकावे?”',
@@ -723,7 +660,7 @@
     },
 
     bn: {
-      // General & Nav
+
       language: 'ভাষা',
       select_language: 'ভাষা নির্বাচন করুন',
       brand_subtext: 'বাজার বুদ্ধিমত্তা ও বাণিজ্য',
@@ -738,13 +675,11 @@
       sign_out: 'সাইন আউট',
       helpline: 'হেল্পলাইন: 1800-123-AGRI',
 
-      // Hero
       platform_badge: 'সর্বজনীন কৃষি বাণিজ্য পরিকাঠামো',
       hero_tagline: 'যুক্ত হোন. বাণিজ্য করুন. সমৃদ্ধ হোন.',
       hero_desc: 'কৃষকদের উন্নত বাজার খুঁজে পেতে, নির্ভরযোগ্য ক্রেতাদের সাথে যুক্ত হতে এবং খামার থেকে ডেলিভারি পর্যন্ত ফসল বিক্রয় পরিচালনা করতে সহায়তা করা।',
       ecosystem_roles_label: 'সংযুক্ত বাস্তুতন্ত্রের ভূমিকাসমূহ',
 
-      // Roles
       role_farmer: 'কৃষক',
       role_buyer: 'ক্রেতা',
       role_fpo: 'এফপিও',
@@ -754,7 +689,6 @@
       role_distributor_wholesaler: 'পরিবেশক / পাইকারী বিক্রেতা',
       role_delivery: 'ডেলিভারি এজেন্ট',
 
-      // Supply Chain Section
       chain_eyebrow: 'সম্পূর্ণ স্বচ্ছতা',
       chain_title: 'কৃষি সরবরাহ শৃঙ্খলা',
       chain_subtitle: 'স্বচ্ছ মূল্য আবিষ্কার, গুণমান মূল্যায়ন এবং সময়মতো নিষ্পত্তির নিশ্চয়তাদানকারী একটি সমন্বিত কর্মপ্রবাহ।',
@@ -779,7 +713,6 @@
       step_5_desc: 'ডিজিটাল ডেলিভারি নিশ্চিত হওয়ার সাথে সাথে কৃষকের ব্যাঙ্ক অ্যাকাউন্টে সরাসরি টাকা স্থানান্তর।',
       step_5_feat: 'সরাসরি ব্যাঙ্ক ট্রান্সফার',
 
-      // Core Decisions
       core_eyebrow: 'বাজার বুদ্ধিমত্তা',
       core_title: 'সুচিন্তিত বিক্রয় সিদ্ধান্ত',
       core_subtitle: 'AgriMitra কৃষকদের কেবল তথ্যের পরিবর্তে বাস্তবমুখী সমাধান প্রদান করে।',
@@ -793,7 +726,6 @@
       pillar_3_title: 'কাকে বিক্রি করবেন',
       pillar_3_desc: 'সময়মতো অর্থ প্রদানকারী নির্ভরযোগ্য রেটিংযুক্ত যাচাইকৃত ক্রেতা এবং প্রসেসর।',
 
-      // Footer
       footer_statement: 'যুক্ত হোন. বাণিজ্য করুন. সমৃদ্ধ হোন. সরাসরি বাজার সংযোগ এবং কৃষি সরবরাহ শৃঙ্খলার নির্ভরযোগ্য তথ্য।',
       footer_platform_roles: 'প্ল্যাটফর্মের ভূমিকা',
       footer_information: 'তথ্য',
@@ -802,10 +734,9 @@
       footer_copyright: 'AgriMitra কৃষি বাণিজ্য প্ল্যাটফর্ম। সর্বস্বত্ব সংরক্ষিত।',
       footer_subtext: 'নিরাপদ পরিকাঠামো • জনকল্যাণমূলক মান',
 
-      // Login Dialog
       login_dialog_title: 'AgriMitra-তে সাইন ইন করুন',
       demo_accounts_label: 'ডেমো অ্যাকাউন্ট (১-ক্লিক পূরণ)',
-      demo_accounts_badge: 'SIH মূল্যায়ন মোড',
+      demo_accounts_badge: 'ডেমো মূল্যায়ন মোড',
       demo_accounts_subtext: 'যাচাইকৃত ডেমো তথ্যের জন্য নিচের যেকোনো ভূমিকায় ক্লিক করুন:',
       or_enter_custom: 'অথবা আপনার বিবরণ লিখুন',
       select_role_portal: 'পোর্টাল নির্বাচন করুন',
@@ -821,7 +752,6 @@
       portal_opt_distributor: 'পরিবেশক / পাইকারী বিক্রেতা ড্যাশবোর্ড',
       portal_opt_fpo: 'এফপিও পোর্টাল',
 
-      // Register Dialog
       register_dialog_title: 'AgriMitra-তে যোগ দিন',
       register_joining_as: 'আমি যুক্ত হচ্ছি:',
       reg_farmer_desc: 'ফসল বিক্রি করুন, মান্ডির দর তুলনা করুন এবং ক্রেতাদের সাথে যুক্ত হোন',
@@ -830,7 +760,6 @@
       reg_delivery_desc: 'জিপিএস ট্র্যাকিং সহ পরিবহন চুক্তি গ্রহণ করুন এবং দ্রুত পেমেন্ট পান',
       reg_distributor_desc: 'গুদামজাত পণ্য এবং আঞ্চলিক বিতরণ পরিচালনা করুন',
 
-      // About Dialog
       about_dialog_title: 'AgriMitra সম্পর্কে',
       about_p1: 'AgriMitra হলো কৃষকদের মৌলিক সমস্যার সমাধান করার জন্য নির্মিত একটি প্রযুক্তি প্ল্যাটফর্ম:',
       about_quote: '“আমার কী বিক্রি করা উচিত, কোথায় বিক্রি করা উচিত, কখন বিক্রি করা উচিত এবং কার কাছে বিক্রি করা উচিত?”',
@@ -838,9 +767,6 @@
     }
   };
 
-  /**
-   * Helper to retrieve active language from localStorage
-   */
   function getCurrentLanguage() {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
@@ -853,9 +779,6 @@
     return DEFAULT_LANG;
   }
 
-  /**
-   * Translate a key into the given or current language
-   */
   function t(key, lang) {
     const activeLang = lang || getCurrentLanguage();
     if (translations[activeLang] && translations[activeLang][key]) {
@@ -867,14 +790,10 @@
     return key;
   }
 
-  /**
-   * Apply translations to DOM elements
-   */
   function applyTranslations(root) {
     const container = root || document;
     const currentLang = getCurrentLanguage();
 
-    // 1. Text translations [data-i18n]
     const elements = container.querySelectorAll('[data-i18n]');
     elements.forEach(function (el) {
       const key = el.getAttribute('data-i18n');
@@ -882,10 +801,10 @@
 
       const translated = t(key, currentLang);
       if (translated) {
-        // If element contains an icon or child elements marked with preserve, only replace text node
+
         const textNodeOnly = el.getAttribute('data-i18n-text-only');
         if (textNodeOnly) {
-          // Find first text node or create one
+
           let textNode = null;
           for (let i = 0; i < el.childNodes.length; i++) {
             if (el.childNodes[i].nodeType === Node.TEXT_NODE && el.childNodes[i].nodeValue.trim() !== '') {
@@ -904,7 +823,6 @@
       }
     });
 
-    // 2. Placeholder translations [data-i18n-placeholder]
     const inputs = container.querySelectorAll('[data-i18n-placeholder]');
     inputs.forEach(function (input) {
       const key = input.getAttribute('data-i18n-placeholder');
@@ -915,7 +833,6 @@
       }
     });
 
-    // 3. Title attribute translations [data-i18n-title]
     const titleEls = container.querySelectorAll('[data-i18n-title]');
     titleEls.forEach(function (el) {
       const key = el.getAttribute('data-i18n-title');
@@ -926,7 +843,6 @@
       }
     });
 
-    // 4. ARIA label translations [data-i18n-aria-label]
     const ariaEls = container.querySelectorAll('[data-i18n-aria-label]');
     ariaEls.forEach(function (el) {
       const key = el.getAttribute('data-i18n-aria-label');
@@ -937,29 +853,21 @@
       }
     });
 
-    // 5. Update HTML tag lang attribute
     document.documentElement.lang = currentLang;
 
-    // 6. Update selector UI if present on the page
     updateSelectorDisplay(currentLang);
 
-    // 7. Ensure Indic fonts & typography
     ensureIndicFontsLoaded();
 
-    // 8. Auto translate DOM text nodes deeply (word-by-word and phrase-by-phrase)
     autoTranslateDOM(container, currentLang);
   }
 
-  /**
-   * Update the landing page language selector UI widget
-   */
   function updateSelectorDisplay(langCode) {
     const currentLangDisplay = document.getElementById('current-lang-display');
     if (currentLangDisplay && LANGUAGES[langCode]) {
       currentLangDisplay.textContent = LANGUAGES[langCode].nativeName;
     }
 
-    // Update active class on dropdown options
     const options = document.querySelectorAll('.lang-option');
     options.forEach(function (opt) {
       const optLang = opt.getAttribute('data-lang');
@@ -3635,9 +3543,6 @@
   }
 };
 
-  /**
-   * Helper to ensure Indic fonts are dynamically loaded
-   */
   function ensureIndicFontsLoaded() {
     if (typeof document === 'undefined' || typeof document.createElement !== 'function' || !document.head) return;
     if (typeof document.getElementById !== 'function') return;
@@ -3650,12 +3555,9 @@
     }
   }
 
-  /**
-   * Helper to translate a single token or word
-   */
   function translateWord(w, lang) {
     if (!w || w.length < 2) return w;
-    // Strictly never translate brand name
+
     if (/^agrimitra$/i.test(w) || (/^mitra$/i.test(w) && /agri/i.test(w))) {
       return 'AgriMitra';
     }
@@ -3666,7 +3568,6 @@
     return w;
   }
 
-  // Pre-sort phrases by length descending to match longest phrases first
   const SORTED_PHRASES = Object.keys(PHRASE_DICTIONARY).sort(function (a, b) {
     return b.length - a.length;
   });
@@ -3675,19 +3576,14 @@
     return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
 
-  /**
-   * Tokenize text into words and delimiters, and translate recognized words & phrases
-   */
   function translateTextDeep(text, lang) {
     if (!text || text.length < 2) return text;
     const trimmed = text.trim();
 
-    // 1. Direct whole-phrase match
     if (PHRASE_DICTIONARY[trimmed] && PHRASE_DICTIONARY[trimmed][lang]) {
       return text.replace(trimmed, PHRASE_DICTIONARY[trimmed][lang]);
     }
 
-    // 2. Case-insensitive whole-phrase match
     const lowerTrimmed = trimmed.toLowerCase();
     for (const phrase in PHRASE_DICTIONARY) {
       if (phrase.toLowerCase() === lowerTrimmed && PHRASE_DICTIONARY[phrase][lang]) {
@@ -3695,7 +3591,6 @@
       }
     }
 
-    // 3. Known sub-phrases replacement (longest first, respecting word boundaries)
     let result = text;
     for (let i = 0; i < SORTED_PHRASES.length; i++) {
       const phrase = SORTED_PHRASES[i];
@@ -3710,7 +3605,6 @@
       }
     }
 
-    // 4. Word-by-word tokenized translation for any remaining English words
     result = result.replace(/[A-Za-z]+(?:-[A-Za-z]+)*/g, function (match) {
       if (match.toLowerCase() === 'agrimitra') return 'AgriMitra';
       if (match.toLowerCase() === 'agri') return 'Agri';
@@ -3722,9 +3616,6 @@
     return result;
   }
 
-  /**
-   * Universal DOM text walker that translates every word without breaking AgriMitra brand
-   */
   function autoTranslateDOM(container, lang) {
     if (!container || typeof document === 'undefined' || !document.createTreeWalker) return;
     const SHOW_TEXT = (typeof NodeFilter !== 'undefined' && NodeFilter.SHOW_TEXT) || 4;
@@ -3742,11 +3633,11 @@
           if (['script', 'style', 'code', 'pre', 'noscript', 'textarea'].includes(tag)) {
             return FILTER_REJECT;
           }
-          // Do not touch user input controls
+
           if (tag === 'input' || node.parentElement.isContentEditable) {
             return FILTER_REJECT;
           }
-          // If parent already handled by data-i18n, skip text walking
+
           if (node.parentElement.closest && node.parentElement.closest('[data-i18n]')) {
             return FILTER_SKIP;
           }
@@ -3768,12 +3659,11 @@
     nodesToReplace.forEach(function(node) {
       if (!node || !node.nodeValue || !node.parentElement) return;
       const rawText = node.nodeValue;
-      
-      // Store original in parent element property if not already set
+
       if (!node.parentElement._i18nOriginalText) {
         node.parentElement._i18nOriginalText = rawText;
       }
-      
+
       const original = node.parentElement._i18nOriginalText;
 
       if (lang === 'en') {
@@ -3789,7 +3679,6 @@
       }
     });
 
-    // Also auto-translate placeholders
     const inputs = container.querySelectorAll('input[placeholder], textarea[placeholder]');
     inputs.forEach(function(inp) {
       if (!inp.getAttribute('data-i18n-placeholder')) {
@@ -3806,7 +3695,6 @@
       }
     });
 
-    // Also update document title
     if (document.title && lang !== 'en') {
       if (!document._i18nOriginalTitle) {
         document._i18nOriginalTitle = document.title;
@@ -3817,9 +3705,6 @@
     }
   }
 
-  /**
-   * Google Website Translate automated background bridge
-   */
   function syncGoogleTranslate(langCode) {
     if (typeof document === 'undefined' || typeof document.createElement !== 'function' || !document.head) return;
     try {
@@ -3858,10 +3743,6 @@
     } catch(e) {}
   }
 
-
-  /**
-   * Change current language, persist, translate DOM, and notify listeners
-   */
   function setLanguage(langCode) {
     if (!LANGUAGES[langCode]) {
       console.warn('[AgriMitra i18n] Unsupported language:', langCode);
@@ -3874,20 +3755,16 @@
       console.warn('[AgriMitra i18n] Failed saving language preference:', e);
     }
 
-    // Apply translations across document
     applyTranslations(document);
 
-    // Sync Google Translate bridge
     syncGoogleTranslate(langCode);
 
-    // Dispatch event for other scripts
     try {
       window.dispatchEvent(new CustomEvent('agrimitra:languageChange', {
         detail: { language: langCode, meta: LANGUAGES[langCode] }
       }));
     } catch (e) {}
 
-    // Optionally notify backend if logged in
     try {
       if (typeof fetch === 'function') {
         fetch('/api/auth/language', {
@@ -3900,7 +3777,6 @@
     } catch (e) {}
   }
 
-  // Initialize automatically
   function init() {
     applyTranslations(document);
     syncGoogleTranslate(getCurrentLanguage());
@@ -3914,7 +3790,6 @@
     }
   }
 
-  // Expose global API
   const exportObj = {
     LANGUAGES: LANGUAGES,
     translations: translations,

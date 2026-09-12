@@ -1,8 +1,3 @@
-"""
-Delivery Agent API Routes for KrishiLink
-Powers the Delivery Agent Logistics Portal (Dispatch Desk, Route, Deliveries)
-"""
-
 from flask import Blueprint, request, jsonify, session
 from utils.auth import login_required, role_required
 from database.db import query_db
@@ -22,10 +17,8 @@ def _get_agent_id():
 def dashboard():
     agent_id = _get_agent_id()
 
-    # Open requirements
     open_reqs = query_db("SELECT COUNT(*) AS cnt FROM farmer_requirements WHERE status = 'pending'", one=True)
-    
-    # Agent's deliveries
+
     my_deliveries = query_db("""
         SELECT COUNT(*) AS total,
                SUM(CASE WHEN status IN ('accepted', 'in_transit') THEN 1 ELSE 0 END) AS active_cnt,

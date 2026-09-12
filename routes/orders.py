@@ -1,9 +1,3 @@
-"""
-Orders API Routes for AgriMitra
-Handles Buyer cart orders, direct mandi orders, and wholesale orders.
-Stores records permanently in SQLite.
-"""
-
 import json
 import time
 from flask import Blueprint, request, jsonify, session
@@ -16,36 +10,36 @@ orders_bp = Blueprint('orders', __name__, url_prefix='/api/orders')
 def get_orders():
     """Retrieve orders for the logged-in user or recent orders."""
     user = get_current_user()
-    
+
     if user:
         if user['role'] == 'buyer':
             orders = query_db("""
-                SELECT id, order_code, product_name, quantity, unit, price_per_unit, total_amount, 
+                SELECT id, order_code, product_name, quantity, unit, price_per_unit, total_amount,
                        status, payment_status, delivery_address, items_json, created_at
-                FROM orders 
+                FROM orders
                 WHERE buyer_id = %s OR buyer_id IS NULL
                 ORDER BY created_at DESC
             """, (user['id'],))
         elif user['role'] in ('wholesaler', 'distributor'):
             orders = query_db("""
-                SELECT id, order_code, product_name, quantity, unit, price_per_unit, total_amount, 
+                SELECT id, order_code, product_name, quantity, unit, price_per_unit, total_amount,
                        status, payment_status, delivery_address, items_json, created_at
-                FROM orders 
+                FROM orders
                 WHERE distributor_id = %s OR distributor_id IS NULL
                 ORDER BY created_at DESC
             """, (user['id'],))
         else:
             orders = query_db("""
-                SELECT id, order_code, product_name, quantity, unit, price_per_unit, total_amount, 
+                SELECT id, order_code, product_name, quantity, unit, price_per_unit, total_amount,
                        status, payment_status, delivery_address, items_json, created_at
-                FROM orders 
+                FROM orders
                 ORDER BY created_at DESC LIMIT 50
             """)
     else:
         orders = query_db("""
-            SELECT id, order_code, product_name, quantity, unit, price_per_unit, total_amount, 
+            SELECT id, order_code, product_name, quantity, unit, price_per_unit, total_amount,
                    status, payment_status, delivery_address, items_json, created_at
-            FROM orders 
+            FROM orders
             ORDER BY created_at DESC LIMIT 50
         """)
 
@@ -105,7 +99,6 @@ def create_order():
         'confirmed', 'paid_escrow', delivery_address, json.dumps(items)
     ))
 
-    # Add notification for user
     if user and user.get('id'):
         try:
             execute_db("""

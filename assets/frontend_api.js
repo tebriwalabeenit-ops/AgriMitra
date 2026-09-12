@@ -1,17 +1,8 @@
-/**
- * KrishiLink Frontend Integration Script
- * Connects existing UI pages with Flask & MySQL backend APIs:
- * - Session-based Login & Authentication
- * - Concurrency-safe Live Bidding & Real-Time SSE Streams
- * - FPO Auction Creation & Monitoring
- * - Delivery Agent Requirement Claims (Race Condition Protected)
- * - Farmer Produce Management
- */
+
 
 (function () {
   'use strict';
 
-  // API base URL resolver: if page is opened via file:// or LiveServer, target Flask on port 5000
   const isFlaskHosted = (window.location.protocol === 'http:' || window.location.protocol === 'https:') && (window.location.port === '5000' || window.location.port === '');
   const API_BASE = isFlaskHosted ? '' : 'http://127.0.0.1:5000';
 
@@ -21,7 +12,6 @@
     return `${API_BASE}${cleanEndpoint}`;
   }
 
-  // Local auction persistence helpers for zero-friction resilience & demo mode
   function getLocalAuctions() {
     try {
       const stored = localStorage.getItem('krishilink_demo_auctions');
@@ -60,7 +50,6 @@
     return 'assets/produce/wheat.jpg';
   }
 
-  // Helper: show a clean dismissible notification badge on page
   function showNotification(message, type = 'info', duration = 4000) {
     let container = document.getElementById('krishilink-toast-container');
     if (!container) {
@@ -123,9 +112,6 @@
     if (duration > 0) setTimeout(removeToast, duration);
   }
 
-  // --------------------------------------------------------------------------
-  // Real-Time Mandi Clock & Live Countdown Timer Engine
-  // --------------------------------------------------------------------------
   function initLiveMandiTimerAndClock(config = {}) {
     const {
       auctionId = 1,
@@ -136,7 +122,6 @@
       onExpire = null
     } = config;
 
-    // 1. LIVE REAL-TIME CLOCK: Ticks every second with real local/IST time
     function tickClock() {
       const now = new Date();
       const timeStr = now.toLocaleTimeString('en-IN', {
@@ -154,7 +139,6 @@
     tickClock();
     setInterval(tickClock, 1000);
 
-    // 2. ACTIVE COUNTDOWN TIMER
     let remainingSeconds = Math.round(defaultMinutes * 60);
     const storageKey = `krishilink_timer_auction_${auctionId}`;
     const storedSec = sessionStorage.getItem(storageKey);
@@ -200,7 +184,6 @@
     updateTimerDisplay(remainingSeconds);
     updateCloseTimeDisplay(remainingSeconds);
 
-    // Synchronize with backend API
     fetch(apiUrl(`/api/auctions/${auctionId}`))
       .then(res => res.json())
       .then(data => {
@@ -218,7 +201,6 @@
         console.log('[KrishiLink Timer] Operating in resilient countdown mode:', err);
       });
 
-    // Run active 1-second decrement timer loop
     const timerInterval = setInterval(() => {
       if (remainingSeconds > 0) {
         remainingSeconds--;
@@ -246,17 +228,13 @@
     };
   }
 
-  // --------------------------------------------------------------------------
-  // 1. Wholesaler Live Bidding Page Integration
-  // --------------------------------------------------------------------------
   function initWholesalerBidding() {
     const selectedSession = document.getElementById('selected-session');
     if (!selectedSession) return;
 
     console.log('[KrishiLink] Initializing Distributor Live Bidding Console...');
-    const auctionId = 1; // Default featured auction (Lot #TRD-WHT-901)
+    const auctionId = 1;
 
-    // Bidding elements
     const highestBidVal = selectedSession.querySelector('.highest-bid-value');
     const highestBidBidder = selectedSession.querySelector('.highest-bid-bidder strong');
     const bidderTag = selectedSession.querySelector('.bidder-tag');
@@ -270,7 +248,6 @@
     let currentHighest = 32.50;
     let minIncrement = 0.50;
 
-    // Start Live Real-Time Clock & Countdown Timer
     initLiveMandiTimerAndClock({
       auctionId: auctionId,
       clockSelector: '#mandi-clock-wholesaler, .mandi-clock-value',
@@ -300,7 +277,6 @@
       }
     }
 
-    // Connect to Server-Sent Events (SSE) stream for real-time live bids
     const sseUrl = apiUrl(`/api/auctions/${auctionId}/stream`);
     console.log(`[KrishiLink] Connecting SSE stream to ${sseUrl}`);
 
@@ -316,7 +292,6 @@
 
           const nowTimeStr = new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true });
 
-          // Prepend to live bid feed list with exact real-time clock
           if (bidFeedList) {
             const newFeedItem = document.createElement('div');
             newFeedItem.className = 'bid-feed-item latest-bid';
@@ -328,7 +303,6 @@
               <div class="bid-feed-time">${nowTimeStr} (Live)</div>
             `;
 
-            // Remove previous (Leading) badges from older items
             bidFeedList.querySelectorAll('.latest-bid').forEach(item => {
               item.classList.remove('latest-bid');
               const oldLeadingBadge = item.querySelector('.bid-feed-bidder span');
@@ -368,7 +342,6 @@
       console.warn('[KrishiLink] EventSource not supported or blocked:', sseErr);
     }
 
-    // Quick increment buttons (+0.50, +1.00, +2.00)
     quickBidBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         const text = btn.textContent.replace(/[^0-9.]/g, '');
@@ -380,7 +353,6 @@
       });
     });
 
-    // Place Bid Submission Handler
     if (placeBidBtn && bidInput) {
       placeBidBtn.addEventListener('click', async () => {
         const amount = parseFloat(bidInput.value);
@@ -408,7 +380,7 @@
             showNotification(`Bid of ₹${amount.toFixed(2)}/kg placed successfully!`, 'success');
             updateBidDisplay(resData.highest_bid, resData.bid.bidder_name, resData.highest_bid + minIncrement);
           } else {
-            // Handle unauthenticated distributor gracefully
+
             if (response.status === 401 || (resData.message && resData.message.includes('Distributor login required'))) {
               showNotification('Please log in with a Distributor account to place official bids.', 'error');
             } else {
@@ -427,17 +399,10 @@
     }
   }
 
-  // --------------------------------------------------------------------------
-  // 2. FPO Bidding Status Monitor Integration
-  // --------------------------------------------------------------------------
-  // --------------------------------------------------------------------------
-  // 2. FPO Bidding Status Monitor Integration
-  // --------------------------------------------------------------------------
   function initFpoBiddingStatus() {
     const fpoStreamTitle = document.querySelector('h1');
     if (!fpoStreamTitle || !document.title.includes('Live Bidding Status')) return;
 
-    // Parse auction ID from URL parameter (?auction_id=X or ?id=X) or session storage
     const urlParams = new URLSearchParams(window.location.search);
     const paramId = urlParams.get('auction_id') || urlParams.get('id');
     const storedId = sessionStorage.getItem('krishilink_last_created_auction_id');
@@ -445,7 +410,6 @@
 
     console.log(`[KrishiLink] Initializing FPO Real-Time Monitoring Session for Auction #${auctionId}...`);
 
-    // UI Elements
     const highestBidDisplay = document.querySelector('div[style*="font-size: 3.25rem"]');
     const leadingBidderSpan = document.querySelector('div[style*="Current Leading Bidder:"] span');
     const summaryCards = document.querySelectorAll('.trading-summary-card .trading-summary-number');
@@ -459,7 +423,6 @@
     let minIncrement = 0.50;
     let currentHighestBid = 28.0;
 
-    // Immediate check in local storage
     const localAuctions = getLocalAuctions();
     const localAuction = localAuctions.find(a => String(a.id) === String(auctionId) || a.lot_code === paramId);
     let isUpcoming = (localAuction && localAuction.status === 'upcoming') || (urlParams.get('status') === 'upcoming');
@@ -531,7 +494,6 @@
       }
     }
 
-    // Fetch latest auction details from backend if accessible
     fetch(apiUrl(`/api/auctions/${auctionId}`))
       .then(res => res.json())
       .then(data => {
@@ -563,7 +525,7 @@
             a.recent_bids.forEach((b, idx) => {
               const row = document.createElement('div');
               const isLeader = idx === 0;
-              row.style.cssText = isLeader 
+              row.style.cssText = isLeader
                 ? 'display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background-color: #EBF4ED; border: 1px solid #A5D6A7; border-radius: var(--radius-md);'
                 : 'display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background-color: var(--color-surface-alt); border: 1px solid var(--color-border-light); border-radius: var(--radius-md);';
               row.innerHTML = `
@@ -586,7 +548,6 @@
         console.warn('[KrishiLink] Note loading auction detail:', err);
       });
 
-    // Start Live Real-Time Mandi Clock & Working Countdown Timer for FPO
     if (!isUpcoming) {
       initLiveMandiTimerAndClock({
         auctionId: auctionId,
@@ -647,7 +608,6 @@
       }
     }
 
-    // Realistic Live Bid Simulator (Ticks every 9.5s if session is active and SSE stream is idle)
     const simulatedBidders = [
       'Bidder #302 (Kisan Agrotech)',
       'Bidder #149 (Punjab Grain Hub)',
@@ -695,9 +655,6 @@
     }, 9500);
   }
 
-  // --------------------------------------------------------------------------
-  // 2b. FPO Live Bidding Dashboard Real-Time List Integration
-  // --------------------------------------------------------------------------
   function initFpoLiveBidding() {
     if (!document.title.includes('Live Bidding | AgriMitra FPO') && !document.querySelector('.trading-cards-grid')) return;
 
@@ -725,7 +682,6 @@
       }
     }
 
-    // Default static demo items to ensure the UI is always rich and complete
     const defaultStaticUpcoming = [
       {
         id: 'static-onn-301',
@@ -764,14 +720,12 @@
       let upcomingAuctions = auctions.filter(a => a.status === 'upcoming');
       const completedAuctions = auctions.filter(a => a.status === 'ended');
 
-      // Preserve default mock upcoming items if not already present
       defaultStaticUpcoming.forEach(item => {
         if (!upcomingAuctions.some(u => u.lot_code === item.lot_code)) {
           upcomingAuctions.push(item);
         }
       });
 
-      // Update summary counters
       const summaryNumbers = document.querySelectorAll('.trading-summary-card .trading-summary-number');
       if (summaryNumbers.length >= 3) {
         summaryNumbers[0].textContent = activeAuctions.length;
@@ -779,7 +733,6 @@
         summaryNumbers[2].textContent = completedAuctions.length;
       }
 
-      // Update header badges
       const activeHeaderBadge = document.querySelector('section[aria-labelledby="active-bidding-heading"] .badge-live, .trading-section-header .badge-live');
       if (activeHeaderBadge) {
         activeHeaderBadge.textContent = `${activeAuctions.length} Sessions Active`;
@@ -788,7 +741,6 @@
         upcomingCountBadge.textContent = `${upcomingAuctions.length} Scheduled`;
       }
 
-      // Render Active Live Auctions
       if (activeGrid && activeAuctions.length > 0) {
         activeGrid.innerHTML = '';
         activeAuctions.forEach(a => {
@@ -859,7 +811,6 @@
         });
       }
 
-      // Render Upcoming Scheduled Auctions
       if (upcomingGrid && upcomingAuctions.length > 0) {
         upcomingGrid.innerHTML = '';
         upcomingAuctions.forEach(a => {
@@ -922,7 +873,6 @@
           upcomingGrid.appendChild(card);
         });
 
-        // If target auction was scheduled for upcoming, smoothly scroll to it
         if (createdStatus === 'upcoming' || (window.location.hash && window.location.hash.includes('upcoming'))) {
           setTimeout(() => {
             const targetEl = document.getElementById('target-created-auction') || upcomingSection;
@@ -934,13 +884,11 @@
       }
     }
 
-    // Immediately render local demo auctions
     const localAuctions = getLocalAuctions();
     if (localAuctions.length > 0) {
       renderAuctions(localAuctions);
     }
 
-    // Merge with backend auctions if available
     fetch(apiUrl('/api/fpo/auctions'))
       .then(res => res.json())
       .then(data => {
@@ -968,16 +916,12 @@
       });
   }
 
-  // --------------------------------------------------------------------------
-  // 3. FPO Create Live Bidding Form Integration
-  // --------------------------------------------------------------------------
   function initFpoCreateBidding() {
     const createForm = document.querySelector('form[action="fpo-live-bidding.html"], form[action="fpo-trading-dashboard.html"], #create-bidding-form, #create-trading-form, .form-container-card form');
     if (!createForm) return;
 
     console.log('[KrishiLink] Wiring FPO Create Live Bidding form...');
 
-    // Native file input and UI elements for computer & mobile photo selection
     const fileInput = document.getElementById('bidding-product-image') || document.getElementById('product-image') || createForm.querySelector('input[type="file"]');
     const dropzone = document.getElementById('image-upload-dropzone') || createForm.querySelector('#image-upload-dropzone');
     const triggerBtn = document.getElementById('btn-trigger-upload');
@@ -1170,7 +1114,6 @@
         submitBtn.textContent = 'Publishing Live Bidding Session...';
       }
 
-      // Determine whether this is an upcoming or active auction based on date & time
       let isFuture = false;
       let startDateFormatted = '15 September';
       let startTimeFormatted = '10:00 AM';
@@ -1206,7 +1149,6 @@
         }
       }
 
-      // Helper function to complete creation and redirect
       function completeSessionCreation(auctionId, lotCode, imgUrl, finalStatus = null, dateFmt = null, timeFmt = null, durFmt = null) {
         const resolvedStatus = finalStatus || (isFuture ? 'upcoming' : 'active');
         const isUpcoming = resolvedStatus === 'upcoming';
@@ -1284,7 +1226,6 @@
         console.warn('[KrishiLink] Note on backend network request; proceeding with local mandi session:', err);
       }
 
-      // Offline / zero-friction seamless fallback: session is created locally and active/upcoming based on schedule
       const lotNum = Math.floor(100 + Math.random() * 900);
       const cleanPrefix = (productName.replace(/[^a-zA-Z]/g, '').slice(0, 3) || 'AGR').toUpperCase();
       const lotCode = `TRD-${cleanPrefix}-${lotNum}`;
@@ -1293,9 +1234,6 @@
     });
   }
 
-  // --------------------------------------------------------------------------
-  // 4. Delivery Agent Dashboard Integration (Race-Condition Free Claims)
-  // --------------------------------------------------------------------------
   function initDeliveryDashboard() {
     const selectFmBtn = document.querySelector('label[for="select-fm24081"]');
     if (!selectFmBtn) return;
@@ -1303,8 +1241,8 @@
     console.log('[KrishiLink] Wiring Delivery Agent requirement selection (#FM-24081)...');
 
     selectFmBtn.addEventListener('click', async (e) => {
-      // Allow default checkbox behavior, but simultaneously inform backend API
-      const requirementId = 1; // #FM-24081 is ID 1 in seeded requirements
+
+      const requirementId = 1;
 
       try {
         const res = await fetch(apiUrl(`/api/delivery/requirements/${requirementId}/accept`), {
@@ -1319,7 +1257,7 @@
         } else {
           if (res.status === 409 || (data.message && data.message.includes('already accepted'))) {
             showNotification('Notice: This delivery requirement has already been accepted by another agent.', 'error');
-            // Uncheck the checkbox if rejected
+
             const checkbox = document.getElementById('select-fm24081');
             if (checkbox) checkbox.checked = false;
           } else if (res.status === 401) {
@@ -1333,13 +1271,9 @@
       }
     });
 
-    // Initialize Interactive Live Route Navigation Map
     initDeliveryRouteMap();
   }
 
-  // --------------------------------------------------------------------------
-  // 4b. Delivery Agent Interactive Leaflet Route Map & Live GPS Telemetry
-  // --------------------------------------------------------------------------
   async function initDeliveryRouteMap() {
     const routeMapEl = document.getElementById('delivery-route-map');
     const overviewMapEl = document.getElementById('delivery-overview-map');
@@ -1347,7 +1281,6 @@
 
     console.log('[KrishiLink] Initializing Delivery Agent Corridor Navigation Map...');
 
-    // Default route corridor fallback in case backend is offline
     const defaultRouteData = {
       corridor: {
         name: "NH 703 Agricultural Transit Corridor",
@@ -1431,7 +1364,6 @@
       console.log('[KrishiLink] Route API offline, using local corridor fallback.');
     }
 
-    // Helper to create custom HTML markers
     function createPinIcon(num, type) {
       const pinClass = type === 'pickup' ? 'pin-pickup' : (type === 'current' ? 'pin-current' : 'pin-dest');
       return L.divIcon({
@@ -1453,16 +1385,14 @@
       });
     }
 
-    // Helper to attach robust, high-reliability tile layer (eliminates OSM 'Access Blocked' rate-limits)
     function attachRobustTileLayer(mapInstance) {
-      // Primary: CartoDB Voyager (clean, modern transport roads, reliable and unrestricted for web portals)
+
       const primaryTileLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
         subdomains: 'abcd',
         maxZoom: 19,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a> • AgriMitra Fleet'
       });
 
-      // Seamless failover to Esri World Street Map if primary tile server is ever unreachable
       let hasFallenBack = false;
       primaryTileLayer.on('tileerror', function () {
         if (!hasFallenBack) {
@@ -1497,7 +1427,6 @@
 
         attachRobustTileLayer(mainMap);
 
-        // Draw corridor road lines
         mainRouteLine = L.polyline(routeData.corridor_path, {
           color: '#15803d',
           weight: 5,
@@ -1505,7 +1434,6 @@
           lineJoin: 'round'
         }).addTo(mainMap);
 
-        // Inner dashed glow line
         L.polyline(routeData.corridor_path, {
           color: '#86efac',
           weight: 2,
@@ -1513,11 +1441,10 @@
           dashArray: '6, 8'
         }).addTo(mainMap);
 
-        // Place waypoint pins
         routeData.waypoints.forEach(wp => {
           const icon = createPinIcon(wp.stop_number, wp.type);
           const marker = L.marker(wp.coordinates, { icon: icon }).addTo(mainMap);
-          
+
           const popupContent = `
             <div style="font-family: inherit; min-width: 170px; padding: 4px;">
               <div style="font-size: 0.72rem; font-weight: 700; color: #166534; text-transform: uppercase;">Stop ${wp.stop_number} • ${wp.badge}</div>
@@ -1532,7 +1459,6 @@
           }
         });
 
-        // Place Live Vehicle marker
         const truckPos = [routeData.vehicle.telemetry.lat, routeData.vehicle.telemetry.lng];
         truckMarker = L.marker(truckPos, { icon: createTruckIcon() }).addTo(mainMap);
         truckMarker.bindPopup(`
@@ -1546,7 +1472,6 @@
 
         mainMap.fitBounds(mainRouteLine.getBounds(), { padding: [40, 40] });
 
-        // Action buttons
         const btnFit = document.getElementById('btn-fit-route');
         const btnCenter = document.getElementById('btn-center-vehicle');
 
@@ -1575,7 +1500,6 @@
       }
     }
 
-    // Mini Map on Overview Panel
     let miniMap = null;
     if (overviewMapEl && typeof L !== 'undefined') {
       if (overviewMapEl._leaflet_id) {
@@ -1598,7 +1522,6 @@
 
         L.marker([routeData.vehicle.telemetry.lat, routeData.vehicle.telemetry.lng], { icon: createTruckIcon() }).addTo(miniMap);
 
-        // Clicking mini-map jumps to full Route tab
         overviewMapEl.style.cursor = 'pointer';
         overviewMapEl.addEventListener('click', () => {
           const routeRadio = document.getElementById('view-route');
@@ -1611,7 +1534,6 @@
       }
     }
 
-    // Comprehensive refresh helper for route map sizing & bounds
     function refreshMainRouteMap() {
       if (mainMap) {
         mainMap.invalidateSize();
@@ -1628,7 +1550,6 @@
       }
     }
 
-    // Handle view radio tab switching so Leaflet resizes correctly when Today's Route tab is opened
     const viewRadios = document.querySelectorAll('input[name="app-view"]');
     viewRadios.forEach(radio => {
       radio.addEventListener('change', () => {
@@ -1643,7 +1564,6 @@
       });
     });
 
-    // Also wire click listeners directly on any label targeting view-route (sidebar or action links)
     document.querySelectorAll('label[for="view-route"]').forEach(lbl => {
       lbl.addEventListener('click', () => {
         setTimeout(refreshMainRouteMap, 100);
@@ -1652,7 +1572,6 @@
       });
     });
 
-    // Zero-lag layout detection via ResizeObserver
     if (typeof ResizeObserver !== 'undefined' && routeMapEl) {
       const resizeObserver = new ResizeObserver(entries => {
         for (const entry of entries) {
@@ -1666,7 +1585,6 @@
       resizeObserver.observe(routeMapEl);
     }
 
-    // IntersectionObserver to auto-render when scrolled or un-hidden into viewport
     if (typeof IntersectionObserver !== 'undefined' && routeMapEl) {
       const intersectObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => {
@@ -1683,13 +1601,11 @@
       refreshOverviewMiniMap();
     });
 
-    // If page is loaded with view-route already checked
     const activeRouteRadio = document.getElementById('view-route');
     if (activeRouteRadio && activeRouteRadio.checked) {
       setTimeout(refreshMainRouteMap, 250);
     }
 
-    // Update HUD telemetry values
     const hudVehicle = document.getElementById('hud-vehicle-model');
     const hudPos = document.getElementById('hud-current-pos');
     const hudNext = document.getElementById('hud-next-stop');
@@ -1701,10 +1617,6 @@
     if (hudRem) hudRem.textContent = `${routeData.corridor.remaining_distance_km} km / ${routeData.corridor.total_distance_km} km`;
   }
 
-
-  // --------------------------------------------------------------------------
-  // 5. Farmer Produce Form Integration
-  // --------------------------------------------------------------------------
   function initFarmerProduce() {
     const addProduceForm = document.getElementById('add-produce-form');
     if (!addProduceForm) return;
@@ -1746,9 +1658,6 @@
     });
   }
 
-  // --------------------------------------------------------------------------
-  // 6. Delivery Agent Notification Bell Controller
-  // --------------------------------------------------------------------------
   function initNotificationBell() {
     const notifWrapper = document.querySelector('.notif-wrapper');
     if (!notifWrapper) return;
@@ -1762,7 +1671,6 @@
 
     if (!bellBtn || !drawer) return;
 
-    // State management for notification drawer
     function toggleDrawer(forceState) {
       const isCurrentlyOpen = notifWrapper.classList.contains('open') || (toggleCheckbox && toggleCheckbox.checked);
       const shouldOpen = typeof forceState === 'boolean' ? forceState : !isCurrentlyOpen;
@@ -1778,33 +1686,28 @@
       }
     }
 
-    // Click handler on the notification bell button
     bellBtn.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
       toggleDrawer();
     });
 
-    // Close when clicking anywhere outside the drawer
     document.addEventListener('click', (e) => {
       if (!notifWrapper.contains(e.target)) {
         toggleDrawer(false);
       }
     });
 
-    // Close on Escape key press
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         toggleDrawer(false);
       }
     });
 
-    // Prevent clicks inside drawer from closing it
     drawer.addEventListener('click', (e) => {
       e.stopPropagation();
     });
 
-    // Function to calculate and update unread count
     function updateUnreadCounter() {
       const unreadItems = drawer.querySelectorAll('.notif-item.unread');
       const count = unreadItems.length;
@@ -1819,7 +1722,6 @@
       }
     }
 
-    // Clicking individual notification item marks it as read
     drawer.querySelectorAll('.notif-item').forEach(item => {
       item.style.cursor = 'pointer';
       item.setAttribute('title', 'Click to mark as read');
@@ -1831,7 +1733,6 @@
       });
     });
 
-    // Add 'Mark all read' action in drawer header if not already present
     const drawerHeader = drawer.querySelector('.notif-drawer-header');
     if (drawerHeader && !drawerHeader.querySelector('.mark-all-read-btn')) {
       const markAllBtn = document.createElement('button');
@@ -1839,7 +1740,7 @@
       markAllBtn.className = 'mark-all-read-btn';
       markAllBtn.textContent = 'Mark all read';
       markAllBtn.style.cssText = 'background: none; border: none; font-size: 0.72rem; color: #166534; font-weight: 600; cursor: pointer; text-decoration: underline; padding: 2px 4px;';
-      
+
       markAllBtn.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -1853,12 +1754,11 @@
       drawerHeader.appendChild(markAllBtn);
     }
 
-    // Dynamic fetch from backend /api/notifications if available
     fetch(apiUrl('/api/notifications'))
       .then(res => res.json())
       .then(data => {
         if (data && data.success && Array.isArray(data.notifications) && data.notifications.length > 0) {
-          // Prepend backend notifications
+
           data.notifications.forEach(n => {
             const notifItem = document.createElement('div');
             notifItem.className = `notif-item ${n.is_read ? '' : 'unread'}`;
@@ -1890,9 +1790,6 @@
       .catch(() => {});
   }
 
-  // --------------------------------------------------------------------------
-  // Auto-run on DOM Ready
-  // --------------------------------------------------------------------------
   function initAll() {
     initWholesalerBidding();
     initFpoLiveBidding();
@@ -1909,7 +1806,6 @@
     initAll();
   }
 
-  // Expose KrishiLink global for debugging in developer console
   window.KrishiLink = {
     showNotification,
     version: '1.0.0-sih'

@@ -1,13 +1,8 @@
-/**
- * AgriMitra Wholesaler & Mandi Cockpit Controller
- * Handles real-time search, category filtering, flash sale escrow purchase,
- * session reminders, and dynamic bidding console switching.
- */
+
 
 document.addEventListener('DOMContentLoaded', () => {
   'use strict';
 
-  // 1. RBAC and User Header Population
   if (window.AgriMitraAuth) {
     const user = window.AgriMitraAuth.guardRole('wholesaler');
     if (user) {
@@ -21,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Add click to logout on user badge
     const badge = document.querySelector('.user-profile-badge');
     if (badge) {
       badge.style.cursor = 'pointer';
@@ -34,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 2. Real-time Search Filter
   const searchInput = document.querySelector('.search-input-field');
   const cards = document.querySelectorAll('.trading-card');
 
@@ -52,7 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 3. Category Filter Pills
   const categoryPills = document.querySelectorAll('.filter-pills-row[aria-label="Commodity Category Filters"] .filter-pill');
   categoryPills.forEach(pill => {
     pill.addEventListener('click', (e) => {
@@ -82,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 4. Session Reminders ("SET REMINDER" buttons)
   document.querySelectorAll('.trading-card button').forEach(btn => {
     if (btn.textContent.trim().toLowerCase().includes('reminder')) {
       btn.addEventListener('click', () => {
@@ -108,7 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 5. Flash Sale "BUY NOW" Escrow Checkout
   const flashSaleBuyButtons = document.querySelectorAll('#mandi-flash .trading-card button');
   flashSaleBuyButtons.forEach((btn, idx) => {
     if (btn.textContent.trim().includes('BUY NOW')) {
@@ -158,7 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 6. Dynamic Card Selection to Active Console
   document.querySelectorAll('.trading-card .btn-primary, .trading-card .btn-secondary').forEach(link => {
     if (link.textContent.trim().includes('VIEW TRADING') || link.textContent.trim().includes('VIEW SESSION')) {
       link.addEventListener('click', (e) => {

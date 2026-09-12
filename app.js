@@ -1,21 +1,11 @@
-/**
- * AgriMitra Welcome Page Application Script
- * Features:
- * - Native accessible <dialog> management (Login, Register, About)
- * - Light-dismiss & backdrop click handlers
- * - Role-specific AgriMitra Assistant with concise practical responses
- * - English only, zero emojis
- */
+
 
 document.addEventListener('DOMContentLoaded', () => {
-  // --------------------------------------------------------------------------
-  // Dialog (Modal) Controller
-  // --------------------------------------------------------------------------
+
   const loginDialog = document.getElementById('login-dialog');
   const registerDialog = document.getElementById('register-dialog');
   const aboutDialog = document.getElementById('about-dialog');
 
-  // Trigger Buttons
   const headerLoginBtn = document.getElementById('header-login-btn');
   const mainLoginBtn = document.getElementById('main-login-btn');
   const headerRegisterBtn = document.getElementById('header-register-btn');
@@ -35,15 +25,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Open Login
   if (headerLoginBtn) headerLoginBtn.addEventListener('click', () => openDialog(loginDialog));
   if (mainLoginBtn) mainLoginBtn.addEventListener('click', () => openDialog(loginDialog));
 
-  // Open Register
   if (headerRegisterBtn) headerRegisterBtn.addEventListener('click', () => openDialog(registerDialog));
   if (mainRegisterBtn) mainRegisterBtn.addEventListener('click', () => openDialog(registerDialog));
 
-  // Open About
   if (navAboutLink) navAboutLink.addEventListener('click', (e) => {
     e.preventDefault();
     openDialog(aboutDialog);
@@ -53,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
     openDialog(aboutDialog);
   });
 
-  // Auto-open modal based on URL hash (supports #login?role=buyer)
   function handleUrlHash() {
     const hash = window.location.hash;
     if (!hash) return;
@@ -81,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
   handleUrlHash();
   window.addEventListener('hashchange', handleUrlHash);
 
-  // Generic Close Buttons
   document.querySelectorAll('[data-close-modal]').forEach(btn => {
     btn.addEventListener('click', () => {
       const dialogId = btn.getAttribute('data-close-modal');
@@ -90,7 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Light dismiss on backdrop click for all dialogs
   [loginDialog, registerDialog, aboutDialog].forEach(dialog => {
     if (!dialog) return;
     dialog.addEventListener('click', (event) => {
@@ -107,22 +91,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --------------------------------------------------------------------------
-  // Language Selector Controller (Landing Page)
-  // --------------------------------------------------------------------------
   const langDropdown = document.getElementById('lang-selector-dropdown');
   const langToggle = document.getElementById('lang-selector-toggle');
   const langOptions = document.querySelectorAll('.lang-option');
 
   if (langToggle && langDropdown) {
-    // Toggle dropdown open/close on click
+
     langToggle.addEventListener('click', (e) => {
       e.stopPropagation();
       const isOpen = langDropdown.classList.toggle('open');
       langToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
 
-    // Option selection
     langOptions.forEach(opt => {
       opt.addEventListener('click', () => {
         const selectedLang = opt.getAttribute('data-lang');
@@ -134,7 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
         langToggle.focus();
       });
 
-      // Keyboard navigation (Enter / Space)
       opt.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
@@ -143,7 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Close on click outside
     document.addEventListener('click', (e) => {
       if (!langDropdown.contains(e.target)) {
         langDropdown.classList.remove('open');
@@ -151,7 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Close on Escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && langDropdown.classList.contains('open')) {
         langDropdown.classList.remove('open');
@@ -161,9 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --------------------------------------------------------------------------
-  // Role Navigation Mapping
-  // --------------------------------------------------------------------------
   const roleRegistrationRoutes = {
     farmer: 'AgriMitra-Farmer/farmer/register.html',
     buyer: 'AgriMitra-Buyer/buyer.html',
@@ -184,7 +158,6 @@ document.addEventListener('DOMContentLoaded', () => {
     delivery_agent: 'delivery-dashboard.html'
   };
 
-  // Role trigger links in footer open either registration dialog or direct page
   document.querySelectorAll('.modal-role-trigger').forEach(link => {
     link.addEventListener('click', (e) => {
       const role = link.getAttribute('data-role');
@@ -198,7 +171,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // When user clicks any role option in the registration popup, navigate directly to that role's registration page
   document.querySelectorAll('.role-select-card').forEach(card => {
     card.addEventListener('click', (e) => {
       const role = card.getAttribute('data-role');
@@ -210,9 +182,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --------------------------------------------------------------------------
-  // Demo Account 1-Click Auto-Fill Controller
-  // --------------------------------------------------------------------------
   const demoButtons = document.querySelectorAll('.demo-account-btn');
   const roleSelect = document.getElementById('login-role');
   const phoneInput = document.getElementById('login-phone');
@@ -232,11 +201,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (phoneInput) phoneInput.value = phone;
       if (passwordInput) passwordInput.value = pass;
 
-      // Clear any prior error
       const errorDiv = document.getElementById('login-error-msg');
       if (errorDiv) errorDiv.remove();
 
-      // Show confirmation badge
       if (demoStatusDiv) {
         demoStatusDiv.style.display = 'flex';
         const roleName = btn.querySelector('.demo-btn-role') ? btn.querySelector('.demo-btn-role').textContent : role;
@@ -245,7 +212,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Form Handling for Login (Authenticates with Flask backend & redirects to role dashboard)
   const loginForm = document.getElementById('login-form');
   if (loginForm) {
     loginForm.addEventListener('submit', async (e) => {
@@ -256,7 +222,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const phone = phoneInput ? phoneInput.value.trim() : '';
       const password = passwordInput ? passwordInput.value : '';
 
-      // Clean any existing error message
       let errorDiv = document.getElementById('login-error-msg');
       if (errorDiv) errorDiv.remove();
 
@@ -277,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = await response.json();
 
         if (response.ok && data.success) {
-          // Save active session metadata locally
+
           if (data.user) {
             localStorage.setItem('krishilink_user', JSON.stringify(data.user));
             localStorage.setItem('agrimitra_user', JSON.stringify(data.user));
@@ -289,8 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           }
           const actualRole = (data.user && data.user.role) ? data.user.role : selectedRole;
-          
-          // Specific destination logic for demo flows
+
           let targetDashboard = roleDashboardRoutes[selectedRole] || roleDashboardRoutes[actualRole];
           if (selectedRole === 'buyer') {
             targetDashboard = 'buyer-dashboard.html';
@@ -307,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
           closeDialog(loginDialog);
           window.location.href = targetDashboard || 'AgriMitra-Farmer/farmer/dashboard.html';
         } else {
-          // Display error message inside modal
+
           errorDiv = document.createElement('div');
           errorDiv.id = 'login-error-msg';
           errorDiv.style.cssText = 'color: #DC2626; background: #FEF2F2; border: 1px solid #FCA5A5; padding: 8px 12px; border-radius: 6px; font-size: 0.825rem; margin-top: 10px; text-align: center;';

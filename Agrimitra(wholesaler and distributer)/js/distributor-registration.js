@@ -1,17 +1,12 @@
-/* ==========================================================================
-   AgriMitra Distributor Registration Wizard Logic
-   Multi-step form wizard, inline validation, simulated account creation
-   ========================================================================== */
+
 
 document.addEventListener('DOMContentLoaded', () => {
   let currentStep = 1;
   const totalSteps = 3;
 
-  // Step Panels & Indicators
   const panels = document.querySelectorAll('.wizard-step-panel');
   const stepItems = document.querySelectorAll('.wizard-step-item');
 
-  // Step 1 Form Elements
   const inputBusinessName = document.getElementById('reg-business-name');
   const inputContactPerson = document.getElementById('reg-contact-person');
   const inputPhone = document.getElementById('reg-phone');
@@ -20,30 +15,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const inputDistrict = document.getElementById('reg-district');
   const selectState = document.getElementById('reg-state');
 
-  // Step 2 Form Elements
   const produceCheckboxes = document.querySelectorAll('input[name="mainProduce"]');
   const selectPurchaseQty = document.getElementById('reg-purchase-qty');
   const selectStorageCap = document.getElementById('reg-storage-cap');
   const inputSupplyArea = document.getElementById('reg-supply-area');
 
-  // Step 3 Form Elements
   const inputPassword = document.getElementById('reg-password');
   const inputConfirmPassword = document.getElementById('reg-confirm-password');
 
-  // Navigation Buttons
   const btnStep1Next = document.getElementById('btn-step-1-next');
   const btnStep2Back = document.getElementById('btn-step-2-back');
   const btnStep2Next = document.getElementById('btn-step-2-next');
   const btnStep3Back = document.getElementById('btn-step-3-back');
   const btnCreateAccount = document.getElementById('btn-create-account');
 
-  // Wizard Card & Success Container
   const wizardFormContainer = document.getElementById('registration-wizard-card');
   const successContainer = document.getElementById('registration-success-card');
 
-  /**
-   * Show inline error for a field
-   */
   function showError(fieldId, message) {
     const errorEl = document.getElementById(`error-${fieldId}`);
     const inputEl = document.getElementById(fieldId);
@@ -56,9 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  /**
-   * Clear inline error for a field
-   */
   function clearError(fieldId) {
     const errorEl = document.getElementById(`error-${fieldId}`);
     const inputEl = document.getElementById(fieldId);
@@ -71,7 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Clear errors on user input
   const allInputs = [
     inputBusinessName,
     inputContactPerson,
@@ -97,13 +81,9 @@ document.addEventListener('DOMContentLoaded', () => {
     cb.addEventListener('change', () => clearError('mainProduce'));
   });
 
-  /**
-   * Update active step panel and progress indicator
-   */
   function setStep(stepNum) {
     currentStep = stepNum;
 
-    // Update Panels
     panels.forEach(panel => {
       const step = parseInt(panel.getAttribute('data-step'), 10);
       if (step === currentStep) {
@@ -113,7 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Update Stepper Header
     stepItems.forEach(item => {
       const step = parseInt(item.getAttribute('data-step'), 10);
       item.classList.remove('active', 'completed');
@@ -124,15 +103,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Scroll to top of wizard on step change
     if (wizardFormContainer) {
       wizardFormContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
   }
 
-  /**
-   * Validate Step 1: Business Details
-   */
   function validateStep1() {
     let isValid = true;
 
@@ -170,9 +145,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return isValid;
   }
 
-  /**
-   * Validate Step 2: Operations
-   */
   function validateStep2() {
     let isValid = true;
 
@@ -200,9 +172,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return isValid;
   }
 
-  /**
-   * Validate Step 3: Account Setup
-   */
   function validateStep3() {
     let isValid = true;
 
@@ -228,7 +197,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return isValid;
   }
 
-  // Button Listeners
   if (btnStep1Next) {
     btnStep1Next.addEventListener('click', () => {
       if (validateStep1()) {
@@ -257,19 +225,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Submit / Create Account
   if (btnCreateAccount) {
     btnCreateAccount.addEventListener('click', async () => {
       if (!validateStep3()) return;
 
-      // Show Creating Account state
       btnCreateAccount.disabled = true;
       btnCreateAccount.innerHTML = `
         <span class="spinner"></span>
         <span>Creating account...</span>
       `;
 
-      // Gather form data
       const selectedProduce = Array.from(produceCheckboxes)
         .filter(cb => cb.checked)
         .map(cb => cb.value);
@@ -288,7 +253,6 @@ document.addEventListener('DOMContentLoaded', () => {
         mainSupplyArea: inputSupplyArea.value.trim()
       };
 
-      // Persist to store
       if (window.AgriMitraStore) {
         window.AgriMitraStore.saveProfile(registeredProfile);
       }
@@ -323,26 +287,22 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn('Network registration note:', err);
       }
 
-      // Hide form panels, show success view
       if (wizardFormContainer && successContainer) {
         wizardFormContainer.style.display = 'none';
         successContainer.style.display = 'block';
 
-        // Insert personalized name into success card
         const successBusinessEl = document.getElementById('success-business-name');
         if (successBusinessEl) {
           successBusinessEl.textContent = registeredProfile.businessName || 'MahaAgro Wholesale Dist.';
         }
       }
 
-      // Auto-redirect to Distributor Dashboard
       setTimeout(() => {
         window.location.href = 'distributor-dashboard.html';
       }, 1000);
     });
   }
 
-  // Handle Already Registered navigation to Central Login Page (supports both Wholesaler & Distributor roles)
   const alreadyText = document.getElementById('already-registered-text');
   const alreadyLink = document.getElementById('link-login-distributor');
 

@@ -8,10 +8,9 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Subtle Background Pattern -->
+
   <div class="bg-subtle-pattern" aria-hidden="true"></div>
 
-  <!-- Header & FPO Navbar -->
   <header class="trading-header-bar" role="banner">
     <div class="container header-inner">
       <a href="fpo-dashboard.html" class="brand-wrapper" aria-label="AgriMitra FPO Dashboard">
@@ -22,7 +21,6 @@
         </div>
       </a>
 
-      <!-- Updated FPO Dashboard Navbar: Dashboard | Products | Orders | Live Bidding | Profile -->
       <nav class="header-nav" aria-label="FPO Main Navigation">
         <ul class="nav-links">
           <li><a href="fpo-dashboard.html" class="nav-link">Dashboard</a></li>
@@ -34,7 +32,7 @@
       </nav>
 
       <div class="trading-nav-actions">
-        <!-- Notification Icon -->
+
         <button type="button" id="btnNotificationBell" class="icon-button" aria-label="View Notifications" title="Notifications">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
@@ -42,7 +40,6 @@
           </svg>
         </button>
 
-        <!-- FPO Profile Badge -->
         <div class="user-profile-badge" title="FPO Account">
           <span class="user-avatar-circle" aria-hidden="true">PF</span>
           <div>
@@ -54,11 +51,9 @@
     </div>
   </header>
 
-  <!-- Main Content -->
   <main id="main-content" style="padding: var(--space-6) 0 var(--space-16);">
     <div class="container">
-      
-      <!-- Back Link -->
+
       <div style="margin-bottom: var(--space-4);">
         <a href="fpo-live-bidding.html" class="nav-link" style="padding-left: 0; display: inline-flex; align-items: center; gap: 6px;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -69,7 +64,6 @@
         </a>
       </div>
 
-      <!-- PRODUCT INFORMATION AT TOP -->
       <div style="background-color: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-6); margin-bottom: var(--space-6); box-shadow: var(--shadow-card);">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: var(--space-4);">
           <div style="display: flex; gap: var(--space-4); align-items: center;">
@@ -107,15 +101,12 @@
         </div>
       </div>
 
-      <!-- TWO COLUMN MONITORING CONSOLE -->
       <div style="display: grid; grid-template-columns: 1.15fr 1fr; gap: var(--space-6); align-items: flex-start;">
-        
-        <!-- LEFT COLUMN: LIVE STATUS, TIMER, & PARTICIPATION SUMMARY -->
+
         <div style="display: flex; flex-direction: column; gap: var(--space-6);">
-          
-          <!-- LIVE STATUS & HIGHEST BID PROMINENT BOX -->
+
           <div style="background-color: var(--color-surface); border: 2px solid var(--color-primary); border-radius: var(--radius-lg); padding: var(--space-6); box-shadow: var(--shadow-modal);">
-            
+
             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--color-border-light); padding-bottom: var(--space-4); margin-bottom: var(--space-5);">
               <div>
                 <span class="trading-section-title" style="font-size: 1.4rem; color: var(--color-primary);">
@@ -127,7 +118,6 @@
                 </div>
               </div>
 
-              <!-- TIME REMAINING (Visually Noticeable) -->
               <div class="live-timer-box" style="text-align: right;">
                 <span class="live-timer-label">TIME REMAINING</span>
                 <div class="live-timer-counter" style="font-size: 2.25rem; color: #C62828;">00:12:45</div>
@@ -135,7 +125,6 @@
               </div>
             </div>
 
-            <!-- CURRENT HIGHEST BID DISPLAY -->
             <div style="background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%); border: 1px solid #A5D6A7; border-radius: var(--radius-md); padding: var(--space-6); text-align: center;">
               <span style="font-size: 0.85rem; font-weight: var(--font-weight-bold); text-transform: uppercase; color: #1B5E20; letter-spacing: 0.08em; display: block;">
                 Current Highest Bid
@@ -151,7 +140,6 @@
               </div>
             </div>
 
-            <!-- INFORMATION NOTICE (Binding Rule) -->
             <div style="background-color: #F8FBF8; border: 1px solid #C8DEC9; border-radius: var(--radius-md); padding: var(--space-4); margin-top: var(--space-5);">
               <div style="font-size: var(--font-size-xs); font-weight: var(--font-weight-bold); text-transform: uppercase; color: var(--color-primary); letter-spacing: 0.05em; margin-bottom: 4px;">
                 BIDDING RULE
@@ -163,7 +151,6 @@
 
           </div>
 
-          <!-- PARTICIPATION SUMMARY CARDS -->
           <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4);">
             <div class="trading-summary-card" style="padding: var(--space-4);">
               <span class="trading-summary-label">TOTAL PARTICIPANTS</span>
@@ -186,9 +173,8 @@
 
         </div>
 
-        <!-- RIGHT COLUMN: RECENT BIDDING ACTIVITY -->
         <div style="background-color: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-6); box-shadow: var(--shadow-card);">
-          
+
           <div style="border-bottom: 1px solid var(--color-border-light); padding-bottom: var(--space-3); margin-bottom: var(--space-4); display: flex; justify-content: space-between; align-items: center;">
             <div>
               <h2 style="font-size: 1.35rem; font-weight: var(--font-weight-bold); color: var(--color-text-main); margin: 0;">
@@ -201,10 +187,8 @@
             <span class="badge-live">Live Stream</span>
           </div>
 
-          <!-- Bids Feed List -->
           <div style="display: flex; flex-direction: column; gap: 10px;">
-            
-            <!-- Bid 1 (Leading) -->
+
             <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background-color: #EBF4ED; border: 1px solid #A5D6A7; border-radius: var(--radius-md);">
               <div>
                 <div style="font-weight: var(--font-weight-bold); color: #1B5E20; font-size: var(--font-size-base);">
@@ -217,7 +201,6 @@
               </div>
             </div>
 
-            <!-- Bid 2 -->
             <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background-color: var(--color-surface-alt); border: 1px solid var(--color-border-light); border-radius: var(--radius-md);">
               <div>
                 <div style="font-weight: var(--font-weight-semibold); color: var(--color-text-main); font-size: var(--font-size-sm);">
@@ -230,7 +213,6 @@
               </div>
             </div>
 
-            <!-- Bid 3 -->
             <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background-color: var(--color-surface-alt); border: 1px solid var(--color-border-light); border-radius: var(--radius-md);">
               <div>
                 <div style="font-weight: var(--font-weight-semibold); color: var(--color-text-main); font-size: var(--font-size-sm);">
@@ -243,7 +225,6 @@
               </div>
             </div>
 
-            <!-- Bid 4 -->
             <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background-color: var(--color-surface-alt); border: 1px solid var(--color-border-light); border-radius: var(--radius-md);">
               <div>
                 <div style="font-weight: var(--font-weight-semibold); color: var(--color-text-main); font-size: var(--font-size-sm);">
@@ -256,7 +237,6 @@
               </div>
             </div>
 
-            <!-- Bid 5 -->
             <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background-color: var(--color-surface-alt); border: 1px solid var(--color-border-light); border-radius: var(--radius-md);">
               <div>
                 <div style="font-weight: var(--font-weight-semibold); color: var(--color-text-main); font-size: var(--font-size-sm);">
@@ -282,7 +262,6 @@
     </div>
   </main>
 
-  <!-- AgriMitra Multi-Language Support Engine -->
   <script src="../i18n.js"></script>
 </body>
 </html>

@@ -1,9 +1,5 @@
-/* ==========================================================================
-   AgriMitra Responsive Stylesheet
-   Mobile, tablet, and touch-screen adaptations
-   ========================================================================== */
 
-/* Large Tablets & Small Laptops (<= 1024px) */
+
 @media (max-width: 1024px) {
   .reg-split-container {
     gap: 2rem;
@@ -24,7 +20,6 @@
   }
 }
 
-/* Tablets (<= 768px) */
 @media (max-width: 768px) {
   .reg-split-container {
     grid-template-columns: 1fr;
@@ -55,7 +50,7 @@
   }
 
   .dist-nav-links {
-    display: none; /* Collapsed on mobile, accessible via quick actions */
+    display: none;
   }
 
   .summary-cards-grid {
@@ -88,7 +83,6 @@
   }
 }
 
-/* Small Mobile Screens (<= 480px) */
 @media (max-width: 480px) {
   .reg-form-col {
     padding: 1.5rem 1rem;

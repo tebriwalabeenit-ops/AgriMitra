@@ -7,10 +7,10 @@ def activate_auctions():
         now = datetime.now()
         end_time = now + timedelta(minutes=45)
         cur.execute(
-            """UPDATE auctions 
-               SET status = 'active', 
-                   start_time = %s, 
-                   end_time = %s 
+            """UPDATE auctions
+               SET status = 'active',
+                   start_time = %s,
+                   end_time = %s
                WHERE lot_code IN ('TRD-WHT-901', 'TRD-POT-404', 'TRD-RIC-552')""",
             (now.strftime('%Y-%m-%d %H:%M:%S'), end_time.strftime('%Y-%m-%d %H:%M:%S'))
         )

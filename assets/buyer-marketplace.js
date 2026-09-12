@@ -1,19 +1,13 @@
-/**
- * AgriMitra Buyer Marketplace Interactive Controller
- * Handles Navigation, Return to Dashboard, Category Sorting, Live Search,
- * Cart Management, Escrow Checkout, Profile Editing, and Order History.
- */
+
 
 (function () {
   'use strict';
 
-  // Global close modal function - accessible inline and programmatically
   window.closeBuyerModal = function (e) {
     if (e && typeof e.preventDefault === 'function') {
       e.preventDefault();
     }
 
-    // 1. Immediately hide all modal overlays via inline styles and class
     const overlays = document.querySelectorAll('.modal-overlay');
     overlays.forEach(modal => {
       modal.classList.remove('active');
@@ -24,15 +18,12 @@
       modal.style.setProperty('pointer-events', 'none', 'important');
     });
 
-    // 2. Clear target hash without breaking browser history
-    // Setting window.location.hash to '#!' forces CSS :target to unmatch immediately
     if (window.location.hash && window.location.hash !== '#!') {
       try {
         window.location.hash = '#!';
       } catch (err) {}
     }
 
-    // 3. Clean up URL bar in HTTP(S) mode without reloading page
     try {
       if (window.location.protocol.startsWith('http') && window.history && window.history.replaceState) {
         window.history.replaceState(null, document.title, window.location.pathname + window.location.search);
@@ -45,7 +36,7 @@
     const cleanId = modalId.replace(/^#/, '');
     const modal = document.getElementById(cleanId);
     if (modal) {
-      // First close any other open modals
+
       document.querySelectorAll('.modal-overlay').forEach(m => {
         if (m !== modal) {
           m.classList.remove('active');
@@ -57,7 +48,6 @@
         }
       });
 
-      // Show this modal cleanly
       modal.classList.remove('is-closed');
       modal.classList.remove('is-closing');
       modal.classList.add('active');
@@ -72,14 +62,12 @@
     }
   };
 
-  // Close modals on Escape key press
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       window.closeBuyerModal(e);
     }
   });
 
-  // Default initial cart state if empty
   const defaultCartItems = [
     {
       id: 'prod-potatoes',
@@ -129,14 +117,12 @@
     const totalCount = cart.reduce((sum, item) => sum + (parseInt(item.qty, 10) || 1), 0);
     const subtotal = cart.reduce((sum, item) => sum + (parseFloat(item.price) * (parseFloat(item.qty) || 1)), 0);
 
-    // Update Header Badges
     const headerCount = document.getElementById('header-cart-count');
     if (headerCount) headerCount.textContent = totalCount;
 
     const mobileBadges = document.querySelectorAll('.mobile-nav-badge');
     mobileBadges.forEach(badge => badge.textContent = totalCount);
 
-    // Update Modal Title
     const cartTitle = document.getElementById('modal-cart-title');
     if (cartTitle) {
       cartTitle.innerHTML = `
@@ -149,7 +135,6 @@
       `;
     }
 
-    // Render Items in Cart Modal
     const itemsContainer = document.querySelector('.cart-items-list');
     if (itemsContainer) {
       if (cart.length === 0) {
@@ -176,7 +161,6 @@
           </div>
         `).join('');
 
-        // Attach remove buttons
         itemsContainer.querySelectorAll('.btn-remove-item').forEach(btn => {
           btn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -192,7 +176,6 @@
       }
     }
 
-    // Update Summary Box
     const summaryBox = document.querySelector('.cart-summary-box');
     if (summaryBox) {
       summaryBox.innerHTML = `
@@ -211,7 +194,6 @@
       `;
     }
 
-    // Update Checkout Button
     const checkoutBtn = document.querySelector('#modal-cart .btn-checkout, #modal-cart a.btn-primary');
     if (checkoutBtn) {
       checkoutBtn.textContent = `Proceed to Checkout (₹${Math.round(subtotal)})`;
@@ -221,7 +203,6 @@
     }
   }
 
-  // Handle Adding Item to Cart from Product Cards
   function setupAddToCartButtons() {
     document.querySelectorAll('.btn-add-cart').forEach(btn => {
       btn.addEventListener('click', (e) => {
@@ -258,13 +239,11 @@
           window.AgriMitraAuth.showToast(`✓ Added 1 kg "${title}" to your cart!`, 'success', 2500);
         }
 
-        // Open cart modal cleanly
         window.openBuyerModal('modal-cart');
       });
     });
   }
 
-  // Handle Order Checkout via Escrow
   function setupCheckout() {
     const checkoutBtn = document.querySelector('#modal-cart .btn-checkout, #modal-cart a.btn-primary');
     if (checkoutBtn) {
@@ -336,7 +315,6 @@
     }
   }
 
-  // Fetch and display Order History in #modal-orders
   async function loadOrderHistory() {
     const ordersList = document.querySelector('.modal-orders-list');
     if (!ordersList) return;
@@ -380,7 +358,6 @@
     }
   }
 
-  // Delivery Tracking Button Handler
   function setupTrackButtons() {
     document.querySelectorAll('.btn-track').forEach(btn => {
       btn.addEventListener('click', (e) => {
@@ -393,11 +370,9 @@
     });
   }
 
-  // Active Category State
   let currentCategory = 'all';
   let currentSearchQuery = '';
 
-  // Core Produce Filtering Function combining Category & Search
   function applyProduceFilters() {
     const productCards = document.querySelectorAll('.product-card');
     const query = currentSearchQuery.toLowerCase().trim();
@@ -417,13 +392,11 @@
       if (isVisible) visibleCount++;
     });
 
-    // Update Category Pills UI
     document.querySelectorAll('.category-filter-pill').forEach(pill => {
       const pillCat = pill.getAttribute('data-category') || 'all';
       pill.classList.toggle('active', pillCat === currentCategory);
     });
 
-    // Update filter status bar
     const statusBar = document.getElementById('filter-status-bar');
     if (statusBar) {
       if (currentCategory !== 'all' || query) {
@@ -449,7 +422,6 @@
       }
     }
 
-    // Empty state container in products grid
     let emptyNotice = document.getElementById('produce-empty-notice');
     const grid = document.querySelector('.products-grid');
     if (visibleCount === 0 && grid) {
@@ -485,9 +457,8 @@
     applyProduceFilters();
   }
 
-  // Category Sorter Implementation
   function setupCategorySorter() {
-    // 1. Shop by Category cards in #categories section
+
     document.querySelectorAll('.category-card').forEach(card => {
       card.addEventListener('click', (e) => {
         e.preventDefault();
@@ -495,7 +466,6 @@
         currentCategory = cat;
         applyProduceFilters();
 
-        // Smooth scroll to produce section
         const produceSection = document.getElementById('fresh-produce');
         if (produceSection) {
           produceSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -503,7 +473,6 @@
       });
     });
 
-    // 2. Filter Pills directly above produce grid
     document.querySelectorAll('.category-filter-pill').forEach(pill => {
       pill.addEventListener('click', (e) => {
         e.preventDefault();
@@ -513,7 +482,6 @@
       });
     });
 
-    // 3. Category Links in Modal Categories (if opened)
     document.querySelectorAll('#modal-categories .cat-item-link, #modal-categories [data-category]').forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
@@ -528,7 +496,6 @@
       });
     });
 
-    // 4. Reset Button in status bar
     const resetBtn = document.getElementById('btn-clear-filters');
     if (resetBtn) {
       resetBtn.addEventListener('click', (e) => {
@@ -538,7 +505,6 @@
     }
   }
 
-  // Search Bar Live Filtering
   function setupSearch() {
     const searchInput = document.getElementById('mandi-search-input') || document.querySelector('.search-input');
     const searchForm = document.querySelector('form.search-bar-container') || document.querySelector('.search-section form');
@@ -564,7 +530,6 @@
       });
     }
 
-    // Quick search tags under search box
     document.querySelectorAll('.quick-tag').forEach(tag => {
       tag.addEventListener('click', (e) => {
         e.preventDefault();
@@ -582,7 +547,6 @@
     });
   }
 
-  // Profile Viewer & Interactive Editor
   function setupProfileEditor() {
     const defaultProfile = {
       name: 'Amit Sharma',
@@ -602,7 +566,6 @@
         if (stored) return Object.assign({}, defaultProfile, JSON.parse(stored));
       } catch (e) {}
 
-      // Fallback to user auth info if available
       try {
         const userStored = localStorage.getItem('agrimitra_user');
         if (userStored) {
@@ -625,7 +588,7 @@
     }
 
     function updateProfileUI(data) {
-      // 1. Update Profile Modal View Fields
+
       const viewName = document.getElementById('prof-view-name');
       if (viewName) viewName.textContent = data.name;
 
@@ -647,7 +610,6 @@
       const viewRadius = document.getElementById('prof-view-radius');
       if (viewRadius) viewRadius.textContent = `Local Farm Hubs within ${data.radius}`;
 
-      // 2. Update Topbar & Greeting on Dashboard
       const firstName = data.name.split(' ')[0] || data.name;
       const userGreeting = document.querySelector('.mega-action-sub, [data-user-name]');
       if (userGreeting) {
@@ -664,7 +626,6 @@
         locDisplay.textContent = (data.district ? `${data.district}, ${data.state}` : data.address.slice(0, 24)) + '...';
       }
 
-      // 3. Pre-fill form inputs
       const inputName = document.getElementById('prof-edit-name');
       if (inputName) inputName.value = data.name;
 
@@ -709,7 +670,6 @@
       }
     }
 
-    // Bind Edit/Cancel buttons
     const toggleBtn = document.getElementById('btn-toggle-edit-profile');
     if (toggleBtn) {
       toggleBtn.addEventListener('click', () => toggleProfileMode('edit'));
@@ -720,7 +680,6 @@
       cancelBtn.addEventListener('click', () => toggleProfileMode('view'));
     }
 
-    // Bind Form Submit
     const form = document.getElementById('profile-edit-form');
     if (form) {
       form.addEventListener('submit', (e) => {
@@ -747,12 +706,10 @@
       });
     }
 
-    // Initialize profile data
     const initialProfile = loadProfile();
     updateProfileUI(initialProfile);
   }
 
-  // Location / Address Selection Modal
   function setupLocationModal() {
     const saveLocBtn = document.querySelector('#modal-location .btn-save-loc, #modal-location .btn-primary');
     if (saveLocBtn) {
@@ -773,9 +730,8 @@
     }
   }
 
-  // Bind All Return to Dashboard and Modal Close Buttons
   function setupModalCloseHandlers() {
-    // Delegated click listener for all modal close triggers
+
     document.addEventListener('click', (e) => {
       const closeTrigger = e.target.closest('.modal-window-close, .modal-backdrop-close, .btn-return-dashboard, [data-modal-close]');
       if (closeTrigger) {
@@ -785,14 +741,12 @@
         return;
       }
 
-      // If clicked on the modal overlay background outside modal-window
       if (e.target.classList.contains('modal-overlay')) {
         e.preventDefault();
         window.closeBuyerModal(e);
         return;
       }
 
-      // If clicking a link that opens a modal
       const modalOpenLink = e.target.closest('a[href^="#modal-"]');
       if (modalOpenLink) {
         const href = modalOpenLink.getAttribute('href');
@@ -806,7 +760,6 @@
       }
     });
 
-    // Hash change handler to keep modals synced
     window.addEventListener('hashchange', () => {
       const hash = window.location.hash;
       if (!hash || hash === '#' || hash === '#!' || hash === '#close') {
@@ -826,7 +779,6 @@
       }
     });
 
-    // Handle any navbar topbar links that navigate to on-page sections
     document.querySelectorAll('.mega-topbar-link, .mega-cat-btn').forEach(link => {
       link.addEventListener('click', () => {
         window.closeBuyerModal();
@@ -834,7 +786,6 @@
     });
   }
 
-  // Initialize on DOM ready
   document.addEventListener('DOMContentLoaded', () => {
     if (window.AgriMitraAuth) {
       window.AgriMitraAuth.guardRole('buyer', { strict: false });

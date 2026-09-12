@@ -11,10 +11,9 @@
 </head>
 
 <body>
-  <!-- Subtle Background Pattern -->
+
   <div class="bg-subtle-pattern" aria-hidden="true"></div>
 
-  <!-- Header & FPO Navbar -->
   <header class="trading-header-bar" role="banner">
     <div class="container header-inner">
       <a href="fpo-dashboard.html" class="brand-wrapper" aria-label="AgriMitra FPO Dashboard">
@@ -25,7 +24,6 @@
         </div>
       </a>
 
-      <!-- Updated FPO Dashboard Navbar: Dashboard | Products | Orders | Live Bidding | Profile -->
       <nav class="header-nav" aria-label="FPO Main Navigation">
         <ul class="nav-links">
           <li><a href="fpo-dashboard.html" class="nav-link">Dashboard</a></li>
@@ -37,7 +35,7 @@
       </nav>
 
       <div class="trading-nav-actions">
-        <!-- Notification Icon -->
+
         <button type="button" id="btnNotificationBell" class="icon-button" aria-label="View Notifications" title="Notifications">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -46,7 +44,6 @@
           </svg>
         </button>
 
-        <!-- FPO Profile Badge -->
         <div class="user-profile-badge" title="FPO Account">
           <span class="user-avatar-circle" aria-hidden="true">PF</span>
           <div>
@@ -58,11 +55,9 @@
     </div>
   </header>
 
-  <!-- Main Content -->
   <main id="main-content" style="padding: var(--space-8) 0 var(--space-16);">
     <div class="container">
 
-      <!-- Back Link -->
       <div style="margin-bottom: var(--space-4);">
         <a href="fpo-live-bidding.html" class="nav-link"
           style="padding-left: 0; display: inline-flex; align-items: center; gap: 6px;">
@@ -75,10 +70,8 @@
         </a>
       </div>
 
-      <!-- Main Form Container Card -->
       <div class="form-container-card">
 
-        <!-- Page Heading -->
         <div
           style="border-bottom: 1px solid var(--color-border-light); padding-bottom: var(--space-6); margin-bottom: var(--space-8);">
           <span class="form-section-eyebrow">FPO Auction Setup</span>
@@ -93,7 +86,6 @@
 
         <form id="create-bidding-form" action="fpo-live-bidding.html" method="post">
 
-          <!-- SECTION 1: PRODUCT DETAILS -->
           <div class="form-section-block">
             <div class="form-section-header">
               <span class="form-section-eyebrow">Step 01</span>
@@ -133,16 +125,14 @@
                 <span style="font-size: 0.75rem; color: var(--color-text-muted); font-weight: normal;">From Computer or Phone</span>
               </label>
 
-              <!-- Native File Input for Desktop & Mobile Upload -->
               <input type="file" id="bidding-product-image" name="produce_image" accept="image/*" style="display: none;">
 
-              <!-- Clickable Upload Dropzone -->
               <div id="image-upload-dropzone" role="button" tabindex="0" aria-label="Upload produce photograph from computer or phone"
                 style="border: 2px dashed var(--color-border); border-radius: var(--radius-md); padding: var(--space-5); text-align: center; background-color: var(--color-surface-alt); display: flex; align-items: center; gap: 1.25rem; justify-content: center; flex-wrap: wrap; cursor: pointer; transition: all 0.2s ease;">
-                
+
                 <img id="product-image-preview" src="assets/produce/wheat.jpg" alt="Selected Sample Photograph"
                   style="width: 84px; height: 84px; object-fit: cover; border-radius: var(--radius-md); border: 2px solid var(--color-border); box-shadow: 0 2px 8px rgba(0,0,0,0.08); flex-shrink: 0;">
-                
+
                 <div style="text-align: left; max-width: 400px;">
                   <div id="product-image-filename"
                     style="font-weight: var(--font-weight-semibold); color: var(--color-text-main); font-size: var(--font-size-sm); margin-bottom: 2px; word-break: break-all;">
@@ -175,7 +165,6 @@
             </div>
           </div>
 
-          <!-- SECTION 2: QUALITY DETAILS -->
           <div class="form-section-block">
             <div class="form-section-header">
               <span class="form-section-eyebrow">Step 02</span>
@@ -209,7 +198,6 @@
             </div>
           </div>
 
-          <!-- SECTION 3: QUANTITY -->
           <div class="form-section-block">
             <div class="form-section-header">
               <span class="form-section-eyebrow">Step 03</span>
@@ -236,7 +224,6 @@
             </div>
           </div>
 
-          <!-- SECTION 4: BIDDING DETAILS -->
           <div class="form-section-block">
             <div class="form-section-header">
               <span class="form-section-eyebrow">Step 04</span>
@@ -272,7 +259,6 @@
             </div>
           </div>
 
-          <!-- SECTION 5: BIDDING SCHEDULE -->
           <div class="form-section-block">
             <div class="form-section-header">
               <span class="form-section-eyebrow">Step 05</span>
@@ -298,7 +284,6 @@
             </div>
           </div>
 
-          <!-- SECTION 6: BINDING SALE AGREEMENT -->
           <div class="trading-commitment-card" role="region" aria-labelledby="commitment-heading">
             <div class="commitment-header">
               <div class="commitment-icon">
@@ -330,7 +315,6 @@
             </label>
           </div>
 
-          <!-- SECTION 7: SESSION PREVIEW -->
           <div class="session-preview-box">
             <span class="preview-box-header">LIVE BIDDING SUMMARY</span>
             <div class="preview-box-grid">
@@ -361,7 +345,6 @@
             </div>
           </div>
 
-          <!-- SECTION 8: FINAL BUTTON -->
           <div style="margin-top: var(--space-8); text-align: center;">
             <button type="submit" class="btn btn-primary btn-large"
               style="width: 100%; max-width: 480px; box-shadow: 0 4px 16px rgba(28, 90, 53, 0.25);">
@@ -381,7 +364,6 @@
   </main>
   <script src="../assets/frontend_api.js"></script>
 
-  <!-- AgriMitra Multi-Language Support Engine -->
   <script src="../i18n.js"></script>
 </body>
 

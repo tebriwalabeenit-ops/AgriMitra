@@ -9,7 +9,6 @@
 </head>
 <body>
 
-  <!-- Top Global Bar -->
   <header class="top-nav-bar">
     <div class="top-nav-inner">
       <a href="index.html" class="brand-badge" title="AgriMitra Home">
@@ -17,7 +16,6 @@
         <span class="brand-title">AgriMitra</span>
       </a>
 
-      <!-- Back to Portal / Login Button -->
       <a href="../index.html#login?role=delivery" class="btn-back-portal" id="btn-back-to-login" title="Return to Delivery Agent Login">
         <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
         <span>Back to Login</span>
@@ -25,15 +23,11 @@
     </div>
   </header>
 
-  <!-- Main Registration Card Container (Split Screen Layout) -->
   <main class="page-container">
     <div class="split-card">
 
-      <!-- ================================================================
-           LEFT COLUMN: BRANDING, VALUE PROPOSITION & HERO ARTWORK
-           ================================================================ -->
       <div class="left-hero-panel">
-        <!-- Onboarding Pill -->
+
         <div class="pill-badge">
           <span class="pill-dot"></span>
           <span>DELIVERY AGENT ONBOARDING</span>
@@ -45,15 +39,13 @@
           Be a part of our delivery network and help get fresh agricultural produce from farms to businesses and markets across India.
         </p>
 
-        <!-- Delivery Agent Countryside Artwork -->
         <div class="hero-image-wrapper">
-          <img 
-            src="assets/delivery-hero.jpg" 
-            alt="AgriMitra Delivery Agent on green electric scooter through countryside farm fields" 
+          <img
+            src="assets/delivery-hero.jpg"
+            alt="AgriMitra Delivery Agent on green electric scooter through countryside farm fields"
             class="hero-artwork">
         </div>
 
-        <!-- Benefits Checklist -->
         <div class="benefits-row">
           <div class="benefit-item">
             <svg class="check-icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -70,9 +62,6 @@
         </div>
       </div>
 
-      <!-- ================================================================
-           RIGHT COLUMN: MULTI-STEP REGISTRATION FORM
-           ================================================================ -->
       <div class="right-form-panel">
         <div class="form-header-block" id="form-header-block">
           <span class="overline-tag">DELIVERY AGENT REGISTRATION</span>
@@ -80,7 +69,6 @@
           <p class="form-subheading" id="dynamic-form-subheading">Join our delivery network and start earning.</p>
         </div>
 
-        <!-- Stepper Indicator: 1. Personal Details — 2. Vehicle Details — 3. Documents -->
         <div class="form-stepper" id="form-stepper" aria-label="Onboarding Steps">
           <div class="step-node active" id="step-node-1">
             <div class="node-circle">1</div>
@@ -98,28 +86,23 @@
           </div>
         </div>
 
-        <!-- Registration Form Container -->
         <form id="registration-form" novalidate>
 
-          <!-- ============================================================
-               STEP 1: PERSONAL DETAILS
-               ============================================================ -->
           <div class="form-step-view active" id="step-view-1">
-            <!-- Full Name -->
+
             <div class="form-field">
               <label for="full-name" class="input-label">Full Name</label>
-              <input 
-                type="text" 
-                id="full-name" 
-                name="full_name" 
-                class="field-control" 
-                placeholder="Enter your full name" 
-                required 
+              <input
+                type="text"
+                id="full-name"
+                name="full_name"
+                class="field-control"
+                placeholder="Enter your full name"
+                required
                 autocomplete="name">
               <div class="field-error" id="full-name-error" role="alert"></div>
             </div>
 
-            <!-- Phone Number -->
             <div class="form-field">
               <label for="phone-number" class="input-label">Phone Number</label>
               <div class="phone-input-box" id="phone-group">
@@ -127,21 +110,20 @@
                   <span class="flag-icon" aria-hidden="true"></span>
                   <span class="prefix-text">+91</span>
                 </div>
-                <input 
-                  type="tel" 
-                  id="phone-number" 
-                  name="phone_number" 
-                  class="field-control phone-input" 
-                  placeholder="Enter 10-digit mobile number" 
-                  maxlength="10" 
-                  inputmode="numeric" 
-                  required 
+                <input
+                  type="tel"
+                  id="phone-number"
+                  name="phone_number"
+                  class="field-control phone-input"
+                  placeholder="Enter 10-digit mobile number"
+                  maxlength="10"
+                  inputmode="numeric"
+                  required
                   autocomplete="tel-national">
               </div>
               <div class="field-error" id="phone-error" role="alert"></div>
             </div>
 
-            <!-- State & District Row -->
             <div class="form-row-2">
               <div class="form-field">
                 <label for="state" class="input-label">State</label>
@@ -199,20 +181,18 @@
               </div>
             </div>
 
-            <!-- City / Area -->
             <div class="form-field">
               <label for="city-area" class="input-label">City / Area</label>
-              <input 
-                type="text" 
-                id="city-area" 
-                name="city_area" 
-                class="field-control" 
-                placeholder="Enter your city or area" 
+              <input
+                type="text"
+                id="city-area"
+                name="city_area"
+                class="field-control"
+                placeholder="Enter your city or area"
                 required>
               <div class="field-error" id="city-area-error" role="alert"></div>
             </div>
 
-            <!-- Step 1 Continue Button -->
             <div class="form-action-row">
               <button type="button" class="btn-primary-block" id="btn-continue-step1">
                 <span>Continue</span>
@@ -220,15 +200,12 @@
             </div>
           </div>
 
-          <!-- ============================================================
-               STEP 2: VEHICLE & DELIVERY DETAILS
-               ============================================================ -->
           <div class="form-step-view" id="step-view-2">
-            <!-- Vehicle Type Selection Cards -->
+
             <div class="form-field">
               <label class="input-label" id="vehicle-type-label">Vehicle Type</label>
               <div class="vehicle-option-grid" id="vehicle-options-container" role="radiogroup" aria-labelledby="vehicle-type-label">
-                
+
                 <label class="veh-card">
                   <input type="radio" name="vehicle_type" value="Bike">
                   <div class="veh-icon" aria-hidden="true">
@@ -273,7 +250,6 @@
               <div class="field-error" id="vehicle-error" role="alert"></div>
             </div>
 
-            <!-- Vehicle Capacity Chips -->
             <div class="form-field">
               <label class="input-label" id="capacity-label">Vehicle Capacity</label>
               <div class="chip-option-grid" id="capacity-options-container" role="radiogroup" aria-labelledby="capacity-label">
@@ -305,20 +281,18 @@
               <div class="field-error" id="capacity-error" role="alert"></div>
             </div>
 
-            <!-- Service Area -->
             <div class="form-field">
               <label for="service-area" class="input-label">Service Area</label>
-              <input 
-                type="text" 
-                id="service-area" 
-                name="service_area" 
-                class="field-control" 
-                placeholder="Where can you deliver? (e.g. Within 40 km of Nashik)" 
+              <input
+                type="text"
+                id="service-area"
+                name="service_area"
+                class="field-control"
+                placeholder="Where can you deliver? (e.g. Within 40 km of Nashik)"
                 required>
               <div class="field-error" id="service-area-error" role="alert"></div>
             </div>
 
-            <!-- Availability Options -->
             <div class="form-field">
               <label class="input-label" id="availability-label">Availability</label>
               <div class="availability-chip-grid" id="availability-options-container" role="radiogroup" aria-labelledby="availability-label">
@@ -342,7 +316,6 @@
               <div class="field-error" id="availability-error" role="alert"></div>
             </div>
 
-            <!-- Step 2 Navigation Action Row -->
             <div class="form-action-split">
               <button type="button" class="btn-secondary" id="btn-back-step2">
                 <svg style="width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2;" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
@@ -354,48 +327,43 @@
             </div>
           </div>
 
-          <!-- ============================================================
-               STEP 3: DOCUMENTS & VERIFICATION DETAILS
-               ============================================================ -->
           <div class="form-step-view" id="step-view-3">
             <div class="form-field">
               <label for="license-number" class="input-label">Driving License (DL) Number</label>
-              <input 
-                type="text" 
-                id="license-number" 
-                name="license_number" 
-                class="field-control" 
-                placeholder="e.g. MH15 20210012345" 
+              <input
+                type="text"
+                id="license-number"
+                name="license_number"
+                class="field-control"
+                placeholder="e.g. MH15 20210012345"
                 required>
               <div class="field-error" id="license-error" role="alert"></div>
             </div>
 
             <div class="form-field">
               <label for="rc-number" class="input-label">Vehicle Registration (RC) Number</label>
-              <input 
-                type="text" 
-                id="rc-number" 
-                name="rc_number" 
-                class="field-control" 
-                placeholder="e.g. MH 15 AB 1234" 
+              <input
+                type="text"
+                id="rc-number"
+                name="rc_number"
+                class="field-control"
+                placeholder="e.g. MH 15 AB 1234"
                 required>
               <div class="field-error" id="rc-error" role="alert"></div>
             </div>
 
-            <!-- Optional Information -->
             <div class="form-field">
               <label for="additional-notes" class="input-label">
                 Additional Information
                 <span class="label-optional">(Optional)</span>
               </label>
-              <textarea 
-                id="additional-notes" 
-                name="additional_notes" 
-                class="field-control textarea-control" 
+              <textarea
+                id="additional-notes"
+                name="additional_notes"
+                class="field-control textarea-control"
                 placeholder="Anything else you'd like us to know (e.g. cold crate availability)"></textarea>
             </div>
 
-            <!-- Step 3 Actions -->
             <div class="form-action-split">
               <button type="button" class="btn-secondary" id="btn-back-step3">
                 <svg style="width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2;" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
@@ -406,7 +374,6 @@
               </button>
             </div>
 
-            <!-- Existing Account Navigation Link -->
             <div class="already-account-section" id="already-account-section" style="margin-top: 1.25rem; padding-top: 0.85rem; border-top: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center; gap: 0.4rem; font-size: 0.8125rem; color: #475569;">
               <span class="already-text" id="already-registered-text" title="Click to login to your existing account" style="cursor: pointer;">Already registered?</span>
               <a href="../index.html#login?role=delivery" id="link-login-delivery" style="color: #166534; font-weight: 600; text-decoration: none;">Login here &rarr;</a>
@@ -418,9 +385,6 @@
 
         </form>
 
-        <!-- ============================================================
-             CONFIRMATION / SUCCESS PANEL
-             ============================================================ -->
         <section class="success-screen" id="success-screen" aria-live="polite">
           <div class="success-icon-badge">
             <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -490,7 +454,6 @@
 
   <script src="register.js"></script>
 
-  <!-- AgriMitra Multi-Language Support Engine -->
   <script src="../i18n.js"></script>
 </body>
 </html>

@@ -1,19 +1,11 @@
-"""
-KrishiLink (AgriMitra) — Flask Backend Server
-Smart Indian Hackathon (SIH) 2026
-Connects existing frontend UI to Python Flask backend and MySQL relational database.
-"""
-
 import os
 import sys
 from flask import Flask, send_from_directory, jsonify, request
 from config import Config
 
-# Initialize Flask application
 app = Flask(__name__, static_folder='.', static_url_path='')
 app.config.from_object(Config)
 
-# Register API Blueprints
 from routes.auth import auth_bp
 from routes.farmer import farmer_bp
 from routes.fpo import fpo_bp
@@ -29,10 +21,6 @@ app.register_blueprint(auction_bp)
 app.register_blueprint(delivery_bp)
 app.register_blueprint(notif_bp)
 app.register_blueprint(orders_bp)
-
-# ==============================================================================
-# CORS SUPPORT FOR BROWSER & STATIC CLIENT ACCESS
-# ==============================================================================
 
 @app.after_request
 def add_cors_headers(response):
@@ -59,11 +47,6 @@ def options_preflight(subpath):
     response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, Accept'
     return response, 200
 
-# ==============================================================================
-# STATIC & FRONTEND PAGE ROUTING
-# Serves existing HTML pages, CSS, JS, and media assets without altering UI
-# ==============================================================================
-
 @app.route('/')
 def index():
     return send_from_directory(app.root_path, 'index.html')
@@ -73,14 +56,10 @@ def serve_static(filename):
     file_path = os.path.join(app.root_path, filename)
     if os.path.isfile(file_path):
         return send_from_directory(app.root_path, filename)
-    # Check if html extension is omitted
+
     if os.path.isfile(file_path + '.html'):
         return send_from_directory(app.root_path, filename + '.html')
     return send_from_directory(app.root_path, 'index.html')
-
-# ==============================================================================
-# HEALTH CHECK & STATUS
-# ==============================================================================
 
 @app.route('/api/health', methods=['GET'])
 def health():
@@ -97,10 +76,6 @@ def health():
         "database": db_status
     })
 
-# ==============================================================================
-# GLOBAL ERROR HANDLING
-# ==============================================================================
-
 @app.errorhandler(404)
 def not_found(e):
     if request.path.startswith('/api/'):
@@ -112,10 +87,6 @@ def server_error(e):
     if request.path.startswith('/api/'):
         return jsonify({"success": False, "message": "An internal server error occurred."}), 500
     return "<h3>500 Internal Server Error</h3>", 500
-
-# ==============================================================================
-# APPLICATION ENTRYPOINT
-# ==============================================================================
 
 def init_app():
     """Ensure permanent SQLite database tables and seeds exist."""

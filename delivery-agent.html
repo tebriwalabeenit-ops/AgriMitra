@@ -6,7 +6,6 @@
   <title>Register as a Delivery Agent | AgriMitra - Connect. Trade. Grow.</title>
   <meta name="description" content="Join AgriMitra and become part of India's agricultural delivery network. Fast onboard registration for delivery partners.">
 
-  <!-- Google Fonts: Plus Jakarta Sans & Indic Script Fallbacks -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&family=Noto+Sans+Malayalam:wght@400;500;600;700&family=Noto+Sans+Kannada:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -51,7 +50,6 @@
       flex-direction: column;
     }
 
-    /* Minimal Brand Header */
     .site-header {
       position: sticky;
       top: 0;
@@ -150,7 +148,6 @@
       height: 16px;
     }
 
-    /* Main Content Area */
     .login-main {
       flex: 1;
       display: flex;
@@ -170,7 +167,6 @@
       width: 100%;
     }
 
-    /* Left Side Visual Pane */
     .brand-visual-pane {
       display: flex;
       flex-direction: column;
@@ -277,7 +273,6 @@
       color: var(--color-primary);
     }
 
-    /* Right Side Form Pane */
     .form-pane {
       display: flex;
       justify-content: center;
@@ -328,7 +323,6 @@
       line-height: 1.5;
     }
 
-    /* Form Styles */
     .reg-form-section {
       margin-bottom: 1.35rem;
     }
@@ -426,7 +420,6 @@
       min-height: 75px;
     }
 
-    /* Vehicle Selection Radio Cards */
     .vehicle-selection-label {
       display: block;
       font-size: 0.8125rem;
@@ -696,7 +689,6 @@
       text-decoration: underline;
     }
 
-    /* Minimal Clean Footer */
     .site-footer {
       padding: 1.25rem 1.5rem;
       text-align: center;
@@ -706,7 +698,6 @@
       margin-top: auto;
     }
 
-    /* Responsive Adaptations: Desktop Split View (Left Still, Right Scrolls) */
     @media (min-width: 769px) and (min-height: 550px) {
       html, body {
         height: 100%;
@@ -732,7 +723,6 @@
         align-items: stretch;
       }
 
-      /* Left side: locked still in place, vertically centered, no scroll */
       .brand-visual-pane {
         height: 100%;
         overflow-y: auto;
@@ -748,7 +738,6 @@
         display: none;
       }
 
-      /* Right side: only this side scrolls */
       .form-pane {
         height: 100%;
         overflow-y: auto;
@@ -869,11 +858,10 @@
         padding: 0.7rem 0.85rem;
       }
     }
-  </style>
+</style>
 </head>
 <body>
 
-  <!-- Minimal Brand Header -->
   <header class="site-header" role="banner">
     <div class="header-container">
       <a href="index.html" class="brand-logo" id="header-brand-logo" aria-label="AgriMitra Home">
@@ -900,11 +888,9 @@
     </div>
   </header>
 
-  <!-- Main Content Area: Responsive Two-Column Layout -->
   <main class="login-main" role="main">
     <div class="split-layout">
-      
-      <!-- Left Side: Brand & Subtle Agricultural Visual Section -->
+
       <section class="brand-visual-pane" aria-labelledby="brand-title">
         <div class="brand-badge">
           <span class="brand-badge-dot"></span>
@@ -926,7 +912,6 @@
           Join India's dedicated agricultural transport network. Receive verified farm-to-mandi transit orders, GPS tracking routes, transparent trip charges, and guaranteed digital settlements.
         </p>
 
-        <!-- Subtle Agricultural Visual Treatment (Terrace curves, field furrows, clean geometry) -->
         <div class="agri-visual-container" aria-hidden="true">
           <svg class="agri-visual-svg" viewBox="0 0 460 180" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -948,7 +933,7 @@
 
             <path d="M-20 180 C80 140, 200 160, 480 120 L480 180 Z" fill="url(#fieldGrad1)"/>
             <path d="M-20 180 C120 110, 260 135, 480 85 L480 180 Z" fill="url(#fieldGrad2)"/>
-            
+
             <path d="M-20 160 C90 125, 230 145, 480 100" stroke="#166534" stroke-opacity="0.18" stroke-width="1.5" stroke-dasharray="4 4"/>
             <path d="M-20 135 C130 95, 280 115, 480 65" stroke="#15803d" stroke-opacity="0.22" stroke-width="1.5"/>
             <path d="M-20 105 C150 70, 310 90, 480 45" stroke="#15803d" stroke-opacity="0.12" stroke-width="1.2"/>
@@ -973,7 +958,6 @@
           </svg>
         </div>
 
-        <!-- Subtle Trust Features -->
         <div class="visual-trust-pills" aria-label="Platform Highlights">
           <span class="trust-pill">
             <svg viewBox="0 0 20 20" fill="currentColor">
@@ -996,97 +980,84 @@
         </div>
       </section>
 
-      <!-- Right Side: Centered Registration Card -->
       <section class="form-pane">
         <div class="login-card">
-          
-          <!-- Card Header -->
+
           <div class="card-header">
             <div class="card-pretitle">Delivery Partner Onboarding</div>
             <h2 class="card-title">Register as a Delivery Agent</h2>
             <p class="card-subtitle">Join AgriMitra and become part of India's agricultural delivery network.</p>
           </div>
 
-          <!-- Form Content -->
           <form action="AgriMitra-delivery agent/index.html" method="get" autocomplete="on">
 
-            <!-- ================================================================
-                 SECTION 1 — PERSONAL DETAILS
-                 ================================================================ -->
             <section class="reg-form-section" aria-labelledby="section-personal-heading">
               <div class="reg-section-header">
                 <h2 id="section-personal-heading" class="reg-section-title">1. Personal Details</h2>
               </div>
 
               <div class="form-grid-2">
-                <!-- Full Name -->
+
                 <div class="form-group">
                   <label for="reg-fullname" class="form-label">Full Name</label>
-                  <input 
-                    type="text" 
-                    id="reg-fullname" 
-                    name="fullname" 
-                    class="form-control" 
-                    placeholder="Enter your full name" 
-                    required 
+                  <input
+                    type="text"
+                    id="reg-fullname"
+                    name="fullname"
+                    class="form-control"
+                    placeholder="Enter your full name"
+                    required
                     autocomplete="name"
                   >
                 </div>
 
-                <!-- Mobile Number -->
                 <div class="form-group">
                   <label for="reg-phone" class="form-label">Mobile Number</label>
                   <div class="input-addon-group">
                     <span class="input-addon-prefix" aria-hidden="true">+91</span>
-                    <input 
-                      type="tel" 
-                      id="reg-phone" 
-                      name="phone" 
-                      class="form-control" 
-                      placeholder="Enter mobile number" 
-                      pattern="[0-9]{10}" 
-                      maxlength="10" 
-                      inputmode="numeric" 
-                      required 
+                    <input
+                      type="tel"
+                      id="reg-phone"
+                      name="phone"
+                      class="form-control"
+                      placeholder="Enter mobile number"
+                      pattern="[0-9]{10}"
+                      maxlength="10"
+                      inputmode="numeric"
+                      required
                       autocomplete="tel-national"
                       aria-label="10-digit mobile number"
                     >
                   </div>
                 </div>
 
-                <!-- Email Address (Optional) -->
                 <div class="form-group form-group-full">
                   <label for="reg-email" class="form-label">
                     <span>Email Address</span>
                     <span class="form-label-optional">(Optional)</span>
                   </label>
-                  <input 
-                    type="email" 
-                    id="reg-email" 
-                    name="email" 
-                    class="form-control" 
-                    placeholder="Enter your email address" 
+                  <input
+                    type="email"
+                    id="reg-email"
+                    name="email"
+                    class="form-control"
+                    placeholder="Enter your email address"
                     autocomplete="email"
                   >
                 </div>
               </div>
             </section>
 
-            <!-- ================================================================
-                 SECTION 2 — VEHICLE DETAILS
-                 ================================================================ -->
             <section class="reg-form-section" aria-labelledby="section-vehicle-heading">
               <div class="reg-section-header">
                 <h2 id="section-vehicle-heading" class="reg-section-title">2. Vehicle Details</h2>
                 <p class="reg-section-subtitle">Tell us about the vehicle you use for deliveries.</p>
               </div>
 
-              <!-- Vehicle Type Selectable Radio Cards -->
               <div class="form-group">
                 <span class="vehicle-selection-label" id="vehicle-type-label">Vehicle Type</span>
                 <div class="vehicle-cards-grid" role="radiogroup" aria-labelledby="vehicle-type-label">
-                  
-                  <!-- Bike -->
+
                   <label class="vehicle-card-item">
                     <input type="radio" name="vehicle_type" value="bike" class="vehicle-card-radio" required>
                     <div class="vehicle-card-box">
@@ -1094,7 +1065,6 @@
                     </div>
                   </label>
 
-                  <!-- Scooter -->
                   <label class="vehicle-card-item">
                     <input type="radio" name="vehicle_type" value="scooter" class="vehicle-card-radio">
                     <div class="vehicle-card-box">
@@ -1102,7 +1072,6 @@
                     </div>
                   </label>
 
-                  <!-- Auto -->
                   <label class="vehicle-card-item">
                     <input type="radio" name="vehicle_type" value="auto" class="vehicle-card-radio">
                     <div class="vehicle-card-box">
@@ -1110,7 +1079,6 @@
                     </div>
                   </label>
 
-                  <!-- Pickup / Mini Truck -->
                   <label class="vehicle-card-item">
                     <input type="radio" name="vehicle_type" value="pickup" class="vehicle-card-radio">
                     <div class="vehicle-card-box">
@@ -1118,7 +1086,6 @@
                     </div>
                   </label>
 
-                  <!-- Truck -->
                   <label class="vehicle-card-item">
                     <input type="radio" name="vehicle_type" value="truck" class="vehicle-card-radio">
                     <div class="vehicle-card-box">
@@ -1130,34 +1097,33 @@
               </div>
 
               <div class="form-grid-2">
-                <!-- Vehicle Registration Number -->
+
                 <div class="form-group">
                   <label for="reg-vehicleno" class="form-label">Vehicle Registration Number</label>
-                  <input 
-                    type="text" 
-                    id="reg-vehicleno" 
-                    name="vehicle_number" 
-                    class="form-control" 
-                    placeholder="Enter registration number" 
-                    required 
-                    pattern="^[A-Z0-9\s-]{6,15}$" 
+                  <input
+                    type="text"
+                    id="reg-vehicleno"
+                    name="vehicle_number"
+                    class="form-control"
+                    placeholder="Enter registration number"
+                    required
+                    pattern="^[A-Z0-9\s-]{6,15}$"
                     style="text-transform: uppercase;"
                   >
                   <p class="form-helper">Example: PB10AB1234</p>
                 </div>
 
-                <!-- Vehicle Carrying Capacity -->
                 <div class="form-group">
                   <label for="reg-capacity" class="form-label">Produce Carrying Capacity</label>
                   <div class="input-addon-group">
-                    <input 
-                      type="number" 
-                      id="reg-capacity" 
-                      name="vehicle_capacity" 
-                      class="form-control" 
-                      placeholder="Enter capacity" 
-                      min="1" 
-                      step="1" 
+                    <input
+                      type="number"
+                      id="reg-capacity"
+                      name="vehicle_capacity"
+                      class="form-control"
+                      placeholder="Enter capacity"
+                      min="1"
+                      step="1"
                       required
                     >
                     <span class="input-addon-suffix" aria-hidden="true">kg</span>
@@ -1166,9 +1132,6 @@
               </div>
             </section>
 
-            <!-- ================================================================
-                 SECTION 3 — ADDRESS DETAILS
-                 ================================================================ -->
             <section class="reg-form-section" aria-labelledby="section-address-heading">
               <div class="reg-section-header">
                 <h2 id="section-address-heading" class="reg-section-title">3. Address Details</h2>
@@ -1176,7 +1139,7 @@
               </div>
 
               <div class="form-grid-2">
-                <!-- State -->
+
                 <div class="form-group">
                   <label for="reg-state" class="form-label">State</label>
                   <select id="reg-state" name="state" class="form-control" required>
@@ -1200,7 +1163,6 @@
                   </select>
                 </div>
 
-                <!-- District (Populated dynamically based on selected State) -->
                 <div class="form-group">
                   <label for="reg-district" class="form-label">District</label>
                   <select id="reg-district" name="district" class="form-control" required disabled>
@@ -1208,40 +1170,35 @@
                   </select>
                 </div>
 
-                <!-- PIN Code -->
                 <div class="form-group form-group-full">
                   <label for="reg-pincode" class="form-label">PIN Code</label>
-                  <input 
-                    type="text" 
-                    id="reg-pincode" 
-                    name="pincode" 
-                    class="form-control" 
-                    placeholder="Enter 6-digit PIN code" 
-                    pattern="[0-9]{6}" 
-                    maxlength="6" 
-                    inputmode="numeric" 
+                  <input
+                    type="text"
+                    id="reg-pincode"
+                    name="pincode"
+                    class="form-control"
+                    placeholder="Enter 6-digit PIN code"
+                    pattern="[0-9]{6}"
+                    maxlength="6"
+                    inputmode="numeric"
                     required
                   >
                 </div>
 
-                <!-- Full Address -->
                 <div class="form-group form-group-full">
                   <label for="reg-address" class="form-label">Full Address</label>
-                  <textarea 
-                    id="reg-address" 
-                    name="full_address" 
-                    class="form-control" 
-                    rows="3" 
-                    placeholder="Enter your complete operational or residential address" 
+                  <textarea
+                    id="reg-address"
+                    name="full_address"
+                    class="form-control"
+                    rows="3"
+                    placeholder="Enter your complete operational or residential address"
                     required
                   ></textarea>
                 </div>
               </div>
             </section>
 
-            <!-- ================================================================
-                 SECTION 4 — ACCOUNT SECURITY
-                 ================================================================ -->
             <section class="reg-form-section" aria-labelledby="section-security-heading">
               <div class="reg-section-header">
                 <h2 id="section-security-heading" class="reg-section-title">4. Account Security</h2>
@@ -1249,16 +1206,16 @@
               </div>
 
               <div class="form-grid-2">
-                <!-- Password -->
+
                 <div class="form-group">
                   <label for="reg-password" class="form-label">Password</label>
                   <div class="password-input-wrapper">
-                    <input 
-                      type="password" 
-                      id="reg-password" 
-                      name="password" 
-                      class="form-control" 
-                      placeholder="Create password (min. 6 characters)" 
+                    <input
+                      type="password"
+                      id="reg-password"
+                      name="password"
+                      class="form-control"
+                      placeholder="Create password (min. 6 characters)"
                       autocomplete="new-password"
                       required
                     >
@@ -1273,7 +1230,7 @@
                       </svg>
                     </button>
                   </div>
-                  <!-- Password Strength Indicator -->
+
                   <div class="password-strength-wrap" id="pwd-strength-wrap" style="display: none; margin-top: 0.45rem;">
                     <div class="strength-bar-track" style="display: flex; gap: 4px; height: 4px; margin-bottom: 4px;">
                       <div class="strength-bar-seg" id="pwd-seg-1" style="flex: 1; height: 100%; border-radius: 2px; background: #e2e8f0; transition: background-color 200ms ease;"></div>
@@ -1288,16 +1245,15 @@
                   </div>
                 </div>
 
-                <!-- Confirm Password -->
                 <div class="form-group">
                   <label for="reg-confirm-password" class="form-label">Confirm Password</label>
                   <div class="password-input-wrapper">
-                    <input 
-                      type="password" 
-                      id="reg-confirm-password" 
-                      name="confirm_password" 
-                      class="form-control" 
-                      placeholder="Re-enter your password" 
+                    <input
+                      type="password"
+                      id="reg-confirm-password"
+                      name="confirm_password"
+                      class="form-control"
+                      placeholder="Re-enter your password"
                       autocomplete="new-password"
                       required
                     >
@@ -1312,7 +1268,7 @@
                       </svg>
                     </button>
                   </div>
-                  <!-- Match status indicator -->
+
                   <div id="pwd-match-status" style="display: none; align-items: center; gap: 5px; font-size: 0.75rem; margin-top: 0.45rem;">
                     <svg id="pwd-match-icon" width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
                       <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
@@ -1323,9 +1279,6 @@
               </div>
             </section>
 
-            <!-- ================================================================
-                 TERMS AND CONDITIONS
-                 ================================================================ -->
             <div class="terms-agreement-block">
               <label class="terms-checkbox-label">
                 <input type="checkbox" id="reg-terms" name="terms_agreement" required>
@@ -1333,9 +1286,6 @@
               </label>
             </div>
 
-            <!-- ================================================================
-                 REGISTER BUTTON
-                 ================================================================ -->
             <div style="margin-top: 1.25rem;">
               <button type="submit" class="btn-register-submit">
                 REGISTER AS DELIVERY AGENT
@@ -1345,7 +1295,6 @@
               </p>
             </div>
 
-            <!-- Existing Account Navigation Link -->
             <div class="already-account-section" id="already-account-section">
               <span class="already-text" id="already-registered-text" onclick="window.location.href='index.html#login?role=delivery';" title="Click to login to your existing account" style="cursor: pointer;">Already registered?</span>
               <a href="index.html#login?role=delivery" id="link-login-delivery" class="already-reg-link">Login here &rarr;</a>
@@ -1360,12 +1309,10 @@
     </div>
   </main>
 
-  <!-- Clean, minimal footer -->
   <footer class="site-footer">
     <p>&copy; 2026 AgriMitra. Dedicated to empowering India's agricultural supply chain.</p>
   </footer>
 
-  <!-- Dynamic State-to-District Filtering Script -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const stateSelect = document.getElementById('reg-state');
@@ -1373,87 +1320,87 @@
 
       const districtsByState = {
         "Punjab": [
-          "Amritsar", "Barnala", "Bathinda", "Faridkot", "Fatehgarh Sahib", "Fazilka", 
-          "Firozpur", "Gurdaspur", "Hoshiarpur", "Jalandhar", "Kapurthala", "Ludhiana", 
-          "Mansa", "Moga", "Muktsar", "Pathankot", "Patiala", "Rupnagar", "SAS Nagar (Mohali)", 
+          "Amritsar", "Barnala", "Bathinda", "Faridkot", "Fatehgarh Sahib", "Fazilka",
+          "Firozpur", "Gurdaspur", "Hoshiarpur", "Jalandhar", "Kapurthala", "Ludhiana",
+          "Mansa", "Moga", "Muktsar", "Pathankot", "Patiala", "Rupnagar", "SAS Nagar (Mohali)",
           "Sangrur", "SBS Nagar (Nawanshahr)", "Tarn Taran", "Other District"
         ],
         "Haryana": [
-          "Ambala", "Bhiwani", "Charkhi Dadri", "Faridabad", "Fatehabad", "Gurugram", 
-          "Hisar", "Jhajjar", "Jind", "Kaithal", "Karnal", "Kurukshetra", "Mahendragarh", 
-          "Nuh", "Palwal", "Panchkula", "Panipat", "Rewari", "Rohtak", "Sirsa", 
+          "Ambala", "Bhiwani", "Charkhi Dadri", "Faridabad", "Fatehabad", "Gurugram",
+          "Hisar", "Jhajjar", "Jind", "Kaithal", "Karnal", "Kurukshetra", "Mahendragarh",
+          "Nuh", "Palwal", "Panchkula", "Panipat", "Rewari", "Rohtak", "Sirsa",
           "Sonipat", "Yamunanagar", "Other District"
         ],
         "Uttar Pradesh": [
-          "Agra", "Aligarh", "Ayodhya", "Bareilly", "Bulandshahr", "Ghaziabad", 
-          "Gorakhpur", "Jhansi", "Kanpur Nagar", "Lucknow", "Mathura", "Meerut", 
+          "Agra", "Aligarh", "Ayodhya", "Bareilly", "Bulandshahr", "Ghaziabad",
+          "Gorakhpur", "Jhansi", "Kanpur Nagar", "Lucknow", "Mathura", "Meerut",
           "Moradabad", "Muzaffarnagar", "Prayagraj", "Saharanpur", "Varanasi", "Other District"
         ],
         "Madhya Pradesh": [
-          "Bhopal", "Chhindwara", "Dewas", "Dhar", "Gwalior", "Hoshangabad", 
-          "Indore", "Jabalpur", "Khandwa", "Khargone", "Mandsaur", "Morena", 
+          "Bhopal", "Chhindwara", "Dewas", "Dhar", "Gwalior", "Hoshangabad",
+          "Indore", "Jabalpur", "Khandwa", "Khargone", "Mandsaur", "Morena",
           "Ratlam", "Rewa", "Sagar", "Satna", "Sehore", "Ujjain", "Vidisha", "Other District"
         ],
         "Maharashtra": [
-          "Ahmednagar", "Akola", "Amravati", "Chhatrapati Sambhaji Nagar", "Dhule", 
-          "Jalgaon", "Kolhapur", "Latur", "Nagpur", "Nanded", "Nashik", "Pune", 
+          "Ahmednagar", "Akola", "Amravati", "Chhatrapati Sambhaji Nagar", "Dhule",
+          "Jalgaon", "Kolhapur", "Latur", "Nagpur", "Nanded", "Nashik", "Pune",
           "Sangli", "Satara", "Solapur", "Thane", "Yavatmal", "Other District"
         ],
         "Rajasthan": [
-          "Ajmer", "Alwar", "Barmer", "Bharatpur", "Bhilwara", "Bikaner", 
-          "Chittorgarh", "Ganganagar", "Hanumangarh", "Jaipur", "Jodhpur", "Kota", 
+          "Ajmer", "Alwar", "Barmer", "Bharatpur", "Bhilwara", "Bikaner",
+          "Chittorgarh", "Ganganagar", "Hanumangarh", "Jaipur", "Jodhpur", "Kota",
           "Nagaur", "Pali", "Sikar", "Tonk", "Udaipur", "Other District"
         ],
         "Gujarat": [
-          "Ahmedabad", "Amreli", "Anand", "Banaskantha", "Bharuch", "Bhavnagar", 
-          "Gandhinagar", "Jamnagar", "Junagadh", "Kheda", "Mehsana", "Morbi", 
+          "Ahmedabad", "Amreli", "Anand", "Banaskantha", "Bharuch", "Bhavnagar",
+          "Gandhinagar", "Jamnagar", "Junagadh", "Kheda", "Mehsana", "Morbi",
           "Patan", "Rajkot", "Sabarkantha", "Surat", "Surendranagar", "Vadodara", "Other District"
         ],
         "Karnataka": [
-          "Bagalkot", "Ballari", "Belagavi", "Bengaluru Rural", "Bengaluru Urban", 
-          "Bidar", "Chikkamagaluru", "Davanagere", "Dharwad", "Hassan", "Kalaburagi", 
+          "Bagalkot", "Ballari", "Belagavi", "Bengaluru Rural", "Bengaluru Urban",
+          "Bidar", "Chikkamagaluru", "Davanagere", "Dharwad", "Hassan", "Kalaburagi",
           "Mandya", "Mysuru", "Raichur", "Shivamogga", "Tumakuru", "Vijayapura", "Other District"
         ],
         "Andhra Pradesh": [
-          "Anantapur", "Chittoor", "East Godavari", "Guntur", "Kadapa", "Krishna", 
-          "Kurnool", "Nellore", "Prakasam", "Srikakulam", "Visakhapatnam", "Vizianagaram", 
+          "Anantapur", "Chittoor", "East Godavari", "Guntur", "Kadapa", "Krishna",
+          "Kurnool", "Nellore", "Prakasam", "Srikakulam", "Visakhapatnam", "Vizianagaram",
           "West Godavari", "Other District"
         ],
         "Telangana": [
-          "Adilabad", "Bhadradri Kothagudem", "Hyderabad", "Jagtial", "Karimnagar", 
-          "Khammam", "Mahabubnagar", "Mancherial", "Medak", "Medchal-Malkajgiri", 
-          "Nalgonda", "Nizamabad", "Rangareddy", "Sangareddy", "Siddipet", "Suryapet", 
+          "Adilabad", "Bhadradri Kothagudem", "Hyderabad", "Jagtial", "Karimnagar",
+          "Khammam", "Mahabubnagar", "Mancherial", "Medak", "Medchal-Malkajgiri",
+          "Nalgonda", "Nizamabad", "Rangareddy", "Sangareddy", "Siddipet", "Suryapet",
           "Warangal", "Other District"
         ],
         "Tamil Nadu": [
-          "Chennai", "Coimbatore", "Cuddalore", "Dharmapuri", "Dindigul", "Erode", 
-          "Kanchipuram", "Madurai", "Namakkal", "Salem", "Thanjavur", "Tiruchirappalli", 
+          "Chennai", "Coimbatore", "Cuddalore", "Dharmapuri", "Dindigul", "Erode",
+          "Kanchipuram", "Madurai", "Namakkal", "Salem", "Thanjavur", "Tiruchirappalli",
           "Tirunelveli", "Tiruppur", "Vellore", "Villupuram", "Other District"
         ],
         "Bihar": [
-          "Arrah (Bhojpur)", "Begusarai", "Bhagalpur", "Darbhanga", "Gaya", 
-          "Katihar", "Madhubani", "Muzaffarpur", "Nalanda", "Nawada", "Patna", 
+          "Arrah (Bhojpur)", "Begusarai", "Bhagalpur", "Darbhanga", "Gaya",
+          "Katihar", "Madhubani", "Muzaffarpur", "Nalanda", "Nawada", "Patna",
           "Purnia", "Rohtas", "Samastipur", "Saran", "Siwan", "Vaishali", "Other District"
         ],
         "West Bengal": [
-          "Bankura", "Birbhum", "Cooch Behar", "Dakshin Dinajpur", "Hooghly", 
-          "Howrah", "Jalpaiguri", "Jhargram", "Malda", "Murshidabad", "Nadia", 
-          "North 24 Parganas", "Paschim Bardhaman", "Paschim Medinipur", 
-          "Purba Bardhaman", "Purba Medinipur", "Purulia", "South 24 Parganas", 
+          "Bankura", "Birbhum", "Cooch Behar", "Dakshin Dinajpur", "Hooghly",
+          "Howrah", "Jalpaiguri", "Jhargram", "Malda", "Murshidabad", "Nadia",
+          "North 24 Parganas", "Paschim Bardhaman", "Paschim Medinipur",
+          "Purba Bardhaman", "Purba Medinipur", "Purulia", "South 24 Parganas",
           "Uttar Dinajpur", "Other District"
         ],
         "Odisha": [
-          "Balangir", "Balasore", "Bargarh", "Bhadrak", "Cuttack", "Dhenkanal", 
-          "Ganjam", "Jagatsinghpur", "Jajpur", "Jharsuguda", "Kalahandi", "Kendrapara", 
+          "Balangir", "Balasore", "Bargarh", "Bhadrak", "Cuttack", "Dhenkanal",
+          "Ganjam", "Jagatsinghpur", "Jajpur", "Jharsuguda", "Kalahandi", "Kendrapara",
           "Khordha", "Mayurbhanj", "Puri", "Sambalpur", "Sundargarh", "Other District"
         ],
         "Kerala": [
-          "Alappuzha", "Ernakulam", "Idukki", "Kannur", "Kasaragod", "Kollam", 
-          "Kottayam", "Kozhikode", "Malappuram", "Palakkad", "Pathanamthitta", 
+          "Alappuzha", "Ernakulam", "Idukki", "Kannur", "Kasaragod", "Kollam",
+          "Kottayam", "Kozhikode", "Malappuram", "Palakkad", "Pathanamthitta",
           "Thiruvananthapuram", "Thrissur", "Wayanad", "Other District"
         ],
         "Other": [
-          "Central District", "East District", "North District", "South District", 
+          "Central District", "East District", "North District", "South District",
           "West District", "Other District"
         ]
       };
@@ -1496,7 +1443,6 @@
         updateDistricts();
       }
 
-      // Enable mouse-wheel scrolling on form pane even when hovering over left visual pane
       const brandVisualPane = document.querySelector('.brand-visual-pane');
       const formPane = document.querySelector('.form-pane');
       if (brandVisualPane && formPane) {
@@ -1507,7 +1453,6 @@
         }, { passive: true });
       }
 
-      // Password Show/Hide Toggle Logic
       function setupPasswordToggle(btnId, inputId) {
         const btn = document.getElementById(btnId);
         const input = document.getElementById(inputId);
@@ -1532,7 +1477,6 @@
       setupPasswordToggle('btn-toggle-pwd', 'reg-password');
       setupPasswordToggle('btn-toggle-confirm', 'reg-confirm-password');
 
-      // Password Strength & Match Checking
       const pwdInput = document.getElementById('reg-password');
       const confirmPwdInput = document.getElementById('reg-confirm-password');
       const strengthWrap = document.getElementById('pwd-strength-wrap');
@@ -1615,7 +1559,6 @@
         });
       }
 
-      // Registration Form Submission -> Enforce Compulsory Validation
       const agentForm = document.querySelector('form');
       const agentSubmitBtn = document.querySelector('.btn-register-submit');
 
@@ -1624,13 +1567,11 @@
           e.preventDefault();
         }
 
-        // 1. Standard HTML5 validity check on all required fields
         if (!agentForm.checkValidity()) {
           agentForm.reportValidity();
           return false;
         }
 
-        // 2. Compulsory Password Length Check
         if (pwdInput && pwdInput.value.length < 6) {
           pwdInput.setCustomValidity('Password must be at least 6 characters long.');
           pwdInput.reportValidity();
@@ -1640,7 +1581,6 @@
           pwdInput.setCustomValidity('');
         }
 
-        // 3. Compulsory Password Match Check
         if (pwdInput && confirmPwdInput && pwdInput.value !== confirmPwdInput.value) {
           confirmPwdInput.setCustomValidity('Passwords do not match.');
           confirmPwdInput.reportValidity();
@@ -1650,7 +1590,6 @@
           confirmPwdInput.setCustomValidity('');
         }
 
-        // 4. Compulsory Terms Agreement Check
         const termsInput = document.getElementById('reg-terms');
         if (termsInput && !termsInput.checked) {
           termsInput.setCustomValidity('You must agree to the Delivery Partner Terms and Conditions.');
@@ -1661,7 +1600,6 @@
           termsInput.setCustomValidity('');
         }
 
-        // All compulsory validations passed!
         if (agentSubmitBtn) {
           agentSubmitBtn.disabled = true;
           agentSubmitBtn.textContent = 'CREATING DELIVERY PROFILE...';
@@ -1707,7 +1645,6 @@
         agentForm.addEventListener('submit', proceedToDeliveryPortal);
       }
 
-      // Handle Already Registered navigation to Central Login Page
       const deliveryLoginUrl = 'index.html#login?role=delivery';
 
       const alreadyText = document.getElementById('already-registered-text');
@@ -1727,7 +1664,7 @@
         });
       }
     });
-  </script>
+</script>
 
   <script src="assets/auth-guard.js"></script>
   <script src="i18n.js"></script>

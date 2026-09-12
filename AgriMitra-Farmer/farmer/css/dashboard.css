@@ -1,4 +1,4 @@
-/* AgriMitra - Modern & Simple Farmer Dashboard Styles */
+
 
 .dashboard-view {
   display: none;
@@ -13,7 +13,6 @@
   animation: fadeIn 250ms ease-out forwards;
 }
 
-/* Dashboard Top Navigation */
 .dash-nav {
   background-color: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
@@ -169,7 +168,6 @@
   color: var(--color-error);
 }
 
-/* Dashboard Body Content */
 .dash-content {
   flex: 1;
   max-width: var(--container-max-width);
@@ -178,7 +176,6 @@
   padding: 1.75rem 1.5rem 3rem;
 }
 
-/* Farmer Advisory & Greeting Banner */
 .farmer-banner {
   background: linear-gradient(135deg, #166534 0%, #15803d 100%);
   color: #ffffff;
@@ -243,7 +240,6 @@
   background-color: #f0fdf4;
 }
 
-/* Weather & Mandi Status Strip */
 .weather-status-strip {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -282,7 +278,6 @@
   gap: 0.35rem;
 }
 
-/* 4 Main Action Hub Cards */
 .action-hub-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -391,7 +386,6 @@
   margin-top: auto;
 }
 
-/* Two-Column Main Trading Layout */
 .dashboard-main-grid {
   display: grid;
   grid-template-columns: 1.6fr 1.2fr;
@@ -399,7 +393,6 @@
   margin-bottom: 2rem;
 }
 
-/* Section Cards */
 .dashboard-panel {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -442,7 +435,6 @@
   text-decoration: underline;
 }
 
-/* Crop Listing Items */
 .crop-cards-list {
   display: flex;
   flex-direction: column;
@@ -551,7 +543,6 @@
   color: #ffffff;
 }
 
-/* Buyer Bids & Orders Section */
 .bids-list {
   display: flex;
   flex-direction: column;
@@ -655,7 +646,6 @@
   background-color: var(--color-surface-muted);
 }
 
-/* Mandi Prices Grid */
 .mandi-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -705,7 +695,6 @@
   font-weight: var(--font-weight-semibold);
 }
 
-/* Farmer Support Card */
 .support-strip {
   background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
   border: 1.5px solid var(--color-primary-border);
@@ -770,7 +759,6 @@
   background-color: var(--color-primary-hover);
 }
 
-/* Dynamic Alert Toast */
 .dash-toast {
   position: fixed;
   bottom: 2rem;
@@ -799,7 +787,6 @@
   flex-shrink: 0;
 }
 
-/* Modal for Add Produce Listing */
 .produce-modal-overlay {
   position: fixed;
   inset: 0;
@@ -862,12 +849,11 @@
   color: var(--color-text-primary);
 }
 
-/* Mobile Responsiveness */
 @media (max-width: 900px) {
   .dashboard-main-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .farmer-banner {
     flex-direction: column;
     align-items: flex-start;
@@ -915,9 +901,6 @@
   }
 }
 
-/* ==========================================================================
-   Notification Bell & Interactive Dropdown
-   ========================================================================== */
 .notif-wrapper {
   position: relative;
   display: inline-flex;
@@ -979,7 +962,6 @@
   display: none;
 }
 
-/* Notification Dropdown Box */
 .notif-dropdown {
   position: absolute;
   top: calc(100% + 10px);
@@ -1049,7 +1031,6 @@
   text-decoration: underline;
 }
 
-/* Category Filter Tabs */
 .notif-tabs {
   display: flex;
   align-items: center;
@@ -1091,7 +1072,6 @@
   box-shadow: 0 2px 6px rgba(21, 128, 61, 0.25);
 }
 
-/* Notification Items List */
 .notif-list {
   max-height: 380px;
   overflow-y: auto;
@@ -1271,7 +1251,6 @@
   border-top: 1px solid var(--color-border-subtle);
 }
 
-/* Profile Modal Box Tweaks */
 .profile-modal-box {
   max-width: 560px;
 }
@@ -1292,9 +1271,6 @@
   }
 }
 
-/* ==========================================================================
-   Crop Bids Modal & Bank Payouts Modal Styles
-   ========================================================================== */
 .crop-bids-modal-box {
   max-width: 620px;
 }
@@ -1408,7 +1384,6 @@
   gap: 0.625rem;
 }
 
-/* Bank Payouts Ledger Modal Box */
 .payouts-modal-box {
   max-width: 640px;
 }
@@ -1580,7 +1555,6 @@
   border-radius: 4px;
 }
 
-/* Section Pulse Glow Animation */
 @keyframes pulseGlow {
   0% {
     box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);

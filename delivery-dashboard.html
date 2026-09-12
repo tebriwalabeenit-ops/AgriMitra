@@ -7,13 +7,12 @@
   <title>AgriMitra — Delivery Agent Portal</title>
   <link rel="stylesheet" href="AgriMitra-delivery agent/style.css">
   <link rel="stylesheet" href="style.css">
-  <!-- Leaflet Interactive Maps CSS & JS -->
+
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
 <body>
 
-  <!-- Pure CSS Route State Selectors (Zero JS) -->
   <input type="radio" name="app-view" id="view-overview" class="view-radio" checked>
   <input type="radio" name="app-view" id="view-requests" class="view-radio">
   <input type="radio" name="app-view" id="view-deliveries" class="view-radio">
@@ -21,23 +20,17 @@
   <input type="radio" name="app-view" id="view-earnings" class="view-radio">
   <input type="radio" name="app-view" id="view-performance" class="view-radio">
 
-  <!-- Interactive Pure CSS Checkboxes for Farmer Requests Selection (Zero JS) -->
   <input type="checkbox" id="select-fm24081" class="delivery-toggle">
   <input type="checkbox" id="select-fm24082" class="delivery-toggle">
   <input type="checkbox" id="select-fm24083" class="delivery-toggle">
   <input type="checkbox" id="select-fm24084" class="delivery-toggle">
 
-  <!-- Interactive Proof of Delivery Confirmation Toggle (Zero JS) -->
   <input type="checkbox" id="pod-confirmed-toggle" class="delivery-toggle">
 
-  <!-- Pure CSS Notification Bell Dropdown Toggle -->
   <input type="checkbox" id="toggle-notif" class="dropdown-toggle">
 
   <div class="app-container">
 
-    <!-- ====================================================================
-         Sidebar Navigation
-         ==================================================================== -->
     <aside class="sidebar">
       <a href="index.html" class="brand-wrapper" style="text-decoration: none; color: inherit;" title="Back to AgriMitra Main Portal">
         <img src="logo.png" alt="AgriMitra" class="brand-logo-img">
@@ -125,12 +118,8 @@
       </div>
     </aside>
 
-    <!-- ====================================================================
-         Main Layout
-         ==================================================================== -->
     <main class="main-content-wrapper">
 
-      <!-- Global Application Header -->
       <header class="app-header">
         <div class="header-left">
           <div class="header-brand-badge">
@@ -149,7 +138,7 @@
         </div>
 
         <div class="header-right">
-          <!-- Notification Bell Dropdown -->
+
           <div class="notif-wrapper">
             <label for="toggle-notif" class="notif-bell-btn" title="View Notifications">
               <svg style="width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2;" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
@@ -192,13 +181,11 @@
             </div>
           </div>
 
-          <!-- Quick Action: Register New Delivery Agent -->
           <a href="delivery-agent.html" class="btn" style="text-decoration: none; padding: 7px 14px; font-size: 0.82rem; background-color: var(--c-green-light); border: 1px solid var(--c-green-tint); color: var(--c-green-dark); border-radius: 6px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; transition: all 0.15s ease;" title="Delivery Agent Registration">
             <svg style="width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2;" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
             <span>Register Agent</span>
           </a>
 
-          <!-- Current Delivery Agent Badge -->
           <div class="user-badge">
             <div class="user-avatar">RK</div>
             <div class="user-info">
@@ -209,7 +196,6 @@
         </div>
       </header>
 
-      <!-- Pure CSS Interactive Selection Banner -->
       <div class="content-canvas" style="padding-bottom: 0;">
         <div class="selection-alert-banner">
           <div class="alert-content">
@@ -223,12 +209,8 @@
         </div>
       </div>
 
-      <!-- ==================================================================
-           PANEL 1: DELIVERY OVERVIEW (DEFAULT VIEW)
-           ================================================================== -->
       <section id="panel-overview" class="view-panel content-canvas">
 
-        <!-- SIH Presentation Workflow Storyboard -->
         <div class="workflow-banner">
           <div class="workflow-header-row">
             <span class="workflow-title-tag">AgriMitra Dispatch Workflow</span>
@@ -258,7 +240,6 @@
           </div>
         </div>
 
-        <!-- Dashboard Summary Metrics -->
         <div class="metrics-row">
           <div class="metric-card accent-card">
             <span class="metric-label">Available Requests</span>
@@ -301,10 +282,8 @@
           </div>
         </div>
 
-        <!-- Priority Farmer Request Highlight & Today's Active Route -->
         <div class="grid-2col">
-          
-          <!-- Farmer Delivery Requests Quick Queue -->
+
           <div>
             <div class="section-header">
               <div class="section-title-group">
@@ -317,7 +296,6 @@
               <label for="view-requests" class="section-action-btn">View All 12 →</label>
             </div>
 
-            <!-- Featured Request: Harpreet Singh - Tomatoes 354 kg -->
             <div class="farmer-req-card featured-req card-fm24081">
               <div class="card-top-row">
                 <div>
@@ -370,14 +348,14 @@
               </div>
 
               <div class="selection-state-container">
-                <!-- Unselected Action Button -->
+
                 <div class="state-unselected">
                   <label for="select-fm24081" class="btn btn-primary btn-block" style="margin-top: 10px;">
                     <svg style="width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2;" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
                     Select Delivery
                   </label>
                 </div>
-                <!-- Selected / Assigned to You Confirmation State -->
+
                 <div class="state-selected">
                   <div class="selected-badge-banner">
                     <div>
@@ -390,7 +368,6 @@
               </div>
             </div>
 
-            <!-- Second Request: Gurpreet Kaur - Potatoes 500 kg -->
             <div class="farmer-req-card card-fm24082" style="margin-top: 12px;">
               <div class="card-top-row">
                 <div>
@@ -459,7 +436,6 @@
             </div>
           </div>
 
-          <!-- Active Delivery Status & Today's Route Snapshot -->
           <div>
             <div class="section-header">
               <div class="section-title-group">
@@ -472,7 +448,6 @@
               <label for="view-deliveries" class="section-action-btn">Manage 5 →</label>
             </div>
 
-            <!-- Current Delivery In Transit Detail -->
             <div class="detail-box">
               <div class="detail-header-row">
                 <div>
@@ -485,7 +460,6 @@
                 </div>
               </div>
 
-              <!-- Delivery Timeline Progression -->
               <div style="margin: 16px 0;">
                 <div style="font-size: 0.74rem; font-weight: 700; text-transform: uppercase; color: var(--c-text-muted); margin-bottom: 6px;">Delivery Milestone</div>
                 <div class="timeline-track" style="margin: 18px 0 6px 0;">
@@ -527,7 +501,6 @@
                 </div>
               </div>
 
-              <!-- Live Route Mini-Map Preview Card -->
               <div style="margin-top: 14px;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                   <span style="font-size: 0.76rem; font-weight: 700; color: var(--c-text-secondary); text-transform: uppercase;">Live Route GPS Preview</span>
@@ -541,7 +514,6 @@
               </label>
             </div>
 
-            <!-- Fast Performance Callout -->
             <div class="team-note-banner" style="margin-top: 18px;">
               <div class="team-note-title">Mandi Logistics Advisory</div>
               <div class="team-note-body">
@@ -555,9 +527,6 @@
 
       </section>
 
-      <!-- ==================================================================
-           PANEL 2: FARMER DELIVERY REQUESTS (EXPANDED DEDICATED VIEW)
-           ================================================================== -->
       <section id="panel-requests" class="view-panel content-canvas">
         <div class="section-header">
           <div class="section-title-group">
@@ -569,10 +538,8 @@
 
         <div class="grid-2col">
 
-          <!-- List of All Available Farmer Requests -->
           <div class="request-card-list">
 
-            <!-- REQUEST #FM-24081 -->
             <div class="farmer-req-card featured-req card-fm24081">
               <div class="card-top-row">
                 <div>
@@ -644,7 +611,6 @@
               </div>
             </div>
 
-            <!-- REQUEST #FM-24082 -->
             <div class="farmer-req-card card-fm24082">
               <div class="card-top-row">
                 <div>
@@ -712,7 +678,6 @@
               </div>
             </div>
 
-            <!-- REQUEST #FM-24083 -->
             <div class="farmer-req-card card-fm24083">
               <div class="card-top-row">
                 <div>
@@ -780,7 +745,6 @@
               </div>
             </div>
 
-            <!-- REQUEST #FM-24084 -->
             <div class="farmer-req-card card-fm24084">
               <div class="card-top-row">
                 <div>
@@ -850,7 +814,6 @@
 
           </div>
 
-          <!-- Deep Inspection Detail Card for Selected/Focused Request -->
           <div>
             <div class="detail-box" style="position: sticky; top: 90px;">
               <div class="detail-header-row">
@@ -928,9 +891,6 @@
         </div>
       </section>
 
-      <!-- ==================================================================
-           PANEL 3: MY DELIVERIES (ASSIGNED PIPELINE & PROOF OF DELIVERY)
-           ================================================================== -->
       <section id="panel-deliveries" class="view-panel content-canvas">
         <div class="section-header">
           <div class="section-title-group">
@@ -940,7 +900,6 @@
           <span class="status-pill status-online">Agent: Ramesh Kumar • Tata Ace</span>
         </div>
 
-        <!-- Deliveries Table -->
         <div class="table-responsive" style="margin-bottom: 24px;">
           <table class="data-table">
             <thead>
@@ -956,7 +915,7 @@
               </tr>
             </thead>
             <tbody>
-              <!-- Row 1: FM-24081 (Subject to selection state) -->
+
               <tr>
                 <td><strong>#FM-24081</strong></td>
                 <td>Harpreet Singh</td>
@@ -969,7 +928,7 @@
                   <span class="badge badge-selected">Selected</span>
                 </td>
               </tr>
-              <!-- Row 2: FM-24082 (Active in transit) -->
+
               <tr>
                 <td><strong>#FM-24082</strong></td>
                 <td>Gurpreet Kaur</td>
@@ -980,7 +939,7 @@
                 <td style="color: var(--c-green-primary); font-weight: 700;">₹680</td>
                 <td><span class="badge badge-transit">In Transit</span></td>
               </tr>
-              <!-- Row 3: FM-24083 (Completed earlier today) -->
+
               <tr>
                 <td><strong>#FM-24083</strong></td>
                 <td>Manpreet Singh</td>
@@ -991,7 +950,7 @@
                 <td style="color: var(--c-green-primary); font-weight: 700;">₹610</td>
                 <td><span class="badge badge-completed">Completed</span></td>
               </tr>
-              <!-- Row 4: FM-24079 (Completed morning run) -->
+
               <tr>
                 <td><strong>#FM-24079</strong></td>
                 <td>Balwinder Singh</td>
@@ -1006,10 +965,8 @@
           </table>
         </div>
 
-        <!-- Detailed Delivery Specification Card & Progress Tracking -->
         <div class="grid-equal">
-          
-          <!-- Delivery Details Specification -->
+
           <div class="detail-box">
             <div class="detail-header-row">
               <div>
@@ -1039,7 +996,6 @@
               </div>
             </div>
 
-            <!-- Visual Delivery Lifecycle Timeline -->
             <div style="margin: 16px 0;">
               <div style="font-size: 0.74rem; font-weight: 700; text-transform: uppercase; color: var(--c-text-muted); margin-bottom: 4px;">Delivery Lifecycle Timeline</div>
               <div class="timeline-track">
@@ -1068,7 +1024,6 @@
 
           </div>
 
-          <!-- Proof of Delivery Section (Frontend Only Representation) -->
           <div class="pod-container">
             <div class="section-header" style="margin-bottom: 12px; border-bottom: none; padding-bottom: 0;">
               <div class="section-title-group">
@@ -1101,7 +1056,7 @@
               <div class="form-group" style="margin-bottom: 18px;">
                 <label class="form-label">Digital Signature</label>
                 <div class="signature-box">
-                  <!-- Vector representation of a real stylus receiver signature -->
+
                   <svg class="signature-svg-stroke" viewBox="0 0 200 80">
                     <path d="M 20 50 Q 40 10 60 45 T 100 35 Q 120 70 140 25 T 180 50" fill="none" stroke="#1b432c" stroke-width="2.5" stroke-linecap="round"/>
                   </svg>
@@ -1110,7 +1065,6 @@
                 </div>
               </div>
 
-              <!-- Pure CSS Interactive Submission CTA -->
               <div class="pod-action-container">
                 <div class="pod-unconfirmed-cta">
                   <label for="pod-confirmed-toggle" class="btn btn-primary btn-block" style="padding: 11px; text-align: center; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
@@ -1154,9 +1108,6 @@
         </div>
       </section>
 
-      <!-- ==================================================================
-           PANEL 4: TODAY'S ROUTE (CSS LOGISTICS MAP & WAYPOINTS)
-           ================================================================== -->
       <section id="panel-route" class="view-panel content-canvas">
         <div class="section-header">
           <div class="section-title-group">
@@ -1166,7 +1117,6 @@
           <span class="status-pill status-online">Total Planned: 47 km • 3 Stops</span>
         </div>
 
-        <!-- Live Route Navigation Map Card (Interactive Leaflet GPS Tracking) -->
         <div class="delivery-map-card">
           <div class="map-card-header">
             <div class="map-card-title-group">
@@ -1186,10 +1136,8 @@
             </div>
           </div>
 
-          <!-- Interactive Leaflet Map Canvas -->
           <div id="delivery-route-map" class="delivery-map-canvas"></div>
 
-          <!-- Live Telemetry HUD Bar -->
           <div class="map-telemetry-hud">
             <div class="telemetry-item">
               <div class="telemetry-label">Active Vehicle</div>
@@ -1210,7 +1158,6 @@
           </div>
         </div>
 
-        <!-- CSS Logistics Route Visualization Map (Corrected Alignment & Waypoint Badges) -->
         <div class="route-schematic-card">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
             <span style="font-size: 0.82rem; font-weight: 700; color: var(--c-text-secondary); text-transform: uppercase;">Corridor Path Schematic</span>
@@ -1219,8 +1166,7 @@
 
           <div class="route-schematic-canvas">
             <div class="route-highway-line">
-              
-              <!-- Waypoint 1: Jalandhar -->
+
               <div class="route-waypoint">
                 <div class="waypoint-pin" title="Origin Collection Point"></div>
                 <span class="waypoint-title">Jalandhar</span>
@@ -1228,10 +1174,8 @@
                 <span style="font-size: 0.72rem; color: var(--c-text-muted); margin-top: 2px;">Dep: 10:15 AM</span>
               </div>
 
-              <!-- Route Segment 1 -->
               <div class="route-segment-indicator">18.6 km • Leg 1</div>
 
-              <!-- Waypoint 2: Nakodar (Current Stop) -->
               <div class="route-waypoint">
                 <div class="waypoint-pin current" title="Current Active Transit Stop"></div>
                 <span class="waypoint-title">Nakodar</span>
@@ -1239,10 +1183,8 @@
                 <span style="font-size: 0.72rem; color: #b45309; font-weight: 700; margin-top: 2px;">ETA: 10:45 AM</span>
               </div>
 
-              <!-- Route Segment 2 -->
               <div class="route-segment-indicator">26.4 km • Leg 2</div>
 
-              <!-- Waypoint 3: Phagwara -->
               <div class="route-waypoint">
                 <div class="waypoint-pin upcoming" title="Destination Mandi"></div>
                 <span class="waypoint-title">Phagwara</span>
@@ -1253,9 +1195,8 @@
             </div>
           </div>
 
-          <!-- Stops Detailed Breakdown -->
           <div class="route-stops-list">
-            
+
             <div class="stop-box">
               <div style="display: flex; justify-content: space-between; font-size: 0.74rem; margin-bottom: 4px;">
                 <span style="font-weight: 700; color: #166534;">STOP 1 • COMPLETED</span>
@@ -1290,9 +1231,6 @@
         </div>
       </section>
 
-      <!-- ==================================================================
-           PANEL 5: EARNINGS (METRICS & CSS-ONLY WEEKLY CHART)
-           ================================================================== -->
       <section id="panel-earnings" class="view-panel content-canvas">
         <div class="section-header">
           <div class="section-title-group">
@@ -1302,7 +1240,6 @@
           <span class="badge badge-completed" style="padding: 6px 12px; font-size: 0.8rem;">Direct Mandi Bank Transfer Linked</span>
         </div>
 
-        <!-- Metric Cards for Earnings -->
         <div class="metrics-row" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 24px;">
           <div class="metric-card accent-card">
             <span class="metric-label">Today's Earnings</span>
@@ -1329,9 +1266,8 @@
           </div>
         </div>
 
-        <!-- Weekly Earnings Pure CSS Bar Chart & Day Wise Breakdown -->
         <div class="earnings-grid">
-          
+
           <div class="chart-card">
             <div style="display: flex; justify-content: space-between; align-items: center;">
               <div>
@@ -1341,10 +1277,8 @@
               <span style="font-size: 0.74rem; color: var(--c-text-muted); font-weight: 600;">Current Week</span>
             </div>
 
-            <!-- Pure CSS Bar Chart Container -->
             <div class="bar-chart-container">
-              
-              <!-- Monday: 1100 -->
+
               <div class="bar-column">
                 <div class="bar-tube" style="height: 55%;">
                   <span class="bar-tooltip">₹1,100</span>
@@ -1352,7 +1286,6 @@
                 <span class="bar-day-label">Mon</span>
               </div>
 
-              <!-- Tuesday: 1500 -->
               <div class="bar-column">
                 <div class="bar-tube" style="height: 75%;">
                   <span class="bar-tooltip">₹1,500</span>
@@ -1360,7 +1293,6 @@
                 <span class="bar-day-label">Tue</span>
               </div>
 
-              <!-- Wednesday: 1300 -->
               <div class="bar-column">
                 <div class="bar-tube" style="height: 65%;">
                   <span class="bar-tooltip">₹1,300</span>
@@ -1368,7 +1300,6 @@
                 <span class="bar-day-label">Wed</span>
               </div>
 
-              <!-- Thursday: 1800 (Today) -->
               <div class="bar-column today">
                 <div class="bar-tube" style="height: 90%;">
                   <span class="bar-tooltip">₹1,850</span>
@@ -1376,7 +1307,6 @@
                 <span class="bar-day-label" style="font-weight: 700; color: var(--c-green-dark);">Thu (Today)</span>
               </div>
 
-              <!-- Friday: 1600 -->
               <div class="bar-column">
                 <div class="bar-tube" style="height: 80%;">
                   <span class="bar-tooltip">₹1,600</span>
@@ -1384,7 +1314,6 @@
                 <span class="bar-day-label">Fri</span>
               </div>
 
-              <!-- Saturday: 2000 -->
               <div class="bar-column">
                 <div class="bar-tube" style="height: 100%;">
                   <span class="bar-tooltip">₹2,000</span>
@@ -1392,7 +1321,6 @@
                 <span class="bar-day-label">Sat</span>
               </div>
 
-              <!-- Sunday: 950 -->
               <div class="bar-column">
                 <div class="bar-tube" style="height: 47%;">
                   <span class="bar-tooltip">₹950</span>
@@ -1408,7 +1336,6 @@
             </div>
           </div>
 
-          <!-- Trip Earnings Breakdown -->
           <div class="detail-box">
             <h3 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 12px;">Today's Trip Payouts</h3>
             <div class="stat-breakdown-list">
@@ -1446,9 +1373,6 @@
         </div>
       </section>
 
-      <!-- ==================================================================
-           PANEL 6: PERFORMANCE (KPIS & PROGRESS INDICATORS)
-           ================================================================== -->
       <section id="panel-performance" class="view-panel content-canvas">
         <div class="section-header">
           <div class="section-title-group">
@@ -1556,7 +1480,6 @@
   <script src="assets/delivery-cockpit.js"></script>
   <script src="assets/frontend_api.js"></script>
 
-  <!-- AgriMitra Multi-Language Support Engine -->
   <script src="i18n.js"></script>
 </body>
 </html>

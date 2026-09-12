@@ -1,9 +1,5 @@
-/* ==========================================================================
-   AgriMitra Distributor Dashboard Styles
-   Clean, practical agricultural procurement workspace
-   ========================================================================== */
 
-/* Layout & Structure */
+
 .distributor-app {
   min-height: 100vh;
   display: flex;
@@ -11,9 +7,6 @@
   background-color: var(--color-bg);
 }
 
-/* --------------------------------------------------------------------------
-   Header Navigation (Matches AgriMitra Style)
-   -------------------------------------------------------------------------- */
 .dist-header {
   background-color: #ffffff;
   border-bottom: 1px solid var(--color-border);
@@ -59,7 +52,6 @@
   color: var(--color-primary);
 }
 
-/* Navigation Links */
 .dist-nav-links {
   display: flex;
   align-items: center;
@@ -90,7 +82,6 @@
   background-color: var(--color-primary-light);
 }
 
-/* Header User Profile */
 .dist-user-profile {
   display: flex;
   align-items: center;
@@ -131,10 +122,6 @@
   text-overflow: ellipsis;
 }
 
-/* --------------------------------------------------------------------------
-   Procurement Workflow Ribbon
-   SOURCE → PURCHASE → RECEIVE → STORE → DISTRIBUTE
-   -------------------------------------------------------------------------- */
 .workflow-ribbon-bar {
   background-color: #ffffff;
   border-bottom: 1px solid var(--color-border);
@@ -171,9 +158,6 @@
   font-weight: 400;
 }
 
-/* --------------------------------------------------------------------------
-   Dashboard Main Container
-   -------------------------------------------------------------------------- */
 .dist-main-content {
   max-width: 1280px;
   width: 100%;
@@ -182,7 +166,6 @@
   flex-grow: 1;
 }
 
-/* Greeting Section */
 .dist-welcome-section {
   display: flex;
   align-items: center;
@@ -203,10 +186,6 @@
   margin-top: 0.2rem;
 }
 
-/* --------------------------------------------------------------------------
-   Summary Metric Cards
-   Open Requirements | Incoming Supply | Current Inventory | Active Orders
-   -------------------------------------------------------------------------- */
 .summary-cards-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -266,9 +245,6 @@
   color: var(--color-text-secondary);
 }
 
-/* --------------------------------------------------------------------------
-   Dashboard Two-Column Grid: Primary Workspace & Secondary Sidebar
-   -------------------------------------------------------------------------- */
 .dashboard-grid-layout {
   display: grid;
   grid-template-columns: 1.85fr 1fr;
@@ -283,7 +259,6 @@
   gap: 1.5rem;
 }
 
-/* Standard Section Container */
 .dash-section {
   background-color: #ffffff;
   border: 1px solid var(--color-border);
@@ -310,9 +285,6 @@
   gap: 0.5rem;
 }
 
-/* --------------------------------------------------------------------------
-   My Requirements Section
-   -------------------------------------------------------------------------- */
 .req-cards-list {
   display: flex;
   flex-direction: column;
@@ -390,9 +362,6 @@
   color: var(--color-primary);
 }
 
-/* --------------------------------------------------------------------------
-   Available Supply Section & Filter Tabs
-   -------------------------------------------------------------------------- */
 .supply-filter-tabs {
   display: flex;
   gap: 0.35rem;
@@ -490,9 +459,6 @@
   color: var(--color-text-primary);
 }
 
-/* --------------------------------------------------------------------------
-   Recommended Procurement (Best Match Highlight)
-   -------------------------------------------------------------------------- */
 .recommended-card {
   background-color: var(--color-primary-light);
   border: 1px solid var(--color-primary-border);
@@ -531,9 +497,6 @@
   margin-bottom: 1rem;
 }
 
-/* --------------------------------------------------------------------------
-   Recent Orders
-   -------------------------------------------------------------------------- */
 .orders-mini-list {
   display: flex;
   flex-direction: column;
@@ -580,9 +543,6 @@
   color: var(--color-text-muted);
 }
 
-/* --------------------------------------------------------------------------
-   Market Snapshot
-   -------------------------------------------------------------------------- */
 .market-mini-list {
   display: flex;
   flex-direction: column;
@@ -628,9 +588,6 @@
   font-size: var(--font-size-xs);
 }
 
-/* --------------------------------------------------------------------------
-   Quick Actions
-   -------------------------------------------------------------------------- */
 .quick-actions-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -660,9 +617,6 @@
   color: var(--color-primary);
 }
 
-/* --------------------------------------------------------------------------
-   Floating Chatbot: AgriMitra Assistant
-   -------------------------------------------------------------------------- */
 .chatbot-trigger-btn {
   position: fixed;
   bottom: 1.5rem;
@@ -697,7 +651,6 @@
   box-shadow: 0 0 0 2px var(--color-primary-light);
 }
 
-/* Chat Drawer / Panel */
 .chatbot-drawer {
   position: fixed;
   bottom: 5rem;
@@ -812,7 +765,6 @@
   border-color: var(--color-primary);
 }
 
-/* Chat Input Footer */
 .chatbot-footer {
   padding: 0.75rem 1rem;
   border-top: 1px solid var(--color-border);

@@ -1,14 +1,3 @@
-"""
-Authentication API Routes for AgriMitra
-Supports Registration, Login, Logout, Language Sync, and Session verification for all 6 roles:
-- Farmer
-- FPO
-- Buyer
-- Wholesaler
-- Distributor
-- Delivery Agent
-"""
-
 from flask import Blueprint, request, jsonify, session
 from utils.auth import hash_password, verify_password, login_user, logout_user, get_current_user, login_required
 from database.db import query_db, execute_db, get_db_connection
@@ -27,26 +16,23 @@ DASHBOARD_MAP = {
 @auth_bp.route('/register', methods=['POST'])
 def register():
     data = request.get_json(silent=True) or request.form
-    
+
     phone = (data.get('phone') or '').strip()
     password = (data.get('password') or '').strip()
     full_name = (data.get('full_name') or '').strip()
     role = (data.get('role') or 'farmer').strip().lower()
-    
-    # Optional fields
+
     email = (data.get('email') or '').strip() or None
     state = (data.get('state') or '').strip() or None
     district = (data.get('district') or '').strip() or None
-    
+
     preferred_language = (data.get('preferred_language') or 'en').strip().lower()
     if preferred_language not in ['en', 'hi', 'ta', 'ml', 'kn', 'mr', 'bn']:
         preferred_language = 'en'
 
-    # Validations
     if not phone or len(phone) < 10:
         return jsonify({"success": False, "message": "A valid 10-digit phone number is required."}), 400
-    
-    # Normalize phone digits (last 10 digits)
+
     phone_clean = ''.join(filter(str.isdigit, phone))
     if len(phone_clean) >= 10:
         phone_clean = phone_clean[-10:]
@@ -59,7 +45,6 @@ def register():
     if not full_name:
         return jsonify({"success": False, "message": "Full name / business name is required."}), 400
 
-    # Role normalization
     if role == 'delivery':
         role = 'delivery_agent'
 
@@ -67,24 +52,22 @@ def register():
     if role not in valid_roles:
         return jsonify({"success": False, "message": f"Invalid role: {role}"}), 400
 
-    # Check if phone already registered
     existing = query_db("SELECT id FROM users WHERE phone = %s", (phone_clean,), one=True)
     if existing:
         return jsonify({"success": False, "message": "An account with this phone number already exists. Please log in."}), 409
 
     pwd_hash = hash_password(password)
-    
+
     conn = get_db_connection()
     try:
         with conn.cursor() as cursor:
-            # 1. Insert user with preferred_language
+
             cursor.execute("""
                 INSERT INTO users (phone, password_hash, role, full_name, email, state, district, preferred_language)
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
             """, (phone_clean, pwd_hash, role, full_name, email, state, district, preferred_language))
             user_id = cursor.lastrowid
 
-            # 2. Create role-specific profile
             if role == 'farmer':
                 kisan_id = f"FM-{user_id + 98000}"
                 cursor.execute("""
@@ -136,7 +119,6 @@ def register():
 
             conn.commit()
 
-        # Log in the new user
         user_record = {
             "id": user_id,
             "phone": phone_clean,
@@ -168,7 +150,7 @@ def register():
 @auth_bp.route('/login', methods=['POST'])
 def login():
     data = request.get_json(silent=True) or request.form
-    
+
     phone = (data.get('phone') or '').strip()
     password = (data.get('password') or '').strip()
     role_requested = (data.get('role') or '').strip().lower()
@@ -191,12 +173,10 @@ def login():
     if not verify_password(password, user['password_hash']):
         return jsonify({"success": False, "message": "Incorrect password. Please check your credentials."}), 401
 
-    # Role compatibility check
     if role_requested:
         if role_requested == 'delivery':
             role_requested = 'delivery_agent'
-        
-        # Friendly compatibility: wholesaler/distributor overlap, buyer/distributor overlap
+
         compatible = (
             user['role'] == role_requested or
             (role_requested in ('wholesaler', 'distributor') and user['role'] in ('wholesaler', 'distributor')) or
@@ -204,11 +184,10 @@ def login():
         )
         if not compatible:
             return jsonify({
-                "success": False, 
+                "success": False,
                 "message": f"This account is registered as a {user['role'].title()}, not as a {role_requested.title()}."
             }), 403
 
-    # Sync preferred_language if provided
     incoming_lang = (data.get('preferred_language') or '').strip().lower()
     if incoming_lang in ['en', 'hi', 'ta', 'ml', 'kn', 'mr', 'bn']:
         try:
@@ -219,7 +198,6 @@ def login():
 
     login_user(user)
 
-    # Return profile specifics for the role
     profile_info = {}
     if user['role'] == 'farmer':
         f = query_db("SELECT id, kisan_id, farm_location FROM farmers WHERE user_id = %s", (user['id'],), one=True)
@@ -267,7 +245,7 @@ def update_language():
     pref_lang = (data.get('preferred_language') or 'en').strip().lower()
     if pref_lang not in ['en', 'hi', 'ta', 'ml', 'kn', 'mr', 'bn']:
         return jsonify({"success": False, "message": "Unsupported language"}), 400
-    
+
     user = get_current_user()
     if user and user.get('id'):
         try:

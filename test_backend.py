@@ -1,25 +1,3 @@
-"""
-KrishiLink Automated Integration & Verification Test Suite
-Tests all 17 required backend and agricultural workflow scenarios:
-1. Farmer registration
-2. Farmer login & session maintenance
-3. Farmer creates produce listing
-4. Farmer creates delivery requirement
-5. Delivery agent sees available requirements
-6. Delivery agent accepts requirement
-7. Concurrency: Second delivery agent blocked from double-accepting
-8. FPO creates live bidding auction
-9. Distributor views auction list and details
-10. Distributor places valid bid
-11. Second distributor places higher bid
-12. Real-time broadcast verification
-13. Invalid lower bid gets rejected (below current + min increment)
-14. Bid after auction expiry gets rejected
-15. Auction winner correctly determined & finalized
-16. Role-based route protection
-17. Logout & database error handling
-"""
-
 import unittest
 import json
 import time
@@ -40,7 +18,7 @@ class KrishiLinkBackendTests(unittest.TestCase):
             except Exception:
                 pass
         seed_database()
-        # Ensure auction 1 is in active state with future end_time using local datetime
+
         future_time = (datetime.now() + timedelta(hours=24)).strftime('%Y-%m-%d %H:%M:%S')
         execute_db("UPDATE auctions SET status = 'active', end_time = %s WHERE id = 1", (future_time,))
 
@@ -52,9 +30,6 @@ class KrishiLinkBackendTests(unittest.TestCase):
     def tearDown(self):
         self.app_context.pop()
 
-    # --------------------------------------------------------------------------
-    # 1. Farmer Registration
-    # --------------------------------------------------------------------------
     def test_01_farmer_registration(self):
         test_phone = f"98765{int(time.time() * 100) % 100000:05d}"
         payload = {
@@ -71,15 +46,11 @@ class KrishiLinkBackendTests(unittest.TestCase):
         self.assertTrue(data['success'])
         self.assertEqual(data['user']['role'], 'farmer')
 
-        # Verify in DB
         user = query_db("SELECT id, phone, role FROM users WHERE phone = %s", (test_phone,), one=True)
         self.assertIsNotNone(user)
         self.assertEqual(user['role'], 'farmer')
         print("[PASS] Test 1: Farmer registration verified.")
 
-    # --------------------------------------------------------------------------
-    # 2. Farmer Login & Session
-    # --------------------------------------------------------------------------
     def test_02_farmer_login(self):
         payload = {
             "phone": "9876543210",
@@ -92,7 +63,6 @@ class KrishiLinkBackendTests(unittest.TestCase):
         self.assertTrue(data['success'])
         self.assertEqual(data['user']['role'], 'farmer')
 
-        # Verify /api/auth/me returns logged in user
         me_res = self.client.get('/api/auth/me')
         self.assertEqual(me_res.status_code, 200)
         me_data = me_res.get_json()
@@ -100,12 +70,9 @@ class KrishiLinkBackendTests(unittest.TestCase):
         self.assertEqual(me_data['user']['phone'], '9876543210')
         print("[PASS] Test 2: Farmer login and session persistence verified.")
 
-    # --------------------------------------------------------------------------
-    # 3. Farmer Creates Produce
-    # --------------------------------------------------------------------------
     def test_03_farmer_creates_produce(self):
         self.client.post('/api/auth/login', json={"phone": "9876543210", "password": "farmer123"})
-        
+
         payload = {
             "crop_name": "Mustard Seeds (Sarson)",
             "variety": "Pusa Bold",
@@ -120,19 +87,15 @@ class KrishiLinkBackendTests(unittest.TestCase):
         self.assertTrue(data['success'])
         self.assertEqual(data['produce']['crop_name'], "Mustard Seeds (Sarson)")
 
-        # Verify in produce list
         list_res = self.client.get('/api/farmer/produce')
         self.assertEqual(list_res.status_code, 200)
         crops = list_res.get_json()['produce']
         self.assertTrue(any(c['crop_name'] == "Mustard Seeds (Sarson)" for c in crops))
         print("[PASS] Test 3: Farmer produce creation verified.")
 
-    # --------------------------------------------------------------------------
-    # 4. Farmer Creates Delivery Requirement
-    # --------------------------------------------------------------------------
     def test_04_farmer_creates_delivery_requirement(self):
         self.client.post('/api/auth/login', json={"phone": "9876543210", "password": "farmer123"})
-        
+
         payload = {
             "crop_name": "Tomatoes",
             "quantity": 354.0,
@@ -150,12 +113,9 @@ class KrishiLinkBackendTests(unittest.TestCase):
         self.assertEqual(data['requirement']['quantity'], 354.0)
         print("[PASS] Test 4: Farmer delivery requirement (Tomato 354kg) created.")
 
-    # --------------------------------------------------------------------------
-    # 5. Delivery Agent Views Requirements
-    # --------------------------------------------------------------------------
     def test_05_delivery_agent_sees_requirements(self):
         self.client.post('/api/auth/login', json={"phone": "9834567890", "password": "delivery123"})
-        
+
         res = self.client.get('/api/delivery/requirements')
         self.assertEqual(res.status_code, 200)
         data = res.get_json()
@@ -163,13 +123,9 @@ class KrishiLinkBackendTests(unittest.TestCase):
         self.assertTrue(len(data['requirements']) >= 1)
         print(f"[PASS] Test 5: Delivery agent retrieved {len(data['requirements'])} open requirements.")
 
-    # --------------------------------------------------------------------------
-    # 6. Delivery Agent Accepts Requirement
-    # --------------------------------------------------------------------------
     def test_06_delivery_agent_accepts_requirement(self):
         self.client.post('/api/auth/login', json={"phone": "9834567890", "password": "delivery123"})
-        
-        # Get pending requirement
+
         reqs = self.client.get('/api/delivery/requirements').get_json()['requirements']
         target_req = reqs[0]
         req_id = target_req['id']
@@ -180,23 +136,17 @@ class KrishiLinkBackendTests(unittest.TestCase):
         self.assertTrue(data['success'])
         self.assertEqual(data['data']['status'], 'accepted')
 
-        # Check DB state
         req = query_db("SELECT status, delivery_agent_id FROM farmer_requirements WHERE id = %s", (req_id,), one=True)
         self.assertEqual(req['status'], 'accepted')
         self.assertIsNotNone(req['delivery_agent_id'])
         print(f"[PASS] Test 6: Delivery requirement #{target_req['req_code']} successfully accepted.")
 
-    # --------------------------------------------------------------------------
-    # 7. Concurrency: Double Acceptance Prevented
-    # --------------------------------------------------------------------------
     def test_07_prevent_double_acceptance(self):
         self.client.post('/api/auth/login', json={"phone": "9834567890", "password": "delivery123"})
-        
-        # Find already accepted requirement
+
         accepted_req = query_db("SELECT id FROM farmer_requirements WHERE status = 'accepted' LIMIT 1", one=True)
         self.assertIsNotNone(accepted_req)
 
-        # Attempt to accept again
         res = self.client.post(f'/api/delivery/requirements/{accepted_req["id"]}/accept')
         self.assertEqual(res.status_code, 409)
         data = res.get_json()
@@ -204,9 +154,6 @@ class KrishiLinkBackendTests(unittest.TestCase):
         self.assertIn("already", data['message'].lower())
         print("[PASS] Test 7: Race condition prevented - double acceptance rejected.")
 
-    # --------------------------------------------------------------------------
-    # 8. FPO Creates Live Auction
-    # --------------------------------------------------------------------------
     def test_08_fpo_creates_auction(self):
         self.client.post('/api/auth/login', json={"phone": "9812345678", "password": "fpo12345"})
 
@@ -230,7 +177,7 @@ class KrishiLinkBackendTests(unittest.TestCase):
         print(f"[PASS] Test 8: FPO created auction (Lot #{data['auction']['lot_code']}).")
 
     def test_08b_fpo_creates_auction_with_frontend_payload(self):
-        # Test frontend payload variations (e.g. title, crop_category, etc.)
+
         payload = {
             "title": "Fresh Sharbati Wheat",
             "crop_category": "grains",
@@ -278,9 +225,6 @@ class KrishiLinkBackendTests(unittest.TestCase):
         self.assertTrue(os.path.exists(img_url))
         print(f"[PASS] Test 8c: FPO created auction with uploaded device image saved to {img_url}.")
 
-    # --------------------------------------------------------------------------
-    # 9. Distributor Views Auction
-    # --------------------------------------------------------------------------
     def test_09_distributor_views_auction(self):
         res = self.client.get('/api/auctions')
         self.assertEqual(res.status_code, 200)
@@ -294,9 +238,6 @@ class KrishiLinkBackendTests(unittest.TestCase):
         self.assertIn('starting_price', detail_res.get_json()['auction'])
         print(f"[PASS] Test 9: Distributor can browse and view auction #{auction_id}.")
 
-    # --------------------------------------------------------------------------
-    # 10. Distributor Places Valid Bid
-    # --------------------------------------------------------------------------
     def test_10_distributor_places_bid(self):
         self.client.post('/api/auth/login', json={"phone": "9823456789", "password": "dist12345"})
 
@@ -311,14 +252,10 @@ class KrishiLinkBackendTests(unittest.TestCase):
         self.assertTrue(data['success'])
         self.assertEqual(data['data']['current_highest_bid'], new_bid)
 
-        # Verify DB updated
         updated_auction = query_db("SELECT current_highest_bid FROM auctions WHERE id = 1", one=True)
         self.assertEqual(float(updated_auction['current_highest_bid']), new_bid)
         print(f"[PASS] Test 10: Distributor 1 placed valid bid of Rs {new_bid:.2f}/kg.")
 
-    # --------------------------------------------------------------------------
-    # 11. Second Distributor Places Higher Bid
-    # --------------------------------------------------------------------------
     def test_11_second_distributor_places_higher_bid(self):
         self.client.post('/api/auth/login', json={"phone": "9823456790", "password": "dist12345"})
 
@@ -334,9 +271,6 @@ class KrishiLinkBackendTests(unittest.TestCase):
         self.assertEqual(data['data']['current_highest_bid'], higher_bid)
         print(f"[PASS] Test 11: Distributor 2 outbid with Rs {higher_bid:.2f}/kg.")
 
-    # --------------------------------------------------------------------------
-    # 12. Real-Time Broadcast Verification
-    # --------------------------------------------------------------------------
     def test_12_real_time_broadcast_delivery(self):
         q = broadcaster.subscribe(1)
         self.assertIsNotNone(q)
@@ -349,7 +283,6 @@ class KrishiLinkBackendTests(unittest.TestCase):
             res = self.client.post('/api/auctions/1/bids', json={"bid_amount": bid_val})
             self.assertEqual(res.status_code, 200)
 
-            # Check if event was received in subscriber queue
             msg = q.get(timeout=2.0)
             event = json.loads(msg)
             self.assertEqual(event['type'], 'new_bid')
@@ -358,12 +291,9 @@ class KrishiLinkBackendTests(unittest.TestCase):
         finally:
             broadcaster.unsubscribe(1, q)
 
-    # --------------------------------------------------------------------------
-    # 13. Invalid Lower Bid Rejected
-    # --------------------------------------------------------------------------
     def test_13_invalid_lower_bid_rejected(self):
         self.client.post('/api/auth/login', json={"phone": "9823456789", "password": "dist12345"})
-        
+
         auction = query_db("SELECT current_highest_bid FROM auctions WHERE id = 1", one=True)
         current_highest = float(auction['current_highest_bid'])
         invalid_low_bid = current_highest - 5.0
@@ -375,17 +305,14 @@ class KrishiLinkBackendTests(unittest.TestCase):
         self.assertIn("too low", data['message'].lower())
         print(f"[PASS] Test 13: Invalid lower bid of Rs {invalid_low_bid:.2f} rejected by backend.")
 
-    # --------------------------------------------------------------------------
-    # 14. Bid After Auction Expiry Rejected
-    # --------------------------------------------------------------------------
     def test_14_bid_after_expiry_rejected(self):
         self.client.post('/api/auth/login', json={"phone": "9823456789", "password": "dist12345"})
-        
+
         ended = query_db("SELECT id FROM auctions WHERE status = 'ended' LIMIT 1", one=True)
         if not ended:
             execute_db("INSERT INTO auctions (lot_code, fpo_id, product_name, category, quantity, unit, starting_price, min_increment, current_highest_bid, start_time, end_time, status) VALUES ('TRD-EXP-999', 1, 'Expired Wheat', 'grains', 100, 'kg', 20, 1, 25, datetime('now', '-2 days'), datetime('now', '-1 day'), 'ended')")
             ended = query_db("SELECT id FROM auctions WHERE status = 'ended' LIMIT 1", one=True)
-        
+
         auction_id = ended['id']
         res = self.client.post(f'/api/auctions/{auction_id}/bids', json={"bid_amount": 100.0})
         self.assertEqual(res.status_code, 400)
@@ -394,9 +321,6 @@ class KrishiLinkBackendTests(unittest.TestCase):
         self.assertTrue("ended" in data['message'].lower() or "closed" in data['message'].lower())
         print("[PASS] Test 14: Bid on expired/ended auction rejected.")
 
-    # --------------------------------------------------------------------------
-    # 15. Auction Finalization & Winner Determination
-    # --------------------------------------------------------------------------
     def test_15_auction_finalization(self):
         from services.auction_service import finalize_auction
         success, res = finalize_auction(1)
@@ -409,18 +333,12 @@ class KrishiLinkBackendTests(unittest.TestCase):
         self.assertEqual(order['status'], 'confirmed')
         print(f"[PASS] Test 15: Auction finalized with Order #{order['order_code']}.")
 
-    # --------------------------------------------------------------------------
-    # 16. Role-Based Route Protection
-    # --------------------------------------------------------------------------
     def test_16_role_based_protection(self):
         self.client.get('/api/auth/logout')
         res = self.client.get('/api/auth/me')
         self.assertFalse(res.get_json()['authenticated'])
         print("[PASS] Test 16: Protected endpoints require authentication.")
 
-    # --------------------------------------------------------------------------
-    # 17. Logout & Error Handling
-    # --------------------------------------------------------------------------
     def test_17_logout_and_errors(self):
         self.client.post('/api/auth/login', json={"phone": "9876543210", "password": "farmer123"})
         res = self.client.post('/api/auth/logout')
@@ -432,13 +350,9 @@ class KrishiLinkBackendTests(unittest.TestCase):
         self.assertFalse(not_found_res.get_json()['success'])
         print("[PASS] Test 17: Logout and 404 error handler verified.")
 
-    # --------------------------------------------------------------------------
-    # 18. Delivery Route Corridor & Live GPS Telemetry
-    # --------------------------------------------------------------------------
     def test_18_delivery_route_and_telemetry(self):
         self.client.post('/api/auth/login', json={"phone": "9834567890", "password": "delivery123"})
-        
-        # Test GET /api/delivery/route
+
         res = self.client.get('/api/delivery/route')
         self.assertEqual(res.status_code, 200)
         data = res.get_json()
@@ -452,7 +366,6 @@ class KrishiLinkBackendTests(unittest.TestCase):
         self.assertEqual(data['waypoints'][1]['city'], 'Nakodar')
         self.assertEqual(data['waypoints'][2]['city'], 'Phagwara')
 
-        # Test POST /api/delivery/location
         loc_res = self.client.post('/api/delivery/location', json={
             "lat": 31.1550,
             "lng": 75.4850,
@@ -465,7 +378,6 @@ class KrishiLinkBackendTests(unittest.TestCase):
         self.assertEqual(loc_data['data']['lat'], 31.1550)
         self.assertEqual(loc_data['data']['lng'], 75.4850)
 
-        # Verify updated location is reflected in route API
         verify_res = self.client.get('/api/delivery/route')
         v_data = verify_res.get_json()
         self.assertEqual(v_data['vehicle']['telemetry']['lat'], 31.1550)
@@ -474,4 +386,3 @@ class KrishiLinkBackendTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
-

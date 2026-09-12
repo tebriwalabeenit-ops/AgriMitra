@@ -6,7 +6,6 @@
   <meta name="description" content="AgriMitra Distributor Dashboard - Manage agricultural produce sourcing, wholesale inventory, orders and distribution.">
   <title>Distributor Dashboard | AgriMitra</title>
 
-  <!-- CSS Dependencies -->
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/distributor.css">
@@ -16,19 +15,14 @@
 </head>
 <body class="distributor-app">
 
-  <!-- ========================================================================
-       TOP HEADER NAVBAR
-       ======================================================================== -->
   <header class="dist-header">
     <div class="dist-header-inner">
-      
-      <!-- Brand Logo -->
+
       <a href="distributor-dashboard.html" class="dist-brand">
         <img src="logo.png" alt="AgriMitra Logo" style="width: 34px; height: 34px; object-fit: contain; border-radius: 6px;">
         <span class="dist-brand-name">Agri<span>Mitra</span></span>
       </a>
 
-      <!-- Primary Navigation -->
       <nav aria-label="Main Navigation">
         <ul class="dist-nav-links">
           <li><a href="distributor-dashboard.html" class="dist-nav-link active">Overview</a></li>
@@ -41,7 +35,6 @@
         </ul>
       </nav>
 
-      <!-- Right User Profile Trigger -->
       <div class="dist-user-profile" id="header-profile-trigger" title="View Distributor Profile">
         <div class="user-avatar-circle">D</div>
         <span class="user-business-name" id="header-business-name">MahaAgro Wholesale Dist.</span>
@@ -53,10 +46,6 @@
     </div>
   </header>
 
-  <!-- ========================================================================
-       WORKFLOW RIBBON
-       SOURCE → PURCHASE → RECEIVE → STORE → DISTRIBUTE
-       ======================================================================== -->
   <aside class="workflow-ribbon-bar" aria-label="Procurement Lifecycle">
     <div class="workflow-ribbon-inner">
       <span class="workflow-step active">1. SOURCE</span>
@@ -71,12 +60,8 @@
     </div>
   </aside>
 
-  <!-- ========================================================================
-       MAIN DASHBOARD WORKSPACE
-       ======================================================================== -->
   <main class="dist-main-content">
-    
-    <!-- Greeting Section -->
+
     <section class="dist-welcome-section">
       <div>
         <h1 class="dist-welcome-title">
@@ -93,10 +78,8 @@
       </div>
     </section>
 
-    <!-- Summary Metric Cards (Clicking opens relevant modal) -->
     <section class="summary-cards-grid" aria-label="Operational Summary">
-      
-      <!-- Open Requirements -->
+
       <div class="metric-card" id="metric-card-requirements" role="button" tabindex="0" title="Click to view all requirements">
         <div class="metric-card-label">
           <span>Open Requirements</span>
@@ -106,7 +89,6 @@
         <div class="metric-card-hint">Produce sourcing requests</div>
       </div>
 
-      <!-- Incoming Supply -->
       <div class="metric-card" id="metric-card-incoming" role="button" tabindex="0" title="Click to view incoming shipments">
         <div class="metric-card-label">
           <span>Incoming Supply</span>
@@ -116,7 +98,6 @@
         <div class="metric-card-hint">2 shipments arriving soon</div>
       </div>
 
-      <!-- Current Inventory -->
       <div class="metric-card" id="metric-card-inventory" role="button" tabindex="0" title="Click to view full inventory">
         <div class="metric-card-label">
           <span>Current Inventory</span>
@@ -126,7 +107,6 @@
         <div class="metric-card-hint">Across 3 warehouse bays</div>
       </div>
 
-      <!-- Active Orders -->
       <div class="metric-card" id="metric-card-orders" role="button" tabindex="0" title="Click to view active orders">
         <div class="metric-card-label">
           <span>Active Orders</span>
@@ -138,9 +118,6 @@
 
     </section>
 
-    <!-- ====================================================================
-         LIVE MANDI BIDDING SECTION (WHOLESALER / DISTRIBUTOR DASHBOARD)
-         ==================================================================== -->
     <section class="dash-section" id="live-bidding" style="background: #FFFFFF; border: 2px solid #1C5A35; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; scroll-margin-top: 80px; box-shadow: 0 4px 16px rgba(28, 90, 53, 0.08);">
       <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.25rem; border-bottom: 1px solid #D7E2D8; padding-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
         <div>
@@ -170,10 +147,8 @@
         </div>
       </div>
 
-      <!-- Live Bidding Grid -->
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem;">
-        
-        <!-- Live Bidding Card 1: Premium Wheat (SELECTED LEADER) -->
+
         <div style="background-color: #F7FAF7; border: 1px solid #C8DEC9; border-radius: 10px; padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between;">
           <div>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
@@ -211,7 +186,6 @@
           </div>
         </div>
 
-        <!-- Live Bidding Card 2: Fresh Potatoes -->
         <div style="background-color: #F7FAF7; border: 1px solid #C8DEC9; border-radius: 10px; padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between;">
           <div>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
@@ -249,7 +223,6 @@
           </div>
         </div>
 
-        <!-- Live Bidding Card 3: Basmati Rice -->
         <div style="background-color: #F7FAF7; border: 1px solid #C8DEC9; border-radius: 10px; padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between;">
           <div>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
@@ -290,15 +263,10 @@
       </div>
     </section>
 
-    <!-- Two-Column Primary / Secondary Grid -->
     <div class="dashboard-grid-layout">
-      
-      <!-- ====================================================================
-           PRIMARY WORKSPACE COLUMN
-           ==================================================================== -->
+
       <div class="dashboard-primary-col">
-        
-        <!-- SECTION: MY REQUIREMENTS -->
+
         <section class="dash-section">
           <div class="dash-section-header">
             <h2 class="dash-section-title">
@@ -311,11 +279,10 @@
           </div>
 
           <div class="req-cards-list" id="my-requirements-list">
-            <!-- Dynamically populated by JS -->
+
           </div>
         </section>
 
-        <!-- SECTION: AVAILABLE SUPPLY -->
         <section class="dash-section">
           <div class="dash-section-header">
             <h2 class="dash-section-title">
@@ -327,7 +294,6 @@
             </button>
           </div>
 
-          <!-- Filters -->
           <div class="supply-filter-tabs">
             <button class="filter-tab-btn active" data-filter="all">Best Match</button>
             <button class="filter-tab-btn" data-filter="price">Lowest Price</button>
@@ -335,13 +301,11 @@
             <button class="filter-tab-btn" data-filter="largest">Largest Lot</button>
           </div>
 
-          <!-- Supply Cards Grid -->
           <div class="supply-cards-grid" id="supply-lots-grid">
-            <!-- Dynamically populated by JS -->
+
           </div>
         </section>
 
-        <!-- SECTION: RECOMMENDED PROCUREMENT (Best Match Highlight) -->
         <section class="dash-section">
           <div class="dash-section-header">
             <h2 class="dash-section-title">
@@ -389,12 +353,8 @@
 
       </div>
 
-      <!-- ====================================================================
-           SECONDARY SIDEBAR COLUMN
-           ==================================================================== -->
       <div class="dashboard-secondary-col">
-        
-        <!-- SECTION: QUICK ACTIONS -->
+
         <section class="dash-section">
           <div class="dash-section-header">
             <h2 class="dash-section-title">Quick Actions</h2>
@@ -419,7 +379,6 @@
           </div>
         </section>
 
-        <!-- SECTION: INVENTORY SUMMARY TABLE -->
         <section class="dash-section">
           <div class="dash-section-header">
             <h2 class="dash-section-title">Inventory</h2>
@@ -438,13 +397,12 @@
                 </tr>
               </thead>
               <tbody id="inventory-table-body">
-                <!-- Dynamically populated by JS -->
+
               </tbody>
             </table>
           </div>
         </section>
 
-        <!-- SECTION: RECENT ORDERS -->
         <section class="dash-section">
           <div class="dash-section-header">
             <h2 class="dash-section-title">Recent Orders</h2>
@@ -454,11 +412,10 @@
           </div>
 
           <div class="orders-mini-list" id="recent-orders-list">
-            <!-- Dynamically populated by JS -->
+
           </div>
         </section>
 
-        <!-- SECTION: MARKET SNAPSHOT -->
         <section class="dash-section">
           <div class="dash-section-header">
             <h2 class="dash-section-title">Market Snapshot</h2>
@@ -468,9 +425,9 @@
           </div>
 
           <div class="market-mini-list" id="market-snapshot-list">
-            <!-- Dynamically populated by JS -->
+
           </div>
-          
+
           <button type="button" class="btn btn-secondary btn-sm btn-block" data-modal-target="modal-market-prices">
             Open Mandi Rate Board →
           </button>
@@ -482,9 +439,6 @@
 
   </main>
 
-  <!-- ========================================================================
-       FLOATING CHATBOT WIDGET: AGRIMITRA ASSISTANT
-       ======================================================================== -->
   <button type="button" class="chatbot-trigger-btn" id="chatbot-toggle-btn" aria-label="Open AgriMitra Assistant">
     <span class="chatbot-pulse-dot"></span>
     <span>AgriMitra Assistant</span>
@@ -522,11 +476,6 @@
     </div>
   </aside>
 
-  <!-- ========================================================================
-       MODAL SYSTEM DIALOGS
-       ======================================================================== -->
-
-  <!-- 1. CREATE REQUIREMENT MODAL -->
   <div class="modal-overlay" id="modal-create-requirement" role="dialog" aria-modal="true" aria-labelledby="title-create-req">
     <div class="modal-container">
       <div class="modal-header">
@@ -537,7 +486,6 @@
         <button type="button" class="modal-close-btn" data-close-modal aria-label="Close">×</button>
       </div>
 
-      <!-- Form View -->
       <div class="modal-body" id="create-req-form-wrap">
         <form id="form-create-requirement" novalidate>
           <div class="form-group">
@@ -583,7 +531,6 @@
         </form>
       </div>
 
-      <!-- Success State View (Inside Modal) -->
       <div class="modal-body" id="create-req-success-wrap" style="display: none;">
         <div class="modal-success-state">
           <div class="modal-success-icon">✓</div>
@@ -597,7 +544,6 @@
     </div>
   </div>
 
-  <!-- 2. REQUIREMENT DETAILS MODAL -->
   <div class="modal-overlay" id="modal-requirement-details" role="dialog" aria-modal="true" aria-labelledby="title-req-details">
     <div class="modal-container">
       <div class="modal-header">
@@ -647,7 +593,6 @@
     </div>
   </div>
 
-  <!-- 3. SUPPLY LOT MODAL -->
   <div class="modal-overlay" id="modal-supply-lot" role="dialog" aria-modal="true" aria-labelledby="title-supply-lot">
     <div class="modal-container">
       <div class="modal-header">
@@ -697,7 +642,6 @@
           </div>
         </div>
 
-        <!-- Quantity Stepper Requirement -->
         <div style="background-color: var(--color-surface-muted); padding: 1rem; border-radius: var(--radius-md); margin-top: 1rem; display: flex; align-items: center; justify-content: space-between;">
           <div>
             <span style="font-size: var(--font-size-xs); font-weight: 700; color: var(--color-text-muted); text-transform: uppercase;">Procurement Quantity:</span>
@@ -717,7 +661,6 @@
     </div>
   </div>
 
-  <!-- 4. ORDER CONFIRMED MODAL -->
   <div class="modal-overlay" id="modal-order-confirmed" role="dialog" aria-modal="true">
     <div class="modal-container modal-sm">
       <div class="modal-body">
@@ -733,7 +676,6 @@
     </div>
   </div>
 
-  <!-- 5. ORDER DETAILS MODAL -->
   <div class="modal-overlay" id="modal-order-details" role="dialog" aria-modal="true" aria-labelledby="title-order-details">
     <div class="modal-container modal-lg">
       <div class="modal-header">
@@ -744,8 +686,7 @@
         <button type="button" class="modal-close-btn" data-close-modal aria-label="Close">×</button>
       </div>
       <div class="modal-body">
-        
-        <!-- 4-Stage Status Tracker -->
+
         <div class="order-status-stepper" id="order-details-stepper">
           <div class="order-step completed" data-step="1">
             <div class="order-step-circle">✓</div>
@@ -816,7 +757,6 @@
     </div>
   </div>
 
-  <!-- 6. INVENTORY MODAL (Detailed Stock) -->
   <div class="modal-overlay" id="modal-full-inventory" role="dialog" aria-modal="true" aria-labelledby="title-inv-modal">
     <div class="modal-container modal-lg">
       <div class="modal-header">
@@ -827,8 +767,7 @@
         <button type="button" class="modal-close-btn" data-close-modal aria-label="Close">×</button>
       </div>
       <div class="modal-body">
-        
-        <!-- Tomatoes detailed breakdown matching prompt -->
+
         <div style="border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1.25rem; background-color: #ffffff;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
             <h4 style="font-size: 1.125rem; font-weight: 700; color: var(--color-text-primary);">Tomatoes</h4>
@@ -857,7 +796,6 @@
           </div>
         </div>
 
-        <!-- Onions & Potatoes Cards -->
         <div class="form-grid-row">
           <div style="border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 1rem;">
             <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
@@ -889,7 +827,6 @@
     </div>
   </div>
 
-  <!-- 7. INDIVIDUAL CROP INVENTORY MODAL -->
   <div class="modal-overlay" id="modal-crop-inventory" role="dialog" aria-modal="true">
     <div class="modal-container">
       <div class="modal-header">
@@ -935,7 +872,6 @@
     </div>
   </div>
 
-  <!-- 8. MARKET PRICES MODAL -->
   <div class="modal-overlay" id="modal-market-prices" role="dialog" aria-modal="true" aria-labelledby="title-market-prices">
     <div class="modal-container modal-lg">
       <div class="modal-header">
@@ -999,7 +935,6 @@
     </div>
   </div>
 
-  <!-- 9. AVAILABLE SUPPLY SOURCING MODAL -->
   <div class="modal-overlay" id="modal-available-supply" role="dialog" aria-modal="true" aria-labelledby="title-avail-supply">
     <div class="modal-container modal-lg">
       <div class="modal-header">
@@ -1010,7 +945,7 @@
         <button type="button" class="modal-close-btn" data-close-modal aria-label="Close">×</button>
       </div>
       <div class="modal-body" id="all-supply-modal-list">
-        <!-- Dynamically injected supply cards -->
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-close-modal>Close</button>
@@ -1018,7 +953,6 @@
     </div>
   </div>
 
-  <!-- 10. ALL REQUIREMENTS MODAL -->
   <div class="modal-overlay" id="modal-all-requirements" role="dialog" aria-modal="true" aria-labelledby="title-all-reqs">
     <div class="modal-container modal-lg">
       <div class="modal-header">
@@ -1074,7 +1008,6 @@
     </div>
   </div>
 
-  <!-- 11. INCOMING SUPPLY MODAL -->
   <div class="modal-overlay" id="modal-incoming-supply" role="dialog" aria-modal="true" aria-labelledby="title-incoming">
     <div class="modal-container">
       <div class="modal-header">
@@ -1110,7 +1043,6 @@
     </div>
   </div>
 
-  <!-- 12. ALL ORDERS MODAL -->
   <div class="modal-overlay" id="modal-all-orders" role="dialog" aria-modal="true" aria-labelledby="title-all-orders">
     <div class="modal-container modal-lg">
       <div class="modal-header">
@@ -1171,7 +1103,6 @@
     </div>
   </div>
 
-  <!-- 13. PROFILE MODAL -->
   <div class="modal-overlay" id="modal-profile" role="dialog" aria-modal="true" aria-labelledby="title-dist-profile">
     <div class="modal-container">
       <div class="modal-header">
@@ -1221,7 +1152,6 @@
     </div>
   </div>
 
-  <!-- 14. EDIT PROFILE MODAL -->
   <div class="modal-overlay" id="modal-edit-profile" role="dialog" aria-modal="true" aria-labelledby="title-edit-prof">
     <div class="modal-container">
       <div class="modal-header">
@@ -1258,12 +1188,10 @@
     </div>
   </div>
 
-  <!-- JavaScript Modules -->
   <script src="js/main.js"></script>
   <script src="js/modal.js"></script>
   <script src="js/distributor-dashboard.js"></script>
 
-  <!-- AgriMitra Multi-Language Support Engine -->
   <script src="../i18n.js"></script>
 </body>
 </html>

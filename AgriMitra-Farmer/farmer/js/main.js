@@ -1,14 +1,8 @@
-/**
- * AgriMitra - Universal Frontend Application Script
- * Compatible with both HTTP servers and local file:// execution (no ES module CORS restrictions)
- */
+
 
 (function () {
   'use strict';
 
-  // =========================================================================
-  // Validation Rules & Messages
-  // =========================================================================
   const ValidationMessages = {
     PHONE_EMPTY: 'Please enter your phone number.',
     PHONE_INVALID: 'Please enter a valid phone number.',
@@ -60,7 +54,6 @@
     return digits;
   }
 
-  // Toast Notification Helper
   function showToast(message) {
     let toast = document.getElementById('dash-toast');
     if (!toast) {
@@ -83,17 +76,11 @@
     }, 3500);
   }
 
-  // =========================================================================
-  // Initialize on DOM Ready (Farmer Registration & Dashboard only)
-  // =========================================================================
   document.addEventListener('DOMContentLoaded', () => {
     initRegisterPage();
     initDashboardPage();
   });
 
-  // =========================================================================
-  // Master Indian States and Districts Data (Shared across Portal)
-  // =========================================================================
   const stateDistricts = {
     'Andaman and Nicobar Islands': ['Nicobar', 'North and Middle Andaman', 'South Andaman'],
     'Andhra Pradesh': ['Alluri Sitharama Raju', 'Anakapalli', 'Ananthapuramu', 'Annamayya', 'Bapatla', 'Chittoor', 'Dr. B.R. Ambedkar Konaseema', 'East Godavari', 'Eluru', 'Guntur', 'Kakinada', 'Krishna', 'Kurnool', 'Nandyal', 'NTR', 'Palnadu', 'Parvathipuram Manyam', 'Prakasam', 'Sri Potti Sriramulu Nellore', 'Sri Sathya Sai', 'Srikakulam', 'Tirupati', 'Visakhapatnam', 'Vizianagaram', 'West Godavari', 'YSR Kadapa'],
@@ -133,9 +120,6 @@
     'West Bengal': ['Alipurduar', 'Bankura', 'Birbhum', 'Cooch Behar', 'Dakshin Dinajpur', 'Darjeeling', 'Hooghly', 'Howrah', 'Jalpaiguri', 'Jhargram', 'Kalimpong', 'Kolkata', 'Malda', 'Murshidabad', 'Nadia', 'North 24 Parganas', 'Paschim Bardhaman', 'Paschim Medinipur', 'Purba Bardhaman', 'Purba Medinipur', 'Purulia', 'South 24 Parganas', 'Uttar Dinajpur']
   };
 
-  // =========================================================================
-  // 1. Farmer Registration Logic
-  // =========================================================================
   function initRegisterPage() {
     const registerForms = document.querySelectorAll('.farmer-registration-form');
     if (!registerForms || registerForms.length === 0) return;
@@ -162,7 +146,6 @@
       const matchStatus = regForm.querySelector('.password-match-status');
       const matchText = matchStatus ? (matchStatus.querySelector('#reg-password-match-text') || matchStatus.querySelector('span')) : null;
 
-      // 1. Dynamic Password Show/Hide Toggle Buttons
       const toggleBtns = regForm.querySelectorAll('.password-toggle-btn');
       toggleBtns.forEach((btn) => {
         btn.addEventListener('click', (e) => {
@@ -184,7 +167,6 @@
         });
       });
 
-      // 2. Dynamic Live Phone Formatting, Counter & Validation
       if (phoneInput) {
         phoneInput.addEventListener('input', (e) => {
           const rawVal = e.target.value;
@@ -213,7 +195,6 @@
         });
       }
 
-      // 3. Dynamic State-to-District Suggestions & Popular Quick Pills
       if (stateSelect && districtInput) {
         const quickContainer = regForm.querySelector('#district-quick-suggestions') || regForm.parentElement.querySelector('#district-quick-suggestions');
 
@@ -256,7 +237,7 @@
               districtInput.value = '';
             }
           } else {
-            // Fallback for text/datalist input if present
+
             const listId = districtInput.getAttribute('list') || 'district-options';
             let datalist = document.getElementById(listId);
             if (!datalist) {
@@ -286,7 +267,6 @@
             }
           }
 
-          // Populate quick suggestion pills for top agricultural trade hubs
           if (quickContainer) {
             quickContainer.innerHTML = '';
             if (districts.length > 0) {
@@ -351,7 +331,6 @@
           }
         });
 
-        // Initialize state & district options
         if (stateSelect.value) {
           updateDistrictSuggestions(stateSelect.value, true);
         } else {
@@ -359,12 +338,11 @@
         }
       }
 
-      // 4. Dynamic Live Password Strength Meter
       function evaluateStrength(pwd) {
         if (!pwd || pwd.length === 0) return { score: 0, label: '', hint: '' };
         if (pwd.length < 6) return { score: 1, label: 'Too short', hint: 'Min 6 characters', css: 'active-weak' };
 
-        let score = 2; // Met minimum length
+        let score = 2;
         const hasNumbers = /\d/.test(pwd);
         const hasLetters = /[a-zA-Z]/.test(pwd);
         const hasMixedCase = /[a-z]/.test(pwd) && /[A-Z]/.test(pwd);
@@ -405,7 +383,6 @@
         passwordInput.addEventListener('input', updatePasswordUI);
       }
 
-      // 5. Dynamic Live Password Match Feedback
       function checkPasswordMatch() {
         if (!passwordInput || !confirmPasswordInput || !matchStatus) return;
         const p1 = passwordInput.value;
@@ -432,7 +409,6 @@
         confirmPasswordInput.addEventListener('input', checkPasswordMatch);
       }
 
-      // 6. Name Validation Active State
       if (nameInput) {
         nameInput.addEventListener('input', () => {
           const parentGroup = nameInput.closest('.password-input-group');
@@ -444,7 +420,6 @@
         });
       }
 
-      // 7. Form Submission Handler - Enforces compulsory validation
       function handleFarmerRegistrationSubmit(e) {
         if (e && typeof e.preventDefault === 'function') {
           e.preventDefault();
@@ -466,14 +441,12 @@
           }
         }
 
-        // 1. Full Name (Compulsory)
         const nameVal = nameInput ? nameInput.value.trim() : '';
         if (!nameVal || nameVal.length < 2) {
           showFormError('Please enter your full name (minimum 2 characters).', nameInput);
           return;
         }
 
-        // 2. Phone Number (Compulsory, 10 digits starting with 6-9)
         const phoneVal = phoneInput ? phoneInput.value : '';
         const phoneCheck = validatePhoneNumber(phoneVal);
         if (!phoneCheck.isValid) {
@@ -481,20 +454,17 @@
           return;
         }
 
-        // 3. State (Compulsory)
         if (stateSelect && !stateSelect.value) {
           showFormError('Please select your state from the list.', stateSelect);
           return;
         }
 
-        // 4. District (Compulsory)
         const districtVal = districtInput ? districtInput.value.trim() : '';
         if (!districtVal) {
           showFormError('Please enter or select your district.', districtInput);
           return;
         }
 
-        // 5. Password (Compulsory, min 6 chars)
         const pwdVal = passwordInput ? passwordInput.value : '';
         if (!pwdVal) {
           showFormError('Please enter a password for your account.', passwordInput);
@@ -505,7 +475,6 @@
           return;
         }
 
-        // 6. Confirm Password (Compulsory, must match)
         const confirmVal = confirmPasswordInput ? confirmPasswordInput.value : '';
         if (!confirmVal) {
           showFormError('Please confirm your password.', confirmPasswordInput);
@@ -516,7 +485,6 @@
           return;
         }
 
-        // All compulsory validations passed!
         const cropInput = regForm.querySelector('#reg-crop-input, .reg-crop');
         const cropVal = cropInput ? cropInput.value.trim() : 'Paddy';
 
@@ -574,7 +542,6 @@
 
       regForm.addEventListener('submit', handleFarmerRegistrationSubmit);
 
-      // Handle Already Registered click to navigate to login page
       const alreadyText = regForm.querySelector('#already-registered-text') || document.getElementById('already-registered-text');
       const alreadyLink = regForm.querySelector('#link-login-farmer') || document.getElementById('link-login-farmer');
       const farmerLoginUrl = '../../index.html#login?role=farmer';
@@ -587,17 +554,11 @@
     });
   }
 
-  // =========================================================================
-  // 3. Simple & Interactive Farmer Dashboard Logic
-  // =========================================================================
   function initDashboardPage() {
     if (window.AgriMitraAuth) {
       window.AgriMitraAuth.guardRole('farmer', { strict: false });
     }
 
-    // -----------------------------------------------------------------------
-    // Profile Management & Profile Edit Modal
-    // -----------------------------------------------------------------------
     const defaultProfile = {
       full_name: 'Ramesh Patel',
       phone: '9876543210',
@@ -663,7 +624,6 @@
 
     syncProfileUI();
 
-    // Profile Edit Modal Elements
     const profileModal = document.getElementById('profile-modal');
     const openProfileBtns = document.querySelectorAll('#open-profile-modal-btn, #user-profile-pill');
     const closeProfileModalBtn = document.getElementById('close-profile-modal-btn');
@@ -797,9 +757,6 @@
       });
     }
 
-    // -----------------------------------------------------------------------
-    // Interactive Notification Bell & Dropdown Logic
-    // -----------------------------------------------------------------------
     const defaultNotifications = [
       {
         id: 'notif-1',
@@ -988,7 +945,6 @@
       });
     }
 
-    // Close notification dropdown when clicking outside
     document.addEventListener('click', (e) => {
       if (notifWrapper && !notifWrapper.contains(e.target)) {
         if (notifDropdown) notifDropdown.classList.remove('active');
@@ -999,7 +955,6 @@
       }
     });
 
-    // Mark all as read
     if (notifMarkReadBtn) {
       notifMarkReadBtn.addEventListener('click', () => {
         notifications.forEach(n => n.unread = false);
@@ -1009,7 +964,6 @@
       });
     }
 
-    // Filter tabs click
     notifTabs.forEach(tab => {
       tab.addEventListener('click', () => {
         notifTabs.forEach(t => t.classList.remove('active'));
@@ -1019,7 +973,6 @@
       });
     });
 
-    // Item click: mark individual as read & handle action
     if (notifItemsList) {
       notifItemsList.addEventListener('click', (e) => {
         const itemEl = e.target.closest('.notif-item');
@@ -1054,7 +1007,6 @@
       });
     }
 
-    // Sign out button
     const signOutBtns = document.querySelectorAll('#sign-out-btn, .btn-signout');
     signOutBtns.forEach((btn) => {
       btn.addEventListener('click', (e) => {
@@ -1067,7 +1019,6 @@
       });
     });
 
-    // Produce Modal Elements (Sell Crop / Add Listing)
     const openModalBtns = document.querySelectorAll('.open-produce-modal-btn');
     const produceModal = document.getElementById('produce-modal');
     const closeProduceModalBtn = document.getElementById('close-produce-modal-btn');
@@ -1099,7 +1050,6 @@
       });
     }
 
-    // Add New Produce Form Submit Handler
     if (addProduceForm) {
       addProduceForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -1117,7 +1067,6 @@
         const cropPrice = cropPriceInput ? cropPriceInput.value : '2500';
         const cropLocation = (cropLocationInput && cropLocationInput.value.trim()) ? cropLocationInput.value.trim() : 'Krishnagiri APMC Warehouse';
 
-        // Persist to backend database API
         fetch('/api/farmer/produce', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -1138,7 +1087,6 @@
           console.warn('[KrishiLink] Backend call notice:', err);
         });
 
-        // Prepend new listing card to #crop-cards-list
         const cropCardsList = document.getElementById('crop-cards-list');
         if (cropCardsList) {
           const newCard = document.createElement('div');
@@ -1167,7 +1115,6 @@
           `;
           cropCardsList.insertBefore(newCard, cropCardsList.firstChild);
 
-          // Update active count on badge
           const activeBadge = document.getElementById('active-crops-count');
           if (activeBadge) {
             const currentCount = parseInt(activeBadge.textContent) || 3;
@@ -1186,9 +1133,6 @@
       });
     }
 
-    // -----------------------------------------------------------------------
-    // Interactive Crop Bids Modal Logic
-    // -----------------------------------------------------------------------
     const cropBidsModal = document.getElementById('crop-bids-modal');
     const closeCropBidsModalBtn = document.getElementById('close-crop-bids-modal-btn');
     const closeCropBidsBtn = document.getElementById('close-crop-bids-btn');
@@ -1372,7 +1316,6 @@
       });
     }
 
-    // Scroll to Bids panel with pulse animation
     function scrollToBidsPanel() {
       const bidsSection = document.getElementById('buyer-bids-section');
       if (bidsSection) {
@@ -1389,7 +1332,6 @@
 
     if (scrollToBidsPanelBtn) scrollToBidsPanelBtn.addEventListener('click', scrollToBidsPanel);
 
-    // Attach scroll highlight to Hub Card 2 (Buyer Offers & Orders)
     const hubBidsCard = document.querySelector('a[href="#buyer-bids-section"]');
     if (hubBidsCard) {
       hubBidsCard.addEventListener('click', (e) => {
@@ -1398,9 +1340,6 @@
       });
     }
 
-    // -----------------------------------------------------------------------
-    // Interactive Bank Payouts Ledger Modal Logic
-    // -----------------------------------------------------------------------
     const payoutsModal = document.getElementById('payouts-modal');
     const hubPayoutsCard = document.getElementById('hub-payouts-card');
     const closePayoutsModalBtn = document.getElementById('close-payouts-modal-btn');
@@ -1452,9 +1391,8 @@
       });
     }
 
-    // Global Click Delegation for View Bids, Modal Actions & Produce Operations
     document.addEventListener('click', (e) => {
-      // 1. View Bids in Crop Listing
+
       const viewBidsBtn = e.target.closest('.view-crop-bids-btn');
       if (viewBidsBtn) {
         e.preventDefault();
@@ -1466,7 +1404,6 @@
         return;
       }
 
-      // 2. Accept Offer from Modal
       const modalAcceptBtn = e.target.closest('.modal-accept-bid-btn');
       if (modalAcceptBtn) {
         const card = modalAcceptBtn.closest('.crop-bid-card');
@@ -1482,7 +1419,6 @@
         return;
       }
 
-      // 3. Accept Buyer Offer Handler (Direct Dashboard List)
       const acceptBtn = e.target.closest('.btn-accept-offer:not(.modal-accept-bid-btn)');
       if (acceptBtn) {
         const bidCard = acceptBtn.closest('.bid-item');
@@ -1499,7 +1435,6 @@
         return;
       }
 
-      // 4. Mark as sold handler
       const markSoldBtn = e.target.closest('.mark-sold-btn');
       if (markSoldBtn) {
         const cropCard = markSoldBtn.closest('.crop-card-item');
@@ -1518,7 +1453,6 @@
         return;
       }
 
-      // 5. Request callback button
       const callbackBtn = e.target.closest('.request-callback-btn');
       if (callbackBtn) {
         callbackBtn.textContent = '✓ Callback Requested';
@@ -1527,7 +1461,6 @@
         return;
       }
 
-      // 6. Universal modal close button and backdrop handler
       const closeBtn = e.target.closest('.btn-close-modal, .btn-cancel-modal, [data-close-modal]');
       if (closeBtn) {
         const modal = closeBtn.closest('.produce-modal-overlay');

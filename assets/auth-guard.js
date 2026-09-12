@@ -1,15 +1,10 @@
-/**
- * AgriMitra Unified Authentication & RBAC Guard
- * Provides session validation, role enforcement, toast notifications,
- * and seamless logout across all 6 portals.
- */
+
 
 (function () {
   'use strict';
 
-  // Base path resolution for relative links
   function getRootUrl(relativePath) {
-    const isInSubdir = window.location.pathname.includes('/farmer/') || 
+    const isInSubdir = window.location.pathname.includes('/farmer/') ||
                        window.location.pathname.includes('Agrimitra(wholesaler and distributer)');
     if (isInSubdir) {
       return '../../' + relativePath;
@@ -17,7 +12,6 @@
     return './' + relativePath;
   }
 
-  // Toast notification UI
   function showToast(message, type = 'info', duration = 3500) {
     let container = document.getElementById('agri-toast-container');
     if (!container) {
@@ -77,7 +71,6 @@
     }, duration);
   }
 
-  // Inject CSS animations if needed
   if (!document.getElementById('agri-toast-styles')) {
     const style = document.createElement('style');
     style.id = 'agri-toast-styles';
@@ -136,7 +129,6 @@
     guardRole: async function (expectedRole, options = {}) {
       const { strict = false, fallbackRedirect = 'index.html' } = options;
 
-      // 1. Verify with backend session
       let user = null;
       try {
         const res = await fetch('/api/auth/me', { credentials: 'include' });
@@ -151,7 +143,6 @@
         console.warn('[AgriMitra Auth] Could not reach backend session endpoint:', err);
       }
 
-      // Fallback to local storage if network or offline
       if (!user) {
         user = AgriMitraAuth.getCurrentUser();
       }
@@ -166,9 +157,8 @@
         return null;
       }
 
-      // Role check
       if (expectedRole && user.role) {
-        // Wholesaler and distributor can have cross-access to trading consoles
+
         const isCompatibleRole = (user.role === expectedRole) ||
           (expectedRole === 'wholesaler' && user.role === 'distributor') ||
           (expectedRole === 'distributor' && user.role === 'wholesaler');
@@ -184,7 +174,6 @@
         }
       }
 
-      // Update UI with user's name if elements exist
       AgriMitraAuth.populateUserUI(user);
       return user;
     },
@@ -235,7 +224,7 @@
 
     initGlobalInteractiveHandlers: function () {
       document.addEventListener('click', function (e) {
-        // 1. Notification bell buttons
+
         const notifBtn = e.target.closest('.icon-button, button[aria-label*="Notification" i], button[title*="Notification" i], button[aria-label*="Alert" i], button[title*="Alert" i]');
         if (notifBtn) {
           e.preventDefault();
@@ -245,7 +234,6 @@
           return;
         }
 
-        // 2. Profile Badges
         const profileBadge = e.target.closest('.user-profile-badge, .profile-pill, [data-action="profile"], #headerProfileBtn');
         if (profileBadge) {
           const fpoModal = document.getElementById('fpoProfileModal');
@@ -262,7 +250,6 @@
           }
         }
 
-        // 3. Anchor jumps for #produce, #orders, #profile across pages
         const navAnchor = e.target.closest('a[href="#produce"], a[href="#orders"], a[href="#profile"]');
         if (navAnchor) {
           const hash = navAnchor.getAttribute('href');

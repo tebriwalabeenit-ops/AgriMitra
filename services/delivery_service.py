@@ -1,10 +1,3 @@
-
-"""
-KrishiLink Delivery Service
-Handles concurrency-safe requirement claiming by Delivery Agents using
-MySQL row-level locks (SELECT ... FOR UPDATE) to prevent double acceptance.
-"""
-
 from datetime import datetime
 from database.db import get_mysql_connection
 
@@ -16,7 +9,7 @@ def accept_requirement(req_id, agent_id):
     conn = get_mysql_connection()
     try:
         with conn.cursor() as cursor:
-            # Lock the requirement row
+
             cursor.execute("""
                 SELECT id, req_code, crop_name, quantity, unit, status, farmer_id, delivery_agent_id
                 FROM farmer_requirements
@@ -38,7 +31,6 @@ def accept_requirement(req_id, agent_id):
 
             now = datetime.now()
 
-            # Assign to this delivery agent
             cursor.execute("""
                 UPDATE farmer_requirements
                 SET status = 'accepted',
@@ -47,7 +39,6 @@ def accept_requirement(req_id, agent_id):
                 WHERE id = %s
             """, (agent_id, now, req_id))
 
-            # Fetch agent name
             cursor.execute("""
                 SELECT da.agent_code, da.vehicle_type, u.full_name
                 FROM delivery_agents da
@@ -57,7 +48,6 @@ def accept_requirement(req_id, agent_id):
             agent = cursor.fetchone()
             agent_name = agent['full_name'] if agent else "Delivery Agent"
 
-            # Notify the farmer that their requirement has been accepted
             cursor.execute("SELECT user_id FROM farmers WHERE id = %s", (req['farmer_id'],))
             farmer = cursor.fetchone()
             if farmer:
@@ -120,7 +110,6 @@ def update_delivery_status(req_id, agent_id, new_status):
                     WHERE id = %s
                 """, (new_status, req_id))
 
-            # Notify farmer of transit/delivery update
             cursor.execute("SELECT user_id FROM farmers WHERE id = %s", (req['farmer_id'],))
             farmer = cursor.fetchone()
             if farmer:
@@ -143,7 +132,6 @@ def update_delivery_status(req_id, agent_id, new_status):
     finally:
         conn.close()
 
-# In-memory store for active agent GPS telemetry (updated via mobile GPS pings or simulator)
 _AGENT_LOCATIONS = {}
 
 def update_agent_location(agent_id, lat, lng, speed=42.0, heading="South-West"):
@@ -182,7 +170,6 @@ def get_delivery_route(agent_id):
             """, (agent_id,))
             agent = cursor.fetchone()
 
-            # Fetch any active assigned requirements for this agent
             cursor.execute("""
                 SELECT id, req_code, crop_name, quantity, unit, pickup_location,
                        destination_location, trip_distance_km, status
@@ -197,7 +184,6 @@ def get_delivery_route(agent_id):
     finally:
         conn.close()
 
-    # Determine vehicle live GPS position
     default_loc = {
         "lat": 31.1852,
         "lng": 75.5124,
@@ -208,7 +194,6 @@ def get_delivery_route(agent_id):
     }
     current_gps = _AGENT_LOCATIONS.get(agent_id, default_loc)
 
-    # Waypoints definition along Jalandhar -> Nakodar -> Phagwara corridor
     waypoints = [
         {
             "stop_number": 1,
@@ -254,18 +239,17 @@ def get_delivery_route(agent_id):
         }
     ]
 
-    # Road corridor polyline (lat, lng points tracing the NH 703 & Phagwara transit route)
     corridor_path = [
-        [31.3260, 75.5762], # Jalandhar Hub
-        [31.2850, 75.5450], # Lambra Bypass
-        [31.2320, 75.5120], # NH 703 North
-        [31.1852, 75.5124], # Current live vehicle position (Shankar)
-        [31.1510, 75.4950], # Nakodar Approach
-        [31.1274, 75.4720], # Nakodar FPO Stop
-        [31.1410, 75.5480], # Mehatpur Link
-        [31.1720, 75.6450], # Jandiala Junction
-        [31.2010, 75.7180], # Phagwara Bypass Road
-        [31.2240, 75.7708]  # Phagwara Wholesale Mandi
+        [31.3260, 75.5762],
+        [31.2850, 75.5450],
+        [31.2320, 75.5120],
+        [31.1852, 75.5124],
+        [31.1510, 75.4950],
+        [31.1274, 75.4720],
+        [31.1410, 75.5480],
+        [31.1720, 75.6450],
+        [31.2010, 75.7180],
+        [31.2240, 75.7708]
     ]
 
     return {
@@ -303,4 +287,3 @@ def get_delivery_route(agent_id):
         "corridor_path": corridor_path,
         "active_requirements": active_reqs
     }
-

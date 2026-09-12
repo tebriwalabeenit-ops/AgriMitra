@@ -1,10 +1,3 @@
-"""
-AgriMitra Database Connection & Transaction Manager
-Primary Engine: SQLite for zero-dependency, permanent ACID storage.
-Supports parameterized SQL execution, row factories, transaction control,
-and optional fallback/interop with MySQL.
-"""
-
 import os
 import re
 import sqlite3
@@ -24,13 +17,13 @@ class SQLiteCursorWrapper:
         return self._cursor.rowcount
 
     def execute(self, query, args=()):
-        # Translate MySQL query syntax to SQLite
+
         sql = query.replace('%s', '?')
-        # Remove MySQL-specific FOR UPDATE since SQLite locks at DB level
+
         sql = re.sub(r'\s+FOR\s+UPDATE', '', sql, flags=re.IGNORECASE)
         sql = re.sub(r'NOW\(\)', 'CURRENT_TIMESTAMP', sql, flags=re.IGNORECASE)
         sql = re.sub(r"DATE_FORMAT\(([^,]+),\s*'[^']+'\)", r"strftime('%H:%M', \1)", sql, flags=re.IGNORECASE)
-        # Handle double percent escaping %%
+
         sql = sql.replace('%%', '%')
         return self._cursor.execute(sql, args)
 
@@ -67,7 +60,6 @@ class SQLiteConnWrapper:
 
     def close(self):
         self._conn.close()
-
 
 def _create_sqlite_tables(conn):
     """Initializes all SQLite tables matching AgriMitra multi-role schema."""
@@ -242,7 +234,6 @@ def _create_sqlite_tables(conn):
         cur.execute(s)
     conn.commit()
 
-
 def get_mysql_connection():
     """
     Returns database connection.
@@ -255,10 +246,7 @@ def get_mysql_connection():
     _create_sqlite_tables(raw_conn)
     return SQLiteConnWrapper(raw_conn)
 
-
-# Aliased for clarity
 get_db_connection = get_mysql_connection
-
 
 def query_db(query, args=(), one=False, conn=None):
     """Executes a SELECT query and returns row(s) as dictionaries."""
@@ -275,7 +263,6 @@ def query_db(query, args=(), one=False, conn=None):
     finally:
         if close_conn:
             conn.close()
-
 
 def execute_db(query, args=(), commit=True, conn=None):
     """Executes an INSERT, UPDATE, or DELETE statement. Returns lastrowid or rowcount."""
@@ -299,7 +286,6 @@ def execute_db(query, args=(), commit=True, conn=None):
     finally:
         if close_conn:
             conn.close()
-
 
 def execute_script(sql_script, conn=None):
     """Executes a multi-statement SQL script."""

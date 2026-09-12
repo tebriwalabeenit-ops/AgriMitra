@@ -1,12 +1,4 @@
-/**
- * AgriMitra FPO Dashboard — Frontend Prototype Logic
- * Platform: AgriMitra · "Connect. Trade. Grow."
- * Organization: Nashik Farmers Collective
- */
 
-// ==========================================================================
-// 1. MOCK DATA STORE
-// ==========================================================================
 
 const FPO_DATA = {
   organization: {
@@ -174,12 +166,7 @@ const FPO_DATA = {
   ]
 };
 
-// State flag for empty-state toggling (demo feature)
 let isLiveState = true;
-
-// ==========================================================================
-// 2. DOM INITIALIZATION & EVENT BINDINGS
-// ==========================================================================
 
 document.addEventListener("DOMContentLoaded", () => {
   initMobileNavigation();
@@ -188,7 +175,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initCreateLotModal();
 });
 
-// Mobile navigation drawer toggle
 function initMobileNavigation() {
   const menuBtn = document.getElementById("mobileMenuBtn");
   const sidebar = document.getElementById("sidebar");
@@ -207,7 +193,6 @@ function initMobileNavigation() {
   });
 }
 
-// Sidebar links highlighting and section scrolling
 function initSidebarActiveLinks() {
   const navItems = document.querySelectorAll(".sidebar-nav .nav-item");
   navItems.forEach(item => {
@@ -215,7 +200,6 @@ function initSidebarActiveLinks() {
       const href = item.getAttribute("href");
       const section = item.getAttribute("data-section");
 
-      // If linking to a different HTML page (not an in-page anchor), allow navigation
       if (href && !href.startsWith("#")) {
         window.location.href = href;
         return;
@@ -227,7 +211,6 @@ function initSidebarActiveLinks() {
 
       handleSidebarNavigation(section);
 
-      // Close mobile sidebar if open
       const sidebar = document.getElementById("sidebar");
       const backdrop = document.getElementById("sidebarBackdrop");
       if (sidebar && sidebar.classList.contains("open")) {
@@ -238,7 +221,6 @@ function initSidebarActiveLinks() {
   });
 }
 
-// Route sidebar clicks to corresponding sections or views
 function handleSidebarNavigation(section) {
   switch (section) {
     case "overview":
@@ -292,7 +274,6 @@ function scrollToElement(id) {
   }
 }
 
-// Summary metric card clicks
 function handleMetricClick(type) {
   switch (type) {
     case "farmers":
@@ -309,10 +290,6 @@ function handleMetricClick(type) {
       break;
   }
 }
-
-// ==========================================================================
-// 3. AVAILABLE PRODUCE TABLE FILTERS
-// ==========================================================================
 
 function initProduceFilters() {
   const filterButtons = document.querySelectorAll("#produceFilterGroup .chip-filter");
@@ -335,10 +312,6 @@ function initProduceFilters() {
   });
 }
 
-// ==========================================================================
-// 4. MODALS MANAGEMENT
-// ==========================================================================
-
 function openModal(modalId) {
   const modal = document.getElementById(modalId);
   if (modal) {
@@ -355,7 +328,6 @@ function closeModal(modalId) {
   }
 }
 
-// Close modals when clicking backdrop
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("modal-backdrop")) {
     e.target.classList.remove("open");
@@ -363,7 +335,6 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// ESC key closes any open modal
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
     document.querySelectorAll(".modal-backdrop.open").forEach(m => {
@@ -372,10 +343,6 @@ document.addEventListener("keydown", (e) => {
     document.body.style.overflow = "";
   }
 });
-
-// ==========================================================================
-// 5. CREATE BULK LOT LOGIC & REAL-TIME ESTIMATOR
-// ==========================================================================
 
 function initCreateLotModal() {
   const openBtn = document.getElementById("openCreateLotModalBtn");
@@ -401,7 +368,6 @@ function updateLotFormCalculations() {
   const qty = parseFloat(qtyInput.value) || 1;
   const price = parseFloat(priceInput.value) || 20;
 
-  // Farmers ratio simulation
   let farmersPerTonne = 4;
   if (crop === "Tomatoes") farmersPerTonne = 4.6;
   if (crop === "Onions") farmersPerTonne = 3.9;
@@ -443,7 +409,6 @@ function handleCreateLotSubmit(event) {
   const grade = document.getElementById("lotGradeSelect").value;
   const price = document.getElementById("lotReservePrice").value;
 
-  // Generate new sequential Lot ID
   const newLotId = "FPO1049";
 
   const newLot = {
@@ -457,7 +422,6 @@ function handleCreateLotSubmit(event) {
     statusClass: "status-finding-buyers"
   };
 
-  // Add card to Active Bulk Lots Grid
   const lotsGrid = document.getElementById("lotsGrid");
   if (lotsGrid) {
     const lotCard = document.createElement("div");
@@ -501,17 +465,12 @@ function handleCreateLotSubmit(event) {
 
   closeModal("createLotModal");
   showToast(`Bulk Lot #${newLotId} created with ${qty} tonnes of ${crop}. Listed to buyers.`);
-  
-  // Update metric count
+
   const metricCards = document.querySelectorAll(".metric-card .metric-value");
   if (metricCards[2]) {
     metricCards[2].textContent = "13";
   }
 }
-
-// ==========================================================================
-// 6. OPPORTUNITY & PRODUCE DETAIL MODAL CONTROLS
-// ==========================================================================
 
 function openOpportunityDetail(buyerKey) {
   const buyer = FPO_DATA.buyers[buyerKey] || FPO_DATA.buyers.freshfoods;
@@ -595,11 +554,6 @@ function openMarketPricesModal() {
   openModal("marketPricesModal");
 }
 
-
-// ==========================================================================
-// 8. STATE MODE SIMULATOR (Live vs Empty State)
-// ==========================================================================
-
 const stateBtn = document.getElementById("toggleStateBtn");
 const stateLabel = document.getElementById("stateModeLabel");
 
@@ -619,7 +573,6 @@ function simulateEmptyState() {
   const dot = document.querySelector(".dot-indicator");
   if (dot) dot.classList.add("empty");
 
-  // Show empty state boxes
   const produceEmpty = document.getElementById("produceEmptyState");
   const produceTable = document.getElementById("produceTableContainer");
   if (produceEmpty && produceTable) {
@@ -660,10 +613,6 @@ function resetStateToLive() {
   showToast("Reset to live data view with 18.6 tonnes of produce.");
 }
 
-// ==========================================================================
-// 9. TOAST NOTIFICATION UTILITY
-// ==========================================================================
-
 function showToast(message) {
   const container = document.getElementById("toastContainer");
   if (!container) return;
@@ -689,11 +638,8 @@ function showToast(message) {
   }, 3200);
 }
 
-// ==========================================================================
-// 10. DYNAMIC REGISTERED FPO GREETING & AUTH BINDINGS
-// ==========================================================================
 document.addEventListener('DOMContentLoaded', () => {
-  // Wire RBAC
+
   if (window.AgriMitraAuth) {
     AgriMitraAuth.guardRole('fpo');
     const user = AgriMitraAuth.getCurrentUser();
@@ -722,14 +668,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Header profile button click -> opens fpoProfileModal
   const headerProf = document.getElementById('headerProfileBtn');
   if (headerProf) {
     headerProf.style.cursor = 'pointer';
     headerProf.addEventListener('click', () => openModal('fpoProfileModal'));
   }
 
-  // Horizontal top nav links smooth scroll & modal bindings
   document.querySelectorAll('.fpo-top-nav-bar a').forEach(link => {
     link.addEventListener('click', (e) => {
       const href = link.getAttribute('href');

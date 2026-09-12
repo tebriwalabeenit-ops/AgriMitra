@@ -1,9 +1,3 @@
-"""
-KrishiLink Auction Service
-Handles live bidding with MySQL row-level locking (SELECT ... FOR UPDATE),
-bid validation, transaction commit/rollback, and SSE event broadcasting.
-"""
-
 from datetime import datetime
 from database.db import get_mysql_connection, query_db
 from services.broadcaster import broadcaster
@@ -28,7 +22,7 @@ def place_bid(auction_id, distributor_id, bid_amount):
     conn = get_mysql_connection()
     try:
         with conn.cursor() as cursor:
-            # 1. Lock the auction row so simultaneous bids cannot overwrite each other
+
             cursor.execute("""
                 SELECT id, lot_code, product_name, starting_price, min_increment,
                        current_highest_bid, current_highest_bidder_id, start_time,
@@ -42,12 +36,10 @@ def place_bid(auction_id, distributor_id, bid_amount):
                 conn.rollback()
                 return False, "Auction session not found."
 
-            # 2. Check auction status
             if auction['status'] != 'active':
                 conn.rollback()
                 return False, f"Auction is currently {auction['status']}. Bids can only be placed on active sessions."
 
-            # 3. Check auction timeframe
             now = datetime.now()
             start_time = to_datetime(auction['start_time'])
             end_time = to_datetime(auction['end_time'])
@@ -56,12 +48,11 @@ def place_bid(auction_id, distributor_id, bid_amount):
                 return False, "Auction has not started yet."
 
             if now > end_time:
-                # Automatically mark as ended if time has elapsed
+
                 cursor.execute("UPDATE auctions SET status = 'ended' WHERE id = %s", (auction_id,))
                 conn.commit()
                 return False, "Auction countdown has reached zero. Bidding is closed."
 
-            # 4. Validate bid amount against starting price and minimum increment
             try:
                 bid_val = round(float(bid_amount), 2)
             except (ValueError, TypeError):
@@ -73,18 +64,17 @@ def place_bid(auction_id, distributor_id, bid_amount):
             starting_price = float(auction['starting_price'])
 
             if auction['current_highest_bidder_id'] is None:
-                # First bid of the auction
+
                 if bid_val < starting_price:
                     conn.rollback()
                     return False, f"Initial bid must be at least the starting floor price of ₹{starting_price:.2f}/kg."
             else:
-                # Subsequent bid
+
                 min_required = round(current_highest + min_inc, 2)
                 if bid_val < min_required:
                     conn.rollback()
                     return False, f"Your bid of ₹{bid_val:.2f} is too low. Minimum required bid is ₹{min_required:.2f}/kg (Current highest: ₹{current_highest:.2f} + Min increment: ₹{min_inc:.2f})."
 
-            # 5. Determine anonymous bidder tag for display
             cursor.execute("SELECT id, distributor_code, business_name FROM distributors WHERE id = %s", (distributor_id,))
             dist = cursor.fetchone()
             if not dist:
@@ -95,14 +85,12 @@ def place_bid(auction_id, distributor_id, bid_amount):
             code_suffix = dist_code.split('-')[-1] if '-' in dist_code else str(distributor_id)
             bidder_tag = f"Bidder #{code_suffix}"
 
-            # 6. Insert new bid into bids table
             cursor.execute("""
                 INSERT INTO bids (auction_id, distributor_id, bidder_tag, bid_amount, bid_time)
                 VALUES (%s, %s, %s, %s, %s)
             """, (auction_id, distributor_id, bidder_tag, bid_val, now))
             bid_id = cursor.lastrowid
 
-            # 7. Update auction row with new highest bid & leading bidder
             cursor.execute("""
                 UPDATE auctions
                 SET current_highest_bid = %s,
@@ -111,7 +99,6 @@ def place_bid(auction_id, distributor_id, bid_amount):
                 WHERE id = %s
             """, (bid_val, distributor_id, now, auction_id))
 
-            # 8. Outbid notification for previous leading bidder
             prev_bidder_id = auction['current_highest_bidder_id']
             if prev_bidder_id and prev_bidder_id != distributor_id:
                 cursor.execute("SELECT user_id FROM distributors WHERE id = %s", (prev_bidder_id,))
@@ -122,15 +109,13 @@ def place_bid(auction_id, distributor_id, bid_amount):
                         VALUES (%s, 'Outbid Alert', %s, 'outbid')
                     """, (prev_user['user_id'], f"You have been outbid on {auction['product_name']} (Lot #{auction['lot_code']}). New highest bid: ₹{bid_val:.2f}/kg."))
 
-            # 9. Commit transaction in MySQL
             conn.commit()
 
-            # 10. Fetch updated recent bids feed for real-time broadcast
             cursor.execute("""
                 SELECT id, bidder_tag, bid_amount, DATE_FORMAT(bid_time, '%%h:%%i %%p') AS formatted_time
-                FROM bids 
-                WHERE auction_id = %s 
-                ORDER BY bid_amount DESC, id DESC 
+                FROM bids
+                WHERE auction_id = %s
+                ORDER BY bid_amount DESC, id DESC
                 LIMIT 8
             """, (auction_id,))
             recent_bids = cursor.fetchall()
@@ -140,7 +125,6 @@ def place_bid(auction_id, distributor_id, bid_amount):
             cursor.execute("SELECT COUNT(DISTINCT distributor_id) AS total_bidders, COUNT(*) AS total_bids FROM bids WHERE auction_id = %s", (auction_id,))
             stats = cursor.fetchone()
 
-            # Calculate remaining seconds
             time_left = max(0, int((end_time - now).total_seconds()))
 
             event_payload = {
@@ -157,7 +141,6 @@ def place_bid(auction_id, distributor_id, bid_amount):
                 "timestamp": now.strftime('%I:%M %p')
             }
 
-            # 11. Broadcast to all active clients viewing this auction
             broadcaster.broadcast_bid(auction_id, event_payload)
 
             return True, {
@@ -198,18 +181,16 @@ def finalize_auction(auction_id):
 
             winner_id = auction['current_highest_bidder_id']
             if not winner_id:
-                # No bids placed, mark ended with no winner
+
                 cursor.execute("UPDATE auctions SET status = 'ended' WHERE id = %s", (auction_id,))
                 conn.commit()
                 return True, "Auction ended with no bids placed."
 
-            # Calculate total amount
             qty = float(auction['quantity'])
             rate = float(auction['current_highest_bid'])
             total_amt = round(qty * rate, 2)
             order_code = f"ORD-{auction['lot_code']}"
 
-            # Update auction with winner
             cursor.execute("""
                 UPDATE auctions
                 SET status = 'ended',
@@ -217,7 +198,6 @@ def finalize_auction(auction_id):
                 WHERE id = %s
             """, (winner_id, auction_id))
 
-            # Create or update order record
             cursor.execute("SELECT id, order_code FROM orders WHERE auction_id = %s", (auction_id,))
             existing_order = cursor.fetchone()
             if existing_order:
@@ -230,12 +210,11 @@ def finalize_auction(auction_id):
             else:
                 order_code = f"ORD-{auction['lot_code']}"
                 cursor.execute("""
-                    INSERT INTO orders 
+                    INSERT INTO orders
                     (order_code, auction_id, distributor_id, fpo_id, product_name, quantity, unit, price_per_unit, total_amount, status, payment_status)
                     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, 'confirmed', 'escrow_held')
                 """, (order_code, auction_id, winner_id, auction['fpo_id'], auction['product_name'], qty, auction['unit'], rate, total_amt))
 
-            # Notify winning distributor
             cursor.execute("SELECT user_id, business_name FROM distributors WHERE id = %s", (winner_id,))
             winner = cursor.fetchone()
             if winner:
@@ -246,7 +225,6 @@ def finalize_auction(auction_id):
 
             conn.commit()
 
-            # Broadcast auction closed event
             broadcaster.broadcast_bid(auction_id, {
                 "type": "auction_ended",
                 "auction_id": auction_id,

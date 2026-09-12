@@ -1,7 +1,4 @@
-/**
- * AgriMitra - Main Application Logic
- * Frontend-only simulated authentication and Farmer Login experience
- */
+
 
 import {
   validatePhoneNumber,
@@ -11,7 +8,7 @@ import {
 } from './validation.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  // DOM Elements
+
   const loginForm = document.getElementById('farmer-login-form');
   const phoneInput = document.getElementById('phone-number');
   const phoneGroup = document.getElementById('phone-input-group');
@@ -33,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const submitBtn = document.getElementById('login-submit-btn');
   const btnText = submitBtn.querySelector('.btn-text');
 
-  // Views & Routing
   const loginView = document.getElementById('login-view');
   const dashboardView = document.getElementById('dashboard-view');
   const registerView = document.getElementById('register-view');
@@ -42,26 +38,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const registerBackBtn = document.getElementById('register-back-btn');
   const headerBackBtn = document.getElementById('header-back-btn');
 
-  // Modal elements
   const forgotPasswordLink = document.getElementById('forgot-password-link');
   const helpModal = document.getElementById('help-modal');
   const modalCloseBtn = document.getElementById('modal-close-btn');
 
-
-
-  // -------------------------------------------------------------------------
-  // Phone Formatting & Real-time validation clear
-  // -------------------------------------------------------------------------
   phoneInput.addEventListener('input', (e) => {
     const rawVal = e.target.value;
     const formatted = formatPhoneNumberDisplay(rawVal);
-    
-    // Maintain cursor position feel while formatting
+
     if (e.target.value !== formatted) {
       e.target.value = formatted;
     }
 
-    // Clear inline error when typing
     if (phoneGroup.classList.contains('has-error')) {
       clearPhoneError();
     }
@@ -116,9 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
     clearFormAlert();
   }
 
-  // -------------------------------------------------------------------------
-  // Password Show / Hide Control
-  // -------------------------------------------------------------------------
   passwordToggleBtn.addEventListener('click', () => {
     const isPassword = passwordInput.type === 'password';
     passwordInput.type = isPassword ? 'text' : 'password';
@@ -138,9 +123,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // -------------------------------------------------------------------------
-  // Form Submission & Simulated Authentication
-  // -------------------------------------------------------------------------
   loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
     clearAllErrors();
@@ -148,7 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const rawPhone = phoneInput.value;
     const rawPassword = passwordInput.value;
 
-    // Step 1 & 2: Validate Phone Number
     const phoneResult = validatePhoneNumber(rawPhone);
     let hasError = false;
 
@@ -157,7 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
       hasError = true;
     }
 
-    // Step 3: Validate Password
     const passwordResult = validatePassword(rawPassword);
     if (!passwordResult.isValid) {
       showPasswordError(passwordResult.error);
@@ -165,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (hasError) {
-      // Focus first erroneous field
+
       if (!phoneResult.isValid) {
         phoneInput.focus();
       } else {
@@ -174,21 +154,18 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Optional simulated invalid credential test:
-    // If the tester enters password "fail" or "wrong", test the credential mismatch error:
     if (rawPassword.toLowerCase() === 'fail' || rawPassword.toLowerCase() === 'wrong') {
       showFormAlert(ValidationMessages.CREDENTIALS_MISMATCH);
       passwordInput.focus();
       return;
     }
 
-    // Step 4 & 5: Loading State & Simulated Authentication
     submitBtn.disabled = true;
     submitBtn.classList.add('loading');
     btnText.textContent = 'Logging in...';
 
     setTimeout(() => {
-      // Step 6: Transition to Farmer Dashboard (/farmer/dashboard)
+
       submitBtn.classList.remove('loading');
       submitBtn.disabled = false;
       btnText.textContent = 'Login';
@@ -197,9 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 750);
   });
 
-  // -------------------------------------------------------------------------
-  // Simulated View Navigation
-  // -------------------------------------------------------------------------
   function navigateToDashboard() {
     loginView.style.display = 'none';
     if (registerView) registerView.style.display = 'none';
@@ -226,14 +200,12 @@ document.addEventListener('DOMContentLoaded', () => {
     history.pushState({ view: 'register' }, '', '#farmer/register');
   }
 
-  // Sign out button returns to login
   if (signOutBtn) {
     signOutBtn.addEventListener('click', () => {
       navigateToLogin();
     });
   }
 
-  // Register link handler
   if (registerLink) {
     registerLink.addEventListener('click', (e) => {
       e.preventDefault();
@@ -251,11 +223,11 @@ document.addEventListener('DOMContentLoaded', () => {
   if (headerBackBtn) {
     headerBackBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      // If currently on dashboard or register, go to login
+
       if (dashboardView.classList.contains('active') || (registerView && registerView.style.display === 'flex')) {
         navigateToLogin();
       } else {
-        // Reset form for fresh testing
+
         loginForm.reset();
         clearAllErrors();
         phoneInput.focus();
@@ -263,7 +235,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Handle browser back/forward buttons
   window.addEventListener('popstate', (e) => {
     const hash = window.location.hash;
     if (hash.includes('dashboard')) {
@@ -275,11 +246,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-
-
-  // -------------------------------------------------------------------------
-  // Forgot Password Modal
-  // -------------------------------------------------------------------------
   if (forgotPasswordLink && helpModal) {
     forgotPasswordLink.addEventListener('click', (e) => {
       e.preventDefault();

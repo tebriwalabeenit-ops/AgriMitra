@@ -6,7 +6,6 @@
   <title>Register as an FPO | AgriMitra - Connect. Trade. Grow.</title>
   <meta name="description" content="Register your Farmer Producer Organization (FPO) on AgriMitra to aggregate member harvest, connect with verified institutional buyers, and secure fair mandi pricing.">
 
-  <!-- Google Fonts: Plus Jakarta Sans for crisp, modern fintech-grade typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -51,7 +50,6 @@
       flex-direction: column;
     }
 
-    /* Minimal Brand Header */
     .site-header {
       position: sticky;
       top: 0;
@@ -150,7 +148,6 @@
       height: 16px;
     }
 
-    /* Main Content Area */
     .login-main {
       flex: 1;
       display: flex;
@@ -170,7 +167,6 @@
       width: 100%;
     }
 
-    /* Left Side Visual Pane */
     .brand-visual-pane {
       display: flex;
       flex-direction: column;
@@ -277,7 +273,6 @@
       color: var(--color-primary);
     }
 
-    /* Right Side Form Pane */
     .form-pane {
       display: flex;
       justify-content: center;
@@ -328,7 +323,6 @@
       line-height: 1.5;
     }
 
-    /* Form Styles */
     .reg-form-section {
       margin-bottom: 1.35rem;
     }
@@ -467,7 +461,6 @@
       z-index: 1;
     }
 
-    /* Selectable Product Choice Grid */
     .product-cards-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -700,7 +693,6 @@
       text-decoration: underline;
     }
 
-    /* Minimal Clean Footer */
     .site-footer {
       padding: 1.25rem 1.5rem;
       text-align: center;
@@ -710,7 +702,6 @@
       margin-top: auto;
     }
 
-    /* Responsive Adaptations: Desktop Split View (Left Still, Right Scrolls) */
     @media (min-width: 769px) and (min-height: 550px) {
       html, body {
         height: 100%;
@@ -736,7 +727,6 @@
         align-items: stretch;
       }
 
-      /* Left side: locked still in place, vertically centered, no scroll */
       .brand-visual-pane {
         height: 100%;
         overflow-y: auto;
@@ -752,7 +742,6 @@
         display: none;
       }
 
-      /* Right side: only this side scrolls */
       .form-pane {
         height: 100%;
         overflow-y: auto;
@@ -860,11 +849,10 @@
         gap: 0.5rem;
       }
     }
-  </style>
+</style>
 </head>
 <body>
 
-  <!-- Minimal Brand Header -->
   <header class="site-header" role="banner">
     <div class="header-container">
       <a href="../index.html" class="brand-logo" id="header-brand-logo" aria-label="AgriMitra Home">
@@ -891,11 +879,9 @@
     </div>
   </header>
 
-  <!-- Main Content Area: Responsive Two-Column Layout -->
   <main class="login-main" role="main">
     <div class="split-layout">
-      
-      <!-- Left Side: Brand & Subtle Agricultural Visual Section -->
+
       <section class="brand-visual-pane" aria-labelledby="brand-title">
         <div class="brand-badge">
           <span class="brand-badge-dot"></span>
@@ -917,7 +903,6 @@
           Empower your Farmer Producer Organization to aggregate member harvest, negotiate institutional bulk contracts, secure transparent market prices, and streamline logistics.
         </p>
 
-        <!-- Subtle Agricultural Visual Treatment (Terrace curves, field furrows, clean geometry) -->
         <div class="agri-visual-container" aria-hidden="true">
           <svg class="agri-visual-svg" viewBox="0 0 460 180" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -939,7 +924,7 @@
 
             <path d="M-20 180 C80 140, 200 160, 480 120 L480 180 Z" fill="url(#fieldGrad1)"/>
             <path d="M-20 180 C120 110, 260 135, 480 85 L480 180 Z" fill="url(#fieldGrad2)"/>
-            
+
             <path d="M-20 160 C90 125, 230 145, 480 100" stroke="#166534" stroke-opacity="0.18" stroke-width="1.5" stroke-dasharray="4 4"/>
             <path d="M-20 135 C130 95, 280 115, 480 65" stroke="#15803d" stroke-opacity="0.22" stroke-width="1.5"/>
             <path d="M-20 105 C150 70, 310 90, 480 45" stroke="#15803d" stroke-opacity="0.12" stroke-width="1.2"/>
@@ -964,7 +949,6 @@
           </svg>
         </div>
 
-        <!-- Subtle Trust Features -->
         <div class="visual-trust-pills" aria-label="Platform Highlights">
           <span class="trust-pill">
             <svg viewBox="0 0 20 20" fill="currentColor">
@@ -993,59 +977,51 @@
         </div>
       </section>
 
-      <!-- Right Side: Centered Registration Card -->
       <section class="form-pane">
         <div class="login-card">
-          
-          <!-- Card Header -->
+
           <div class="card-header">
             <div class="card-pretitle">FPO Onboarding</div>
             <h2 class="card-title">Register as an FPO</h2>
             <p class="card-subtitle">Connect your farmer collective with verified institutional buyers, guaranteed settlements, and fair market opportunities.</p>
           </div>
 
-          <!-- Form Content -->
           <form id="fpo-registration-form" action="index.html" method="get" autocomplete="on">
 
-            <!-- ================================================================
-                 SECTION 1 — ORGANIZATION DETAILS
-                 ================================================================ -->
             <section class="reg-form-section" aria-labelledby="section-org-heading">
               <div class="reg-section-header">
                 <h2 id="section-org-heading" class="reg-section-title">1. Organization Details</h2>
               </div>
 
               <div class="form-grid-2">
-                <!-- FPO Name -->
+
                 <div class="form-group form-group-full">
                   <label for="fpo-name" class="form-label">FPO / Collective Name</label>
-                  <input 
-                    type="text" 
-                    id="fpo-name" 
-                    name="fpoName" 
-                    class="form-control" 
-                    placeholder="Enter FPO or Organization Name" 
-                    required 
+                  <input
+                    type="text"
+                    id="fpo-name"
+                    name="fpoName"
+                    class="form-control"
+                    placeholder="Enter FPO or Organization Name"
+                    required
                     autocomplete="organization"
                   >
                   <span class="form-helper">Example: Punjab Farmers Producer Organization</span>
                 </div>
 
-                <!-- Registration Number -->
                 <div class="form-group">
                   <label for="fpo-reg-number" class="form-label">Registration Number</label>
-                  <input 
-                    type="text" 
-                    id="fpo-reg-number" 
-                    name="registrationNumber" 
-                    class="form-control" 
-                    placeholder="Enter registration number" 
+                  <input
+                    type="text"
+                    id="fpo-reg-number"
+                    name="registrationNumber"
+                    class="form-control"
+                    placeholder="Enter registration number"
                     required
                   >
                   <span class="form-helper">Official CIN / Society / Cooperative registration number.</span>
                 </div>
 
-                <!-- Year of Establishment -->
                 <div class="form-group">
                   <label for="fpo-est-year" class="form-label">Year of Establishment</label>
                   <select id="fpo-est-year" name="yearOfEstablishment" class="form-control" required>
@@ -1075,9 +1051,6 @@
               </div>
             </section>
 
-            <!-- ================================================================
-                 SECTION 2 — AUTHORIZED REPRESENTATIVE DETAILS
-                 ================================================================ -->
             <section class="reg-form-section" aria-labelledby="section-rep-heading">
               <div class="reg-section-header">
                 <h2 id="section-rep-heading" class="reg-section-title">2. Authorized Representative</h2>
@@ -1085,21 +1058,20 @@
               </div>
 
               <div class="form-grid-2">
-                <!-- Full Name -->
+
                 <div class="form-group">
                   <label for="rep-full-name" class="form-label">Full Name</label>
-                  <input 
-                    type="text" 
-                    id="rep-full-name" 
-                    name="representativeFullName" 
-                    class="form-control" 
-                    placeholder="Enter representative's full name" 
-                    required 
+                  <input
+                    type="text"
+                    id="rep-full-name"
+                    name="representativeFullName"
+                    class="form-control"
+                    placeholder="Enter representative's full name"
+                    required
                     autocomplete="name"
                   >
                 </div>
 
-                <!-- Designation -->
                 <div class="form-group">
                   <label for="rep-designation" class="form-label">Designation</label>
                   <select id="rep-designation" name="representativeDesignation" class="form-control" required>
@@ -1113,48 +1085,43 @@
                   </select>
                 </div>
 
-                <!-- Mobile Number -->
                 <div class="form-group">
                   <label for="rep-mobile" class="form-label">Mobile Number</label>
                   <div class="input-addon-group">
                     <span class="input-addon-prefix" aria-hidden="true">+91</span>
-                    <input 
-                      type="tel" 
-                      id="rep-mobile" 
-                      name="representativeMobile" 
-                      class="form-control" 
-                      placeholder="Enter mobile number" 
-                      pattern="[0-9]{10}" 
-                      maxlength="10" 
-                      inputmode="numeric" 
-                      required 
+                    <input
+                      type="tel"
+                      id="rep-mobile"
+                      name="representativeMobile"
+                      class="form-control"
+                      placeholder="Enter mobile number"
+                      pattern="[0-9]{10}"
+                      maxlength="10"
+                      inputmode="numeric"
+                      required
                       autocomplete="tel-national"
                       aria-label="10-digit mobile number"
                     >
                   </div>
                 </div>
 
-                <!-- Email Address -->
                 <div class="form-group">
                   <label for="rep-email" class="form-label">
                     <span>Email Address</span>
                     <span class="form-label-optional">(Optional)</span>
                   </label>
-                  <input 
-                    type="email" 
-                    id="rep-email" 
-                    name="representativeEmail" 
-                    class="form-control" 
-                    placeholder="Enter email address" 
+                  <input
+                    type="email"
+                    id="rep-email"
+                    name="representativeEmail"
+                    class="form-control"
+                    placeholder="Enter email address"
                     autocomplete="email"
                   >
                 </div>
               </div>
             </section>
 
-            <!-- ================================================================
-                 SECTION 3 — FARMER COMMUNITY & PRODUCE DETAILS
-                 ================================================================ -->
             <section class="reg-form-section" aria-labelledby="section-farmer-heading">
               <div class="reg-section-header">
                 <h2 id="section-farmer-heading" class="reg-section-title">3. Farmer Community &amp; Produce</h2>
@@ -1162,22 +1129,21 @@
               </div>
 
               <div class="form-grid-2">
-                <!-- Number of Farmers -->
+
                 <div class="form-group form-group-full">
                   <label for="farmers-count" class="form-label">Number of Associated Farmers</label>
-                  <input 
-                    type="number" 
-                    id="farmers-count" 
-                    name="numberOfFarmers" 
-                    class="form-control" 
-                    placeholder="e.g. 250" 
-                    min="1" 
+                  <input
+                    type="number"
+                    id="farmers-count"
+                    name="numberOfFarmers"
+                    class="form-control"
+                    placeholder="e.g. 250"
+                    min="1"
                     required
                   >
                   <span class="form-helper">Total active farmer members in your collective. Example: 250</span>
                 </div>
 
-                <!-- Main Agricultural Products -->
                 <div class="form-group form-group-full">
                   <label class="form-label">
                     <span>Main Agricultural Products</span>
@@ -1188,7 +1154,7 @@
                   </span>
 
                   <div class="product-cards-grid" role="group" aria-label="Main Agricultural Products">
-                    <!-- Grains & Cereals -->
+
                     <label class="product-card-item">
                       <input type="checkbox" name="agriculturalProducts" value="Grains and Cereals">
                       <div class="product-card-box">
@@ -1204,7 +1170,6 @@
                       </div>
                     </label>
 
-                    <!-- Vegetables -->
                     <label class="product-card-item">
                       <input type="checkbox" name="agriculturalProducts" value="Vegetables">
                       <div class="product-card-box">
@@ -1220,7 +1185,6 @@
                       </div>
                     </label>
 
-                    <!-- Fruits -->
                     <label class="product-card-item">
                       <input type="checkbox" name="agriculturalProducts" value="Fruits">
                       <div class="product-card-box">
@@ -1236,7 +1200,6 @@
                       </div>
                     </label>
 
-                    <!-- Pulses -->
                     <label class="product-card-item">
                       <input type="checkbox" name="agriculturalProducts" value="Pulses">
                       <div class="product-card-box">
@@ -1252,7 +1215,6 @@
                       </div>
                     </label>
 
-                    <!-- Oilseeds & Spices -->
                     <label class="product-card-item">
                       <input type="checkbox" name="agriculturalProducts" value="Oilseeds and Spices">
                       <div class="product-card-box">
@@ -1268,7 +1230,6 @@
                       </div>
                     </label>
 
-                    <!-- Other Agricultural Products -->
                     <label class="product-card-item">
                       <input type="checkbox" name="agriculturalProducts" value="Other Agricultural Products">
                       <div class="product-card-box">
@@ -1288,9 +1249,6 @@
               </div>
             </section>
 
-            <!-- ================================================================
-                 SECTION 4 — FPO ADDRESS & LOCATION
-                 ================================================================ -->
             <section class="reg-form-section" aria-labelledby="section-address-heading">
               <div class="reg-section-header">
                 <h2 id="section-address-heading" class="reg-section-title">4. FPO Location</h2>
@@ -1298,7 +1256,7 @@
               </div>
 
               <div class="form-grid-2">
-                <!-- State -->
+
                 <div class="form-group">
                   <label for="fpo-state" class="form-label">State</label>
                   <select id="fpo-state" name="state" class="form-control" required>
@@ -1329,7 +1287,6 @@
                   </select>
                 </div>
 
-                <!-- District (Populated dynamically based on selected State) -->
                 <div class="form-group">
                   <label for="fpo-district" class="form-label">District</label>
                   <select id="fpo-district" name="district" class="form-control" required disabled>
@@ -1337,40 +1294,35 @@
                   </select>
                 </div>
 
-                <!-- PIN Code -->
                 <div class="form-group form-group-full">
                   <label for="fpo-pincode" class="form-label">PIN Code</label>
-                  <input 
-                    type="text" 
-                    id="fpo-pincode" 
-                    name="pincode" 
-                    class="form-control" 
-                    placeholder="Enter 6-digit PIN code" 
-                    pattern="[0-9]{6}" 
-                    maxlength="6" 
-                    inputmode="numeric" 
+                  <input
+                    type="text"
+                    id="fpo-pincode"
+                    name="pincode"
+                    class="form-control"
+                    placeholder="Enter 6-digit PIN code"
+                    pattern="[0-9]{6}"
+                    maxlength="6"
+                    inputmode="numeric"
                     required
                   >
                 </div>
 
-                <!-- Complete Address -->
                 <div class="form-group form-group-full">
                   <label for="fpo-address" class="form-label">Complete Address</label>
-                  <textarea 
-                    id="fpo-address" 
-                    name="completeAddress" 
-                    class="form-control" 
-                    rows="3" 
-                    placeholder="Enter registered office or aggregation center address" 
+                  <textarea
+                    id="fpo-address"
+                    name="completeAddress"
+                    class="form-control"
+                    rows="3"
+                    placeholder="Enter registered office or aggregation center address"
                     required
                   ></textarea>
                 </div>
               </div>
             </section>
 
-            <!-- ================================================================
-                 SECTION 5 — ACCOUNT SECURITY
-                 ================================================================ -->
             <section class="reg-form-section" aria-labelledby="section-security-heading">
               <div class="reg-section-header">
                 <h2 id="section-security-heading" class="reg-section-title">5. Account Security</h2>
@@ -1378,16 +1330,16 @@
               </div>
 
               <div class="form-grid-2">
-                <!-- Password -->
+
                 <div class="form-group">
                   <label for="fpo-password" class="form-label">Password</label>
                   <div class="password-input-wrapper">
-                    <input 
-                      type="password" 
-                      id="fpo-password" 
-                      name="password" 
-                      class="form-control" 
-                      placeholder="Create password (min. 6 characters)" 
+                    <input
+                      type="password"
+                      id="fpo-password"
+                      name="password"
+                      class="form-control"
+                      placeholder="Create password (min. 6 characters)"
                       autocomplete="new-password"
                       required
                     >
@@ -1402,7 +1354,7 @@
                       </svg>
                     </button>
                   </div>
-                  <!-- Password Strength Indicator -->
+
                   <div class="password-strength-wrap" id="pwd-strength-wrap" style="display: none; margin-top: 0.45rem;">
                     <div class="strength-bar-track" style="display: flex; gap: 4px; height: 4px; margin-bottom: 4px;">
                       <div class="strength-bar-seg" id="pwd-seg-1" style="flex: 1; height: 100%; border-radius: 2px; background: #e2e8f0; transition: background-color 200ms ease;"></div>
@@ -1417,16 +1369,15 @@
                   </div>
                 </div>
 
-                <!-- Confirm Password -->
                 <div class="form-group">
                   <label for="fpo-confirm-password" class="form-label">Confirm Password</label>
                   <div class="password-input-wrapper">
-                    <input 
-                      type="password" 
-                      id="fpo-confirm-password" 
-                      name="confirm_password" 
-                      class="form-control" 
-                      placeholder="Re-enter your password" 
+                    <input
+                      type="password"
+                      id="fpo-confirm-password"
+                      name="confirm_password"
+                      class="form-control"
+                      placeholder="Re-enter your password"
                       autocomplete="new-password"
                       required
                     >
@@ -1441,7 +1392,7 @@
                       </svg>
                     </button>
                   </div>
-                  <!-- Match status indicator -->
+
                   <div id="pwd-match-status" style="display: none; align-items: center; gap: 5px; font-size: 0.75rem; margin-top: 0.45rem;">
                     <svg id="pwd-match-icon" width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
                       <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
@@ -1452,9 +1403,6 @@
               </div>
             </section>
 
-            <!-- ================================================================
-                 TERMS AND CONDITIONS
-                 ================================================================ -->
             <div class="terms-agreement-block">
               <label class="terms-checkbox-label">
                 <input type="checkbox" id="fpo-confirm-info" name="confirmInformation" required>
@@ -1466,9 +1414,6 @@
               </label>
             </div>
 
-            <!-- ================================================================
-                 REGISTER BUTTON
-                 ================================================================ -->
             <div style="margin-top: 1.25rem;">
               <button type="submit" class="btn-register-submit" id="btn-submit-fpo">
                 REGISTER AS FPO
@@ -1478,7 +1423,6 @@
               </p>
             </div>
 
-            <!-- Existing Account Navigation Link -->
             <div class="already-account-section" id="already-account-section">
               <span class="already-text" id="already-registered-text" onclick="window.location.href='../index.html#login?role=fpo';" title="Click to login to your existing account" style="cursor: pointer;">Already registered?</span>
               <a href="../index.html#login?role=fpo" id="link-login-fpo" class="already-reg-link">Login here &rarr;</a>
@@ -1493,12 +1437,10 @@
     </div>
   </main>
 
-  <!-- Clean, minimal footer -->
   <footer class="site-footer">
     <p>&copy; 2026 AgriMitra. Dedicated to empowering India's agricultural supply chain.</p>
   </footer>
 
-  <!-- Dynamic State-to-District Filtering Script -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const stateSelect = document.getElementById('fpo-state');
@@ -1506,96 +1448,96 @@
 
       const districtsByState = {
         "Punjab": [
-          "Amritsar", "Barnala", "Bathinda", "Faridkot", "Fatehgarh Sahib", "Fazilka", 
-          "Firozpur", "Gurdaspur", "Hoshiarpur", "Jalandhar", "Kapurthala", "Ludhiana", 
-          "Mansa", "Moga", "Muktsar", "Pathankot", "Patiala", "Rupnagar", "SAS Nagar (Mohali)", 
+          "Amritsar", "Barnala", "Bathinda", "Faridkot", "Fatehgarh Sahib", "Fazilka",
+          "Firozpur", "Gurdaspur", "Hoshiarpur", "Jalandhar", "Kapurthala", "Ludhiana",
+          "Mansa", "Moga", "Muktsar", "Pathankot", "Patiala", "Rupnagar", "SAS Nagar (Mohali)",
           "Sangrur", "SBS Nagar (Nawanshahr)", "Tarn Taran", "Other District"
         ],
         "Haryana": [
-          "Ambala", "Bhiwani", "Charkhi Dadri", "Faridabad", "Fatehabad", "Gurugram", 
-          "Hisar", "Jhajjar", "Jind", "Kaithal", "Karnal", "Kurukshetra", "Mahendragarh", 
-          "Nuh", "Palwal", "Panchkula", "Panipat", "Rewari", "Rohtak", "Sirsa", 
+          "Ambala", "Bhiwani", "Charkhi Dadri", "Faridabad", "Fatehabad", "Gurugram",
+          "Hisar", "Jhajjar", "Jind", "Kaithal", "Karnal", "Kurukshetra", "Mahendragarh",
+          "Nuh", "Palwal", "Panchkula", "Panipat", "Rewari", "Rohtak", "Sirsa",
           "Sonipat", "Yamunanagar", "Other District"
         ],
         "Uttar Pradesh": [
-          "Agra", "Aligarh", "Ayodhya", "Bareilly", "Bulandshahr", "Ghaziabad", 
-          "Gorakhpur", "Jhansi", "Kanpur Nagar", "Lucknow", "Mathura", "Meerut", 
+          "Agra", "Aligarh", "Ayodhya", "Bareilly", "Bulandshahr", "Ghaziabad",
+          "Gorakhpur", "Jhansi", "Kanpur Nagar", "Lucknow", "Mathura", "Meerut",
           "Moradabad", "Muzaffarnagar", "Prayagraj", "Saharanpur", "Varanasi", "Other District"
         ],
         "Madhya Pradesh": [
-          "Bhopal", "Chhindwara", "Dewas", "Dhar", "Gwalior", "Hoshangabad", 
-          "Indore", "Jabalpur", "Khandwa", "Khargone", "Mandsaur", "Morena", 
+          "Bhopal", "Chhindwara", "Dewas", "Dhar", "Gwalior", "Hoshangabad",
+          "Indore", "Jabalpur", "Khandwa", "Khargone", "Mandsaur", "Morena",
           "Ratlam", "Rewa", "Sagar", "Satna", "Sehore", "Ujjain", "Vidisha", "Other District"
         ],
         "Maharashtra": [
-          "Ahmednagar", "Akola", "Amravati", "Chhatrapati Sambhaji Nagar", "Dhule", 
-          "Jalgaon", "Kolhapur", "Latur", "Nagpur", "Nanded", "Nashik", "Pune", 
+          "Ahmednagar", "Akola", "Amravati", "Chhatrapati Sambhaji Nagar", "Dhule",
+          "Jalgaon", "Kolhapur", "Latur", "Nagpur", "Nanded", "Nashik", "Pune",
           "Sangli", "Satara", "Solapur", "Thane", "Yavatmal", "Other District"
         ],
         "Rajasthan": [
-          "Ajmer", "Alwar", "Barmer", "Bharatpur", "Bhilwara", "Bikaner", 
-          "Chittorgarh", "Ganganagar", "Hanumangarh", "Jaipur", "Jodhpur", "Kota", 
+          "Ajmer", "Alwar", "Barmer", "Bharatpur", "Bhilwara", "Bikaner",
+          "Chittorgarh", "Ganganagar", "Hanumangarh", "Jaipur", "Jodhpur", "Kota",
           "Nagaur", "Pali", "Sikar", "Tonk", "Udaipur", "Other District"
         ],
         "Gujarat": [
-          "Ahmedabad", "Amreli", "Anand", "Banaskantha", "Bharuch", "Bhavnagar", 
-          "Gandhinagar", "Jamnagar", "Junagadh", "Kheda", "Mehsana", "Morbi", 
+          "Ahmedabad", "Amreli", "Anand", "Banaskantha", "Bharuch", "Bhavnagar",
+          "Gandhinagar", "Jamnagar", "Junagadh", "Kheda", "Mehsana", "Morbi",
           "Patan", "Rajkot", "Sabarkantha", "Surat", "Surendranagar", "Vadodara", "Other District"
         ],
         "Karnataka": [
-          "Bagalkot", "Ballari", "Belagavi", "Bengaluru Rural", "Bengaluru Urban", 
-          "Bidar", "Chikkamagaluru", "Davanagere", "Dharwad", "Hassan", "Kalaburagi", 
+          "Bagalkot", "Ballari", "Belagavi", "Bengaluru Rural", "Bengaluru Urban",
+          "Bidar", "Chikkamagaluru", "Davanagere", "Dharwad", "Hassan", "Kalaburagi",
           "Mandya", "Mysuru", "Raichur", "Shivamogga", "Tumakuru", "Vijayapura", "Other District"
         ],
         "Andhra Pradesh": [
-          "Anantapur", "Chittoor", "East Godavari", "Guntur", "Kadapa", "Krishna", 
-          "Kurnool", "Nellore", "Prakasam", "Srikakulam", "Visakhapatnam", "Vizianagaram", 
+          "Anantapur", "Chittoor", "East Godavari", "Guntur", "Kadapa", "Krishna",
+          "Kurnool", "Nellore", "Prakasam", "Srikakulam", "Visakhapatnam", "Vizianagaram",
           "West Godavari", "Other District"
         ],
         "Telangana": [
-          "Adilabad", "Bhadradri Kothagudem", "Hyderabad", "Jagtial", "Karimnagar", 
-          "Khammam", "Mahabubnagar", "Mancherial", "Medak", "Medchal-Malkajgiri", 
-          "Nalgonda", "Nizamabad", "Rangareddy", "Sangareddy", "Siddipet", "Suryapet", 
+          "Adilabad", "Bhadradri Kothagudem", "Hyderabad", "Jagtial", "Karimnagar",
+          "Khammam", "Mahabubnagar", "Mancherial", "Medak", "Medchal-Malkajgiri",
+          "Nalgonda", "Nizamabad", "Rangareddy", "Sangareddy", "Siddipet", "Suryapet",
           "Warangal", "Other District"
         ],
         "Tamil Nadu": [
-          "Chennai", "Coimbatore", "Cuddalore", "Dharmapuri", "Dindigul", "Erode", 
-          "Kanchipuram", "Madurai", "Namakkal", "Salem", "Thanjavur", "Tiruchirappalli", 
+          "Chennai", "Coimbatore", "Cuddalore", "Dharmapuri", "Dindigul", "Erode",
+          "Kanchipuram", "Madurai", "Namakkal", "Salem", "Thanjavur", "Tiruchirappalli",
           "Tirunelveli", "Tiruppur", "Vellore", "Villupuram", "Other District"
         ],
         "Bihar": [
-          "Arrah (Bhojpur)", "Begusarai", "Bhagalpur", "Darbhanga", "Gaya", 
-          "Katihar", "Madhubani", "Muzaffarpur", "Nalanda", "Nawada", "Patna", 
+          "Arrah (Bhojpur)", "Begusarai", "Bhagalpur", "Darbhanga", "Gaya",
+          "Katihar", "Madhubani", "Muzaffarpur", "Nalanda", "Nawada", "Patna",
           "Purnia", "Rohtas", "Samastipur", "Saran", "Siwan", "Vaishali", "Other District"
         ],
         "West Bengal": [
-          "Bankura", "Birbhum", "Cooch Behar", "Dakshin Dinajpur", "Hooghly", 
-          "Howrah", "Jalpaiguri", "Jhargram", "Malda", "Murshidabad", "Nadia", 
-          "North 24 Parganas", "Paschim Bardhaman", "Paschim Medinipur", 
-          "Purba Bardhaman", "Purba Medinipur", "Purulia", "South 24 Parganas", 
+          "Bankura", "Birbhum", "Cooch Behar", "Dakshin Dinajpur", "Hooghly",
+          "Howrah", "Jalpaiguri", "Jhargram", "Malda", "Murshidabad", "Nadia",
+          "North 24 Parganas", "Paschim Bardhaman", "Paschim Medinipur",
+          "Purba Bardhaman", "Purba Medinipur", "Purulia", "South 24 Parganas",
           "Uttar Dinajpur", "Other District"
         ],
         "Odisha": [
-          "Balangir", "Balasore", "Bargarh", "Bhadrak", "Cuttack", "Dhenkanal", 
-          "Ganjam", "Jagatsinghpur", "Jajpur", "Jharsuguda", "Kalahandi", "Kendrapara", 
+          "Balangir", "Balasore", "Bargarh", "Bhadrak", "Cuttack", "Dhenkanal",
+          "Ganjam", "Jagatsinghpur", "Jajpur", "Jharsuguda", "Kalahandi", "Kendrapara",
           "Khordha", "Mayurbhanj", "Puri", "Sambalpur", "Sundargarh", "Other District"
         ],
         "Kerala": [
-          "Alappuzha", "Ernakulam", "Idukki", "Kannur", "Kasaragod", "Kollam", 
-          "Kottayam", "Kozhikode", "Malappuram", "Palakkad", "Pathanamthitta", 
+          "Alappuzha", "Ernakulam", "Idukki", "Kannur", "Kasaragod", "Kollam",
+          "Kottayam", "Kozhikode", "Malappuram", "Palakkad", "Pathanamthitta",
           "Thiruvananthapuram", "Thrissur", "Wayanad", "Other District"
         ],
         "Assam": [
-          "Barpeta", "Cachar", "Darrang", "Dhubri", "Dibrugarh", "Goalpara", 
-          "Golaghat", "Jorhat", "Kamrup", "Kamrup Metropolitan", "Nagaon", 
+          "Barpeta", "Cachar", "Darrang", "Dhubri", "Dibrugarh", "Goalpara",
+          "Golaghat", "Jorhat", "Kamrup", "Kamrup Metropolitan", "Nagaon",
           "Sivasagar", "Sonitpur", "Tinsukia", "Other District"
         ],
         "Chhattisgarh": [
-          "Bilaspur", "Durg", "Janjgir-Champa", "Korba", "Raigarh", "Raipur", 
+          "Bilaspur", "Durg", "Janjgir-Champa", "Korba", "Raigarh", "Raipur",
           "Rajnandgaon", "Surguja", "Bastar", "Other District"
         ],
         "Jharkhand": [
-          "Bokaro", "Deoghar", "Dhanbad", "East Singhbhum (Jamshedpur)", "Hazaribagh", 
+          "Bokaro", "Deoghar", "Dhanbad", "East Singhbhum (Jamshedpur)", "Hazaribagh",
           "Ranchi", "West Singhbhum", "Other District"
         ],
         "Uttarakhand": [
@@ -1605,14 +1547,14 @@
           "Kangra", "Kullu", "Mandi", "Shimla", "Solan", "Una", "Other District"
         ],
         "Delhi": [
-          "Central Delhi", "East Delhi", "New Delhi", "North Delhi", "North East Delhi", 
+          "Central Delhi", "East Delhi", "New Delhi", "North Delhi", "North East Delhi",
           "North West Delhi", "Shahdara", "South Delhi", "South East Delhi", "South West Delhi", "West Delhi"
         ],
         "Jammu & Kashmir": [
           "Anantnag", "Baramulla", "Budgam", "Jammu", "Kathua", "Pulwama", "Srinagar", "Udhampur", "Other District"
         ],
         "Other": [
-          "Central District", "East District", "North District", "South District", 
+          "Central District", "East District", "North District", "South District",
           "West District", "Other District"
         ]
       };
@@ -1655,7 +1597,6 @@
         updateDistricts();
       }
 
-      // Enable mouse-wheel scrolling on form pane even when hovering over left visual pane
       const brandVisualPane = document.querySelector('.brand-visual-pane');
       const formPane = document.querySelector('.form-pane');
       if (brandVisualPane && formPane) {
@@ -1666,7 +1607,6 @@
         }, { passive: true });
       }
 
-      // Password Show/Hide Toggle Logic
       function setupPasswordToggle(btnId, inputId) {
         const btn = document.getElementById(btnId);
         const input = document.getElementById(inputId);
@@ -1691,7 +1631,6 @@
       setupPasswordToggle('btn-toggle-pwd', 'fpo-password');
       setupPasswordToggle('btn-toggle-confirm', 'fpo-confirm-password');
 
-      // Password Strength & Match Checking
       const pwdInput = document.getElementById('fpo-password');
       const confirmPwdInput = document.getElementById('fpo-confirm-password');
       const strengthWrap = document.getElementById('pwd-strength-wrap');
@@ -1774,7 +1713,6 @@
         });
       }
 
-      // Registration Form Submission -> Enforce Compulsory Validation
       const fpoForm = document.querySelector('form');
       const fpoSubmitBtn = document.getElementById('btn-submit-fpo') || document.querySelector('.btn-register-submit');
 
@@ -1783,13 +1721,11 @@
           e.preventDefault();
         }
 
-        // 1. Standard HTML5 validity check on all required fields
         if (!fpoForm.checkValidity()) {
           fpoForm.reportValidity();
           return false;
         }
 
-        // 2. Compulsory Password Length Check
         if (pwdInput && pwdInput.value.length < 6) {
           pwdInput.setCustomValidity('Password must be at least 6 characters long.');
           pwdInput.reportValidity();
@@ -1799,7 +1735,6 @@
           pwdInput.setCustomValidity('');
         }
 
-        // 3. Compulsory Password Match Check
         if (pwdInput && confirmPwdInput && pwdInput.value !== confirmPwdInput.value) {
           confirmPwdInput.setCustomValidity('Passwords do not match.');
           confirmPwdInput.reportValidity();
@@ -1809,7 +1744,6 @@
           confirmPwdInput.setCustomValidity('');
         }
 
-        // 4. Compulsory Confirmation & Terms Check
         const confirmInfo = document.getElementById('fpo-confirm-info');
         if (confirmInfo && !confirmInfo.checked) {
           confirmInfo.setCustomValidity('Please confirm that the organization details are accurate.');
@@ -1830,7 +1764,6 @@
           termsInput.setCustomValidity('');
         }
 
-        // All compulsory validations passed!
         const fpoNameInput = document.getElementById('fpo-name');
         if (fpoNameInput && fpoNameInput.value.trim()) {
           try {
@@ -1850,7 +1783,6 @@
         fpoForm.addEventListener('submit', proceedToFpoDashboard);
       }
 
-      // Handle Already Registered navigation to Central Login Page
       const fpoLoginUrl = '../index.html#login?role=fpo';
 
       const alreadyText = document.getElementById('already-registered-text');
@@ -1870,10 +1802,8 @@
         });
       }
     });
-  </script>
+</script>
 
-
-  <!-- AgriMitra Multi-Language Support Engine -->
   <script src="../i18n.js"></script>
 </body>
 </html>

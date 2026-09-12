@@ -1,7 +1,3 @@
-"""
-Authentication & Role-Based Authorization Utilities for KrishiLink
-"""
-
 from functools import wraps
 from flask import session, jsonify, request
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -13,7 +9,7 @@ def hash_password(password):
 def verify_password(password, password_hash):
     if check_password_hash(password_hash, password):
         return True
-    # Aliases for demo convenience
+
     if password in ('fpo123', 'fpo12345') and (check_password_hash(password_hash, 'fpo123') or check_password_hash(password_hash, 'fpo12345')):
         return True
     if password in ('distributor123', 'dist12345') and (check_password_hash(password_hash, 'distributor123') or check_password_hash(password_hash, 'dist12345')):
@@ -65,7 +61,7 @@ def role_required(allowed_roles):
                     "success": False,
                     "message": "Authentication required. Please sign in."
                 }), 401
-            
+
             user_role = session.get('role')
             if user_role not in allowed_roles:
                 return jsonify({

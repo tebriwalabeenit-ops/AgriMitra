@@ -7,9 +7,7 @@
   <meta name="description" content="Participate in real-time mandi agricultural trading sessions. Bid on graded farmer produce with transparent price discovery and Mandi Flash Sales.">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Scoped Data Alignment Enhancements for Wholesaler Live Bidding */
-    
-    /* 1. Specifications Table Alignment */
+
     .selected-spec-table {
       width: 100%;
       border-collapse: collapse;
@@ -38,7 +36,6 @@
       font-variant-numeric: tabular-nums;
     }
 
-    /* 2. Highest Bid Display Banner Alignment */
     .highest-bid-display-banner {
       display: flex;
       align-items: center;
@@ -69,7 +66,6 @@
       gap: 4px;
     }
 
-    /* 3. Live Bidding Activity Stream Header & Items Alignment */
     .live-activity-stream {
       margin-top: var(--space-4);
     }
@@ -150,7 +146,6 @@
       white-space: nowrap;
     }
 
-    /* 4. Trading Metrics Grid on Produce Cards Alignment */
     .trading-metrics-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -190,7 +185,6 @@
       font-size: 1.15rem;
     }
 
-    /* 5. Header / Cockpit Timer & Status Alignment */
     .bidding-header-status {
       display: flex;
       align-items: center;
@@ -206,18 +200,14 @@
       text-align: right;
       gap: 2px;
     }
-  </style>
+</style>
 </head>
 <body>
-  <!-- Subtle Background Pattern -->
+
   <div class="bg-subtle-pattern" aria-hidden="true"></div>
 
-  <!-- Accessibility Skip Link -->
   <a href="#selected-session" class="skip-link">Skip to Active Trading Console</a>
 
-  <!-- ================================================================
-       1. HEADER (Wholesaler / Distributor - No Create Trading CTA)
-       ================================================================ -->
   <header class="trading-header-bar" role="banner">
     <div class="container header-inner">
       <a href="index.html" class="brand-wrapper" aria-label="AgriMitra Home">
@@ -240,7 +230,7 @@
       </nav>
 
       <div class="trading-nav-actions">
-        <!-- Notification Icon -->
+
         <button type="button" id="btnNotificationBell" class="icon-button" aria-label="View Trading Alerts" title="Trading Alerts">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
@@ -248,7 +238,6 @@
           </svg>
         </button>
 
-        <!-- Wholesaler Profile Badge (No Create Button) -->
         <div class="user-profile-badge" title="Wholesaler Account">
           <span class="user-avatar-circle" style="background-color: #0D47A1;" aria-hidden="true">KM</span>
           <div>
@@ -262,9 +251,6 @@
 
   <main id="main-content">
 
-    <!-- ================================================================
-         2. PAGE HEADING
-         ================================================================ -->
     <section class="trading-hero-section" style="padding: var(--space-6) 0;" aria-labelledby="wholesaler-title">
       <div class="container">
         <div class="trading-hero-inner" style="align-items: center;">
@@ -301,13 +287,9 @@
       </div>
     </section>
 
-    <!-- ================================================================
-         3. SEARCH & 4. FILTERS
-         ================================================================ -->
     <section class="search-filter-section" aria-label="Search and Filter Produce">
       <div class="container">
-        
-        <!-- Search Bar -->
+
         <div class="search-bar-wrapper">
           <span class="search-icon-pos" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -318,9 +300,8 @@
           <input type="search" class="search-input-field" placeholder="Search products or FPOs" aria-label="Search products or FPOs">
         </div>
 
-        <!-- Filter Bar -->
         <div class="filter-bar-group">
-          <!-- Product Category Filters -->
+
           <div class="filter-pills-row" role="group" aria-label="Commodity Category Filters">
             <span style="font-size: var(--font-size-xs); font-weight: var(--font-weight-bold); text-transform: uppercase; color: var(--color-text-muted); margin-right: 4px;">
               Category:
@@ -332,7 +313,6 @@
             <a href="#live-now-heading" class="filter-pill">Pulses</a>
           </div>
 
-          <!-- Session Stage Filters -->
           <div class="filter-pills-row" role="group" aria-label="Session Status Filters">
             <span style="font-size: var(--font-size-xs); font-weight: var(--font-weight-bold); text-transform: uppercase; color: var(--color-text-muted); margin-right: 4px;">
               Session Status:
@@ -350,12 +330,9 @@
       </div>
     </section>
 
-    <!-- ================================================================
-         5. LIVE NOW SECTION (At least six sample product cards)
-         ================================================================ -->
     <section class="trading-section" id="live-now-heading" aria-labelledby="live-heading-label">
       <div class="container">
-        
+
         <div class="trading-section-header">
           <div>
             <h2 id="live-heading-label" class="trading-section-title">
@@ -370,8 +347,7 @@
         </div>
 
         <div class="trading-cards-grid">
-          
-          <!-- Card 1: Premium Wheat (SELECTED DEFAULT) -->
+
           <article class="trading-card" style="border-color: var(--color-primary); box-shadow: 0 4px 16px rgba(28, 90, 53, 0.15);">
             <div class="trading-card-banner">
               <img src="assets/produce/wheat.jpg" alt="Premium Wheat Produce">
@@ -409,7 +385,6 @@
             </div>
           </article>
 
-          <!-- Card 2: Fresh Potatoes -->
           <article class="trading-card">
             <div class="trading-card-banner">
               <img src="assets/produce/potato.jpg" alt="Fresh Potatoes Produce">
@@ -447,7 +422,6 @@
             </div>
           </article>
 
-          <!-- Card 3: Basmati Rice -->
           <article class="trading-card">
             <div class="trading-card-banner">
               <img src="assets/produce/rice.jpg" alt="Basmati Rice Produce">
@@ -485,7 +459,6 @@
             </div>
           </article>
 
-          <!-- Card 4: Fresh Onions -->
           <article class="trading-card">
             <div class="trading-card-banner">
               <img src="assets/produce/onion.jpg" alt="Fresh Onions Produce">
@@ -523,7 +496,6 @@
             </div>
           </article>
 
-          <!-- Card 5: Chickpeas / Desi Chana -->
           <article class="trading-card">
             <div class="trading-card-banner">
               <img src="assets/produce/chana.jpg" alt="Chickpeas Produce">
@@ -561,7 +533,6 @@
             </div>
           </article>
 
-          <!-- Card 6: Mustard Seeds -->
           <article class="trading-card">
             <div class="trading-card-banner">
               <img src="assets/produce/mustard.jpg" alt="Mustard Seeds Produce">
@@ -603,17 +574,9 @@
       </div>
     </section>
 
-    <!-- ================================================================
-         6. SELECTED TRADING SESSION
-         7. CURRENT HIGHEST BID
-         8. TIME REMAINING
-         9. BIDDING SECTION (Place Your Bid)
-         10. LIVE BIDDING ACTIVITY
-         (All inside the Selected Session Console on this SAME page)
-         ================================================================ -->
     <section class="selected-session-section" id="selected-session" aria-labelledby="selected-heading">
       <div class="container">
-        
+
         <div style="margin-bottom: var(--space-6); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-3);">
           <div>
             <span class="badge-live" style="margin-bottom: var(--space-2); font-size: 0.85rem; padding: 4px 12px;">
@@ -635,8 +598,7 @@
         </div>
 
         <div class="selected-session-grid">
-          
-          <!-- LEFT COLUMN: Product Specifications -->
+
           <div class="selected-product-card">
             <div class="selected-product-img-holder">
               <img src="assets/produce/wheat.jpg" alt="Premium Wheat Produce Sample">
@@ -657,7 +619,6 @@
                 </div>
               </div>
 
-              <!-- Product Specifications Table -->
               <table class="selected-spec-table" aria-label="Product Specifications">
                 <tbody>
                   <tr>
@@ -697,10 +658,8 @@
             </div>
           </div>
 
-          <!-- RIGHT COLUMN: High-Stakes Bidding Console -->
           <div class="bidding-cockpit-card">
-            
-            <!-- 8. TIME REMAINING & Live Real-Time Clock -->
+
             <div class="bidding-header-status">
               <div>
                 <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
@@ -723,7 +682,6 @@
               </div>
             </div>
 
-            <!-- 7. CURRENT HIGHEST BID -->
             <div class="highest-bid-display-banner">
               <div class="highest-bid-info">
                 <span class="highest-bid-title">CURRENT HIGHEST BID</span>
@@ -743,7 +701,6 @@
               </div>
             </div>
 
-            <!-- 9. PLACE BID SECTION -->
             <div class="place-bid-form" role="region" aria-labelledby="place-bid-heading">
               <div style="display: flex; align-items: baseline; justify-content: space-between;">
                 <h3 id="place-bid-heading" style="font-size: 1.15rem; font-weight: var(--font-weight-bold); color: var(--color-text-main);">
@@ -764,7 +721,6 @@
                 </button>
               </div>
 
-              <!-- Quick Bid Increment Options -->
               <div>
                 <span style="font-size: 0.75rem; font-weight: var(--font-weight-semibold); color: var(--color-text-muted); text-transform: uppercase; margin-bottom: 6px; display: block;">
                   Quick Bid Increment Options
@@ -781,14 +737,12 @@
               </div>
             </div>
 
-            <!-- 10. LIVE BIDDING ACTIVITY -->
             <div class="live-activity-stream" role="region" aria-labelledby="stream-heading">
               <div class="stream-title-bar">
                 <h3 id="stream-heading" class="stream-title-text">Live Bidding Activity</h3>
                 <span style="font-size: var(--font-size-xs); color: var(--color-text-muted);">Newest bids at top</span>
               </div>
 
-              <!-- Aligned Stream Table Headers -->
               <div class="bid-feed-header" aria-hidden="true">
                 <span>Bidder</span>
                 <span>Bid Amount</span>
@@ -796,7 +750,7 @@
               </div>
 
               <div class="bid-feed-list" tabindex="0" aria-label="Live bid stream">
-                <!-- Bid 1 (Latest) -->
+
                 <div class="bid-feed-item latest-bid">
                   <div class="bid-feed-bidder">
                     Bidder #218 <span style="font-size: 0.7rem; color: #1B5E20; font-weight: var(--font-weight-bold); margin-left: 4px;">(Leading)</span>
@@ -805,28 +759,24 @@
                   <div class="bid-feed-time">10:20 AM</div>
                 </div>
 
-                <!-- Bid 2 -->
                 <div class="bid-feed-item">
                   <div class="bid-feed-bidder">Bidder #356</div>
                   <div class="bid-feed-price">₹31.50/kg</div>
                   <div class="bid-feed-time">10:18 AM</div>
                 </div>
 
-                <!-- Bid 3 -->
                 <div class="bid-feed-item">
                   <div class="bid-feed-bidder">Bidder #104</div>
                   <div class="bid-feed-price">₹30.00/kg</div>
                   <div class="bid-feed-time">10:15 AM</div>
                 </div>
 
-                <!-- Bid 4 -->
                 <div class="bid-feed-item">
                   <div class="bid-feed-bidder">Bidder #412</div>
                   <div class="bid-feed-price">₹29.00/kg</div>
                   <div class="bid-feed-time">10:11 AM</div>
                 </div>
 
-                <!-- Bid 5 -->
                 <div class="bid-feed-item">
                   <div class="bid-feed-bidder">Bidder #218</div>
                   <div class="bid-feed-price">₹28.50/kg</div>
@@ -842,12 +792,9 @@
       </div>
     </section>
 
-    <!-- ================================================================
-         11. STARTING SOON SECTION
-         ================================================================ -->
     <section class="trading-section" id="starting-soon-heading" aria-labelledby="soon-heading-label">
       <div class="container">
-        
+
         <div class="trading-section-header">
           <div>
             <h2 id="soon-heading-label" class="trading-section-title">Starting Soon</h2>
@@ -859,8 +806,7 @@
         </div>
 
         <div class="trading-cards-grid">
-          
-          <!-- Starting Soon Card 1: Fresh Tomatoes -->
+
           <article class="trading-card">
             <div class="trading-card-banner">
               <img src="assets/produce/tomato.jpg" alt="Fresh Tomatoes Produce">
@@ -900,7 +846,6 @@
             </div>
           </article>
 
-          <!-- Starting Soon Card 2: Cauliflower -->
           <article class="trading-card">
             <div class="trading-card-banner">
               <img src="assets/produce/cauliflower.jpg" alt="Cauliflower Produce">
@@ -944,12 +889,9 @@
       </div>
     </section>
 
-    <!-- ================================================================
-         12. UPCOMING TRADING SECTION
-         ================================================================ -->
     <section class="trading-section" id="upcoming-heading" aria-labelledby="upcoming-heading-label">
       <div class="container">
-        
+
         <div class="trading-section-header">
           <div>
             <h2 id="upcoming-heading-label" class="trading-section-title">Upcoming Trading</h2>
@@ -961,8 +903,7 @@
         </div>
 
         <div class="trading-cards-grid">
-          
-          <!-- Upcoming Card 1: Premium Onions -->
+
           <article class="trading-card">
             <div class="trading-card-banner">
               <img src="assets/produce/onion.jpg" alt="Premium Onions Produce">
@@ -1007,7 +948,6 @@
             </div>
           </article>
 
-          <!-- Upcoming Card 2: Kashmiri Apples -->
           <article class="trading-card">
             <div class="trading-card-banner">
               <img src="assets/produce/apple.jpg" alt="Kashmiri Apples Produce">
@@ -1056,13 +996,9 @@
       </div>
     </section>
 
-    <!-- ================================================================
-         13. MANDI FLASH SALE SECTION
-         (Direct purchase for failed auction lots voluntarily flashed by FPO)
-         ================================================================ -->
     <section class="mandi-flash-section" id="mandi-flash" aria-labelledby="flash-heading-label">
       <div class="container">
-        
+
         <div class="trading-section-header">
           <div>
             <span class="badge-flash" style="margin-bottom: var(--space-2);">
@@ -1079,8 +1015,7 @@
         </div>
 
         <div class="trading-cards-grid">
-          
-          <!-- Flash Card 1: Premium Wheat -->
+
           <article class="trading-card" style="border: 2px solid #D7CCC8;">
             <div class="trading-card-banner" style="background-color: #FFFDF9;">
               <img src="assets/produce/wheat.jpg" alt="Premium Wheat Produce">
@@ -1127,7 +1062,6 @@
             </div>
           </article>
 
-          <!-- Flash Card 2: Desi Chana / Chickpeas -->
           <article class="trading-card" style="border: 2px solid #D7CCC8;">
             <div class="trading-card-banner" style="background-color: #FFFDF9;">
               <img src="assets/produce/chana.jpg" alt="Chickpeas Produce">
@@ -1184,7 +1118,6 @@
   <script src="assets/wholesaler-cockpit.js"></script>
   <script src="assets/frontend_api.js"></script>
 
-  <!-- AgriMitra Multi-Language Support Engine -->
   <script src="i18n.js"></script>
 </body>
 </html>

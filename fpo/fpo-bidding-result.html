@@ -8,10 +8,9 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Subtle Background Pattern -->
+
   <div class="bg-subtle-pattern" aria-hidden="true"></div>
 
-  <!-- Header & FPO Navbar -->
   <header class="trading-header-bar" role="banner">
     <div class="container header-inner">
       <a href="fpo-dashboard.html" class="brand-wrapper" aria-label="AgriMitra FPO Dashboard">
@@ -22,7 +21,6 @@
         </div>
       </a>
 
-      <!-- Updated FPO Dashboard Navbar: Dashboard | Products | Orders | Live Bidding | Profile -->
       <nav class="header-nav" aria-label="FPO Main Navigation">
         <ul class="nav-links">
           <li><a href="fpo-dashboard.html" class="nav-link">Dashboard</a></li>
@@ -34,7 +32,7 @@
       </nav>
 
       <div class="trading-nav-actions">
-        <!-- Notification Icon -->
+
         <button type="button" id="btnNotificationBell" class="icon-button" aria-label="View Notifications" title="Notifications">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
@@ -42,7 +40,6 @@
           </svg>
         </button>
 
-        <!-- FPO Profile Badge -->
         <div class="user-profile-badge" title="FPO Account">
           <span class="user-avatar-circle" aria-hidden="true">PF</span>
           <div>
@@ -54,11 +51,9 @@
     </div>
   </header>
 
-  <!-- Main Content -->
   <main id="main-content" style="padding: var(--space-8) 0 var(--space-16);">
     <div class="container">
-      
-      <!-- Back Link -->
+
       <div style="margin-bottom: var(--space-4);">
         <a href="fpo-live-bidding.html" class="nav-link" style="padding-left: 0; display: inline-flex; align-items: center; gap: 6px;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -69,11 +64,9 @@
         </a>
       </div>
 
-      <!-- Pure CSS Prototype State Switcher (Radio Triggers) -->
       <input type="radio" id="state-sold" name="demo-result-state" checked style="position: absolute; opacity: 0; pointer-events: none;">
       <input type="radio" id="state-nobids" name="demo-result-state" style="position: absolute; opacity: 0; pointer-events: none;">
 
-      <!-- Prototype State Selector Pills -->
       <div class="state-toggle-container" role="region" aria-label="Prototype Result View Selector">
         <div class="state-toggle-pill-group">
           <label for="state-sold" class="state-toggle-label">
@@ -85,13 +78,9 @@
         </div>
       </div>
 
-      <!-- ================================================================
-           RESULT TYPE 1: PRODUCT SOLD
-           ================================================================ -->
       <div class="state-panel panel-sold result-container" id="sold">
         <div class="result-card-box">
-          
-          <!-- Header Banner -->
+
           <div class="result-header-sold">
             <div>
               <span class="badge-sold" style="margin-bottom: var(--space-2);">
@@ -114,7 +103,6 @@
             </div>
           </div>
 
-          <!-- Produce Preview Row -->
           <div style="display: flex; gap: var(--space-5); align-items: center; background-color: var(--color-surface-alt); padding: var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--color-border-light); margin-bottom: var(--space-6);">
             <div style="width: 72px; height: 72px; border-radius: var(--radius-sm); overflow: hidden; flex-shrink: 0; background-color: #EDE7F6;">
               <img src="assets/produce/wheat.jpg" alt="Premium Wheat Produce" style="width: 100%; height: 100%; object-fit: cover;">
@@ -129,7 +117,6 @@
             </div>
           </div>
 
-          <!-- Price & Quantity Metrics Banner -->
           <div class="result-price-banner">
             <div class="result-price-item">
               <span class="result-price-label">Final Sale Price</span>
@@ -145,7 +132,6 @@
             </div>
           </div>
 
-          <!-- Winning Bidder Card (Revealed After Bidding Ends) -->
           <div class="result-confirmed-wholesaler">
             <div>
               <span style="font-size: 0.75rem; text-transform: uppercase; color: #2E7D32; font-weight: var(--font-weight-bold); letter-spacing: 0.05em; display: block;">
@@ -165,7 +151,6 @@
             </div>
           </div>
 
-          <!-- Supporting Message -->
           <div class="result-legal-notice">
             <div style="font-weight: var(--font-weight-bold); color: var(--color-primary); margin-bottom: 4px; font-size: 1rem;">
               The highest valid bid was automatically confirmed as the final sale price.
@@ -175,7 +160,6 @@
             </div>
           </div>
 
-          <!-- Action Buttons (Zero Accept / Reject Sale Buttons) -->
           <div style="margin-top: var(--space-8); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-4);">
             <a href="fpo-dashboard.html#orders" class="btn btn-primary btn-large" style="min-width: 220px; box-shadow: 0 4px 14px rgba(28, 90, 53, 0.25);">
               VIEW ORDER DETAILS
@@ -188,13 +172,9 @@
         </div>
       </div>
 
-      <!-- ================================================================
-           RESULT TYPE 2: NO VALID BIDS
-           ================================================================ -->
       <div class="state-panel panel-nobids result-container" id="nobids">
         <div class="result-card-box">
 
-          <!-- Header Banner -->
           <div class="result-header-nobids">
             <div>
               <span class="badge-nobids" style="margin-bottom: var(--space-2);">
@@ -217,7 +197,6 @@
             </div>
           </div>
 
-          <!-- Product Information -->
           <div style="display: flex; gap: var(--space-5); align-items: center; background-color: var(--color-surface-alt); padding: var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--color-border-light); margin-bottom: var(--space-6);">
             <div style="width: 72px; height: 72px; border-radius: var(--radius-sm); overflow: hidden; flex-shrink: 0; background-color: #FFF3E0;">
               <img src="assets/produce/potato.jpg" alt="Fresh Potatoes Produce" style="width: 100%; height: 100%; object-fit: cover;">
@@ -232,7 +211,6 @@
             </div>
           </div>
 
-          <!-- Product Parameters Banner -->
           <div class="result-price-banner" style="background-color: var(--color-surface-alt); border-color: var(--color-border);">
             <div class="result-price-item">
               <span class="result-price-label">Product</span>
@@ -248,7 +226,6 @@
             </div>
           </div>
 
-          <!-- What Would You Like To Do? Section -->
           <div style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--color-border);">
             <h2 style="font-size: 1.5rem; color: var(--color-text-main); margin-bottom: var(--space-2);">
               What would you like to do?
@@ -257,11 +234,9 @@
               The product remains with the FPO unless you actively choose to Flash Sale it. The system will never automatically move or discount your inventory.
             </p>
 
-            <!-- Pure CSS Radio Selection Triggers -->
             <input type="radio" id="choice-keep" name="unbid-action" checked style="position: absolute; opacity: 0; pointer-events: none;">
             <input type="radio" id="choice-flash" name="unbid-action" style="position: absolute; opacity: 0; pointer-events: none;">
 
-            <!-- Choice Action Buttons -->
             <div class="flash-decision-actions" role="group" aria-label="Decision for unbid inventory">
               <label for="choice-flash" class="btn btn-danger btn-large" style="cursor: pointer; background-color: #C62828; color: #FFFFFF; border-color: #C62828; min-width: 200px;">
                 FLASH PRODUCT
@@ -271,7 +246,6 @@
               </label>
             </div>
 
-            <!-- CHOICE 1: KEEP PRODUCT DRAWER -->
             <div class="unbid-action-drawer drawer-keep" style="margin-top: var(--space-6); background-color: var(--color-surface-alt); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-6);">
               <div style="display: flex; align-items: flex-start; gap: var(--space-4);">
                 <div style="width: 42px; height: 42px; border-radius: 50%; background-color: #E8F5E9; color: var(--color-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
@@ -298,11 +272,9 @@
               </div>
             </div>
 
-            <!-- CHOICE 2: FLASH PRODUCT SECTION (MANDI FLASH SALE SETUP) -->
             <div class="unbid-action-drawer drawer-flash" style="margin-top: var(--space-6);">
               <div style="background-color: #FFF8F6; border: 2px solid #FFCCBC; border-radius: var(--radius-lg); padding: var(--space-6);">
-                
-                <!-- Section Heading -->
+
                 <div style="border-bottom: 1px solid #FFCCBC; padding-bottom: var(--space-4); margin-bottom: var(--space-6);">
                   <span class="badge-flash" style="margin-bottom: var(--space-2);">
                     DIRECT CLEARANCE OFFER
@@ -315,7 +287,6 @@
                   </p>
                 </div>
 
-                <!-- Product Summary -->
                 <div style="background-color: #FFFFFF; border: 1px solid #FFCCBC; border-radius: var(--radius-md); padding: var(--space-4); margin-bottom: var(--space-6);">
                   <div style="font-size: var(--font-size-xs); font-weight: var(--font-weight-bold); color: #8D6E63; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--space-2);">
                     Product Summary
@@ -336,10 +307,8 @@
                   </div>
                 </div>
 
-                <!-- Flash Sale Parameters Form -->
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); margin-bottom: var(--space-6);">
-                  
-                  <!-- Flash Sale Price Input -->
+
                   <div>
                     <label for="flash-price" class="form-label" style="font-weight: var(--font-weight-bold); color: var(--color-text-main);">
                       Flash Sale Price (₹/kg)
@@ -360,7 +329,6 @@
                     </p>
                   </div>
 
-                  <!-- Flash Sale Duration Selection -->
                   <div>
                     <label class="form-label" style="font-weight: var(--font-weight-bold); color: var(--color-text-main);">
                       Offer Duration
@@ -394,7 +362,6 @@
 
                 </div>
 
-                <!-- FLASH SALE PREVIEW -->
                 <div class="flash-preview-card">
                   <div class="flash-preview-header">
                     <div>
@@ -429,7 +396,6 @@
                   </div>
                 </div>
 
-                <!-- Final Confirmation Button -->
                 <div style="margin-top: var(--space-6); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-4);">
                   <a href="wholesaler-trading.html#mandi-flash" class="btn btn-danger btn-large" style="background-color: #C62828; border-color: #C62828; color: #FFFFFF; min-width: 240px; box-shadow: 0 4px 14px rgba(198, 40, 40, 0.25);">
                     CONFIRM FLASH SALE
@@ -450,7 +416,6 @@
     </div>
   </main>
 
-  <!-- AgriMitra Multi-Language Support Engine -->
   <script src="../i18n.js"></script>
 </body>
 </html>

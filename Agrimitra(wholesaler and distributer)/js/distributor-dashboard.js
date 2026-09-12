@@ -1,12 +1,7 @@
-/* ==========================================================================
-   AgriMitra Distributor Dashboard Controller
-   Binds reactive state, unified modal interactions, procurement flow & chatbot
-   ========================================================================== */
+
 
 document.addEventListener('DOMContentLoaded', () => {
-  // ------------------------------------------------------------------------
-  // State Initialization
-  // ------------------------------------------------------------------------
+
   let profile = window.AgriMitraStore ? window.AgriMitraStore.getProfile() : {};
   if (window.AgriMitraAuth) {
     window.AgriMitraAuth.guardRole('distributor');
@@ -30,9 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let selectedLotForPurchase = null;
   let purchaseQuantity = 1;
 
-  // ------------------------------------------------------------------------
-  // DOM Elements
-  // ------------------------------------------------------------------------
   const headerBusinessNameEl = document.getElementById('header-business-name');
   const greetingBusinessNameEl = document.getElementById('greeting-business-name');
   const metricRequirementsCountEl = document.getElementById('metric-requirements-count');
@@ -43,9 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const inventoryTableBody = document.getElementById('inventory-table-body');
   const marketSnapshotContainer = document.getElementById('market-snapshot-list');
 
-  // ------------------------------------------------------------------------
-  // Initial Render
-  // ------------------------------------------------------------------------
   renderHeaderAndGreeting();
   renderSummaryMetrics();
   renderRequirements();
@@ -57,9 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initCreateRequirementForm();
   initChatbot();
 
-  // ------------------------------------------------------------------------
-  // Rendering Functions
-  // ------------------------------------------------------------------------
   function renderHeaderAndGreeting() {
     const name = profile.businessName || 'MahaAgro Wholesale Dist.';
     if (headerBusinessNameEl) headerBusinessNameEl.textContent = name;
@@ -68,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function renderSummaryMetrics() {
     if (metricRequirementsCountEl) {
-      // Base count starts at 5 as requested in prompt, plus any user added requirements
+
       const count = requirements.length >= 2 ? requirements.length + 3 : 5;
       metricRequirementsCountEl.textContent = count;
     }
@@ -178,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
     orders.slice(0, 4).forEach(order => {
       const card = document.createElement('div');
       card.className = 'order-mini-card';
-      
+
       let badgeClass = 'badge-blue';
       if (order.currentStatus === 'Delivered') badgeClass = 'badge-green';
       if (order.currentStatus === 'In Transit') badgeClass = 'badge-amber';
@@ -249,11 +235,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ------------------------------------------------------------------------
-  // MODAL LOGIC & BINDINGS
-  // ------------------------------------------------------------------------
-
-  // 1. Requirement Details Modal
   function openRequirementDetailsModal(req) {
     const modal = document.getElementById('modal-requirement-details');
     if (!modal) return;
@@ -277,7 +258,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.openModal('modal-requirement-details');
   }
 
-  // 2. Create Requirement Form
   function initCreateRequirementForm() {
     const form = document.getElementById('form-create-requirement');
     const formContainer = document.getElementById('create-req-form-wrap');
@@ -325,18 +305,15 @@ document.addEventListener('DOMContentLoaded', () => {
         cropImage: getCropImage(cropInput.value.trim())
       };
 
-      // Add to store
       if (window.AgriMitraStore) {
         requirements = window.AgriMitraStore.addRequirement(newRequirement);
       } else {
         requirements.unshift(newRequirement);
       }
 
-      // Update UI
       renderRequirements();
       renderSummaryMetrics();
 
-      // Show modal success state inside modal
       formContainer.style.display = 'none';
       successContainer.style.display = 'block';
     });
@@ -345,7 +322,7 @@ document.addEventListener('DOMContentLoaded', () => {
       btnDone.addEventListener('click', () => {
         window.closeModal();
         setTimeout(() => {
-          // Reset form state
+
           form.reset();
           formContainer.style.display = 'block';
           successContainer.style.display = 'none';
@@ -363,7 +340,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return 'produce-tomato.svg';
   }
 
-  // 3. Supply Lot Modal & Ordering Stepper
   function openSupplyLotModal(lot) {
     selectedLotForPurchase = lot;
     purchaseQuantity = Math.min(1, lot.availableQty);
@@ -380,7 +356,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateQuantityDisplay();
 
-    // Wire Quantity Stepper
     const btnMinus = document.getElementById('btn-qty-minus');
     const btnPlus = document.getElementById('btn-qty-plus');
 
@@ -398,7 +373,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    // Wire Purchase Button
     const btnPurchase = document.getElementById('btn-purchase-lot');
     btnPurchase.onclick = () => {
       handleLotPurchase(lot, purchaseQuantity);
@@ -446,7 +420,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.closeModal();
 
-    // Show Confirmation Modal
     setTimeout(() => {
       document.getElementById('confirm-order-id').textContent = newOrder.id;
       document.getElementById('confirm-order-crop').textContent = `${newOrder.quantity} of ${newOrder.crop}`;
@@ -455,7 +428,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 200);
   }
 
-  // 4. Order Details Modal
   function openOrderDetailsModal(order) {
     document.getElementById('modal-order-id').textContent = order.id;
     document.getElementById('modal-order-crop').textContent = order.crop;
@@ -469,7 +441,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('modal-order-agent').textContent = order.deliveryAgent;
     document.getElementById('modal-order-arrival').textContent = order.expectedArrival;
 
-    // Update 4-step status tracker: Offer Accepted -> Pickup -> In Transit -> Delivered
     const steps = document.querySelectorAll('#order-details-stepper .order-step');
     steps.forEach((stepEl, idx) => {
       const stepIndex = idx + 1;
@@ -491,7 +462,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.openModal('modal-order-details');
   }
 
-  // 5. Crop Inventory Modal
   function openCropInventoryModal(item) {
     document.getElementById('modal-inv-crop').textContent = item.crop;
     document.getElementById('modal-inv-stock').textContent = item.stock;
@@ -512,7 +482,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.openModal('modal-crop-inventory');
   }
 
-  // 6. Available Supply Sourcing Modal
   function openAvailableSupplyModal(filterCrop = null) {
     const listContainer = document.getElementById('all-supply-modal-list');
     if (!listContainer) return;
@@ -553,7 +522,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.openModal('modal-available-supply');
   }
 
-  // 7. Profile Modal
   function openProfileModal() {
     document.getElementById('profile-business-name').textContent = profile.businessName || 'MahaAgro Wholesale Dist.';
     document.getElementById('profile-contact').textContent = profile.contactPerson || 'Rahul Deshmukh';
@@ -566,7 +534,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.openModal('modal-profile');
   }
 
-  // Edit Profile Form Modal
   const btnEditProfile = document.getElementById('btn-edit-profile');
   if (btnEditProfile) {
     btnEditProfile.addEventListener('click', () => {
@@ -600,20 +567,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ------------------------------------------------------------------------
-  // Global Event Triggers for Dashboard
-  // ------------------------------------------------------------------------
-  // Recommended Procurement "View Supply" button
   const btnViewRecommended = document.getElementById('btn-view-recommended');
   if (btnViewRecommended) {
     btnViewRecommended.addEventListener('click', () => {
-      // Open lot 904 (best match tomato)
+
       const bestLot = supplyLots.find(l => l.id === 'LOT-904') || supplyLots[0];
       openSupplyLotModal(bestLot);
     });
   }
 
-  // Metric cards opening relevant modals
   const cardOpenReqs = document.getElementById('metric-card-requirements');
   if (cardOpenReqs) {
     cardOpenReqs.addEventListener('click', () => window.openModal('modal-all-requirements'));
@@ -634,13 +596,11 @@ document.addEventListener('DOMContentLoaded', () => {
     cardOrders.addEventListener('click', () => window.openModal('modal-all-orders'));
   }
 
-  // Header Nav & Profile Click
   const navProfileBtn = document.getElementById('header-profile-trigger');
   if (navProfileBtn) {
     navProfileBtn.addEventListener('click', openProfileModal);
   }
 
-  // Quick Action Buttons
   const qaCreateReq = document.getElementById('qa-create-req');
   if (qaCreateReq) qaCreateReq.addEventListener('click', () => window.openModal('modal-create-requirement'));
 
@@ -653,9 +613,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const qaViewOrders = document.getElementById('qa-view-orders');
   if (qaViewOrders) qaViewOrders.addEventListener('click', () => window.openModal('modal-all-orders'));
 
-  // ------------------------------------------------------------------------
-  // CHATBOT: AgriMitra Assistant
-  // ------------------------------------------------------------------------
   function initChatbot() {
     const triggerBtn = document.getElementById('chatbot-toggle-btn');
     const drawer = document.getElementById('chatbot-drawer');
@@ -697,7 +654,6 @@ document.addEventListener('DOMContentLoaded', () => {
       messagesWrap.appendChild(msgDiv);
       messagesWrap.scrollTop = messagesWrap.scrollHeight;
 
-      // Handle chat button clicks
       msgDiv.querySelectorAll('.chat-action-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           const act = btn.getAttribute('data-action');

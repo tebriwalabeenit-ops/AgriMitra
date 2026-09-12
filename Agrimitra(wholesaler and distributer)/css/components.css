@@ -1,9 +1,5 @@
-/* ==========================================================================
-   AgriMitra Component Library
-   Standardized UI elements matching the Farmer & B2B Design Language
-   ========================================================================== */
 
-/* Universal Reset & Base Elements */
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -30,9 +26,6 @@ a:hover {
   color: var(--color-primary-hover);
 }
 
-/* --------------------------------------------------------------------------
-   Buttons
-   -------------------------------------------------------------------------- */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -127,9 +120,6 @@ a:hover {
   width: 100%;
 }
 
-/* --------------------------------------------------------------------------
-   Badges & Pills
-   -------------------------------------------------------------------------- */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -172,7 +162,6 @@ a:hover {
   border: 1px solid var(--color-error-border);
 }
 
-/* Status Indicators */
 .status-pill {
   display: inline-flex;
   align-items: center;
@@ -190,9 +179,6 @@ a:hover {
   background-color: currentColor;
 }
 
-/* --------------------------------------------------------------------------
-   Forms & Controls
-   -------------------------------------------------------------------------- */
 .form-group {
   margin-bottom: var(--spacing-4);
   display: flex;
@@ -265,7 +251,6 @@ a:hover {
   display: block;
 }
 
-/* Input with Prefix (like +91) */
 .input-with-prefix {
   display: flex;
   align-items: stretch;
@@ -292,7 +277,6 @@ a:hover {
   border-bottom-left-radius: 0;
 }
 
-/* Multi-select Pill Chips */
 .chip-grid {
   display: flex;
   flex-wrap: wrap;
@@ -338,7 +322,6 @@ a:hover {
   font-weight: 600;
 }
 
-/* Quantity Stepper: [-] 1 tonne [+] */
 .quantity-stepper {
   display: inline-flex;
   align-items: center;
@@ -377,9 +360,6 @@ a:hover {
   padding: 0 0.5rem;
 }
 
-/* --------------------------------------------------------------------------
-   Cards
-   -------------------------------------------------------------------------- */
 .card {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -398,9 +378,6 @@ a:hover {
   box-shadow: var(--shadow-sm);
 }
 
-/* --------------------------------------------------------------------------
-   Tables
-   -------------------------------------------------------------------------- */
 .table-responsive {
   width: 100%;
   overflow-x: auto;

@@ -1,9 +1,3 @@
-"""
-Live Auction & Bidding API Routes for KrishiLink
-Powers the Distributor Trading Cockpit & FPO Live Monitoring Console,
-including real-time Server-Sent Events (SSE) updates.
-"""
-
 import time
 import json
 from datetime import datetime
@@ -19,7 +13,7 @@ def _get_distributor_id():
     if user_id:
         d = query_db("SELECT id FROM distributors WHERE user_id = %s", (user_id,), one=True)
         if d: return d['id']
-    # Default to first distributor for testing/demo
+
     first = query_db("SELECT id FROM distributors LIMIT 1", one=True)
     return first['id'] if first else 1
 
@@ -38,7 +32,7 @@ def to_datetime(val):
 @auction_bp.route('', methods=['GET'])
 def list_auctions():
     status_filter = request.args.get('status')
-    
+
     query = """
         SELECT a.id, a.lot_code, a.product_name, a.category, a.description,
                a.quality_grade, a.quality_specs, a.quantity, a.unit, a.starting_price,
@@ -64,7 +58,7 @@ def list_auctions():
         a['starting_price'] = float(a['starting_price'])
         a['min_increment'] = float(a['min_increment'])
         a['current_highest_bid'] = float(a['current_highest_bid'])
-        # Compute dynamic time remaining
+
         if a['status'] == 'active':
             end_dt = to_datetime(a['end_time'])
             diff = int((end_dt - now).total_seconds())
@@ -112,14 +106,12 @@ def get_auction(auction_id):
     auction['current_highest_bid'] = float(auction['current_highest_bid'])
     auction['minimum_next_bid'] = round(auction['current_highest_bid'] + auction['min_increment'], 2)
 
-    # Determine leading bidder tag
     if auction.get('distributor_code'):
         code_suffix = auction['distributor_code'].split('-')[-1]
         auction['leading_bidder_tag'] = f"Bidder #{code_suffix}"
     else:
         auction['leading_bidder_tag'] = "None"
 
-    # Recent bids for feed
     bids = query_db("""
         SELECT id, bidder_tag, bid_amount, DATE_FORMAT(bid_time, '%%h:%%i %%p') AS formatted_time
         FROM bids
@@ -170,10 +162,9 @@ def stream_auction(auction_id):
     """
     def event_stream():
         q = broadcaster.subscribe(auction_id)
-        
-        # Send initial connection event with latest state
+
         initial_auction = query_db("""
-            SELECT current_highest_bid, current_highest_bidder_id, end_time, status 
+            SELECT current_highest_bid, current_highest_bidder_id, end_time, status
             FROM auctions WHERE id = %s
         """, (auction_id,), one=True)
 
@@ -193,11 +184,11 @@ def stream_auction(auction_id):
         try:
             while True:
                 try:
-                    # Wait up to 15 seconds for a new bid event
+
                     message = q.get(timeout=15.0)
                     yield f"data: {message}\n\n"
                 except:
-                    # Heartbeat comment to keep HTTP connection alive
+
                     yield ": ping\n\n"
         finally:
             broadcaster.unsubscribe(auction_id, q)
