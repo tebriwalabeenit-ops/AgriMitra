@@ -1453,146 +1453,241 @@
       });
     }
 
+    // Helper to attach robust, high-reliability tile layer (eliminates OSM 'Access Blocked' rate-limits)
+    function attachRobustTileLayer(mapInstance) {
+      // Primary: CartoDB Voyager (clean, modern transport roads, reliable and unrestricted for web portals)
+      const primaryTileLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        subdomains: 'abcd',
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a> • AgriMitra Fleet'
+      });
+
+      // Seamless failover to Esri World Street Map if primary tile server is ever unreachable
+      let hasFallenBack = false;
+      primaryTileLayer.on('tileerror', function () {
+        if (!hasFallenBack) {
+          hasFallenBack = true;
+          console.warn('[KrishiLink] Primary tile service warning; switching to high-availability GIS street fallback...');
+          try {
+            mapInstance.removeLayer(primaryTileLayer);
+          } catch (_) {}
+          L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+            maxZoom: 19,
+            attribution: 'Tiles &copy; Esri • AgriMitra Fleet'
+          }).addTo(mapInstance);
+        }
+      });
+
+      primaryTileLayer.addTo(mapInstance);
+      return primaryTileLayer;
+    }
+
     let mainMap = null;
     let mainRouteLine = null;
     let truckMarker = null;
 
     if (routeMapEl && typeof L !== 'undefined') {
-      mainMap = L.map('delivery-route-map', {
-        scrollWheelZoom: true,
-        zoomControl: true
-      }).setView([31.22, 75.58], 11);
+      if (routeMapEl._leaflet_id) {
+        console.log('[KrishiLink] Delivery route map already initialized.');
+      } else {
+        mainMap = L.map('delivery-route-map', {
+          scrollWheelZoom: true,
+          zoomControl: true
+        }).setView([31.22, 75.58], 11);
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© OpenStreetMap contributors • AgriMitra Fleet'
-      }).addTo(mainMap);
+        attachRobustTileLayer(mainMap);
 
-      // Draw corridor road lines
-      mainRouteLine = L.polyline(routeData.corridor_path, {
-        color: '#15803d',
-        weight: 5,
-        opacity: 0.85,
-        lineJoin: 'round'
-      }).addTo(mainMap);
+        // Draw corridor road lines
+        mainRouteLine = L.polyline(routeData.corridor_path, {
+          color: '#15803d',
+          weight: 5,
+          opacity: 0.85,
+          lineJoin: 'round'
+        }).addTo(mainMap);
 
-      // Inner dashed glow line
-      L.polyline(routeData.corridor_path, {
-        color: '#86efac',
-        weight: 2,
-        opacity: 0.9,
-        dashArray: '6, 8'
-      }).addTo(mainMap);
+        // Inner dashed glow line
+        L.polyline(routeData.corridor_path, {
+          color: '#86efac',
+          weight: 2,
+          opacity: 0.9,
+          dashArray: '6, 8'
+        }).addTo(mainMap);
 
-      // Place waypoint pins
-      routeData.waypoints.forEach(wp => {
-        const icon = createPinIcon(wp.stop_number, wp.type);
-        const marker = L.marker(wp.coordinates, { icon: icon }).addTo(mainMap);
-        
-        const popupContent = `
-          <div style="font-family: inherit; min-width: 170px; padding: 4px;">
-            <div style="font-size: 0.72rem; font-weight: 700; color: #166534; text-transform: uppercase;">Stop ${wp.stop_number} • ${wp.badge}</div>
-            <div style="font-size: 0.95rem; font-weight: 700; color: #0f172a; margin: 2px 0 4px;">${wp.name}</div>
-            <div style="font-size: 0.78rem; color: #475569;">${wp.details}</div>
-            <div style="font-size: 0.75rem; font-weight: 600; color: #b45309; margin-top: 4px;">${wp.time_label}</div>
+        // Place waypoint pins
+        routeData.waypoints.forEach(wp => {
+          const icon = createPinIcon(wp.stop_number, wp.type);
+          const marker = L.marker(wp.coordinates, { icon: icon }).addTo(mainMap);
+          
+          const popupContent = `
+            <div style="font-family: inherit; min-width: 170px; padding: 4px;">
+              <div style="font-size: 0.72rem; font-weight: 700; color: #166534; text-transform: uppercase;">Stop ${wp.stop_number} • ${wp.badge}</div>
+              <div style="font-size: 0.95rem; font-weight: 700; color: #0f172a; margin: 2px 0 4px;">${wp.name}</div>
+              <div style="font-size: 0.78rem; color: #475569;">${wp.details}</div>
+              <div style="font-size: 0.75rem; font-weight: 600; color: #b45309; margin-top: 4px;">${wp.time_label}</div>
+            </div>
+          `;
+          marker.bindPopup(popupContent);
+          if (wp.type === 'current') {
+            marker.openPopup();
+          }
+        });
+
+        // Place Live Vehicle marker
+        const truckPos = [routeData.vehicle.telemetry.lat, routeData.vehicle.telemetry.lng];
+        truckMarker = L.marker(truckPos, { icon: createTruckIcon() }).addTo(mainMap);
+        truckMarker.bindPopup(`
+          <div style="font-family: inherit; padding: 4px;">
+            <div style="font-size: 0.72rem; font-weight: 700; color: #15803d; text-transform: uppercase;">Live Vehicle Telemetry</div>
+            <div style="font-size: 0.95rem; font-weight: 700; color: #0f172a;">${routeData.vehicle.vehicle_type} (${routeData.vehicle.vehicle_number})</div>
+            <div style="font-size: 0.78rem; color: #475569; margin-top: 2px;">Driver: ${routeData.vehicle.agent_name}</div>
+            <div style="font-size: 0.75rem; color: #0369a1; font-weight: 600; margin-top: 4px;">Speed: ${routeData.vehicle.telemetry.speed_kmh} km/h • ${routeData.vehicle.telemetry.landmark}</div>
           </div>
-        `;
-        marker.bindPopup(popupContent);
-        if (wp.type === 'current') {
-          marker.openPopup();
+        `);
+
+        mainMap.fitBounds(mainRouteLine.getBounds(), { padding: [40, 40] });
+
+        // Action buttons
+        const btnFit = document.getElementById('btn-fit-route');
+        const btnCenter = document.getElementById('btn-center-vehicle');
+
+        if (btnFit) {
+          btnFit.addEventListener('click', () => {
+            if (mainMap && mainRouteLine) {
+              mainMap.invalidateSize();
+              mainMap.fitBounds(mainRouteLine.getBounds(), { padding: [40, 40], animate: true });
+            }
+            btnFit.classList.add('active');
+            if (btnCenter) btnCenter.classList.remove('active');
+          });
         }
-      });
 
-      // Place Live Vehicle marker
-      const truckPos = [routeData.vehicle.telemetry.lat, routeData.vehicle.telemetry.lng];
-      truckMarker = L.marker(truckPos, { icon: createTruckIcon() }).addTo(mainMap);
-      truckMarker.bindPopup(`
-        <div style="font-family: inherit; padding: 4px;">
-          <div style="font-size: 0.72rem; font-weight: 700; color: #15803d; text-transform: uppercase;">Live Vehicle Telemetry</div>
-          <div style="font-size: 0.95rem; font-weight: 700; color: #0f172a;">${routeData.vehicle.vehicle_type} (${routeData.vehicle.vehicle_number})</div>
-          <div style="font-size: 0.78rem; color: #475569; margin-top: 2px;">Driver: ${routeData.vehicle.agent_name}</div>
-          <div style="font-size: 0.75rem; color: #0369a1; font-weight: 600; margin-top: 4px;">Speed: ${routeData.vehicle.telemetry.speed_kmh} km/h • ${routeData.vehicle.telemetry.landmark}</div>
-        </div>
-      `);
-
-      mainMap.fitBounds(mainRouteLine.getBounds(), { padding: [40, 40] });
-
-      // Action buttons
-      const btnFit = document.getElementById('btn-fit-route');
-      const btnCenter = document.getElementById('btn-center-vehicle');
-
-      if (btnFit) {
-        btnFit.addEventListener('click', () => {
-          mainMap.fitBounds(mainRouteLine.getBounds(), { padding: [40, 40], animate: true });
-          btnFit.classList.add('active');
-          if (btnCenter) btnCenter.classList.remove('active');
-        });
-      }
-
-      if (btnCenter) {
-        btnCenter.addEventListener('click', () => {
-          mainMap.setView([routeData.vehicle.telemetry.lat, routeData.vehicle.telemetry.lng], 14, { animate: true });
-          btnCenter.classList.add('active');
-          if (btnFit) btnFit.classList.remove('active');
-          truckMarker.openPopup();
-        });
+        if (btnCenter) {
+          btnCenter.addEventListener('click', () => {
+            if (mainMap && truckMarker) {
+              mainMap.invalidateSize();
+              mainMap.setView([routeData.vehicle.telemetry.lat, routeData.vehicle.telemetry.lng], 14, { animate: true });
+              truckMarker.openPopup();
+            }
+            btnCenter.classList.add('active');
+            if (btnFit) btnFit.classList.remove('active');
+          });
+        }
       }
     }
 
     // Mini Map on Overview Panel
     let miniMap = null;
     if (overviewMapEl && typeof L !== 'undefined') {
-      miniMap = L.map('delivery-overview-map', {
-        zoomControl: false,
-        dragging: false,
-        scrollWheelZoom: false,
-        doubleClickZoom: false
-      }).setView([routeData.vehicle.telemetry.lat, routeData.vehicle.telemetry.lng], 12);
+      if (overviewMapEl._leaflet_id) {
+        console.log('[KrishiLink] Delivery overview mini-map already active.');
+      } else {
+        miniMap = L.map('delivery-overview-map', {
+          zoomControl: false,
+          dragging: false,
+          scrollWheelZoom: false,
+          doubleClickZoom: false
+        }).setView([routeData.vehicle.telemetry.lat, routeData.vehicle.telemetry.lng], 12);
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19
-      }).addTo(miniMap);
+        attachRobustTileLayer(miniMap);
 
-      L.polyline(routeData.corridor_path, {
-        color: '#15803d',
-        weight: 4,
-        opacity: 0.8
-      }).addTo(miniMap);
+        L.polyline(routeData.corridor_path, {
+          color: '#15803d',
+          weight: 4,
+          opacity: 0.8
+        }).addTo(miniMap);
 
-      L.marker([routeData.vehicle.telemetry.lat, routeData.vehicle.telemetry.lng], { icon: createTruckIcon() }).addTo(miniMap);
+        L.marker([routeData.vehicle.telemetry.lat, routeData.vehicle.telemetry.lng], { icon: createTruckIcon() }).addTo(miniMap);
 
-      // Clicking mini-map jumps to full Route tab
-      overviewMapEl.style.cursor = 'pointer';
-      overviewMapEl.addEventListener('click', () => {
-        const routeRadio = document.getElementById('view-route');
-        if (routeRadio) {
-          routeRadio.checked = true;
-          setTimeout(() => {
-            if (mainMap && mainRouteLine) {
-              mainMap.invalidateSize();
-              mainMap.fitBounds(mainRouteLine.getBounds(), { padding: [40, 40] });
-            }
-          }, 200);
-        }
-      });
+        // Clicking mini-map jumps to full Route tab
+        overviewMapEl.style.cursor = 'pointer';
+        overviewMapEl.addEventListener('click', () => {
+          const routeRadio = document.getElementById('view-route');
+          if (routeRadio) {
+            routeRadio.checked = true;
+            setTimeout(refreshMainRouteMap, 100);
+            setTimeout(refreshMainRouteMap, 300);
+          }
+        });
+      }
     }
 
-    // Handle view radio tab switching so Leaflet resizes correctly
+    // Comprehensive refresh helper for route map sizing & bounds
+    function refreshMainRouteMap() {
+      if (mainMap) {
+        mainMap.invalidateSize();
+        if (mainRouteLine) {
+          mainMap.fitBounds(mainRouteLine.getBounds(), { padding: [40, 40] });
+        }
+      }
+    }
+
+    function refreshOverviewMiniMap() {
+      if (miniMap) {
+        miniMap.invalidateSize();
+        miniMap.setView([routeData.vehicle.telemetry.lat, routeData.vehicle.telemetry.lng], 12);
+      }
+    }
+
+    // Handle view radio tab switching so Leaflet resizes correctly when Today's Route tab is opened
     const viewRadios = document.querySelectorAll('input[name="app-view"]');
     viewRadios.forEach(radio => {
       radio.addEventListener('change', () => {
-        setTimeout(() => {
-          if (mainMap && mainRouteLine && radio.id === 'view-route') {
-            mainMap.invalidateSize();
-            mainMap.fitBounds(mainRouteLine.getBounds(), { padding: [40, 40] });
-          }
-          if (miniMap && radio.id === 'view-overview') {
-            miniMap.invalidateSize();
-            miniMap.setView([routeData.vehicle.telemetry.lat, routeData.vehicle.telemetry.lng], 12);
-          }
-        }, 150);
+        if (radio.id === 'view-route') {
+          setTimeout(refreshMainRouteMap, 50);
+          setTimeout(refreshMainRouteMap, 200);
+          setTimeout(refreshMainRouteMap, 500);
+        } else if (radio.id === 'view-overview') {
+          setTimeout(refreshOverviewMiniMap, 50);
+          setTimeout(refreshOverviewMiniMap, 200);
+        }
       });
     });
+
+    // Also wire click listeners directly on any label targeting view-route (sidebar or action links)
+    document.querySelectorAll('label[for="view-route"]').forEach(lbl => {
+      lbl.addEventListener('click', () => {
+        setTimeout(refreshMainRouteMap, 100);
+        setTimeout(refreshMainRouteMap, 350);
+        setTimeout(refreshMainRouteMap, 600);
+      });
+    });
+
+    // Zero-lag layout detection via ResizeObserver
+    if (typeof ResizeObserver !== 'undefined' && routeMapEl) {
+      const resizeObserver = new ResizeObserver(entries => {
+        for (const entry of entries) {
+          if (entry.contentRect.width > 50 && entry.contentRect.height > 50) {
+            if (mainMap) {
+              mainMap.invalidateSize();
+            }
+          }
+        }
+      });
+      resizeObserver.observe(routeMapEl);
+    }
+
+    // IntersectionObserver to auto-render when scrolled or un-hidden into viewport
+    if (typeof IntersectionObserver !== 'undefined' && routeMapEl) {
+      const intersectObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            refreshMainRouteMap();
+          }
+        });
+      }, { threshold: 0.05 });
+      intersectObserver.observe(routeMapEl);
+    }
+
+    window.addEventListener('resize', () => {
+      refreshMainRouteMap();
+      refreshOverviewMiniMap();
+    });
+
+    // If page is loaded with view-route already checked
+    const activeRouteRadio = document.getElementById('view-route');
+    if (activeRouteRadio && activeRouteRadio.checked) {
+      setTimeout(refreshMainRouteMap, 250);
+    }
 
     // Update HUD telemetry values
     const hudVehicle = document.getElementById('hud-vehicle-model');
