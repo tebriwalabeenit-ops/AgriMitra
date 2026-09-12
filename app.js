@@ -40,6 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
     openDialog(aboutDialog);
   });
 
+  const heroVideo = document.querySelector('.hero-bg-video');
+  if (heroVideo) {
+    heroVideo.muted = true;
+    heroVideo.play().catch(() => {});
+  }
+
   function handleUrlHash() {
     const hash = window.location.hash;
     if (!hash) return;
